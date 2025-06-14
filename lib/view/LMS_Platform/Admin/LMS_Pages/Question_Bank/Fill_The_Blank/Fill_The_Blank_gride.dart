@@ -1,23 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/LMS_APIs/QuestionAPI/Choose_The_Correct_API.dart/Delete_Choose_The_Correct_API.dart';
+import 'package:vms_school/Link/API/LMS_APIs/QuestionAPI/Fill_The_Blanks_API.dart/Delete_Fill_The_Blanks_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
-import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/QuestionBank_Controllers/Choose_The_Correct_Answer_Controller.dart';
+import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/QuestionBank_Controllers/Fill_The_Blank_Controller.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/view/Both_Platform/widgets/ButtonsDialog.dart';
 import 'package:vms_school/view/Both_Platform/widgets/Squer_Button_Enabled_Disabled.dart';
 import 'package:vms_school/view/Both_Platform/widgets/VMSAlertDialog.dart';
 
-class Choose_the_correct_answer_gride extends StatefulWidget {
-  const Choose_the_correct_answer_gride({super.key});
+class Fill_The_Blank_gride extends StatefulWidget {
+  const Fill_The_Blank_gride({super.key});
 
   @override
-  State<Choose_the_correct_answer_gride> createState() =>
-      _Choose_the_correct_answer_grideState();
+  State<Fill_The_Blank_gride> createState() => _Fill_The_Blank_grideState();
 }
 
-class _Choose_the_correct_answer_grideState
-    extends State<Choose_the_correct_answer_gride> {
+class _Fill_The_Blank_grideState extends State<Fill_The_Blank_gride> {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -34,8 +33,7 @@ class _Choose_the_correct_answer_grideState
               ? TextDirection.rtl
               : TextDirection.ltr,
           child: SingleChildScrollView(
-            child: GetBuilder<Choose_The_Correct_Answer>(builder: (controller) {
-              // حساب عدد العناصر
+            child: GetBuilder<Fill_The_Blank_Controller>(builder: (controller) {
               int itemCount = controller.filterdQuestions!.length;
               if (screenWidth <= 800) {
                 return ListView.builder(
@@ -96,7 +94,7 @@ class _Choose_the_correct_answer_grideState
   }
 
   Widget _buildQuestionItem(BuildContext context,
-      Choose_The_Correct_Answer controller, int index, double screenWidth) {
+      Fill_The_Blank_Controller controller, int index, double screenWidth) {
     return Column(
       children: [
         Container(
@@ -129,13 +127,15 @@ class _Choose_the_correct_answer_grideState
                 spacing: 30.0,
                 children: [
                   Expanded(
-                    child: Text(
-                        maxLines: 10,
-                        style: Theme.of(context)
-                            .textTheme
-                            .titleMedium!
-                            .copyWith(fontSize: 16),
-                        "${index + 1})- ${controller.filterdQuestions![index].description}"),
+                    child: Wrap(
+                      crossAxisAlignment: WrapCrossAlignment.end,
+                      spacing: 10.0,
+                      runSpacing: 10.0,
+                      children: _buildTextWithDividers(
+                        context,
+                        "${index + 1})- ${controller.filterdQuestions![index].description}",
+                      ),
+                    ),
                   ),
                   Row(
                     spacing: 10.0,
@@ -151,8 +151,8 @@ class _Choose_the_correct_answer_grideState
                                   ButtonDialog(
                                       text: "Delete".tr,
                                       onPressed: () async {
-                                        await Delete_Choose_The_Correct_API()
-                                            .Delete_Choose_The_Correct(
+                                        await Delete_Fill_The_Blanks_API()
+                                            .Delete_Fill_The_Blanks(
                                                 question: controller
                                                     .filterdQuestions![index]);
                                       },
@@ -192,51 +192,6 @@ class _Choose_the_correct_answer_grideState
                   )
                 ],
               ),
-              ListView.builder(
-                shrinkWrap: true,
-                itemCount: controller.filterdQuestions![index].answer!.length,
-                itemBuilder: (context, Question_Index) {
-                  final answer = controller
-                      .filterdQuestions![index].answer![Question_Index];
-                  final isCorrect = answer.trueAns == 1;
-                  final color = isCorrect
-                      ? const Color(0xff498160)
-                      : Theme.of(context).cardColor;
-
-                  return Container(
-                    width: screenWidth,
-                    padding: const EdgeInsets.all(10),
-                    margin: const EdgeInsets.symmetric(vertical: 5.0),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      border: Border.all(
-                        color: isCorrect
-                            ? const Color(0xff498160)
-                            : Theme.of(context).textTheme.titleMedium!.color!,
-                        width: 0.5,
-                      ),
-                      color: color,
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Colors.black26,
-                          offset: Offset(0, 2),
-                          blurRadius: 1,
-                        ),
-                      ],
-                    ),
-                    child: Text(
-                      answer.choice ?? '',
-                      maxLines: 10,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        color: isCorrect
-                            ? Colors.white
-                            : Theme.of(context).textTheme.titleMedium!.color,
-                      ),
-                    ),
-                  );
-                },
-              )
             ],
           ),
         ),
@@ -253,4 +208,37 @@ class _Choose_the_correct_answer_grideState
       ],
     );
   }
+}
+
+// دالة لبناء قائمة من العناصر (نصوص وdividers)
+List<Widget> _buildTextWithDividers(BuildContext context, String text) {
+  final pattern = RegExp(r'\[\.{3}\]'); // يبحث عن [...]
+  final parts = text.split(pattern);
+  List<Widget> widgets = [];
+
+  for (int i = 0; i < parts.length; i++) {
+    widgets.add(
+      Text(
+        parts[i],
+        style: Theme.of(context).textTheme.titleMedium?.copyWith(fontSize: 16),
+        maxLines: 10,
+      ),
+    );
+
+    // إضافة Divider بعد كل جزء ماعدا الأخير
+    if (i < parts.length - 1) {
+      widgets.add(
+        Container(
+          decoration: BoxDecoration(
+              color: Get.theme.textTheme.titleMedium!.color,
+              borderRadius: BorderRadius.all(Radius.circular(50))),
+          alignment: Alignment.center,
+          width: 70,
+          height: 1,
+        ),
+      );
+    }
+  }
+
+  return widgets;
 }

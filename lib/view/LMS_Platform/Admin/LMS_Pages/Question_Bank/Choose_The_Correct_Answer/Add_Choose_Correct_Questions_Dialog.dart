@@ -79,7 +79,7 @@ class _Add_Choose_Correct_Questions_DialogState
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text("الخيارات".tr),
+                    Text("Options".tr),
                     Squer_Button_Enabled_Disabled(
                       validate: false,
                       icon: Icons.add,

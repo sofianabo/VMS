@@ -31,7 +31,10 @@ class Qustions_Bank_Controller extends GetxController {
       "text": "Fill in the blanks".tr,
       "subTitle":
           "Complete the sentences with appropriate words and phrases.".tr,
-      "onTap": () {}
+      "onTap": () {
+        Get.find<Selected_Class_Controller>()
+            .addToPath("Fill in the blanks".tr);
+      }
     },
     {
       "icon": LMS_Icons.dragdrop,
@@ -48,8 +51,7 @@ class Qustions_Bank_Controller extends GetxController {
           "Questions consisting of large blanks suitable for topics and articles."
               .tr,
       "onTap": () {
-                Get.find<Selected_Class_Controller>().addToPath("article".tr);
-
+        Get.find<Selected_Class_Controller>().addToPath("article".tr);
       }
     },
     {

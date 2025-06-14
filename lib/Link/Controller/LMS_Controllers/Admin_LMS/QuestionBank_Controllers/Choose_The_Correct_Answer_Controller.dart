@@ -12,9 +12,6 @@ class Choose_The_Correct_Answer extends GetxController {
     update();
   }
 
-  // إدارة حالة الخطأ في السؤال
-  final RxBool _isQuestionError = false.obs;
-
   // قائمة الخيارات
   final RxList<String> _options = <String>[
     "",
@@ -49,8 +46,8 @@ class Choose_The_Correct_Answer extends GetxController {
 
   // تنظيف البيانات بعد الإضافة
   void clearData() {
-    _options.clear();
-    _correctAnswerIndex.value = -1;
+    _options.value = [""];
+    _correctAnswerIndex.value = 0;
     IsAnameError = false;
   }
 

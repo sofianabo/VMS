@@ -15,6 +15,7 @@ class Languages {
       'Files': 'الملفات',
       'Homeworks': 'الوظائف',
       'Links': 'الروابط',
+      'Options': 'الخيارات',
       'My Children': 'ابنائي',
       'Forgot your password  ?': 'هل نسيت كلمة السر  ؟',
       'Pages': 'الصفحات',
@@ -61,6 +62,7 @@ class Languages {
       'You have not confirmed your account yet.': 'لم تقم بتأكيد حسابك بعد',
       'Verified Now': 'التحقق الان',
       'PM': 'مساءً',
+      'Option': 'الخيار',
       'Rewards and Penalties': 'المكافئات و العقوبات',
       'Rewards': 'مكافئة',
       'School Content': 'محتويات المدرسة',
@@ -261,6 +263,7 @@ class Languages {
       'Are you sure you want to delete this question ?':
           'هل انت متأكد من حذف هذا السؤال ؟',
       'Degrees': 'درجة',
+      'Add Choose Correct Questions': 'نص السؤال',
       'Username not found': 'اسم المستخدم غير موجود',
       'Find Your Account': 'العثور على حسابي',
       'Select Class First': 'اختر الصف أولاً',
@@ -1404,6 +1407,9 @@ class Languages {
       'Add Guardian': 'Add Guardian',
 
       'Email': 'Email',
+      'Options': 'Options',
+      'Option': 'Option',
+      'Add Choose Correct Questions': 'Question Title',
       'Simple questions requiring a true or false selection.':
           'Simple questions requiring a true or false selection.',
       'Choose the correct answer from several options':
