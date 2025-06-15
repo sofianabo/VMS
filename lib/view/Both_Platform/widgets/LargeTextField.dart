@@ -9,12 +9,16 @@ class LargeTextField extends StatelessWidget {
     this.isRequired = false, // إضافة متغير لتحديد ما إذا كان الحقل مطلوبًا.
     this.readOnly = false, // إضافة متغير لتحديد ما إذا كان الحقل مطلوبًا.
     this.isError = false, // خاصية لتحديد إذا كان هناك خطأ
-    this.onChanged, // خاصية لاستدعاء دالة عند تغيير النص
+    this.onChanged,
+    this.focusNode,
+    this.TextDirections, // خاصية لاستدعاء دالة عند تغيير النص
   });
 
   final TextEditingController controller;
   final String hinttext;
   final double? width;
+  final FocusNode? focusNode;
+  final TextDirection? TextDirections;
   final bool isRequired; // متغير لتحديد إذا كان الحقل مطلوبًا.
   final bool readOnly; // متغير لتحديد إذا كان الحقل مطلوبًا.
   final bool isError; // متغير للتحكم في ظهور الخطأ
@@ -49,6 +53,8 @@ class LargeTextField extends StatelessWidget {
           Container(
             height: 240,
             child: TextFormField(
+              textDirection: TextDirections,
+              focusNode: focusNode,
               readOnly: readOnly,
               maxLines: 10,
               controller: controller,
