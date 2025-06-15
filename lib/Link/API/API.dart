@@ -233,3 +233,4 @@ String showPage = "showPage";
 String addQuestion = "addQuestion";
 String getQuestion = "getQuestion";
 String deleteQuestion = "deleteQuestion";
+String classInfoLms = "classInfoLms";

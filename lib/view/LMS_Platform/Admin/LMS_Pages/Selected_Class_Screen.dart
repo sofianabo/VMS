@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/NumberOfContentController.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Selected_Screen.dart';
 import 'package:vms_school/view/Both_Platform/widgets/GridAnimation.dart';
 
@@ -29,45 +31,11 @@ class SelectedClassLMs extends StatelessWidget {
     }
 
     return GetBuilder<Selected_Class_Controller>(builder: (control) {
+      
       return control.isLoading == true
-          ? GridView.builder(
-              padding: const EdgeInsets.only(top: 10, left: 50, right: 50),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: getCrossAxisCount(),
-                  crossAxisSpacing: 20.0,
-                  mainAxisSpacing: 20.0,
-                  childAspectRatio: getChildAspectRatio()),
-              itemCount: 8,
-              itemBuilder: (context, index) {
-                return HoverScaleCard(
-                  child: Container(
-                      padding: const EdgeInsets.all(20),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(5)),
-                          border: Border.all(
-                              color: Theme.of(context)
-                                  .textTheme
-                                  .titleMedium!
-                                  .color!,
-                              width: 0.5),
-                          color: Theme.of(context).cardColor,
-                          boxShadow: const [
-                            BoxShadow(
-                                color: Colors.black26,
-                                offset: Offset(0, 2),
-                                blurRadius: 1)
-                          ]),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [],
-                      )),
-                ).animate(onPlay: (controller) => controller.repeat()).shimmer(
-                    angle: 1,
-                    color: Colors.grey.withOpacity(0.2),
-                    duration: const Duration(seconds: 1),
-                    delay: const Duration(seconds: 1));
-              },
+          ? LoadingAnimationWidget.staggeredDotsWave(
+              color: Get.theme.primaryColor,
+              size: 60,
             )
           : GridView.builder(
               padding: const EdgeInsets.only(top: 10, left: 50, right: 50),
@@ -134,7 +102,7 @@ class SelectedClassLMs extends StatelessWidget {
                                       )),
                             ),
                           ),
-                          Text("( ${(index * 2) + 2} )",
+                          Text("( ${control.dataList[index]['count']} )",
                               style: Theme.of(context)
                                   .textTheme
                                   .titleMedium!
