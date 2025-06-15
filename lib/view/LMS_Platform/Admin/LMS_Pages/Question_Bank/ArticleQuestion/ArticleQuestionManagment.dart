@@ -1,30 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dropzone/flutter_dropzone.dart';
 import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:vms_school/Link/API/LMS_APIs/Admin/AddLinkLMSAPI.dart';
-import 'package:vms_school/Link/API/LMS_APIs/Admin/Add_File_LMS_API.dart';
-import 'package:vms_school/Link/API/LMS_APIs/Admin/GetAllLinksLMSAPI.dart';
-import 'package:vms_school/Link/API/LMS_APIs/Admin/Get_All_Curr_LMS.dart';
-import 'package:vms_school/Link/API/LMS_APIs/Admin/Get_LMS_Files.dart';
 import 'package:vms_school/Link/API/LMS_APIs/QuestionAPI/ArticleAPI/AddArticleAPI.dart';
 import 'package:vms_school/Link/API/LMS_APIs/QuestionAPI/ArticleAPI/GetAllArticleAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
-import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Files_Controller.dart';
-import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/LinksLMS_Controller.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/QuestionBank_Controllers/ArticleQuestionController.dart';
-import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/TrueOrFalseController.dart';
 import 'package:vms_school/view/Both_Platform/widgets/ButtonsDialog.dart';
 import 'package:vms_school/view/Both_Platform/widgets/Squer_Button_Enabled_Disabled.dart';
 import 'package:vms_school/view/Both_Platform/widgets/TextFildWithUpper.dart';
 import 'package:vms_school/view/Both_Platform/widgets/VMSAlertDialog.dart';
-import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Files_LMS/Files_LMS_Grid.dart';
 import 'package:vms_school/view/Both_Platform/widgets/TextFormSearch.dart';
-import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/LinksLMS/LinksLMSGrid.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Question_Bank/ArticleQuestion/ArticleQustionGrid.dart';
-import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Question_Bank/TrueOrFalse/TrueOrFalseQustionGrid.dart';
-import 'package:vms_school/view/LMS_Platform/Widget/File_LMS_DropDown.dart';
-import 'package:vms_school/view/LMS_Platform/Widget/LinksLMSDropdown.dart';
+
 
 class Articlequestionmanagment extends StatefulWidget {
   const Articlequestionmanagment({super.key});
@@ -79,7 +66,7 @@ class _ArticlequestionmanagmentState extends State<Articlequestionmanagment> {
                       icon: Icons.add,
                       onTap: () {
                         qeustion.clear();
-                      
+
                         Get.find<Articlequestioncontroller>().resetError();
 
                         controller.updateFieldError("question", false);
@@ -124,7 +111,7 @@ class _ArticlequestionmanagmentState extends State<Articlequestionmanagment> {
                         icon: Icons.add,
                         onTap: () {
                           qeustion.clear();
-                      
+
                           Get.find<Articlequestioncontroller>().resetError();
 
                           controller.updateFieldError("question", false);
@@ -186,7 +173,6 @@ class _ArticlequestionmanagmentState extends State<Articlequestionmanagment> {
                           controller: qeustion,
                           Uptext: "Question".tr,
                           hinttext: "Question".tr),
-                     
                     ],
                   ),
                 ],
@@ -205,7 +191,7 @@ class _ArticlequestionmanagmentState extends State<Articlequestionmanagment> {
 
                       controller.updateFieldError("question", isQuestionEmpty);
 
-                      if (!(isQuestionEmpty )) {
+                      if (!(isQuestionEmpty)) {
                         await Addarticleapi(context)
                             .Addarticle(question: qeustion.text);
                       }

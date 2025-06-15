@@ -60,6 +60,7 @@ import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Home_Contro
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/HomeworkController.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/LMS_Divisions_Controller.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/LinksLMS_Controller.dart';
+import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/NumberOfContentController.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/QuestionBank_Controllers/ArticleQuestionController.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/QuestionBank_Controllers/Choose_The_Correct_Answer_Controller.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/QuestionBank_Controllers/Fill_The_Blank_Controller.dart';
@@ -183,5 +184,6 @@ class AppBindings extends Bindings {
     Get.lazyPut(() => Choose_The_Correct_Answer(), fenix: true);
     Get.lazyPut(() => Articlequestioncontroller(), fenix: true);
     Get.lazyPut(() => Fill_The_Blank_Controller(), fenix: true);
+    Get.lazyPut(() => Numberofcontentcontroller(), fenix: true);
   }
 }

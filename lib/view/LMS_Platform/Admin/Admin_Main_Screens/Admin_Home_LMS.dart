@@ -3,6 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/LMS_APIs/Admin/Gat_ClassLMS.dart';
+import 'package:vms_school/Link/API/LMS_APIs/Admin/GetNumberOfContentAPI.dart';
 import 'package:vms_school/Link/API/OpenURLs.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Home_Controller.dart';
@@ -174,6 +175,9 @@ class _Admin_Home_LMSState extends State<Admin_Home_LMS> {
                                   return HoverScaleCard(
                                     child: GestureDetector(
                                       onTap: () {
+                                        Getnumberofcontentapi()
+                                            .Getnumberofcontent(control
+                                                .filteredreclasses![index].id!);
                                         Get.find<Selected_Class_Controller>()
                                             .initialinClass(
                                                 control
