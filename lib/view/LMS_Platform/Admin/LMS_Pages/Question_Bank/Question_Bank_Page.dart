@@ -98,7 +98,7 @@ class _QuestionBankPageState extends State<QuestionBankPage> {
                               borderRadius:
                                   BorderRadius.all(Radius.circular(5.0)),
                               color: controller.idx == index
-                                  ? Get.theme.primaryColor
+                                  ? Get.theme.primaryColorLight
                                   : Colors.transparent,
                             ),
                             padding: EdgeInsets.all(10.0),

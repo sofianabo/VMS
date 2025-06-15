@@ -56,7 +56,7 @@ class _AppbartransactionState extends State<Appbartransaction> {
                                 style: TextStyle(
                                   color: index == controller.moveMenu.length - 1
                                       ? Colors.white
-                                      : Get.theme.primaryColor,
+                                      : Get.theme.textTheme.titleMedium!.color,
                                   fontWeight:
                                       index == controller.moveMenu.length - 1
                                           ? FontWeight.bold

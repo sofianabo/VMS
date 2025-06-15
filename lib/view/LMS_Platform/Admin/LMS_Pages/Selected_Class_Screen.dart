@@ -31,7 +31,6 @@ class SelectedClassLMs extends StatelessWidget {
     }
 
     return GetBuilder<Selected_Class_Controller>(builder: (control) {
-      
       return control.isLoading == true
           ? LoadingAnimationWidget.staggeredDotsWave(
               color: Get.theme.primaryColor,
@@ -76,7 +75,7 @@ class SelectedClassLMs extends StatelessWidget {
                         children: [
                           Icon(
                             control.dataList[index]['icon'],
-                            color: Color(0xff134B70),
+                            color: Get.theme.textTheme.titleMedium!.color,
                             size: 50.0,
                           ),
                           Text(control.dataList[index]['name'],
