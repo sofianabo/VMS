@@ -3,8 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/API/LMS_APIs/QuestionAPI/Fill_The_Blanks_API.dart/Add_Fill_The_Blanks_API.dart';
+import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/QuestionBank_Controllers/Fill_The_Blank_Controller.dart';
+import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/view/Both_Platform/widgets/ButtonsDialog.dart';
+import 'package:vms_school/view/Both_Platform/widgets/LargeTextField.dart';
 import 'package:vms_school/view/Both_Platform/widgets/Squer_Button_Enabled_Disabled.dart';
 import 'package:vms_school/view/Both_Platform/widgets/TextFildWithUpper.dart';
 import 'package:vms_school/view/Both_Platform/widgets/VMSAlertDialog.dart';
@@ -22,6 +25,8 @@ class _Add_Fill_The_Blank_DialogState extends State<Add_Fill_The_Blank_Dialog> {
   final TextEditingController _optionController = TextEditingController();
   final FocusNode _optionFocusNode = FocusNode();
   var cont = Get.find<Fill_The_Blank_Controller>();
+  final FocusNode questionFocusNode = FocusNode();
+
   @override
   void dispose() {
     _optionController.dispose();
@@ -55,18 +60,58 @@ class _Add_Fill_The_Blank_DialogState extends State<Add_Fill_The_Blank_Dialog> {
         child: SingleChildScrollView(
           child: GetBuilder<Fill_The_Blank_Controller>(builder: (controller) {
             return Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              spacing: 20.0,
               children: [
                 Container(
-                  width: 600,
-                  height: 60,
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Theme.of(context).textTheme.titleMedium!.color!,
-                      width: 0.5,
-                    ),
-                  ),
+                  width: 200,
+                  child: TextButton(
+                      style: ButtonStyle(
+                          backgroundColor:
+                              WidgetStatePropertyAll(Colors.transparent),
+                          shape: WidgetStatePropertyAll(RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(3)),
+                            side: BorderSide(
+                                color: Get.theme.textTheme.titleMedium!.color!),
+                          ))),
+                      onPressed: () {
+                        Question.text += " [...] ";
+                        questionFocusNode.requestFocus();
+
+                        Question.selection = TextSelection.fromPosition(
+                            TextPosition(offset: Question.text.length));
+                      },
+                      child: Row(
+                        textDirection: Get.find<LocalizationController>()
+                                    .currentLocale
+                                    .value
+                                    .languageCode ==
+                                'ar'
+                            ? TextDirection.ltr
+                            : TextDirection.rtl,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(
+                            "[.....]",
+                            style: Get.theme.textTheme.headlineMedium!.copyWith(
+                                color: Color(0xff134B70), fontSize: 12),
+                          ),
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(left: 5.0, right: 5.0),
+                            child: Text(
+                              'Add Blank'.tr,
+                              style: Get.theme.textTheme.headlineMedium!
+                                  .copyWith(color: Color(0xff134B70)),
+                            ),
+                          ),
+                        ],
+                      )),
                 ),
-                Textfildwithupper(
+                LargeTextField(
+                  TextDirections: isFirstCharEnglish(Question.text),
                   width: 600,
                   isError: controller.IsAnameError,
                   onChanged: (value) {
@@ -74,8 +119,8 @@ class _Add_Fill_The_Blank_DialogState extends State<Add_Fill_The_Blank_Dialog> {
                   },
                   isRequired: true,
                   controller: Question,
-                  Uptext: "Questions Title".tr,
                   hinttext: "Questions Title".tr,
+                  focusNode: questionFocusNode,
                 ),
               ],
             );
@@ -85,5 +130,17 @@ class _Add_Fill_The_Blank_DialogState extends State<Add_Fill_The_Blank_Dialog> {
       apptitle: "Add Question".tr,
       subtitle: "none".tr,
     );
+  }
+}
+
+isFirstCharEnglish(String text) {
+  if (text.isEmpty) return TextDirection.rtl;
+  final firstChar = text.trim()[0];
+  bool isEnglish = RegExp(r'^[a-zA-Z]').hasMatch(firstChar);
+  print(isEnglish);
+  if (isEnglish) {
+    return TextDirection.ltr;
+  } else {
+    return TextDirection.rtl;
   }
 }
