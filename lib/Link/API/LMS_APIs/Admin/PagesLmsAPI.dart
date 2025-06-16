@@ -29,6 +29,8 @@ class Pageslmsapi {
           data: {'classId': Get.find<Selected_Class_Controller>().classid},
           options: getDioOptions());
       if (response.statusCode == 200) {
+        controller.filterName = "";
+        controller.currindex = "";
         PagesLmsModel lms_links_model = PagesLmsModel.fromJson(response.data);
         controller.SetPages(lms_links_model);
       } else {

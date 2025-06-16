@@ -27,6 +27,8 @@ class Getalllinkslmsapi {
           data: {'classId': Get.find<Selected_Class_Controller>().classid},
           options: getDioOptions());
       if (response.statusCode == 200) {
+          controller.filterName = "";
+        controller.currindex = "";
         LinksLMSModel lms_links_model = LinksLMSModel.fromJson(response.data);
         controller.SetLinks(lms_links_model);
       } else {

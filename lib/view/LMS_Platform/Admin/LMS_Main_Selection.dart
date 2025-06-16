@@ -55,7 +55,7 @@ class Selected_Class_Screen extends StatelessWidget {
                   } else if (current == "Pages".tr) {
                     return Pageslmsmangament();
                   } else if (current == "Quiz".tr) {
-                    return Text("Quiz");
+                    return QuizQuestion();
                   } else if (current == "Question Bank".tr) {
                     return QuestionBankPage();
                   } else if (current == "True or False".tr) {
