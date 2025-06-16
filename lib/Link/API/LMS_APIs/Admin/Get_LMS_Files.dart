@@ -18,11 +18,15 @@ class Get_LMS_Files_API {
     final controller = Get.find<Files_Controller>();
     controller.SetIsLoading(true);
     try {
+           Get.find<Files_Controller>().setisCurriculmLoading(true);
+      Get.find<Files_Controller>().setisCurriculmDialogLoading(true);
       String myurl = "$hostPort$getLmsCurriculmFile";
       var response = await dio.post(myurl,
           data: {'classId': Get.find<Selected_Class_Controller>().classid},
           options: getDioOptions());
       if (response.statusCode == 200) {
+          controller.filterName = "";
+        controller.currindex = "";
         LMS_Files_Model lms_files_model =
             LMS_Files_Model.fromJson(response.data);
         controller.SetFiles(lms_files_model);

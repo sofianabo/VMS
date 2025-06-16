@@ -930,6 +930,9 @@ class Languages {
       'Delete Question': 'حذف سؤال',
       'Edit Article': 'تعديل المقالة',
       'Edit Question': 'تعديل السؤال',
+      'No Quizzes': 'لا يوجد امتحانات',
+      'Hidden': 'مخفي',
+      'UnHidden': 'غير مخفي',
     },
     'en': {
       'Welcome Laith Haitham Azzam': 'Welcome Laith Haitham Azzam',
@@ -1853,9 +1856,9 @@ class Languages {
       'Delete Question': 'Delete Question',
       'Edit Article': 'Edit Article',
       'Edit Question': 'Edit Question',
-      '': '',
-      '': '',
-      '': '',
+      'No Quizzes': 'No Quizzes',
+      'Hidden': 'Hidden',
+      'UnHidden': 'UnHidden',
       '': '',
     }
   };

@@ -27,6 +27,8 @@ class GethomeworkLmsapi {
         "divisionId": '$id',
       }, myurl, options: getDioOptions());
       if (response.statusCode == 200) {
+          controller.filterName = "";
+        controller.currindex = "";
         HomeworkLMSModel homeworkLMSModel =
             HomeworkLMSModel.fromJson(response.data);
         controller.SetHomework(homeworkLMSModel);

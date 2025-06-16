@@ -217,7 +217,7 @@ class _PageslmsmangamentState extends State<Pageslmsmangament> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Checkbox(
-                            checkColor: Colors.white,
+                            checkColor: Colors.white, 
                             value: controller.Hidden,
                             onChanged: (value) {
                               if (Get.find<Add_Data_controller>().roll !=
