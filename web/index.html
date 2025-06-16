@@ -1,32 +1,71 @@
+
+
+
+
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
   <base href="$FLUTTER_BASE_HREF">
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="A new Flutter project.">
+
+  <!-- Primary Meta Tags -->
+  <title>Virtual Modern School</title>
+  <meta name="description" content="Virtual Modern School - مدرسة إلكترونية متكاملة في محافظة السويداء تقدم تعليمًا عالي الجودة عبر الإنترنت لجميع المراحل الدراسية. انضم إلى منصتنا للتعلم بمرونة وأمان.">
+  <meta name="keywords" content="مدرسة افتراضية حديثة, تعليم عن بعد, مدرسة إلكترونية, Virtual Modern School, السويداء, التعليم أونلاين, منصة تعليمية سورية, مدارس اونلاين معتمدة">
+
+  <!-- Open Graph / Facebook Meta Tags -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.vmssyria.com/">
+  <meta property="og:title" content="Virtual Modern School">
+  <meta property="og:description" content="المدرسة الافتراضية الحديثة تقدم تعليمًا إلكترونيًا متطورًا في محافظة السويداء لجميع المراحل الدراسية.">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Virtual Modern School">
+  <meta name="twitter:description" content="تعليم إلكتروني بجودة عالية عبر Virtual Modern School.">
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://www.vmssyria.com/" />
 
   <!-- iOS meta tags & icons -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="portfolio">
+  <meta name="apple-mobile-web-app-title" content="Virtual Modern School">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png">
 
-  <title>Virtual Modern School</title>
-  <link rel="manifest" href="manifest.json">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-
+  <!-- Viewport -->
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Structured Data (Schema Markup) -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "EducationalOrganization",
+      "name": "Virtual Modern School",
+      "url": "https://www.vmssyria.com/",
+      "logo": "https://www.vmssyria.com/logo.svg",
+      "description": "مدرسة افتراضية متكاملة تقدم تعليمًا إلكترونيًا مميزاً عن بعد لجميع المراحل الدراسية.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "السويداء",
+        "addressCountry": "سوريا"
+      }
+    }
+  </script>
 
   <style>
     * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        font-family: 'Arial', sans-serif;
+        font-family: 'Tajawal', sans-serif;
     }
     body {
         background-color: #ffffff;
@@ -40,7 +79,7 @@
         flex-direction: column;
     }
     .loader.show {
-      opacity: 1; /* إظهار اللودر عندما يضاف له كلاس show */
+      opacity: 1;
     }
 
     img {
@@ -56,7 +95,7 @@
         justify-content: space-around;
         width: 60px;
         margin-top: 20px;
-        opacity: 0; /* إخفاء اللودر في البداية */
+        opacity: 0;
         transition: opacity 0.3s ease;
     }
 
@@ -89,9 +128,6 @@
         }
     }
 
-
-
-    /* للشاشات الصغيرة جداً */
     @media (max-width: 480px) {
         img {
             max-width: 69%;
@@ -113,7 +149,6 @@
             }
         }
     }
-
   </style>
 
   <script id="splash-screen-script">
@@ -121,18 +156,15 @@
         document.getElementById("splash")?.remove();
         document.body.style.background = "transparent";
     }
-
   </script>
 
   <!-- cropperjs -->
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.css"/>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.js"></script>
-
 </head>
 <body>
 
-<img src="logo.svg" alt="Logo">
+<img src="logo.svg" alt="Virtual Modern School - المدرسة الافتراضية الحديثة">
 
 <div class="loader">
   <div class="circle"></div>
@@ -144,15 +176,6 @@
   setTimeout(function() {
     document.querySelector('.loader').classList.add('show');
   }, 500);
-</script>
-<script>
-  // حاول قفل الاتجاه عند تحميل الصفحة
-  window.addEventListener('load', function() {
-    if (screen.orientation && screen.orientation.lock) {
-      screen.orientation.lock('portrait')
-        .catch(error => console.log('لا يمكن قفل التدوير:', error));
-    }
-  });
 </script>
 <script src="flutter_bootstrap.js" async=""></script>
 
