@@ -1,0 +1,208 @@
+{
+  "allQuestions": [
+    {
+      "Question" :
+      {
+        "name":"اختر الاجابة الصحيحة لكل مما يأتي",
+        "fullMark": 20,
+        "qustionList":[
+          {
+            "fileId": null,
+            "id": 3,
+            "isEng": false,
+            "type":"Multi",
+            "mark": 5,
+            "description":"MuiltiMuiltiMuilti",
+            "answer":[
+              {
+                "id":1,
+                "choise":"asdsad",
+                "trueAcss": 1
+              },
+              {
+                "id":1,
+                "choise":"false",
+                "trueAcss": 0
+              },
+              {
+                "id":1,
+                "choise":"asd",
+                "trueAcss": 0
+              }
+            ]
+          },
+          {
+            "fileId": null,
+            "id": 3,
+            "isEng": false,
+            "type":"Multi",
+            "mark": 5,
+            "description":"MuiltiMuiltiMuilti",
+            "answer":[
+              {
+                "id":1,
+                "choise":"asdsad",
+                "trueAcss": 1
+              },
+              {
+                "id":1,
+                "choise":"false",
+                "trueAcss": 0
+              },
+              {
+                "id":1,
+                "choise":"asd",
+                "trueAcss": 0
+              }
+            ]
+          },
+          {
+            "fileId": null,
+            "id": 3,
+            "isEng": false,
+            "type":"Multi",
+            "mark": 5,
+            "description":"MuiltiMuiltiMuilti",
+            "answer":[
+              {
+                "id":1,
+                "choise":"asdsad",
+                "trueAcss": 1
+              },
+              {
+                "id":1,
+                "choise":"false",
+                "trueAcss": 0
+              },
+              {
+                "id":1,
+                "choise":"asd",
+                "trueAcss": 0
+              }
+            ]
+          },
+          {
+            "fileId": null,
+            "id": 3,
+            "isEng": false,
+            "type":"Multi",
+            "mark": 5,
+            "description":"MuiltiMuiltiMuilti",
+            "answer":[
+              {
+                "id":1,
+                "choise":"asdsad",
+                "trueAcss": 1
+              },
+              {
+                "id":1,
+                "choise":"false",
+                "trueAcss": 0
+              },
+              {
+                "id":1,
+                "choise":"asd",
+                "trueAcss": 0
+              }
+            ]
+          }
+        ]
+
+      }
+    },
+    {
+      "Question" : {
+        "name":"ضع اشارة صح او خطأ في كل مما يأتي",
+        "fullMark": 20,
+        "qustionList":[
+          {
+            "fileId": null,
+            "id": 3,
+            "isEng": null,
+            "type":"truefalse",
+            "description":"MuiltiMuiltiMuilti",
+            "mark": 10,
+            "answer":[
+              {
+                "id":1,
+                "choise":"true",
+                "trueAcss": 1
+              },
+              {
+                "id":1,
+                "choise":"false",
+                "trueAcss": 0
+              }
+            ]
+          },
+          {
+            "id": 3,
+            "isEng": null,
+            "fileId": null,
+            "type":"truefalse",
+            "description":"MuiltiMuiltiMuilti",
+            "mark": 10,
+            "answer":[
+              {
+                "id":1,
+                "choise":"true",
+                "trueAcss": 1
+              },
+              {
+                "id":1,
+                "choise":"false",
+                "trueAcss": 0
+              }
+            ]
+          }
+
+        ]
+      }
+    },
+    {
+      "Question" : {
+        "name":"املأ الفراغات التالية",
+        "fullMark": 20,
+        "qustionList":[
+          {
+            "isEng": null,
+            "id": 1,
+            "fileId": 1,
+            "type":"fill",
+            "description":"القائد العام هو [...]",
+            "mark": 10,
+            "answer": null
+          },
+          {
+            "isEng": null,
+            "fileId": 1,
+            "id": 2,
+            "type":"fill",
+            "description":"القائد العام هو [...]",
+            "mark": 10,
+            "answer": null
+          }
+        ]
+
+      }
+    },
+    {
+      "Question" : {
+        "name":"اكتب هنا يا تريلالا تريلالا",
+        "fullMark": 50,
+        "qustionList":[
+          {
+            "isEng": null,
+            "id": 1,
+            "type":"text",
+            "description":"القائد العام هو القائد العام هو القائد العام هو",
+            "fileId": null,
+            "mark": 50,
+            "answer": null
+          }
+        ]
+
+      }
+    }
+  ]
+}

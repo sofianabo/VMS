@@ -14,6 +14,7 @@ import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Question_Bank/Choos
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Question_Bank/Fill_The_Blank/Fill_The_Blank.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Question_Bank/Question_Bank_Page.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Question_Bank/TrueOrFalse/TrueOrFalseQuestionManagment.dart';
+import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Quiz_Pages_LMS/Quiz_Question_LMS/Quiz_Question.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Selected_Class_Screen.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Students_LMS/LMS_Student.dart';
 
@@ -71,8 +72,11 @@ class Selected_Class_Screen extends StatelessWidget {
                     return LMS_Students();
                   } else if (current == "Homework".tr) {
                     return Homeworkmanagement();
+                  } else if (current == "Add Questions".tr) {
+                    return QuizQuestion();
                   } else {
-                    return SelectedClassLMs();
+                    return QuizQuestion();
+                    // return SelectedClassLMs();
                   }
                 },
               ),
