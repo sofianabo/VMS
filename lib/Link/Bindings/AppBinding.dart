@@ -64,8 +64,12 @@ import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/NumberOfCon
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/QuestionBank_Controllers/ArticleQuestionController.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/QuestionBank_Controllers/Choose_The_Correct_Answer_Controller.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/QuestionBank_Controllers/Fill_The_Blank_Controller.dart';
+import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Quiz_Controller/Quiz_Articale_Quiz_Controller.dart';
+import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Quiz_Controller/Quiz_Fill_The_Blank_Controller.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Quiz_Controller/Quiz_Questions_Controller.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/QuizController/AllQuizController.dart';
+import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Quiz_Controller/Quiz_SingleChoice_Controller.dart';
+import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Quiz_Controller/Quiz_True_Or_Flase_Controller.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Qustions_Bank_Controller.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/PagesLmsController.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Selected_Screen.dart';
@@ -189,5 +193,9 @@ class AppBindings extends Bindings {
     Get.lazyPut(() => Numberofcontentcontroller(), fenix: true);
     Get.lazyPut(() => Quiz_Questions_Controller(), fenix: true);
     Get.lazyPut(() => Allquizcontroller(), fenix: true);
+    Get.lazyPut(() => Quiz_True_Or_False_Controller(), fenix: true);
+    Get.lazyPut(() => Quiz_Single_Choice_Controller(), fenix: true);
+    Get.lazyPut(() => Quiz_Fill_The_Blank_Controller(), fenix: true);
+    Get.lazyPut(() => Quiz_Articale_Quiz_Controller(), fenix: true);
   }
 }

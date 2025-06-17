@@ -2,6 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Icons_File/LMS_Icons/l_m_s__icons_icons.dart';
 import 'package:vms_school/Translate/local_controller.dart';
+import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Quiz_Pages_LMS/Quiz_Question_LMS/Add_Quiz_Dialogs/Add_Essay_Questions_Quiz_Dialog.dart';
+import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Quiz_Pages_LMS/Quiz_Question_LMS/Add_Quiz_Dialogs/Add_Fill_The_Blanks_Dialog.dart';
+import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Quiz_Pages_LMS/Quiz_Question_LMS/Add_Quiz_Dialogs/Add_From_Bank/ArticleQuestion/Add_ArticleQuestionManagment.dart';
+import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Quiz_Pages_LMS/Quiz_Question_LMS/Add_Quiz_Dialogs/Add_From_Bank/Choose_The_Correct_Answer/Choose_the_correct_answer.dart';
+import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Quiz_Pages_LMS/Quiz_Question_LMS/Add_Quiz_Dialogs/Add_From_Bank/Fill_The_Blank/Quiz_Fill_The_Blank_Bank.dart';
+import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Quiz_Pages_LMS/Quiz_Question_LMS/Add_Quiz_Dialogs/Add_From_Bank/TrueOrFalse/Quiz_True_Or_False_Question_Managment.dart';
+import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Quiz_Pages_LMS/Quiz_Question_LMS/Add_Quiz_Dialogs/Add_Single_Choice_Dialog.dart';
+import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Quiz_Pages_LMS/Quiz_Question_LMS/Add_Quiz_Dialogs/Add_True_False_Quiz_Dialog.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Quiz_Pages_LMS/Quiz_Question_LMS/Questions_List_Wedget.dart';
 
 Widget buildDescriptionWithTextFields(
@@ -42,13 +50,14 @@ Widget buildButtonsRow() {
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
-      buildAddButton('Save'.tr, Icons.save_outlined),
-      buildAddButton('Preview'.tr, Icons.preview_rounded),
+      buildAddButton('Save'.tr, Icons.save_outlined, onPressed: () {}),
+      buildAddButton('Preview'.tr, Icons.preview_rounded, onPressed: () {}),
     ],
   );
 }
 
-Widget buildAddButton(String text, icon, {double? size = 175}) {
+Widget buildAddButton(String text, icon,
+    {double? size = 175, required VoidCallback onPressed}) {
   return SizedBox(
     width: size,
     child: TextButton(
@@ -59,7 +68,7 @@ Widget buildAddButton(String text, icon, {double? size = 175}) {
           side: BorderSide(color: Get.theme.textTheme.titleMedium!.color!),
         )),
       ),
-      onPressed: () {},
+      onPressed: onPressed,
       child: Row(
         textDirection: Get.find<LocalizationController>()
                     .currentLocale
@@ -249,9 +258,13 @@ Widget buildSidePanel(BuildContext context) {
                           .copyWith(fontSize: 14),
                     ),
                     buildAddButton("Add as a new question".tr, Icons.add,
-                        size: 250),
+                        size: 250, onPressed: () {
+                      Get.dialog(Add_QUIZ_True_False_Dialog());
+                    }),
                     buildAddButton("Addition from the bank".tr, LMS_Icons.tf,
-                        size: 250),
+                        size: 250, onPressed: () {
+                      Get.dialog(Add_True_False_Quiz_From_Bank());
+                    }),
                     Divider(
                       color: Get.theme.textTheme.titleMedium!.color,
                       thickness: 0.5,
@@ -265,10 +278,14 @@ Widget buildSidePanel(BuildContext context) {
                         style: Get.theme.textTheme.titleMedium!
                             .copyWith(fontSize: 14)),
                     buildAddButton("Add as a new question".tr, Icons.add,
-                        size: 250),
+                        size: 250, onPressed: () {
+                      Get.dialog(Add_Single_Choose_Quiz_Dialog());
+                    }),
                     buildAddButton(
                         "Addition from the bank".tr, LMS_Icons.checkone,
-                        size: 250),
+                        size: 250, onPressed: () {
+                      Get.dialog(Add_Single_Choose_Quiz_From_Bank_Dialog());
+                    }),
                     Divider(
                       color: Get.theme.textTheme.titleMedium!.color,
                       thickness: 0.5,
@@ -282,9 +299,13 @@ Widget buildSidePanel(BuildContext context) {
                         style: Get.theme.textTheme.titleMedium!
                             .copyWith(fontSize: 14)),
                     buildAddButton("Add as a new question".tr, Icons.add,
-                        size: 250),
+                        size: 250, onPressed: () {
+                      Get.dialog(Add_Fill_The_Blanks_Quiz_Dialog());
+                    }),
                     buildAddButton("Addition from the bank".tr, LMS_Icons.fill,
-                        size: 250),
+                        size: 250, onPressed: () {
+                      Get.dialog(Quiz_Fill_The_Blank_QBank());
+                    }),
                     Divider(
                       color: Get.theme.textTheme.titleMedium!.color,
                       thickness: 0.5,
@@ -298,10 +319,10 @@ Widget buildSidePanel(BuildContext context) {
                         style: Get.theme.textTheme.titleMedium!
                             .copyWith(fontSize: 14)),
                     buildAddButton("Add as a new question".tr, Icons.add,
-                        size: 250),
+                        size: 250, onPressed: () {}),
                     buildAddButton(
                         "Addition from the bank".tr, LMS_Icons.dragdrop,
-                        size: 250),
+                        size: 250, onPressed: () {}),
                     Divider(
                       color: Get.theme.textTheme.titleMedium!.color,
                       thickness: 0.5,
@@ -315,9 +336,13 @@ Widget buildSidePanel(BuildContext context) {
                         style: Get.theme.textTheme.titleMedium!
                             .copyWith(fontSize: 14)),
                     buildAddButton("Add as a new question".tr, Icons.add,
-                        size: 250),
+                        size: 250, onPressed: () {
+                      Get.dialog(Add_Essay_questions_Quiz_Dialog());
+                    }),
                     buildAddButton("Addition from the bank".tr, LMS_Icons.paper,
-                        size: 250),
+                        size: 250, onPressed: () {
+                      Get.dialog(Add_Article_question_From_Bank());
+                    }),
                     Divider(
                       color: Get.theme.textTheme.titleMedium!.color,
                       thickness: 0.5,
@@ -331,10 +356,10 @@ Widget buildSidePanel(BuildContext context) {
                         style: Get.theme.textTheme.titleMedium!
                             .copyWith(fontSize: 14)),
                     buildAddButton("Add as a new question".tr, Icons.add,
-                        size: 250),
+                        size: 250, onPressed: () {}),
                     buildAddButton(
                         "Addition from the bank".tr, LMS_Icons.multiselect,
-                        size: 250),
+                        size: 250, onPressed: () {}),
                     Divider(
                       color: Get.theme.textTheme.titleMedium!.color,
                       thickness: 0.5,
@@ -348,9 +373,9 @@ Widget buildSidePanel(BuildContext context) {
                         style: Get.theme.textTheme.titleMedium!
                             .copyWith(fontSize: 14)),
                     buildAddButton("Add as a new question".tr, Icons.add,
-                        size: 250),
+                        size: 250, onPressed: () {}),
                     buildAddButton("Addition from the bank".tr, LMS_Icons.same,
-                        size: 250),
+                        size: 250, onPressed: () {}),
                     Divider(
                       color: Get.theme.textTheme.titleMedium!.color,
                       thickness: 0.5,

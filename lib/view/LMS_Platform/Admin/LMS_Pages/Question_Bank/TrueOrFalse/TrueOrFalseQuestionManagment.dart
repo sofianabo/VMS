@@ -92,7 +92,7 @@ class _TrueorfalsequestionmanagmenttState
             );
           }),
         if (screenWidth <= 769)
-          GetBuilder<LinkslmsController>(builder: (controller) {
+          GetBuilder<Trueorfalsecontroller>(builder: (controller) {
             return Container(
               width: screenWidth,
               margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 10.0),
@@ -110,7 +110,6 @@ class _TrueorfalsequestionmanagmenttState
                       onchange: (value) {
                         controller.searchByName(
                           value,
-                          controller.currindex,
                         );
                       },
                       width: 250,
@@ -248,7 +247,7 @@ class _TrueorfalsequestionmanagmenttState
                       controller.updateFieldError("question", isQuestionEmpty);
 
                       if (!(isQuestionEmpty)) {
-                        await Addtrueorfalseapi(context).Addtrueorfalse(
+                        await Addtrueorfalseapi().Addtrueorfalse(
                             answer: controller.selectedOption!,
                             isEnglish: controller.Hidden,
                             question: qeustion.text);

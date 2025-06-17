@@ -162,7 +162,7 @@ Widget buildQuestionsList({required screenWidth, required isSmallScreen}) {
                     const Divider(thickness: 0.5, color: Colors.black),
                   ],
                 );
-              } else if (questionGroup.qustionList![0].type == "MultiChoice") {
+              } else if (questionGroup.qustionList![0].type == "SingleChoice") {
                 return Column(
                   spacing: 15.0,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -269,7 +269,7 @@ Widget buildQuestionsList({required screenWidth, required isSmallScreen}) {
                     const Divider(thickness: 0.5, color: Colors.black),
                   ],
                 );
-              } else if (questionGroup.qustionList![0].type == "fill") {
+              } else if (questionGroup.qustionList![0].type == "Text") {
                 return Column(
                   spacing: 15.0,
                   crossAxisAlignment: CrossAxisAlignment.start,

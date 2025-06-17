@@ -9,6 +9,7 @@ import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Files_Contr
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/LMS_Divisions_Controller.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/LinksLMS_Controller.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/QuestionBank_Controllers/ArticleQuestionController.dart';
+import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Quiz_Controller/Quiz_Articale_Quiz_Controller.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Qustions_Bank_Controller.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Selected_Screen.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/TrueOrFalseController.dart';
@@ -22,20 +23,23 @@ class Getallarticleapi {
   Dio dio = Dio();
   Getallarticle() async {
     final controller = Get.find<Articlequestioncontroller>();
+    final Quiz_Controller = Get.find<Quiz_Articale_Quiz_Controller>();
     controller.SetIsLoading(true);
+    Quiz_Controller.SetIsLoading(true);
     try {
       String myurl = "$hostPort$getQuestion";
-    
+
       var response = await dio.post(myurl,
-          data: {'classId': Get.find<Selected_Class_Controller>().classid,
-                   'currId':Get.find<Qustions_Bank_Controller>().id    ,
-                      'type': 'Text',      
-          }
-          ,
+          data: {
+            'classId': Get.find<Selected_Class_Controller>().classid,
+            'currId': Get.find<Qustions_Bank_Controller>().id,
+            'type': 'Text',
+          },
           options: getDioOptions());
       if (response.statusCode == 200) {
         ArticleModel art = ArticleModel.fromJson(response.data);
         controller.SetArticle(art);
+        Quiz_Controller.SetArticle(art);
       } else {
         ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,

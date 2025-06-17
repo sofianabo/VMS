@@ -9,6 +9,7 @@ import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Files_Contr
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/LMS_Divisions_Controller.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/LinksLMS_Controller.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/QuestionBank_Controllers/Choose_The_Correct_Answer_Controller.dart';
+import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Quiz_Controller/Quiz_SingleChoice_Controller.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Qustions_Bank_Controller.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Selected_Screen.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/TrueOrFalseController.dart';
@@ -22,7 +23,9 @@ class Get_Choose_The_Correct_API {
   Dio dio = Dio();
   Get_Choose_The_Correct() async {
     final controller = Get.find<Choose_The_Correct_Answer>();
+    final CTC_controller = Get.find<Quiz_Single_Choice_Controller>();
     controller.SetIsLoading(true);
+    CTC_controller.SetIsLoading(true);
     try {
       String myurl = "$hostPort$getQuestion";
 
@@ -30,14 +33,16 @@ class Get_Choose_The_Correct_API {
           data: {
             'classId': Get.find<Selected_Class_Controller>().classid,
             'currId': Get.find<Qustions_Bank_Controller>().id,
-            "type": "MultiChoice"
+            "type": "SingleChoice"
           },
           options: getDioOptions());
       if (response.statusCode == 200) {
         controller.filterName = "";
+        CTC_controller.filterName = "";
         Chooes_The_Correct_Model chooes_the_correct_model =
             Chooes_The_Correct_Model.fromJson(response.data);
         controller.Set_Question(chooes_the_correct_model);
+        CTC_controller.Set_Question(chooes_the_correct_model);
       } else {
         ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,

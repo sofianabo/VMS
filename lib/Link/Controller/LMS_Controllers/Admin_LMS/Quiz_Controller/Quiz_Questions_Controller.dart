@@ -1,134 +1,140 @@
 import 'package:get/get.dart';
+import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/Model/LMS_Model/Questions_Models/Quiz_Qustions_Model.dart';
 
 class Quiz_Questions_Controller extends GetxController {
   List<AllQuestions>? allQuestions;
 
-  @override
-  void onInit() {
-    super.onInit();
+  void addSingleQuestionFromBank(QustionList bankQuestion) {
+    // التأكد من وجود بيانات كافية
+    if (bankQuestion.type == null || bankQuestion.description == null) {
+      print('بيانات السؤال ناقصة');
+      return;
+    }
 
-    // بيانات JSON التي تريد إضافتها
-    Map<String, dynamic> jsonData = {
-      "allQuestions": [
-        {
-          "Question": {
-            "name": "اختر الإجابة الصحيحة في العلوم",
-            "fullMark": 20,
-            "qustionList": [
-              {
-                "id": 1,
-                "isEng": false,
-                "type": "MultiChoice",
-                "mark": 5,
-                "description": "ما هي عاصمة فرنسا؟",
-                "answer": [
-                  {"id": 1, "choise": "لندن", "trueAcss": 0},
-                  {"id": 2, "choise": "باريس", "trueAcss": 1},
-                  {"id": 3, "choise": "برلين", "trueAcss": 0}
-                ]
-              },
-              {
-                "id": 2,
-                "isEng": false,
-                "type": "MultiChoice",
-                "mark": 5,
-                "description": "أي من هذه الكواكب أقرب إلى الشمس؟",
-                "answer": [
-                  {"id": 1, "choise": "الزهرة", "trueAcss": 0},
-                  {"id": 2, "choise": "عطارد", "trueAcss": 1},
-                  {"id": 3, "choise": "المريخ", "trueAcss": 0}
-                ]
-              }
-            ]
-          }
-        },
-        {
-          "Question": {
-            "name": "صح أم خطأ في التاريخ",
-            "fullMark": 20,
-            "qustionList": [
-              {
-                "id": 3,
-                "isEng": false,
-                "type": "TrueFalse",
-                "mark": 10,
-                "description": "سور الصين العظيم يمكن رؤيته من القمر",
-                "answer": [
-                  {"id": 1, "choise": "صح", "trueAcss": 0},
-                  {"id": 2, "choise": "خطأ", "trueAcss": 1}
-                ]
-              },
-              {
-                "id": 4,
-                "isEng": false,
-                "type": "TrueFalse",
-                "mark": 10,
-                "description": "توماس إديسون اخترع المصباح الكهربائي",
-                "answer": [
-                  {"id": 1, "choise": "صح", "trueAcss": 1},
-                  {"id": 2, "choise": "خطأ", "trueAcss": 0}
-                ]
-              }
-            ]
-          }
-        },
-        {
-          "Question": {
-            "name": "املأ الفراغات في القواعد النحوية",
-            "fullMark": 20,
-            "qustionList": [
-              {
-                "id": 5,
-                "isEng": false,
-                "type": "Blank",
-                "mark": 10,
-                "description":
-                    "الفاعل في الجملة 'ذهب الولد إلى المدرسة' هو [...]",
-                "answer": null
-              },
-              {
-                "id": 6,
-                "isEng": false,
-                "type": "Blank",
-                "mark": 10,
-                "description": "جمع كلمة 'كتاب' هو [...]",
-                "answer": null
-              }
-            ]
-          }
-        },
-        {
-          "Question": {
-            "name": "الأسئلة المقالية",
-            "fullMark": 30,
-            "qustionList": [
-              {
-                "id": 7,
-                "isEng": false,
-                "type": "fill",
-                "mark": 30,
-                "description": "اكتب فقرة من 5 جمل عن أهمية التعليم",
-                "answer": null
-              }
-            ]
-          }
-        }
-      ]
-    };
+    // التحقق من وجود الـ ID مسبقاً
+    bool idExists = allQuestions?.any(
+          (allQ) =>
+              allQ.question?.qustionList?.any(
+                (q) => q.id == bankQuestion.id,
+              ) ??
+              false,
+        ) ??
+        false;
 
-    // تحويل JSON إلى نموذج البيانات
-    Quiz_Qustions_Model quizModel = Quiz_Qustions_Model.fromJson(jsonData);
+    if (idExists) {
+      ErrorMessage("لا يمكن: السؤال موجود مسبقاً");
+      return;
+    }
 
-    // تهيئة المصفوفة إذا كانت فارغة
-    allQuestions ??= [];
+    // البحث عن سؤال موجود من نفس النوع
+    AllQuestions? existingQuestion = allQuestions?.firstWhere(
+      (q) => q.question?.type == bankQuestion.type,
+      orElse: () => AllQuestions(question: null),
+    );
 
-    // إضافة جميع الأسئلة الجديدة إلى المصفوفة
-    allQuestions!.addAll(quizModel.allQuestions ?? []);
+    if (existingQuestion?.question != null) {
+      // إذا وُجد سؤال من نفس النوع
+      existingQuestion!.question!.qustionList ??= [];
+      existingQuestion.question!.qustionList!.add(
+        QustionList(
+          id: bankQuestion.id,
+          fileId: bankQuestion.fileId,
+          type: bankQuestion.type,
+          description: bankQuestion.description,
+          isEng: bankQuestion.isEng ?? false,
+          mark: bankQuestion.mark ?? 20,
+          answer: bankQuestion.answer ?? [],
+        ),
+      );
+    } else {
+      // إذا لم يوجد سؤال من نفس النوع
+      final newQuestion = Question(
+        type: bankQuestion.type,
+        name: _getQuestionNameByType(bankQuestion.type),
+        fullMark: 20,
+        qustionList: [
+          QustionList(
+            id: bankQuestion.id,
+            fileId: bankQuestion.fileId,
+            type: bankQuestion.type,
+            description: bankQuestion.description,
+            isEng: bankQuestion.isEng ?? false,
+            mark: bankQuestion.mark ?? 20,
+            answer: bankQuestion.answer ?? [],
+          ),
+        ],
+      );
+
+      allQuestions ??= [];
+      allQuestions!.add(AllQuestions(question: newQuestion));
+    }
+    update();
+    print('تمت إضافة السؤال بنجاح');
   }
 
-  Add_Question(AllQuestions question) {
-    allQuestions?.add(question);
+  String _getQuestionNameByType(String? type) {
+    switch (type?.toLowerCase()) {
+      case 'truefalse':
+        return 'اختر صح أو خطأ';
+      case 'singlechoice':
+        return 'اختر الإجابة الصحيحة';
+      default:
+        return 'اختر الإجابة الصحيحة لكل مما يأتي';
+    }
+  }
+
+  void Add_Question_From_Dialog({
+    required String type,
+    required String description,
+    required bool isEng,
+    List<Map<String, dynamic>>? answer,
+  }) {
+    AllQuestions? existingQuestion = allQuestions?.firstWhere(
+      (q) => q.question?.type == type,
+      orElse: () => AllQuestions(
+          question: null), // إذا لم يوجد نرجع AllQuestions ب question فارغ
+    );
+
+    if (existingQuestion?.question != null) {
+      // إذا وُجد سؤال من نفس النوع، نضيف السؤال الجديد إلى qustionList الخاص به
+      existingQuestion!.question!.qustionList ??=
+          []; // نتأكد أن qustionList ليس null
+      existingQuestion.question!.qustionList!.add(
+        QustionList(
+          fileId: null,
+          id: null,
+          isEng: isEng,
+          type: type,
+          mark: 20,
+          description: description,
+          answer: answer?.map((a) => Answer.fromJson(a)).toList(),
+        ),
+      );
+    } else {
+      // إذا لم يوجد، ننشئ سؤالًا جديدًا ونضيفه إلى allQuestions
+      final newQuestionList = QustionList(
+        fileId: null,
+        id: null,
+        isEng: isEng,
+        type: type,
+        mark: 20,
+        description: description,
+        answer: answer?.map((a) => Answer.fromJson(a)).toList(),
+      );
+
+      final newQuestion = Question(
+        type: type,
+        name: type == "TrueFalse"
+            ? "اختر صح أو خطأ"
+            : "اختر الإجابة الصحيحة لكل مما يأتي",
+        fullMark: 20,
+        qustionList: [newQuestionList],
+      );
+
+      allQuestions ??= []; // نتأكد أن allQuestions ليس null
+      allQuestions!.add(AllQuestions(question: newQuestion));
+    }
     update();
   }
 

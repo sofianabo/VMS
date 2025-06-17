@@ -27,7 +27,7 @@ class Add_Choose_The_Correct_API {
       var response = await dio.post(data: {
         'classId': Get.find<Selected_Class_Controller>().classid,
         'currId': Get.find<Qustions_Bank_Controller>().id,
-        "type": "MultiChoice",
+        "type": "SingleChoice",
         "answer": answer,
         "trueIndex": trueIndex,
         "description": Question
