@@ -59,13 +59,11 @@ class _Add_Essay_questions_Quiz_DialogState
                     text: "Add Question".tr,
                     onPressed: () async {
                       bool isQuestionEmpty = Question.text.isEmpty;
-
                       controller.updateFieldError("question", isQuestionEmpty);
-
                       if (!(isQuestionEmpty)) {
                         Get.find<Quiz_Questions_Controller>()
                             .Add_Question_From_Dialog(
-                          type: "fill", // استخدام نوع السؤال من الـ controller
+                          type: "Text", // استخدام نوع السؤال من الـ controller
                           description: Question.text,
                           isEng: false,
                           answer: [],

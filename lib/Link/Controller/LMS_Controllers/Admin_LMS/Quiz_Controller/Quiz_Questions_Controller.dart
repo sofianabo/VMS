@@ -1,9 +1,35 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/Model/LMS_Model/Questions_Models/Quiz_Qustions_Model.dart';
 
 class Quiz_Questions_Controller extends GetxController {
   List<AllQuestions>? allQuestions;
+
+  TextEditingController Blank = TextEditingController();
+  TextEditingController Single_Choice = TextEditingController();
+  TextEditingController Text_Question = TextEditingController();
+  TextEditingController True_False = TextEditingController();
+
+  Fill_Data_On_Add({
+    required String type,
+    required String text,
+  }) {
+    if (type.toLowerCase() == "blank") {
+      Blank.clear();
+      Blank.text = text;
+    } else if (type.toLowerCase() == "singlechoice") {
+      Single_Choice.clear();
+      Single_Choice.text = text;
+    } else if (type.toLowerCase() == "text") {
+      Text_Question.clear();
+      Text_Question.text = text;
+    } else if (type.toLowerCase() == "truefalse") {
+      True_False.clear();
+      True_False.text = text;
+    }
+    update();
+  }
 
   void addSingleQuestionFromBank(QustionList bankQuestion) {
     // التأكد من وجود بيانات كافية
@@ -65,7 +91,9 @@ class Quiz_Questions_Controller extends GetxController {
           ),
         ],
       );
-
+      Fill_Data_On_Add(
+          type: "${bankQuestion.type}",
+          text: _getQuestionNameByType(bankQuestion.type));
       allQuestions ??= [];
       allQuestions!.add(AllQuestions(question: newQuestion));
     }
@@ -76,11 +104,15 @@ class Quiz_Questions_Controller extends GetxController {
   String _getQuestionNameByType(String? type) {
     switch (type?.toLowerCase()) {
       case 'truefalse':
-        return 'اختر صح أو خطأ';
+        return 'ضع اشارة صح أو خطأ لكل مما يأتي';
       case 'singlechoice':
-        return 'اختر الإجابة الصحيحة';
+        return 'اختر الإجابة الصحيحة في كل مما يأتي';
+      case 'text':
+        return 'اجب عن الأسئلة التالية';
+      case 'blank':
+        return 'املأ الفراغات التالية';
       default:
-        return 'اختر الإجابة الصحيحة لكل مما يأتي';
+        return 'اكتب نص السؤال هنا';
     }
   }
 
@@ -125,13 +157,11 @@ class Quiz_Questions_Controller extends GetxController {
 
       final newQuestion = Question(
         type: type,
-        name: type == "TrueFalse"
-            ? "اختر صح أو خطأ"
-            : "اختر الإجابة الصحيحة لكل مما يأتي",
+        name: _getQuestionNameByType(type),
         fullMark: 20,
         qustionList: [newQuestionList],
       );
-
+      Fill_Data_On_Add(type: type, text: _getQuestionNameByType(type));
       allQuestions ??= []; // نتأكد أن allQuestions ليس null
       allQuestions!.add(AllQuestions(question: newQuestion));
     }
