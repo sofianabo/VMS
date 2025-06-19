@@ -188,6 +188,7 @@ class Curriculumn_LMS_Controller extends GetxController {
     Get.find<Pageslmscontroller>().setCurriculum(curriculumModel);
     Get.find<Qustions_Bank_Controller>().setCurriculum(curriculumModel);
     Get.find<Allquizcontroller>().setCurriculum(curriculumModel);
+    Get.find<Allquizcontroller>().setCurriculumialog(curriculumModel);
     update();
   }
 

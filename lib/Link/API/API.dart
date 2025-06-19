@@ -235,3 +235,5 @@ String getQuestion = "getQuestion";
 String deleteQuestion = "deleteQuestion";
 String classInfoLms = "classInfoLms";
 String getQuizLms = "getQuizLms";
+String addQuizLms = "addQuizLms";
+String deletetQuizLms = "deletetQuizLms";
