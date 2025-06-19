@@ -26,13 +26,15 @@ class AllQuestions {
 }
 
 class Question {
+  String? type;
   String? name;
   int? fullMark;
   List<QustionList>? qustionList;
 
-  Question({this.name, this.fullMark, this.qustionList});
+  Question({this.type, this.name, this.fullMark, this.qustionList});
 
   Question.fromJson(Map<String, dynamic> json) {
+    type = json['type'];
     name = json['name'];
     fullMark = json['fullMark'];
     if (json['qustionList'] != null) {

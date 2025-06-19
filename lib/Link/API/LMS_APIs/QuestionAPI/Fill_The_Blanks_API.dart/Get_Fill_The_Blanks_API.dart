@@ -10,6 +10,7 @@ import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/LMS_Divisio
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/LinksLMS_Controller.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/QuestionBank_Controllers/Choose_The_Correct_Answer_Controller.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/QuestionBank_Controllers/Fill_The_Blank_Controller.dart';
+import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Quiz_Controller/Quiz_Fill_The_Blank_Controller.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Qustions_Bank_Controller.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Selected_Screen.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/TrueOrFalseController.dart';
@@ -24,7 +25,9 @@ class Get_Fill_The_Blanks_API {
   Dio dio = Dio();
   Get_Fill_The_Blanks() async {
     final controller = Get.find<Fill_The_Blank_Controller>();
+    final Quiz_controller = Get.find<Quiz_Fill_The_Blank_Controller>();
     controller.SetIsLoading(true);
+    Quiz_controller.SetIsLoading(true);
     try {
       String myurl = "$hostPort$getQuestion";
 
@@ -37,9 +40,11 @@ class Get_Fill_The_Blanks_API {
           options: getDioOptions());
       if (response.statusCode == 200) {
         controller.filterName = "";
+        Quiz_controller.filterName = "";
         Fill_The_Blank_Model chooes_the_correct_model =
             Fill_The_Blank_Model.fromJson(response.data);
         controller.Set_Question(chooes_the_correct_model);
+        Quiz_controller.Set_Question(chooes_the_correct_model);
       } else {
         ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,

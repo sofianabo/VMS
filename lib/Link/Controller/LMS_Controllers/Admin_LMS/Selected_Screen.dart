@@ -3,7 +3,7 @@ import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/NumberOfCon
 
 class Selected_Class_Controller extends GetxController {
   List<String> moveMenu = [];
-  int? classid;
+  int? classid = 1;
   int? divisionid;
 
   initialinClass(String value, int id) {

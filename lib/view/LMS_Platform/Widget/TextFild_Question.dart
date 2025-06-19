@@ -21,10 +21,10 @@ class Textfild_Question extends StatefulWidget {
   final Function(String)? onChanged;
 
   @override
-  State<Textfild_Question> createState() => _TextfildwithupperState();
+  State<Textfild_Question> createState() => _Textfild_QuestionState();
 }
 
-class _TextfildwithupperState extends State<Textfild_Question> {
+class _Textfild_QuestionState extends State<Textfild_Question> {
   @override
   Widget build(BuildContext context) {
     TextInputType keyboardType;
@@ -93,6 +93,92 @@ class _TextfildwithupperState extends State<Textfild_Question> {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class Text_Fild_Question_Add extends StatefulWidget {
+  Text_Fild_Question_Add({
+    super.key,
+    required this.controller,
+    required this.hinttext,
+    this.width,
+    required this.maxwidth,
+    this.onChanged,
+    this.fontSize,
+  });
+
+  final TextEditingController controller;
+  final String hinttext;
+  final double? width;
+  final double maxwidth;
+  final double? fontSize;
+  final Function(String)? onChanged;
+
+  @override
+  State<Text_Fild_Question_Add> createState() => _Text_Fild_Question_AddState();
+}
+
+class _Text_Fild_Question_AddState extends State<Text_Fild_Question_Add> {
+  @override
+  Widget build(BuildContext context) {
+    TextInputType keyboardType;
+    List<TextInputFormatter>? inputFormatters;
+
+    keyboardType = TextInputType.text;
+
+    return SizedBox(
+      width: widget.maxwidth >= 1150
+          ? widget.maxwidth * 0.6 - 100
+          : widget.maxwidth >= 850
+              ? widget.maxwidth * 0.6 - 186
+              : widget.maxwidth >= 461
+                  ? widget.maxwidth * 0.6
+                  : widget.maxwidth * 0.6 - 50,
+      child: IntrinsicHeight(
+        child: TextFormField(
+          textDirection: Get.find<LocalizationController>()
+                      .currentLocale
+                      .value
+                      .languageCode ==
+                  'ar'
+              ? TextDirection.rtl
+              : TextDirection.ltr,
+          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                fontWeight: FontWeight.bold,
+                fontSize: widget.fontSize ?? 14,
+              ),
+          textAlign: Get.find<LocalizationController>()
+                      .currentLocale
+                      .value
+                      .languageCode ==
+                  'ar'
+              ? TextAlign.right
+              : TextAlign.left,
+          controller: widget.controller,
+          keyboardType: keyboardType,
+          inputFormatters: inputFormatters,
+          maxLines: null, // يسمح بزيادة الأسطر
+          minLines: 1, // يبدأ بسطر واحد
+          onChanged: (value) {
+            if (widget.onChanged != null) {
+              widget.onChanged!(widget.controller.text);
+            }
+          },
+          decoration: InputDecoration(
+            hintText: widget.hinttext,
+            hintStyle: TextStyle(color: Colors.grey, fontSize: widget.fontSize),
+            isDense: true, // يقلل المسافات الداخلية
+            contentPadding: EdgeInsets.symmetric(
+              horizontal: 4.5,
+              vertical: 4.5, // تعديل لتحسين المظهر
+            ),
+            focusedBorder: OutlineInputBorder(borderSide: BorderSide.none),
+            enabledBorder: OutlineInputBorder(borderSide: BorderSide.none),
+            border: OutlineInputBorder(borderSide: BorderSide.none),
+          ),
+        ),
       ),
     );
   }

@@ -3,6 +3,7 @@
     {
       "Question" :
       {
+        "type":"Multi",
         "name":"اختر الاجابة الصحيحة لكل مما يأتي",
         "fullMark": 20,
         "qustionList":[
@@ -112,6 +113,7 @@
     },
     {
       "Question" : {
+        "type":"Multi",
         "name":"ضع اشارة صح او خطأ في كل مما يأتي",
         "fullMark": 20,
         "qustionList":[
@@ -160,7 +162,9 @@
       }
     },
     {
+
       "Question" : {
+        "type":"Multi",
         "name":"املأ الفراغات التالية",
         "fullMark": 20,
         "qustionList":[
@@ -188,6 +192,7 @@
     },
     {
       "Question" : {
+        "type":"Multi",
         "name":"اكتب هنا يا تريلالا تريلالا",
         "fullMark": 50,
         "qustionList":[

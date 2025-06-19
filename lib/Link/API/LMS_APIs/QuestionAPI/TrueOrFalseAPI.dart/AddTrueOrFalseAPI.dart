@@ -21,8 +21,7 @@ import 'package:vms_school/Link/Model/LMS_Model/Questions_Models/TrueOrFalseMode
 import 'package:vms_school/view/Both_Platform/widgets/Loading_Dialog.dart';
 
 class Addtrueorfalseapi {
-  BuildContext context;
-  Addtrueorfalseapi(this.context);
+  Addtrueorfalseapi();
   Dio dio = Dio();
 
   Trueorfalsecontroller controller = Get.find<Trueorfalsecontroller>();

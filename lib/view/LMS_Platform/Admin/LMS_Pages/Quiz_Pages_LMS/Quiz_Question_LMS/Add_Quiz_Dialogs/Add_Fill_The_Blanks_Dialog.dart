@@ -2,25 +2,27 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/LMS_APIs/QuestionAPI/Fill_The_Blanks_API.dart/Add_Fill_The_Blanks_API.dart';
-import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/QuestionBank_Controllers/Fill_The_Blank_Controller.dart';
+import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Quiz_Controller/Quiz_Fill_The_Blank_Controller.dart';
+import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Quiz_Controller/Quiz_Questions_Controller.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/view/Both_Platform/widgets/ButtonsDialog.dart';
 import 'package:vms_school/view/Both_Platform/widgets/LargeTextField.dart';
 import 'package:vms_school/view/Both_Platform/widgets/VMSAlertDialog.dart';
 
-class Add_Fill_The_Blank_Dialog extends StatefulWidget {
-  const Add_Fill_The_Blank_Dialog({super.key});
+class Add_Fill_The_Blanks_Quiz_Dialog extends StatefulWidget {
+  const Add_Fill_The_Blanks_Quiz_Dialog({super.key});
 
   @override
-  State<Add_Fill_The_Blank_Dialog> createState() =>
-      _Add_Fill_The_Blank_DialogState();
+  State<Add_Fill_The_Blanks_Quiz_Dialog> createState() =>
+      _Add_Fill_The_Blanks_Quiz_DialogState();
 }
 
-class _Add_Fill_The_Blank_DialogState extends State<Add_Fill_The_Blank_Dialog> {
+class _Add_Fill_The_Blanks_Quiz_DialogState
+    extends State<Add_Fill_The_Blanks_Quiz_Dialog> {
   final TextEditingController Question = TextEditingController();
   final TextEditingController _optionController = TextEditingController();
   final FocusNode _optionFocusNode = FocusNode();
-  var cont = Get.find<Fill_The_Blank_Controller>();
+  var cont = Get.find<Quiz_Fill_The_Blank_Controller>();
   final FocusNode questionFocusNode = FocusNode();
 
   @override
@@ -41,10 +43,14 @@ class _Add_Fill_The_Blank_DialogState extends State<Add_Fill_The_Blank_Dialog> {
             cont.updateFieldError("aname", isquestion);
 
             if (!isquestion) {
-              await Add_Fill_The_Blanks_API().Fill_The_Blanks_API(
-                Question: Question.text,
+              Get.find<Quiz_Questions_Controller>().Add_Question_From_Dialog(
+                type: "Blank", // استخدام نوع السؤال من الـ controller
+                description: Question.text,
+                isEng: false,
+                answer: [],
               );
             }
+            Get.back();
           },
           width: 150,
           text: "Add".tr,
@@ -54,7 +60,8 @@ class _Add_Fill_The_Blank_DialogState extends State<Add_Fill_The_Blank_Dialog> {
         width: 600,
         constraints: BoxConstraints(maxHeight: 500),
         child: SingleChildScrollView(
-          child: GetBuilder<Fill_The_Blank_Controller>(builder: (controller) {
+          child:
+              GetBuilder<Quiz_Fill_The_Blank_Controller>(builder: (controller) {
             return Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,

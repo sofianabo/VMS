@@ -23,10 +23,10 @@ class ArticleModel {
 
 class Question {
   int? id;
-  Null? fileId;
+  int? fileId;
   String? type;
   String? description;
-  Null? isEng;
+  int? isEng;
   Null? answer;
 
   Question(

@@ -85,7 +85,7 @@ class Qustions_Bank_Controller extends GetxController {
     update();
   }
 
-  String? id;
+  String? id = "1";
   int idx = 0;
   setSelectedCurriculum(int index) {
     id = curriculum![index].id.toString();

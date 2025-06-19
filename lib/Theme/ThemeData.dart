@@ -13,6 +13,12 @@ class theme {
       ? "Cairo"
       : "Sansation";
   static ThemeData Light_Theme = ThemeData(
+    scrollbarTheme: ScrollbarThemeData(
+      thumbColor: MaterialStateProperty.all(
+          Color(0xff19478d).withAlpha(70)), // لون الـ Scrollbar
+      thickness: MaterialStateProperty.all(5.0), // سماكة الـ Scrollbar
+      radius: Radius.circular(50), // زوايا دائرية
+    ),
     fontFamily: IsAr,
     cardColor: const Color(0xffFBFBFB),
     primaryColorLight: const Color(0xff19478d), // card button
@@ -75,6 +81,12 @@ class theme {
   );
 
   static ThemeData Dark_Theme = ThemeData(
+    scrollbarTheme: ScrollbarThemeData(
+      thumbColor: MaterialStateProperty.all(
+          Color(0xff464646).withAlpha(70)), // لون الـ Scrollbar
+      thickness: MaterialStateProperty.all(5.0), // سماكة الـ Scrollbar
+      radius: Radius.circular(50), // زوايا دائرية
+    ),
     fontFamily: IsAr,
     primaryColorDark: Color(0xff252525),
     primaryColorLight: const Color.fromARGB(255, 29, 28, 28),
