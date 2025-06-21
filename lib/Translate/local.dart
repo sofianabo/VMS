@@ -938,6 +938,7 @@ class Languages {
       'No Quizzes': 'لا يوجد امتحانات',
       'Hidden': 'مخفي',
       'UnHidden': 'غير مخفي',
+      'Is It Hidden': 'هل هو مخفي',
     },
     'en': {
       'Welcome Laith Haitham Azzam': 'Welcome Laith Haitham Azzam',
@@ -1868,6 +1869,15 @@ class Languages {
       'No Quizzes': 'No Quizzes',
       'Hidden': 'Hidden',
       'UnHidden': 'UnHidden',
+      'Is It Hidden': 'Is It Hidden',
+      '': '',
+      '': '',
+      '': '',
+      '': '',
+      '': '',
+      '': '',
+      '': '',
+      '': '',
       '': '',
     }
   };
