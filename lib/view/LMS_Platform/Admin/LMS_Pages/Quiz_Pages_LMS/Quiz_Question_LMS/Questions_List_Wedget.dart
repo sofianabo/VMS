@@ -72,6 +72,8 @@ Widget buildQuestionsList({required screenWidth, required isSmallScreen}) {
                                           0,
                                           (sum, question) =>
                                               sum + (question.mark ?? 0));
+                                  questionGroup.fullMark =
+                                      int.parse(totalMarks.toString());
                                   return Text(
                                     "( ${getMarksText(int.parse("$totalMarks"))} )",
                                     style: TextStyle(
@@ -191,6 +193,8 @@ Widget buildQuestionsList({required screenWidth, required isSmallScreen}) {
                                           0,
                                           (sum, question) =>
                                               sum + (question.mark ?? 0));
+                                  questionGroup.fullMark =
+                                      int.parse(totalMarks.toString());
                                   return Text(
                                     "( ${getMarksText(int.parse("$totalMarks"))} )",
                                     style: TextStyle(
@@ -367,6 +371,8 @@ Widget buildQuestionsList({required screenWidth, required isSmallScreen}) {
                                           0,
                                           (sum, question) =>
                                               sum + (question.mark ?? 0));
+                                  questionGroup.fullMark =
+                                      int.parse(totalMarks.toString());
                                   return Text(
                                     "( ${getMarksText(int.parse("$totalMarks"))} )",
                                     style: TextStyle(
@@ -563,6 +569,8 @@ Widget buildQuestionsList({required screenWidth, required isSmallScreen}) {
                                           0,
                                           (sum, question) =>
                                               sum + (question.mark ?? 0));
+                                  questionGroup.fullMark =
+                                      int.parse(totalMarks.toString());
                                   return Text(
                                     "( ${getMarksText(int.parse("$totalMarks"))} )",
                                     style: TextStyle(

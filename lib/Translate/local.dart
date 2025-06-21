@@ -791,6 +791,7 @@ class Languages {
       'Delete Session': 'حذف سنة دراسية',
       'Edit Session': 'تعديل السنة',
       'Opened': 'مفتوح',
+      'Privacy Policy': 'سياسة الخصوصية',
       'Subject En - Name': 'الاسم الإنكليزي للمادة',
       'Subject Ar - Name': 'الاسم العربي للمادة',
       'Add Subject': 'إضافة مادة',
@@ -817,6 +818,146 @@ class Languages {
       'No Vaccine': 'لا يوجد لقاحات',
       'No Data in Exam Table': 'لا يوجد بيانات في جدول الامتحان',
       'Tools': 'الأدوات',
+      'Privacy Policy of Virtual Modern School E-portal 2023':
+          'سياسة الخصوصية لبوابة المدرسة الحديثة الافتراضية 2023',
+      'The primary purpose of this policy is to state the user rights and responsibilities of Virtual Modern School e-portal.':
+          'الغرض الأساسي من هذه السياسة هو توضيح حقوق ومسؤوليات مستخدمي بوابة المدرسة الحديثة الافتراضية.',
+      'Overview:': 'نظرة عامة',
+      'The privacy policy stated below is considered a part of the terms for using the e-portal of Virtual Modern School (VMS).':
+          'تُعد سياسة الخصوصية أدناه جزءًا من شروط استخدام بوابة المدرسة الحديثة الافتراضية (VMS).',
+      'This website does not collect your personal information when you visit the website without your consent. In case you opt to offer your personal information to us, they will be only used to provide you with the services or information you required from VMS. By using this website, you agree to all terms of this privacy policy. All the information obtained from your side might be revealed to Syrian government sectors, if required, to process your request, without reference to any party.':
+          'لا تجمع هذه البوابة معلوماتك الشخصية عند زيارتها بدون موافقتك. وإذا قررت تقديم معلوماتك الشخصية لنا، فستُستخدم فقط لتزويدك بالخدمات أو المعلومات المطلوبة من VMS. باستخدامك لهذا الموقع، فإنك توافق على جميع بنود سياسة الخصوصية هذه. وقد يتم كشف أي معلومات قدمتها للجهات الحكومية السورية إذا لزم الأمر لمعالجة طلبك، دون الرجوع لأي جهة.',
+      'VMS reserves the right to make any minor or major amendments to the terms of the privacy policy when necessary without any prior notification. VMS also has the right to take the necessary measures to protect the data on the website from any loss, misuse or change without a guarantee that your usage is confidential and consequently shall not be held accountable for any harm that you or any party may experience as a result of violating the confidentiality policy.':
+          'تحتفظ VMS بالحق في إجراء تعديلات بسيطة أو جوهرية على شروط سياسة الخصوصية عند الضرورة دون إشعار مسبق. كما لها الحق باتخاذ التدابير اللازمة لحماية بيانات الموقع من أي فقدان أو إساءة استخدام أو تعديل، دون ضمان سرية استخدامك، وبالتالي لا تتحمل مسؤولية أي ضرر قد يصيبك أو أي طرف آخر نتيجة انتهاك سياسة السرية.',
+      'The website also implements very precise measures to protect information from any loss, misuse or change. In addition, VMS cannot ensure the confidentiality when using the website; and therefore cannot be held accountable for any harm caused.':
+          'يطبق الموقع أيضًا إجراءات دقيقة جدًا لحماية المعلومات من أي فقدان أو إساءة استخدام أو تعديل. وبالإضافة إلى ذلك، لا يمكن لـ VMS ضمان السرية أثناء استخدام الموقع؛ وبالتالي لا يمكن تحميلها مسؤولية أي ضرر يحدث.',
+      'This is governed by the law in force in Syrian Arab Republic. Each party irrevocably and unconditionally submits to the exclusive jurisdiction of the courts of Syrian Arab Republic and courts of appeal from them for determining any dispute concerning this policy.':
+          'تخضع هذه السياسة للقانون المعمول به في الجمهورية العربية السورية. وتخضع جميع الأطراف بشكل نهائي وغير مشروط للاختصاص القضائي الحصري لمحاكم الجمهورية العربية السورية ومحاكم الاستئناف التابعة لها للفصل في أي نزاع يتعلق بهذه السياسة.',
+      'Intellectual Property Rights': 'حقوق الملكية الفكرية',
+      'Any published material on VMS e-portal and all related pages including (texts, photos, graphics, applications, designs, files, etc.) is subsumed under the category of intellectual property rights. It is prohibited to publish any content on VMS e-portal that may violate the intellectual property rights of any sector or individual.':
+          'جميع المواد المنشورة على بوابة VMS وجميع الصفحات المرتبطة بها، بما في ذلك (النصوص، الصور، الرسوم، التطبيقات، التصاميم، الملفات، إلخ)، تندرج تحت فئة حقوق الملكية الفكرية. يُمنع نشر أي محتوى على بوابة VMS قد ينتهك حقوق الملكية الفكرية لأي جهة أو فرد.',
+      'A written consent, from the E-portal Unit, is compulsory for the general usage of the materials published on the school e-portal; except what are stipulated by the Syrian Intellectual Property Law and this policy.':
+          'تُعد الموافقة الخطية من وحدة البوابة الإلكترونية إلزامية للاستخدام العام للمواد المنشورة على البوابة؛ باستثناء ما نص عليه قانون الملكية الفكرية السوري وهذه السياسة.',
+      'Use Policy:': 'سياسة الاستخدام:',
+      'The e-portal of VMS including all information and materials published is managed by the E-portal unit. By using the VMS e-portal, the user has accepted all the listed provisions of use policy in this privacy policy.':
+          'تُدار بوابة VMS الإلكترونية، بما في ذلك جميع المعلومات والمواد المنشورة، من قبل وحدة البوابة الإلكترونية. باستخدام بوابة VMS، يكون المستخدم قد قبل جميع بنود سياسة الاستخدام المذكورة في سياسة الخصوصية هذه.',
+      'The E-portal Unit reserves the right to change the use policy when necessary without prior notifications.':
+          'تحتفظ وحدة البوابة الإلكترونية بالحق في تغيير سياسة الاستخدام عند الحاجة دون إشعار مسبق.',
+      'In situations as such, the Unit may provide notifications via the e-portal of VMS to ensure that users are fully aware of such changes. The user is obligated to review the use and privacy policy in every time the website or the sub-pages are accessed, including all administrations, school members etc.':
+          'في مثل هذه الحالات، قد تُرسل الوحدة إشعارات عبر بوابة VMS لضمان اطلاع المستخدمين على هذه التغييرات. ويتوجب على المستخدم مراجعة سياسة الاستخدام والخصوصية في كل مرة يتم فيها الوصول للموقع أو صفحاته الفرعية، بما في ذلك الإدارات وأعضاء المدرسة وما شابه.',
+      '1. Changes in e-portal and disclaimer:':
+          '1. التغييرات في البوابة الإلكترونية وإخلاء المسؤولية:',
+      'The E-portal Unit reserves the right to change the contents of any of the school websites when necessary and without any prior notification. The E-portal Unit shows a great deal of concern to ensure that all information published on all website are accurate; however, it cannot, by any means, provide any sort of guarantee with regard to the preciseness of the content (including any text, graphics, advertisement, URL links, etc.).':
+          'تحتفظ وحدة البوابة الإلكترونية بالحق في تغيير محتويات أي من مواقع المدرسة عند الحاجة ودون إشعار مسبق. تولي الوحدة اهتمامًا كبيرًا لضمان دقة جميع المعلومات المنشورة على المواقع، ولكنها لا تقدم أي ضمان حول دقة المحتوى (بما في ذلك النصوص، الرسوم، الإعلانات، الروابط، إلخ).',
+      '2. Outage and slow connection in e-portal of VMS:':
+          '2. الانقطاع وضعف الاتصال في بوابة VMS:',
+      'The E-portal Unit shows a great deal of concern to ensure that the e-portal is working; however, the internet is not always stable, which may cause errors, outage or delay. In such cases, the E-portal Unit is not responsible and shall not be held accountable for operating the network inside and outside the school.':
+          'تبذل وحدة البوابة الإلكترونية جهودًا كبيرة لضمان عمل البوابة؛ لكن الإنترنت لا يكون دائمًا مستقرًا، مما قد يسبب أخطاء أو انقطاع أو تأخير. في هذه الحالات، لا تتحمل الوحدة مسؤولية تشغيل الشبكة داخل المدرسة أو خارجها.',
+      '3. URLs of other websites:': '3. روابط مواقع أخرى:',
+      'All the URLs of websites or topics that are not related to VMS e-portal are checked for their suitability by e-portal unit, which has the right to modify or remove them in accordance with this policy. The E-portal Unit at VMS is not responsible or liable by any means for the content of these URLs.':
+          'يقوم فريق البوابة الإلكترونية بفحص جميع روابط المواقع أو المواضيع غير المتعلقة بـ VMS للتأكد من صلاحيتها، وله الحق في تعديلها أو حذفها وفقًا لهذه السياسة. ولا تتحمل وحدة البوابة في VMS أي مسؤولية عن محتوى تلك الروابط.',
+      '4. Privacy:': '4. الخصوصية:',
+      'The E-portal Unit is committed to protect the privacy of all VMS e-portal users. The privacy policy organizes all web-pages of VMS.':
+          'تلتزم وحدة البوابة الإلكترونية بحماية خصوصية جميع مستخدمي بوابة VMS. وتنظم سياسة الخصوصية جميع صفحات موقع VMS.',
+      '5. Appointment of supervisors and Permission Grant:':
+          '5. تعيين المشرفين ومنح الأذونات:',
+      'a. Every sector at the school is entitled to appoint a supervisor, one or more, provided the main supervisor has an excellent command in Arabic language. All the supervisors are eligible to obtain a username and password and, they shall be fully responsible for the content of their website.':
+          'أ. يحق لكل قطاع في المدرسة تعيين مشرف واحد أو أكثر، بشرط أن يكون المشرف الرئيسي ذو إتقان ممتاز للغة العربية. ويُمنح جميع المشرفين اسم مستخدم وكلمة مرور، ويكونون مسؤولين بالكامل عن محتوى موقعهم.',
+      'b. The supervisor of the website is the only one who is eligible to retrieve the password from the E-portal Unit.':
+          'ب. يُعد المشرف على الموقع الشخص الوحيد المؤهل لاسترداد كلمة المرور من وحدة البوابة الإلكترونية.',
+      "c. When a supervisor is appointed or changed, the E-portal Unit must be officially informed. In case the supervisor has not accessed the control panel for one month, the E-portal Unit has the right to deactivate the user of the supervisor.":
+          "ج. عند تعيين مشرف جديد أو تغييره، يجب إبلاغ وحدة البوابة الإلكترونية رسميًا. وإذا لم يدخل المشرف على لوحة التحكم لمدة شهر، فللوحدة الحق في تعطيل حسابه.",
+      "d. The supervisor is fully responsible for the username and password of the website that should not be shared with others. The E-portal Unit reserves the right to de-activate the user of any supervisor who shares his/her username with another supervisor or anyone else.":
+          "د. المشرف مسؤول تمامًا عن اسم المستخدم وكلمة المرور ولا يجوز مشاركتهما مع الآخرين. وتحتفظ وحدة البوابة بالإجراء التعطيل لأي مشرف يشارك بياناته مع مشرف آخر أو غيره.",
+      "e. Any department that appoints a supervisor must guarantee that the supervisor shall work minimally for 3 months as a supervisor.":
+          "هـ. يجب على أي قسم يعين مشرفًا أن يضمن أن يستمر المشرف في عمله لمدة لا تقل عن 3 أشهر.",
+      "f. In cases of none compliance with the policy of supervisor appointment and permission grant, the E-portal Unit reserves the right to take the necessary measure against action.":
+          "و. في حال عدم الامتثال بسياسة تعيين المشرف ومنح الأذونات، تحتفظ وحدة البوابة بحق اتخاذ الإجراءات اللازمة.",
+      '6. Training Policy:': '6. سياسة التدريب:',
+      '- The E-portal Unit conducts training courses, if necessary, to supervisors on how to manage the website.':
+          '- تنفذ وحدة البوابة الإلكترونية دورات تدريبية، عند الضرورة، للمشرفين حول إدارة الموقع.',
+      '- Any department that has a website related to VMS e-portal has the right to require the necessary training. The request should be made in coordination with the E-portal Unit.':
+          '- يحق لأي قسم لديه موقع مرتبط ببوابة VMS طلب التدريب اللازم، ويجب تنسيق الطلب مع وحدة البوابة الإلكترونية.',
+      '7. Information Security Policy:': '7. سياسة أمن المعلومات:',
+      'a. The E-portal Unit employs procedural and technical measures to secure the personal information from loss, theft via encrypting them. The E-portal Unit also considers the data as properties that must be protected from loss or being accessed by unauthorized individuals.':
+          'أ. تتبع وحدة البوابة الإلكترونية إجراءات تقنية وإدارية لتأمين المعلومات الشخصية من الفقدان أو السرقة، مثل تشفيرها. كما تعتبر البيانات ملكية يجب حمايتها من الضياع أو الوصول غير المصرح.',
+      'b. Should VMS e-portal happened to be subjected to any harm, the necessary measures shall be taken according to the Combating Cyber Crime.':
+          'ب. إذا تعرضت بوابة VMS لأي ضرر، سيتم اتخاذ الإجراءات اللازمة وفقًا لقانون مكافحة الجرائم الإلكترونية.',
+      'c. In the case of a potential security threat to VMS e-portal or e-services, the Unit of E-portal has the right to take all necessary precautionary measures.':
+          'ج. في حال وجود تهديد أمني محتمل للبوابة أو الخدمات الإلكترونية، تملك وحدة البوابة الحق في اتخاذ جميع التدابير الوقائية الضرورية.',
+      '8. Publishing Policy:': '8. سياسة النشر:',
+      'VMS E-portal is considered to be the official media interface that represents all employees of the school, and thus the e-portal should be used in a proper way that benefits the school employees and departments. It also should not be misused by any means that may subject the school employees to any legal liability. Thus, the publishing policy must be followed and all contents posted on the E-portal should be translated into English and vice versa.':
+          'تُعتبر بوابة VMS واجهة الإعلام الرسمية التي تمثل جميع موظفي المدرسة، ولذا يجب استخدامها بطريقة تحقق فائدة لموظفي المدرسة والأقسام، وينبغي عدم إساءة استخدامها بأي شكل قد يعرض الموظفين لمسؤولية قانونية. لذا، يجب الالتزام بسياسة النشر، ويُترجم جميع المحتوى المنشور على البوابة إلى الإنجليزية والعكس.',
+      '    Published news by all school units must meet the following requirements:':
+          '- يجب أن تستوفي الأخبار المنشورة من جميع وحدات المدرسة المتطلبات التالية:',
+      '1.    The content of the news (meeting, ceremony, workshop, etc.) must be a timeliness.':
+          '1. يجب أن يكون محتوى الخبر (اجتماع، احتفالية، ورشة عمل، إلخ) مواكبًا للزمن.',
+      '2.    The headline should match the news content.':
+          '2. يجب أن يتطابق العنوان مع مضمون الخبر.',
+      '3.     The news should include one of the following:':
+          '3. يجب أن يتضمن الخبر أحد ما يلي:',
+      'A.    Highlight an activity or achievement for the school or administration.':
+          'أ. تسليط الضوء على نشاط أو إنجاز للمدرسة أو الإدارة.',
+      'B.    Invite readers to contribute or benefit from a particular service.':
+          'ب. دعوة القراء للمساهمة أو الاستفادة من خدمة معينة.',
+      'C.    Comprise all necessary elements of good news stories.':
+          'ج. احتواء الخبر على جميع عناصر الخبر الجيد.',
+      'D.    Be a real news story which occurred.':
+          'د. أن يكون الخبر حدثًا فعليًا وقع بالفعل.',
+      'E.    Attract a large number of people inside and outside the school.':
+          'ه. جذب عدد كبير من الأشخاص داخل المدرسة وخارجها.',
+      'F.    Written by simple and succinct language and free of unfamiliar terms.':
+          'و. مكتوب بلغة بسيطة وموجزة وخالية من المصطلحات غير المألوفة.',
+      'G.    Follow the structure of writing a news (lead, facts or information of story, background, conclusion).':
+          'ز. الالتزام ببنية الخبر (المقدمة – تفاصيل القصة أو الحقائق – الخلفية – الخاتمة).',
+      'H.    Personal news should be avoided.':
+          'ح. ينبغي تجنب الأخبار الشخصية.',
+      'I.    News linked to sectors outside the school should obtain approval from concerned sectors at VMS.':
+          'ط. يجب أن تحصل الأخبار المرتبطة بجهات خارج المدرسة على موافقة الجهات المعنية في VMS.',
+      'J.    The news should be edited and proofread before publishing.':
+          'ي. يجب تنقيح الخبر وتدقيقه قبل النشر.',
+      '    Published news with photos should fulfill the following requirements:':
+          '- يجب أن تستوفي الأخبار المنشورة بالصور المتطلبات التالية:',
+      'A.    The size of photos should be as stated by the unit of Information Technology.':
+          'أ. يجب أن يكون حجم الصور كما تحدده وحدة تكنولوجيا المعلومات.',
+      'B.    Clarity of photo.': 'ب. وضوح الصورة.',
+      'C.    Photos should not be offensive or violate the school policy.':
+          'ج. يجب أن لا تكون الصور مسيئة أو مخالفة لسياسة المدرسة.',
+      'D.    Figures’ pose and appearance should be appropriate in photos.':
+          'د. يجب أن تكون ملامح الأشخاص ووضعياتهم مناسبة في الصور.',
+      'E.    Leaders and flags in photos should appear in proper way.':
+          'ه. يجب أن تظهر القيادات والرايات في الصور بطريقة صحيحة.',
+      '9. Publishing Copyrights:': '9. حقوق النشر:',
+      'All published materials on VMS e-portal must comply with the publishing copyrights and publishing policy of the school and this includes:':
+          'يجب أن تلتزم جميع المواد المنشورة على بوابة VMS بحقوق النشر وسياسة النشر للمدرسة، ويشمل ذلك:',
+      '- Published journals in scientific conferences and scientific journals.':
+          '- المجلات المنشورة في المؤتمرات العلمية والمجلات العلمية.',
+      '- Books and publications in electronic format':
+          '- الكتب والمنشورات الإلكترونية.',
+      '- All e-materials that violate the intellectual property rights.':
+          '- جميع المواد الإلكترونية التي تنتهك حقوق الملكية الفكرية.',
+      '10. Inappropriate Content:': '10. المحتوى غير المناسب:',
+      'The inappropriate content may include, but not exclusive to:':
+          'قد يشمل المحتوى غير المناسب، على سبيل المثال لا الحصر:',
+      'a. Any text, photo or idea that implies any racism or offense.':
+          'أ. أي نص أو صورة أو فكرة توحي بالعنصرية أو الإساءة.',
+      'b. Any text, photo or idea that may violate the regulations of the state, the school or the social norms.':
+          'ب. أي نص أو صورة أو فكرة قد تنتهك أنظمة الدولة أو المدرسة أو المعايير الاجتماعية.',
+      'c. Any violation to the privacy of others by any means':
+          'ج. أي خرق لخصوصية الآخرين بأي وسيلة.',
+      'd. The language of the content should be free of mistakes. The E-portal Unit reserves the right to review the content and take action against inappropriate contents.':
+          'د. يجب أن تكون لغة المحتوى خالية من الأخطاء. وتحتفظ وحدة البوابة الإلكترونية بحق مراجعة المحتوى واتخاذ الإجراءات ضد المحتوى غير المناسب.',
+      '11. Update the information:': '11. تحديث المعلومات:',
+      'The content of the web-pages must be updated including news, contact information, phone numbers, e-mails, description of materials etc.':
+          'يجب تحديث محتوى صفحات الويب بانتظام، بما في ذلك الأخبار ومعلومات الاتصال وأرقام الهواتف والبريد الإلكتروني ووصف المواد وغيرها.',
+      '12. Change of the E-portal Unit Policy':
+          '12. تغيير سياسة وحدة البوابة الإلكترونية:',
+      'The E-portal Unit reserves the full right to amend this policy when necessary without any prior notification. This policy is available via the e-portal of VMS (at the bottom of main page).':
+          'تحتفظ وحدة البوابة الإلكترونية بالحق الكامل في تعديل هذه السياسة عند الضرورة دون إشعار مسبق. هذه السياسة متاحة عبر بوابة VMS (في أسفل الصفحة الرئيسية).',
+      '13. Disclaimer': '13. إخلاء المسؤولية:',
+      'The E-portal Unit makes every effort to achieve the highest level of quality and accuracy with VMS e-portal, however, the Unit shall not bear any responsibility or liability for violating this policy.':
+          'تبذل وحدة البوابة الإلكترونية كل جهد لتحقيق أعلى مستويات الجودة والدقة في بوابة VMS؛ ومع ذلك، فإنها لا تتحمل أي مسؤولية أو تبعات ناتجة عن انتهاك هذه السياسة.',
+
       'Add Text': 'إضافة نص',
       'Export As Pdf': 'التصدير كـ PDF',
       'Edit text': 'تعديل النص',
@@ -939,6 +1080,9 @@ class Languages {
       'Hidden': 'مخفي',
       'UnHidden': 'غير مخفي',
       'Is It Hidden': 'هل هو مخفي',
+
+      'privacy_Code_Tr':
+          'صفحة سياسة الخصوصية\n\nفي (المدرسة الافتراضية الحديثة)، ندرك أن خصوصية معلوماتك الشخصية هامة لك ولنا.\nفيما يلي معلومات حول أنواع المعلومات الشخصية التي نتلقاها ونقوم بجمعها عند زيارات (اسم المدونة)، وكيف نقوم بحماية معلوماتك الشخصية.\nملفات السجل\nكما هو الحال مع معظم مواقع الويب المختلفة، نقوم بجمع واستخدام البيانات الموجودة في ملفات السجل.\n\nتشمل المعلومات الموجودة في ملفات السجل عنوان بروتوكول الإنترنت (IP) الخاص بك، ومزود خدمة الإنترنت (ISP)، والمتصفح الذي استخدمته لزيارة موقعنا، والوقت الذي قمت فيه بالزيارة، والصفحات التي قمت بزيارتها عبر موقعنا.\nملفات تعريف الارتباط\n\nنحن نستخدم ملفات تعريف الارتباط لنمنحك أفضل تجربة أستخدام ممكنة على موقع بسيط، لمزيد من المعلومات حول ملفات تعريف الارتباط ، تفضل بزيارة: http://www.allaboutcookies.org/.\nملفات تعريف الارتباط الأساسية\nتعد ملفات تعريف الارتباط الأساسية ضرورية لك للتنقل والتنقل في جميع أنحاء الموقع، ولا تخزن أي معلومات يمكن استخدامها لأغراض الدعاية، بدون ملفات تعريف الارتباط الأساسية، لن يعمل موقعنا بشكل صحيح.\nملفات تعريف الارتباط المخصصة\nتخزن ملفات تعريف الارتباط هذه المعلومات ، مثل تفضيلاتك الشخصية ، وتستخدمها لتخصيص تجربة فريدة لك.\nقد يشمل ذلك عرض نافذة منبثقة مرة واحدة فقط في زيارتك ، أو حفظ تفضيلات اللغة الخاصة بك ، أو السماح لك بتسجيل الدخول تلقائيًا إلى بعض ميزاتنا.\nملفات تعريف الارتباط في Analytics\nتلتقط ملفات تعريف الارتباط من Analytics بيانات مجهولة المصدر حتى نتمكن من رؤية الاتجاهات وتحسين تجربة موقعنا على الويب.\nهذه تتيح لنا اختبار تصميمات مختلفة ، وتساعدنا على تحديد الكسر إذا كان جزء من موقعنا لا يعمل.\nملفات تعريف الارتباط للإعلانات\nقد يستخدم بعض المعلنين من الجهات الخارجية ملفات تعريف الارتباط أو إشارات الويب عند الإعلان على موقعنا.\nسيقوم هؤلاء بإرسال معلومات إلى هؤلاء المعلنين (مثل Google من خلال برنامج Google AdSense) بما في ذلك عنوان IP الخاص بك ، ومزود خدمة الإنترنت ، والمتصفح الذي استخدمته لزيارة موقعنا ، وفي بعض الحالات معلومات حول ما إذا كنت قد قمت بتثبيت Flash.\n•	يستخدم موردو الجهات الخارجية، بمن فيهم Google، ملفات تعريف ارتباط لعرض الإعلانات بناءً على زيارات المستخدم السابقة لموقعنا الإلكتروني أو لمواقع أخرى على الويب.\n•	ستتمكّن Google وشركاؤها، باستخدام ملفات تعريف الارتباط للإعلانات، من عرض الإعلانات للمستخدمين لديك استنادًا إلى زياراتهم لموقعنا و/أو مواقع أخرى عبر الإنترنت.\n•	يمكن للمستخدمين تعطيل استخدام الإعلانات المخصصة عن طريق الانتقال إلى إعدادات الإعلانات.\nإذا لم يتم اختيار تعطيل عرض إعلانات الأطراف الثالثة، فقد يتم استخدام ملفات تعريف ارتباط موردي أو شبكات إعلانات الأطراف الثالثة الأخرى أيضًا لعرض الإعلانات في موقعنا.\nيستخدم هذا بشكل عام لأغراض الاستهداف الجغرافي على سبيل المثال (عرض الإعلانات SEO في مصر لشخص ما في مصر) أو عرض إعلانات معينة بناءً على مواقع محددة تمت زيارتها (مثل عرض إعلانات العقارات لشخص يرتاد مواقع العقارات).\nمن خلال الاستمرار في استخدام موقعنا ، فإنك توافق على وضع ملفات تعريف الارتباط على جهازك، يمكنك اختيار تعطيل أو إيقاف تشغيل ملفات تعريف الارتباط أو ملفات تعريف ارتباط الطرف الثالث بشكل انتقائي في إعدادات المتصفح الخاص بك. ومع ذلك ، يمكن أن يؤثر هذا على كيفية تفاعلك مع موقعنا وكذلك مع مواقع الويب الأخرى.\nاذا كان لديك اى سؤال او كان هنا اى مشكلة فى سياسة أستخدام البيانات الخاصة بنا الرجاء المراسلة ع من خلال صفحة الأتصال بنا.',
     },
     'en': {
       'Welcome Laith Haitham Azzam': 'Welcome Laith Haitham Azzam',
@@ -1696,6 +1840,7 @@ class Languages {
       'Vaccinee': 'Vaccine',
       'AM': 'AM',
       'PM': 'PM',
+      'Privacy Policy': 'Privacy Policy',
       'Arabic Address': 'Arabic Address',
       'English Address': 'English Address',
       'English Village': 'English Village',
@@ -1845,6 +1990,145 @@ class Languages {
       'Delete File': 'Delete File',
       'Delete Link': 'Delete Link',
       'linkk': 'Link',
+      'Privacy Policy of Virtual Modern School E-portal 2023':
+          'Privacy Policy of Virtual Modern School E-portal 2023',
+      'The primary purpose of this policy is to state the user rights and responsibilities of Virtual Modern School e-portal.':
+          'The primary purpose of this policy is to state the user rights and responsibilities of Virtual Modern School e-portal.',
+      'Overview:': 'Overview',
+      'The privacy policy stated below is considered a part of the terms for using the e-portal of Virtual Modern School (VMS).':
+          'The privacy policy stated below is considered a part of the terms for using the e-portal of Virtual Modern School (VMS).',
+      'This website does not collect your personal information when you visit the website without your consent. In case you opt to offer your personal information to us, they will be only used to provide you with the services or information you required from VMS. By using this website, you agree to all terms of this privacy policy. All the information obtained from your side might be revealed to Syrian government sectors, if required, to process your request, without reference to any party.':
+          'This website does not collect your personal information when you visit the website without your consent. In case you opt to offer your personal information to us, they will be only used to provide you with the services or information you required from VMS. By using this website, you agree to all terms of this privacy policy. All the information obtained from your side might be revealed to Syrian government sectors, if required, to process your request, without reference to any party.',
+      'VMS reserves the right to make any minor or major amendments to the terms of the privacy policy when necessary without any prior notification. VMS also has the right to take the necessary measures to protect the data on the website from any loss, misuse or change without a guarantee that your usage is confidential and consequently shall not be held accountable for any harm that you or any party may experience as a result of violating the confidentiality policy.':
+          'VMS reserves the right to make any minor or major amendments to the terms of the privacy policy when necessary without any prior notification. VMS also has the right to take the necessary measures to protect the data on the website from any loss, misuse or change without a guarantee that your usage is confidential and consequently shall not be held accountable for any harm that you or any party may experience as a result of violating the confidentiality policy.',
+      'The website also implements very precise measures to protect information from any loss, misuse or change. In addition, VMS cannot ensure the confidentiality when using the website; and therefore cannot be held accountable for any harm caused.':
+          'The website also implements very precise measures to protect information from any loss, misuse or change. In addition, VMS cannot ensure the confidentiality when using the website; and therefore cannot be held accountable for any harm caused.',
+      'This is governed by the law in force in Syrian Arab Republic. Each party irrevocably and unconditionally submits to the exclusive jurisdiction of the courts of Syrian Arab Republic and courts of appeal from them for determining any dispute concerning this policy.':
+          'This is governed by the law in force in Syrian Arab Republic. Each party irrevocably and unconditionally submits to the exclusive jurisdiction of the courts of Syrian Arab Republic and courts of appeal from them for determining any dispute concerning this policy.',
+      'Intellectual Property Rights': 'Intellectual Property Rights',
+      'Any published material on VMS e-portal and all related pages including (texts, photos, graphics, applications, designs, files, etc.) is subsumed under the category of intellectual property rights. It is prohibited to publish any content on VMS e-portal that may violate the intellectual property rights of any sector or individual.':
+          'Any published material on VMS e-portal and all related pages including (texts, photos, graphics, applications, designs, files, etc.) is subsumed under the category of intellectual property rights. It is prohibited to publish any content on VMS e-portal that may violate the intellectual property rights of any sector or individual.',
+      'A written consent, from the E-portal Unit, is compulsory for the general usage of the materials published on the school e-portal; except what are stipulated by the Syrian Intellectual Property Law and this policy.':
+          'A written consent, from the E-portal Unit, is compulsory for the general usage of the materials published on the school e-portal; except what are stipulated by the Syrian Intellectual Property Law and this policy.',
+      'Use Policy:': 'Use Policy:',
+      'The e-portal of VMS including all information and materials published is managed by the E-portal unit. By using the VMS e-portal, the user has accepted all the listed provisions of use policy in this privacy policy.':
+          'The e-portal of VMS including all information and materials published is managed by the E-portal unit. By using the VMS e-portal, the user has accepted all the listed provisions of use policy in this privacy policy.',
+      'The E-portal Unit reserves the right to change the use policy when necessary without prior notifications.':
+          'The E-portal Unit reserves the right to change the use policy when necessary without prior notifications.',
+      'In situations as such, the Unit may provide notifications via the e-portal of VMS to ensure that users are fully aware of such changes. The user is obligated to review the use and privacy policy in every time the website or the sub-pages are accessed, including all administrations, school members etc.':
+          'In situations as such, the Unit may provide notifications via the e-portal of VMS to ensure that users are fully aware of such changes. The user is obligated to review the use and privacy policy in every time the website or the sub-pages are accessed, including all administrations, school members etc.',
+      '1. Changes in e-portal and disclaimer:':
+          '1. Changes in e-portal and disclaimer:',
+      'The E-portal Unit reserves the right to change the contents of any of the school websites when necessary and without any prior notification. The E-portal Unit shows a great deal of concern to ensure that all information published on all website are accurate; however, it cannot, by any means, provide any sort of guarantee with regard to the preciseness of the content (including any text, graphics, advertisement, URL links, etc.).':
+          'The E-portal Unit reserves the right to change the contents of any of the school websites when necessary and without any prior notification. The E-portal Unit shows a great deal of concern to ensure that all information published on all website are accurate; however, it cannot, by any means, provide any sort of guarantee with regard to the preciseness of the content (including any text, graphics, advertisement, URL links, etc.).',
+      '2. Outage and slow connection in e-portal of VMS:':
+          '2. Outage and slow connection in e-portal of VMS:',
+      'The E-portal Unit shows a great deal of concern to ensure that the e-portal is working; however, the internet is not always stable, which may cause errors, outage or delay. In such cases, the E-portal Unit is not responsible and shall not be held accountable for operating the network inside and outside the school.':
+          'The E-portal Unit shows a great deal of concern to ensure that the e-portal is working; however, the internet is not always stable, which may cause errors, outage or delay. In such cases, the E-portal Unit is not responsible and shall not be held accountable for operating the network inside and outside the school.',
+      '3. URLs of other websites:': '3. URLs of other websites:',
+      'All the URLs of websites or topics that are not related to VMS e-portal are checked for their suitability by e-portal unit, which has the right to modify or remove them in accordance with this policy. The E-portal Unit at VMS is not responsible or liable by any means for the content of these URLs.':
+          'All the URLs of websites or topics that are not related to VMS e-portal are checked for their suitability by e-portal unit, which has the right to modify or remove them in accordance with this policy. The E-portal Unit at VMS is not responsible or liable by any means for the content of these URLs.',
+      '4. Privacy:': '4. Privacy:',
+      'The E-portal Unit is committed to protect the privacy of all VMS e-portal users. The privacy policy organizes all web-pages of VMS.':
+          'The E-portal Unit is committed to protect the privacy of all VMS e-portal users. The privacy policy organizes all web-pages of VMS.',
+      '5. Appointment of supervisors and Permission Grant:':
+          '5. Appointment of supervisors and Permission Grant:',
+      'a. Every sector at the school is entitled to appoint a supervisor, one or more, provided the main supervisor has an excellent command in Arabic language. All the supervisors are eligible to obtain a username and password and, they shall be fully responsible for the content of their website.':
+          'a. Every sector at the school is entitled to appoint a supervisor, one or more, provided the main supervisor has an excellent command in Arabic language. All the supervisors are eligible to obtain a username and password and, they shall be fully responsible for the content of their website.',
+      'b. The supervisor of the website is the only one who is eligible to retrieve the password from the E-portal Unit.':
+          'b. The supervisor of the website is the only one who is eligible to retrieve the password from the E-portal Unit.',
+      "c. When a supervisor is appointed or changed, the E-portal Unit must be officially informed. In case the supervisor has not accessed the control panel for one month, the E-portal Unit has the right to deactivate the user of the supervisor.":
+          "c. When a supervisor is appointed or changed, the E-portal Unit must be officially informed. In case the supervisor has not accessed the control panel for one month, the E-portal Unit has the right to deactivate the user of the supervisor.",
+      "d. The supervisor is fully responsible for the username and password of the website that should not be shared with others. The E-portal Unit reserves the right to de-activate the user of any supervisor who shares his/her username with another supervisor or anyone else.":
+          "d. The supervisor is fully responsible for the username and password of the website that should not be shared with others. The E-portal Unit reserves the right to de-activate the user of any supervisor who shares his/her username with another supervisor or anyone else.",
+      "e. Any department that appoints a supervisor must guarantee that the supervisor shall work minimally for 3 months as a supervisor.":
+          "e. Any department that appoints a supervisor must guarantee that the supervisor shall work minimally for 3 months as a supervisor.",
+      "f. In cases of none compliance with the policy of supervisor appointment and permission grant, the E-portal Unit reserves the right to take the necessary measure against action.":
+          "f. In cases of none compliance with the policy of supervisor appointment and permission grant, the E-portal Unit reserves the right to take the necessary measure against action.",
+      "6. Training Policy:": "6. Training Policy:",
+      "- The E-portal Unit conducts training courses, if necessary, to supervisors on how to manage the website.":
+          "- The E-portal Unit conducts training courses, if necessary, to supervisors on how to manage the website.",
+      "- Any department that has a website related to VMS e-portal has the right to require the necessary training. The request should be made in coordination with the E-portal Unit.":
+          "- Any department that has a website related to VMS e-portal has the right to require the necessary training. The request should be made in coordination with the E-portal Unit.",
+      "7. Information Security Policy:": "7. Information Security Policy:",
+      "a. The E-portal Unit employs procedural and technical measures to secure the personal information from loss, theft via encrypting them. The E-portal Unit also considers the data as properties that must be protected from loss or being accessed by unauthorized individuals.":
+          "a. The E-portal Unit employs procedural and technical measures to secure the personal information from loss, theft via encrypting them. The E-portal Unit also considers the data as properties that must be protected from loss or being accessed by unauthorized individuals.",
+      "b. Should VMS e-portal happened to be subjected to any harm, the necessary measures shall be taken according to the Combating Cyber Crime.":
+          "b. Should VMS e-portal happened to be subjected to any harm, the necessary measures shall be taken according to the Combating Cyber Crime.",
+      "c. In the case of a potential security threat to VMS e-portal or e-services, the Unit of E-portal has the right to take all necessary precautionary measures.":
+          "c. In the case of a potential security threat to VMS e-portal or e-services, the Unit of E-portal has the right to take all necessary precautionary measures.",
+      "8. Publishing Policy:": "8. Publishing Policy:",
+      "VMS E-portal is considered to be the official media interface that represents all employees of the school, and thus the e-portal should be used in a proper way that benefits the school employees and departments. It also should not be misused by any means that may subject the school employees to any legal liability. Thus, the publishing policy must be followed and all contents posted on the E-portal should be translated into English and vice versa.":
+          "VMS E-portal is considered to be the official media interface that represents all employees of the school, and thus the e-portal should be used in a proper way that benefits the school employees and departments. It also should not be misused by any means that may subject the school employees to any legal liability. Thus, the publishing policy must be followed and all contents posted on the E-portal should be translated into English and vice versa.",
+      "    Published news by all school units must meet the following requirements:":
+          "-    Published news by all school units must meet the following requirements:",
+      "1.    The content of the news (meeting, ceremony, workshop, etc.) must be a timeliness.":
+          "1.    The content of the news (meeting, ceremony, workshop, etc.) must be a timeliness.",
+      "2.    The headline should match the news content.":
+          "2.    The headline should match the news content.",
+      "3.     The news should include one of the following:":
+          "3.     The news should include one of the following:",
+      "A.    Highlight an activity or achievement for the school or administration.":
+          "A.    Highlight an activity or achievement for the school or administration.",
+      "B.    Invite readers to contribute or benefit from a particular service.":
+          "B.    Invite readers to contribute or benefit from a particular service.",
+      "C.    Comprise all necessary elements of good news stories.":
+          "C.    Comprise all necessary elements of good news stories.",
+      "D.    Be a real news story which occurred.":
+          "D.    Be a real news story which occurred.",
+      "E.    Attract a large number of people inside and outside the school.":
+          "E.    Attract a large number of people inside and outside the school.",
+      "F.    Written by simple and succinct language and free of unfamiliar terms.":
+          "F.    Written by simple and succinct language and free of unfamiliar terms.",
+      "G.    Follow the structure of writing a news (lead, facts or information of story, background, conclusion).":
+          "G.    Follow the structure of writing a news (lead, facts or information of story, background, conclusion).",
+      "H.    Personal news should be avoided.":
+          "H.    Personal news should be avoided.",
+      "I.    News linked to sectors outside the school should obtain approval from concerned sectors at VMS.":
+          "I.    News linked to sectors outside the school should obtain approval from concerned sectors at VMS.",
+      "J.    The news should be edited and proofread before publishing.":
+          "J.    The news should be edited and proofread before publishing.",
+      "    Published news with photos should fulfill the following requirements:":
+          "-    Published news with photos should fulfill the following requirements:",
+      "A.    The size of photos should be as stated by the unit of Information Technology.":
+          "A.    The size of photos should be as stated by the unit of Information Technology.",
+      "B.    Clarity of photo.": "B.    Clarity of photo.",
+      "C.    Photos should not be offensive or violate the school policy.":
+          "C.    Photos should not be offensive or violate the school policy.",
+      "D.    Figures’ pose and appearance should be appropriate in photos.":
+          "D.    Figures' pose and appearance should be appropriate in photos.",
+      "E.    Leaders and flags in photos should appear in proper way.":
+          "E.    Leaders and flags in photos should appear in proper way.",
+      "9. Publishing Copyrights:": "9. Publishing Copyrights:",
+      "All published materials on VMS e-portal must comply with the publishing copyrights and publishing policy of the school and this includes:":
+          "All published materials on VMS e-portal must comply with the publishing copyrights and publishing policy of the school and this includes:",
+      "- Published journals in scientific conferences and scientific journals.":
+          "- Published journals in scientific conferences and scientific journals.",
+      "- Books and publications in electronic format":
+          "- Books and publications in electronic format",
+      "- All e-materials that violate the intellectual property rights.":
+          "- All e-materials that violate the intellectual property rights.",
+      "10. Inappropriate Content:": "10. Inappropriate Content:",
+      "The inappropriate content may include, but not exclusive to:":
+          "The inappropriate content may include, but not exclusive to:",
+      "a. Any text, photo or idea that implies any racism or offense.":
+          "a. Any text, photo or idea that implies any racism or offense.",
+      "b. Any text, photo or idea that may violate the regulations of the state, the school or the social norms.":
+          "b. Any text, photo or idea that may violate the regulations of the state, the school or the social norms.",
+      "c. Any violation to the privacy of others by any means":
+          "c. Any violation to the privacy of others by any means",
+      "d. The language of the content should be free of mistakes. The E-portal Unit reserves the right to review the content and take action against inappropriate contents.":
+          "d. The language of the content should be free of mistakes. The E-portal Unit reserves the right to review the content and take action against inappropriate contents.",
+      "11. Update the information:": "11. Update the information:",
+      "The content of the web-pages must be updated including news, contact information, phone numbers, e-mails, description of materials etc.":
+          "The content of the web-pages must be updated including news, contact information, phone numbers, e-mails, description of materials etc.",
+      "12. Change of the E-portal Unit Policy":
+          "12. Change of the E-portal Unit Policy",
+      "The E-portal Unit reserves the full right to amend this policy when necessary without any prior notification. This policy is available via the e-portal of VMS (at the bottom of main page).":
+          "The E-portal Unit reserves the full right to amend this policy when necessary without any prior notification. This policy is available via the e-portal of VMS (at the bottom of main page).",
+      "13. Disclaimer": "13. Disclaimer",
+      "The E-portal Unit makes every effort to achieve the highest level of quality and accuracy with VMS e-portal, however, the Unit shall not bear any responsibility or liability for violating this policy.":
+          "The E-portal Unit makes every effort to achieve the highest level of quality and accuracy with VMS e-portal, however, the Unit shall not bear any responsibility or liability for violating this policy.",
       'Do You Want To deletelink': 'Do You Want To Delete Link',
       'No Pages': 'No Pages',
       'Page': 'Page',
@@ -1870,7 +2154,6 @@ class Languages {
       'Hidden': 'Hidden',
       'UnHidden': 'UnHidden',
       'Is It Hidden': 'Is It Hidden',
-      '': '',
       '': '',
       '': '',
       '': '',

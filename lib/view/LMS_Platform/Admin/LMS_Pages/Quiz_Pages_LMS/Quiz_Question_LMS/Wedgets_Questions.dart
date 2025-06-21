@@ -59,7 +59,7 @@ Widget buildButtonsRow() {
             Get.find<Quiz_Questions_Controller>().allQuestions);
       }),
       buildAddButton('Preview'.tr, Icons.preview_rounded, onPressed: () async {
-        await Get_Quiz_Questions_API().Get_Quiz_Questions(quizId: "1");
+        await Get_Quiz_Questions_API().Get_Quiz_Questions();
       }),
     ],
   );

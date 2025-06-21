@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:vms_school/Link/API/LMS_APIs/Admin/GetHomework_LMSAPI.dart';
-import 'package:vms_school/Link/API/LMS_APIs/Admin/Get_All_Curr_LMS.dart';
-import 'package:vms_school/Link/API/LMS_APIs/Admin/Get_LMS_Division.dart';
 import 'package:vms_school/Link/API/LMS_APIs/QuizAPI/Delete_Quiz_Lms_API.dart';
-import 'package:vms_school/Link/API/OpenURLs.dart';
+import 'package:vms_school/Link/API/LMS_APIs/QuizAPI/Quiz_Questions_APIs/Get_All_Quiz_Question_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
-import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/LMS_Divisions_Controller.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/QuizController/AllQuizController.dart';
+import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Quiz_Controller/Quiz_Questions_Controller.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Selected_Screen.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/view/Both_Platform/widgets/GridAnimation.dart';
@@ -144,7 +140,13 @@ class _QuizQuestionpagegridState extends State<QuizQuestionpagegrid> {
                       itemBuilder: (context, index) {
                         return HoverScaleCard(
                           child: GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              Get.find<Quiz_Questions_Controller>().quiz_Id =
+                                  control.filtered_quizLMS[index].id;
+                              Get_Quiz_Questions_API().Get_Quiz_Questions();
+                              Get.find<Selected_Class_Controller>()
+                                  .addToPath("Add Questions".tr);
+                            },
                             child: Container(
                                 padding: const EdgeInsets.all(20),
                                 decoration: BoxDecoration(
@@ -185,11 +187,11 @@ class _QuizQuestionpagegridState extends State<QuizQuestionpagegrid> {
                                                 "observer"),
                                             icon: Icons.delete,
                                             onTap: () {
-                                                Delete_Quiz_Lms_Api(context)
-                                            .DeleteQuizLms(
-                                          quiz: control
-                                              .filtered_quizLMS[index],
-                                        );
+                                              Delete_Quiz_Lms_Api(context)
+                                                  .DeleteQuizLms(
+                                                quiz: control
+                                                    .filtered_quizLMS[index],
+                                              );
                                             }),
                                       ],
                                     ),

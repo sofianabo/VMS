@@ -5,7 +5,7 @@ import 'package:vms_school/Link/Model/LMS_Model/Questions_Models/Quiz_Qustions_M
 
 class Quiz_Questions_Controller extends GetxController {
   List<AllQuestions>? allQuestions;
-
+  int? quiz_Id;
   TextEditingController Blank = TextEditingController();
   TextEditingController Single_Choice = TextEditingController();
   TextEditingController Text_Question = TextEditingController();
@@ -292,6 +292,38 @@ class Quiz_Questions_Controller extends GetxController {
 
   void SetData(Quiz_Qustions_Model model) {
     allQuestions = model.allQuestions;
+    handleAllQuestions(model);
     Set_is_Loading(false);
+  }
+
+  void handleAllQuestions(Quiz_Qustions_Model model) {
+    if (model.allQuestions == null || model.allQuestions!.isEmpty) {
+      return;
+    }
+
+    for (var questionItem in model.allQuestions!) {
+      if (questionItem.question == null) {
+        continue;
+      }
+
+      final question = questionItem.question!;
+
+      switch (question.type) {
+        case "Blank":
+          Blank.text = question.name ?? '';
+          break;
+        case "SingleChoice":
+          Single_Choice.text = question.name ?? '';
+          break;
+        case "Text":
+          Text_Question.text = question.name ?? '';
+          break;
+        case "TrueFalse":
+          True_False.text = question.name ?? '';
+          break;
+        default:
+          print('نوع السؤال غير معروف: ${question.type}');
+      }
+    }
   }
 }
