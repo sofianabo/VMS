@@ -117,7 +117,7 @@ class _Quiz_True_Or_False_Manage_GrideState
                               type: controller.filtered_questions[index].type,
                               description: controller
                                   .filtered_questions[index].description,
-                              isEng: false,
+                              isEng: 0,
                               mark: 20,
                               answer: [
                                 if (controller.filtered_questions[index].answer!

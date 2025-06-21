@@ -107,7 +107,7 @@ class _Article_Qustion_Grid_From_BankState
                                   .filtered_articleQuestion[index].type,
                               description: controller
                                   .filtered_articleQuestion[index].description,
-                              isEng: false,
+                              isEng: 0,
                               mark: 20, // أو أي قيمة تريدها
                               answer: controller
                                       .filtered_articleQuestion[index].answer ??

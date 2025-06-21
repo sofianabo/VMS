@@ -23,7 +23,7 @@ void main() async {
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
-  setUrlStrategy(PathUrlStrategy()); // إزالة # من الروابط
+  setUrlStrategy(PathUrlStrategy());
   runApp(VMS_Main(localizationController: localizationController));
 }
 

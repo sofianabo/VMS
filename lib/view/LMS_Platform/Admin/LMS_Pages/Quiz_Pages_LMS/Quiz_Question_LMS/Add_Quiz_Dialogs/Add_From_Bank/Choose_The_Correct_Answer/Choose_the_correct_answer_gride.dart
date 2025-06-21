@@ -120,7 +120,7 @@ class _Add_Single_Choose_Quiz_From_Bank_GrideState
                               type: controller.filterdQuestions![index].type,
                               description: controller
                                   .filterdQuestions![index].description,
-                              isEng: false,
+                              isEng: 0,
                               mark: 20,
                               answer:
                                   convertedAnswers, // تحويل إلى List<Answer>

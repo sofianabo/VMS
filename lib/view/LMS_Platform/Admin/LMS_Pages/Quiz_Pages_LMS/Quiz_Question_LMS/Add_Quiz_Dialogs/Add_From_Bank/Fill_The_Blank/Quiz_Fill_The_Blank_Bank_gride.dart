@@ -117,7 +117,7 @@ class _Quiz_Fill_The_Blank_QBank_grideState
                               type: controller.filterdQuestions![index].type,
                               description: controller
                                   .filterdQuestions![index].description,
-                              isEng: false,
+                              isEng: 0,
                               mark: 20,
                               answer: [], // تحويل إلى List<Answer>
                             );
