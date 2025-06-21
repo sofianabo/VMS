@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:vms_school/Link/API/LMS_APIs/Admin/GetHomework_LMSAPI.dart';
 import 'package:vms_school/Link/API/LMS_APIs/Admin/Get_All_Curr_LMS.dart';
 import 'package:vms_school/Link/API/LMS_APIs/Admin/Get_LMS_Division.dart';
+import 'package:vms_school/Link/API/LMS_APIs/QuizAPI/Delete_Quiz_Lms_API.dart';
 import 'package:vms_school/Link/API/OpenURLs.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/LMS_Divisions_Controller.dart';
@@ -15,14 +16,14 @@ import 'package:vms_school/view/Both_Platform/widgets/GridAnimation.dart';
 import 'package:vms_school/view/Both_Platform/widgets/Schema_Widget.dart';
 import 'package:vms_school/view/Both_Platform/widgets/Squer_Button_Enabled_Disabled.dart';
 
-class QuizQuestiongrid extends StatefulWidget {
-  QuizQuestiongrid({super.key});
+class QuizQuestionpagegrid extends StatefulWidget {
+  QuizQuestionpagegrid({super.key});
 
   @override
-  State<QuizQuestiongrid> createState() => _QuizQuestiongridState();
+  State<QuizQuestionpagegrid> createState() => _QuizQuestionpagegridState();
 }
 
-class _QuizQuestiongridState extends State<QuizQuestiongrid> {
+class _QuizQuestionpagegridState extends State<QuizQuestionpagegrid> {
   @override
   void initState() {
     super.initState();
@@ -183,7 +184,13 @@ class _QuizQuestiongridState extends State<QuizQuestiongrid> {
                                                     .roll !=
                                                 "observer"),
                                             icon: Icons.delete,
-                                            onTap: () {}),
+                                            onTap: () {
+                                                Delete_Quiz_Lms_Api(context)
+                                            .DeleteQuizLms(
+                                          quiz: control
+                                              .filtered_quizLMS[index],
+                                        );
+                                            }),
                                       ],
                                     ),
                                     Column(

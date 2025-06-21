@@ -151,7 +151,7 @@ class _ExamTableState extends State<ExamTable> {
                       children: [
                         DropDownexamTable(
                             IsError: Econtroller.IssemesterError,
-                            isLoading: Econtroller.issemesterLoading,
+                            isLoading: Econtroller.issemesterLoading, 
                             title: "season".tr,
                             width: 220,
                             type: "semesterDialog"),

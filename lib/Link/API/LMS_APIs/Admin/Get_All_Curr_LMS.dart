@@ -8,6 +8,7 @@ import 'package:dio/dio.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Students_Marks_Controller.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Curr_LMS_Controller.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/HomeworkController.dart';
+import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/QuizController/AllQuizController.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Qustions_Bank_Controller.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Selected_Screen.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownCurriculumn_Controller.dart';
@@ -18,9 +19,11 @@ class Get_LMS_Curriculm_API {
   Get_LMS_Curriculm() async {
     final controller = Get.find<Curriculumn_LMS_Controller>();
     final Q_controller = Get.find<Qustions_Bank_Controller>();
+    final Quiz_controller = Get.find<Allquizcontroller>();
     try {
       controller.SetIsLoading(true);
       Q_controller.SetIsLoading(true);
+      Quiz_controller.SetIsLoading(true);
       String myurl = "$hostPort$getLMSCurriculum";
       var response = await dio.post(data: {
         "classId": Get.find<Selected_Class_Controller>().classid,

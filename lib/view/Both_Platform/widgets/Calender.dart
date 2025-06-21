@@ -22,6 +22,7 @@ import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/A
 import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AllTeachersController.dart';
 import 'package:intl/intl.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/HomeworkController.dart';
+import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/QuizController/AllQuizController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/Sessions_DropDown_Controller.dart';
 import 'package:vms_school/Link/Controller/WidgetController/OtherWidget/DateControler.dart';
 
@@ -1759,6 +1760,94 @@ class HomeWorkSubmissionDate extends StatelessWidget {
               SizedBox(
                 height: 17,
               )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class examDateLMS extends StatelessWidget {
+  final double width;
+  final double? height;
+  final bool isRequired; // متغير لتحديد إذا كان الحقل مطلوبًا.
+  final bool isError; // متغير لتحديد إذا كان الحقل مطلوبًا.
+
+  const examDateLMS({
+    super.key,
+    required this.width,
+    this.height,
+    this.isRequired = false, // افتراضي الحقل غير مطلوب.
+    this.isError = false, // افتراضي الحقل غير مطلوب.
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final Allquizcontroller controller = Get.put(Allquizcontroller());
+    return Obx(
+      () => Container(
+        width: width,
+        alignment: Alignment.center,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              height: height ?? 40,
+              child: TextFormField(
+                style: const TextStyle(fontSize: 14),
+                controller: TextEditingController(
+                  text: controller.dateindex.value != null
+                      ? DateFormat('yyyy-MM-dd')
+                          .format(controller.dateindex.value!)
+                      : '',
+                ),
+                readOnly: true,
+                onTap: () => controller.selectDateIndex(context),
+                decoration: InputDecoration(
+                  hintText: "yyyy-MM-dd",
+                  hintStyle: Theme.of(context)
+                      .textTheme
+                      .titleMedium!
+                      .copyWith(fontSize: 14, color: const Color(0xffD9D9D9)),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5),
+                    borderSide: BorderSide(
+                      color: isError ? Colors.red : const Color(0xffD9D9D9),
+                      width: 2,
+                    ),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5),
+                    borderSide: BorderSide(
+                      color: isError ? Colors.red : const Color(0xffD9D9D9),
+                    ),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5),
+                    borderSide: BorderSide(
+                      color: isError ? Colors.red : Colors.grey,
+                    ),
+                  ),
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      VMS_Icons.calender,
+                      color: Theme.of(context).primaryColor,
+                      size: 16,
+                    ),
+                    onPressed: () => controller.selectDateIndex(context),
+                  ),
+                ),
+              ),
+            ),
+            if (isError)
+              const Padding(
+                padding: EdgeInsets.only(top: 5.0),
+                child: Text(
+                  "يجب إدخال تاريخ صحيح",
+                  style: TextStyle(color: Colors.red, fontSize: 12),
+                ),
+              ),
           ],
         ),
       ),
