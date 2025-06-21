@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:vms_school/Icons_File/LMS_Icons/l_m_s__icons_icons.dart';
+import 'package:vms_school/Link/API/LMS_APIs/QuizAPI/Quiz_Questions_APIs/Add_Quiz_Questions_API.dart';
+import 'package:vms_school/Link/API/LMS_APIs/QuizAPI/Quiz_Questions_APIs/Get_All_Quiz_Question_API.dart';
+import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Quiz_Controller/Quiz_Questions_Controller.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Quiz_Pages_LMS/Quiz_Question_LMS/Add_Quiz_Dialogs/Add_Essay_Questions_Quiz_Dialog.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Quiz_Pages_LMS/Quiz_Question_LMS/Add_Quiz_Dialogs/Add_Fill_The_Blanks_Dialog.dart';
@@ -50,8 +54,13 @@ Widget buildButtonsRow() {
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
-      buildAddButton('Save'.tr, Icons.save_outlined, onPressed: () {}),
-      buildAddButton('Preview'.tr, Icons.preview_rounded, onPressed: () {}),
+      buildAddButton('Save'.tr, Icons.save_outlined, onPressed: () async {
+        await Add_Quiz_Questions_API().Add_Quiz_Questions(
+            Get.find<Quiz_Questions_Controller>().allQuestions);
+      }),
+      buildAddButton('Preview'.tr, Icons.preview_rounded, onPressed: () async {
+        await Get_Quiz_Questions_API().Get_Quiz_Questions(quizId: "1");
+      }),
     ],
   );
 }
@@ -125,8 +134,20 @@ Widget buildQuizCard(
               height: 25,
             ),
             const Divider(thickness: 1, color: Colors.black),
-            buildQuestionsList(
-                screenWidth: screenWidth, isSmallScreen: fontSize),
+            GetBuilder<Quiz_Questions_Controller>(builder: (controller) {
+              if (controller.IsLoading) {
+                return Padding(
+                  padding: const EdgeInsets.only(top: 80.0),
+                  child: LoadingAnimationWidget.inkDrop(
+                    color: Theme.of(context).primaryColor,
+                    size: 40,
+                  ),
+                );
+              } else {
+                return buildQuestionsList(
+                    screenWidth: screenWidth, isSmallScreen: fontSize);
+              }
+            }),
           ],
         ),
       ),

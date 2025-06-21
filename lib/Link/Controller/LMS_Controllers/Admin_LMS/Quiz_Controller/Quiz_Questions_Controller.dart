@@ -11,6 +11,12 @@ class Quiz_Questions_Controller extends GetxController {
   TextEditingController Text_Question = TextEditingController();
   TextEditingController True_False = TextEditingController();
 
+  bool IsLoading = true;
+  Set_is_Loading(bool bool) {
+    IsLoading = bool;
+    update();
+  }
+
   Fill_Data_On_Add({
     required String type,
     required String text,
@@ -68,7 +74,7 @@ class Quiz_Questions_Controller extends GetxController {
           fileId: bankQuestion.fileId,
           type: bankQuestion.type,
           description: bankQuestion.description,
-          isEng: bankQuestion.isEng ?? false,
+          isEng: bankQuestion.isEng ?? 0,
           mark: bankQuestion.mark ?? 20,
           answer: bankQuestion.answer ?? [],
         ),
@@ -85,7 +91,7 @@ class Quiz_Questions_Controller extends GetxController {
             fileId: bankQuestion.fileId,
             type: bankQuestion.type,
             description: bankQuestion.description,
-            isEng: bankQuestion.isEng ?? false,
+            isEng: bankQuestion.isEng ?? 0,
             mark: bankQuestion.mark ?? 20,
             answer: bankQuestion.answer ?? [],
           ),
@@ -136,7 +142,7 @@ class Quiz_Questions_Controller extends GetxController {
         QustionList(
           fileId: null,
           id: null,
-          isEng: isEng,
+          isEng: isEng == true ? 1 : 0,
           type: type,
           mark: 20,
           description: description,
@@ -148,7 +154,7 @@ class Quiz_Questions_Controller extends GetxController {
       final newQuestionList = QustionList(
         fileId: null,
         id: null,
-        isEng: isEng,
+        isEng: isEng == true ? 1 : 0,
         type: type,
         mark: 20,
         description: description,
@@ -282,5 +288,10 @@ class Quiz_Questions_Controller extends GetxController {
     ];
 
     return romanNumerals[number - 1];
+  }
+
+  void SetData(Quiz_Qustions_Model model) {
+    allQuestions = model.allQuestions;
+    Set_is_Loading(false);
   }
 }

@@ -11,6 +11,14 @@ class Quiz_Qustions_Model {
       });
     }
   }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.allQuestions != null) {
+      data['allQuestions'] = this.allQuestions!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
 }
 
 class AllQuestions {
@@ -23,17 +31,27 @@ class AllQuestions {
         ? new Question.fromJson(json['Question'])
         : null;
   }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.question != null) {
+      data['Question'] = this.question!.toJson();
+    }
+    return data;
+  }
 }
 
 class Question {
+  int? id;
   String? type;
   String? name;
   int? fullMark;
   List<QustionList>? qustionList;
 
-  Question({this.type, this.name, this.fullMark, this.qustionList});
+  Question({this.id, this.type, this.name, this.fullMark, this.qustionList});
 
   Question.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
     type = json['type'];
     name = json['name'];
     fullMark = json['fullMark'];
@@ -44,39 +62,65 @@ class Question {
       });
     }
   }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['type'] = this.type;
+    data['name'] = this.name;
+    data['fullMark'] = this.fullMark;
+    if (this.qustionList != null) {
+      data['qustionList'] = this.qustionList!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
 }
 
 class QustionList {
-  int? fileId;
   int? id;
-  bool? isEng;
+  int? fileId;
   String? type;
-  int? mark;
   String? description;
+  int? isEng;
+  int? mark;
   List<Answer>? answer;
 
   QustionList(
-      {this.fileId,
-      this.id,
-      this.isEng,
+      {this.id,
+      this.fileId,
       this.type,
-      this.mark,
       this.description,
+      this.isEng,
+      this.mark,
       this.answer});
 
   QustionList.fromJson(Map<String, dynamic> json) {
-    fileId = json['fileId'];
     id = json['id'];
-    isEng = json['isEng'];
+    fileId = json['fileId'];
     type = json['type'];
-    mark = json['mark'];
     description = json['description'];
+    isEng = json['isEng'];
+    mark = json['mark'];
     if (json['answer'] != null) {
       answer = <Answer>[];
       json['answer'].forEach((v) {
         answer!.add(new Answer.fromJson(v));
       });
     }
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['fileId'] = this.fileId;
+    data['type'] = this.type;
+    data['description'] = this.description;
+    data['isEng'] = this.isEng;
+    data['mark'] = this.mark;
+    if (this.answer != null) {
+      data['answer'] = this.answer!.map((v) => v.toJson()).toList();
+    }
+    return data;
   }
 }
 
@@ -91,5 +135,13 @@ class Answer {
     id = json['id'];
     choise = json['choise'];
     trueAcss = json['trueAcss'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['choise'] = this.choise;
+    data['trueAcss'] = this.trueAcss;
+    return data;
   }
 }
