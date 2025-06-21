@@ -5,7 +5,10 @@ import 'package:vms_school/Icons_File/LMS_Icons/l_m_s__icons_icons.dart';
 import 'package:vms_school/Link/API/LMS_APIs/QuizAPI/Quiz_Questions_APIs/Add_Quiz_Questions_API.dart';
 import 'package:vms_school/Link/API/LMS_APIs/QuizAPI/Quiz_Questions_APIs/Get_All_Quiz_Question_API.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Quiz_Controller/Quiz_Questions_Controller.dart';
+import 'package:vms_school/Link/Model/LMS_Model/Questions_Models/Quiz_Qustions_Model.dart';
 import 'package:vms_school/Translate/local_controller.dart';
+import 'package:vms_school/view/Both_Platform/widgets/ButtonsDialog.dart';
+import 'package:vms_school/view/Both_Platform/widgets/VMSAlertDialog.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Quiz_Pages_LMS/Quiz_Question_LMS/Add_Quiz_Dialogs/Add_Essay_Questions_Quiz_Dialog.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Quiz_Pages_LMS/Quiz_Question_LMS/Add_Quiz_Dialogs/Add_Fill_The_Blanks_Dialog.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Quiz_Pages_LMS/Quiz_Question_LMS/Add_Quiz_Dialogs/Add_From_Bank/ArticleQuestion/Add_ArticleQuestionManagment.dart';
@@ -58,10 +61,153 @@ Widget buildButtonsRow() {
         await Add_Quiz_Questions_API().Add_Quiz_Questions(
             Get.find<Quiz_Questions_Controller>().allQuestions);
       }),
+      buildAddButton('Rerange'.tr, Icons.drag_handle_rounded,
+          onPressed: () async {
+        _showReorderDialog(Get.find<Quiz_Questions_Controller>());
+      }),
+      buildAddButton('Clear Paper'.tr, Icons.delete_outline_outlined,
+          onPressed: () async {
+        if (Get.find<Quiz_Questions_Controller>().allQuestions!.isNotEmpty) {
+          Get.dialog(VMSAlertDialog(
+              action: [
+                ButtonDialog(
+                    text: "Yes, Delete".tr,
+                    onPressed: () async {
+                      Get.find<Quiz_Questions_Controller>().ClearQuestions();
+                      Get.back();
+                    },
+                    color: const Color(0xffB03D3D),
+                    width: 80),
+                ButtonDialog(
+                    text: "No, Don't delete".tr,
+                    onPressed: () {
+                      Get.back();
+                    },
+                    color: Get.theme.primaryColor,
+                    width: 80)
+              ],
+              contents: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(
+                    width: 400,
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          overflow: TextOverflow.ellipsis,
+                          "Do You Want To delete all Questions".tr,
+                          style: Get.theme.textTheme.bodyMedium!.copyWith(
+                              fontSize: 16, fontWeight: FontWeight.normal),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              apptitle: "Delete All Question".tr,
+              subtitle: "none"));
+        }
+      }),
       buildAddButton('Preview'.tr, Icons.preview_rounded, onPressed: () async {
         await Get_Quiz_Questions_API().Get_Quiz_Questions();
       }),
     ],
+  );
+}
+
+void _showReorderDialog(Quiz_Questions_Controller controller) {
+  // حفظ النسخة الأصلية للترتيب
+  final originalOrder = List<AllQuestions>.from(controller.allQuestions!);
+  // نسخة مؤقتة للعمل عليها
+  final tempQuestions = List<AllQuestions>.from(controller.allQuestions!);
+
+  Get.dialog(
+    VMSAlertDialog(
+      action: [
+        TextButton(
+          child: Text("Save".tr,
+              style: Get.theme.textTheme.titleMedium!
+                  .copyWith(fontSize: 14, fontWeight: FontWeight.normal)),
+          onPressed: () {
+            controller.allQuestions!.clear();
+            controller.allQuestions!.addAll(tempQuestions);
+            controller.update();
+            Get.back();
+          },
+        ),
+        TextButton(
+          child: Text("Back".tr,
+              style: Get.theme.textTheme.titleMedium!
+                  .copyWith(fontSize: 14, fontWeight: FontWeight.normal)),
+          onPressed: () => Get.back(),
+        )
+      ],
+      contents: StatefulBuilder(
+        builder: (BuildContext context, StateSetter setState) {
+          return SizedBox(
+            width: 500,
+            height: 400,
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    TextButton(
+                      child: Text("Original Order".tr,
+                          style: Get.theme.textTheme.titleMedium!.copyWith(
+                              fontSize: 14, fontWeight: FontWeight.normal)),
+                      onPressed: () {
+                        setState(() {
+                          tempQuestions.clear();
+                          tempQuestions
+                              .addAll(List<AllQuestions>.from(originalOrder));
+                        });
+                      },
+                    ),
+                    TextButton(
+                      child: Text("Random Order".tr,
+                          style: Get.theme.textTheme.titleMedium!.copyWith(
+                              fontSize: 14, fontWeight: FontWeight.normal)),
+                      onPressed: () {
+                        setState(() {
+                          tempQuestions.shuffle();
+                        });
+                      },
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 10),
+                Expanded(
+                  child: ReorderableListView(
+                    children: [
+                      for (int i = 0; i < tempQuestions.length; i++)
+                        ListTile(
+                          key: Key('${tempQuestions[i].hashCode}'),
+                          title: Text(
+                            "${i + 1}. ${tempQuestions[i].question?.name ?? 'سؤال بدون عنوان'}",
+                            style: Get.textTheme.bodyMedium,
+                          ),
+                        ),
+                    ],
+                    onReorder: (oldIndex, newIndex) {
+                      setState(() {
+                        if (oldIndex < newIndex) newIndex -= 1;
+                        final item = tempQuestions.removeAt(oldIndex);
+                        tempQuestions.insert(newIndex, item);
+                      });
+                    },
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
+      ),
+      apptitle: "Rerange".tr,
+      subtitle: "none",
+    ),
   );
 }
 

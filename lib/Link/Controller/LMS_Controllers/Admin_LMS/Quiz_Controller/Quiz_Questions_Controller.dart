@@ -326,4 +326,9 @@ class Quiz_Questions_Controller extends GetxController {
       }
     }
   }
+
+  void ClearQuestions() {
+    allQuestions?.clear();
+    update();
+  }
 }
