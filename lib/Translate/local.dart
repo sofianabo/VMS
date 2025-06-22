@@ -489,7 +489,7 @@ class Languages {
       '2. Enter the mobile phone number of guardian':
           '2. أدخل رقم الهاتف المحمول لوَليّ الأمر ',
       '3. Enter the Syrian national number of the guardian':
-          '3. أدخل الرقم القومي السوري لوَليّ الأمر',
+          '3. أدخل الرقم الوطني السوري لوَليّ الأمر',
       'Read More': 'قراءة المزيد',
 
       ////////////////////////////////////section 4////////////////////////////////
@@ -511,7 +511,7 @@ class Languages {
       'user - friendliness': 'مع المستخدم',
       'Instant live': 'دروس مباشرة ',
       'Lessons': 'فورية',
-      'Focus on results': 'التركيز على النتائج الاساسية',
+      'Focus on results': 'التركيز على النتائج الأساسية',
       'Multiple registration': 'خيارات تسجيل',
       'options': 'متعددة',
       ///////////////////////////////////section 5//////////////////////////////////////
@@ -526,11 +526,11 @@ class Languages {
           'بتحقيق مستويات عالية من النزاهة والنجاح الأكاديمي.',
 
       'VIRTUAL MODERN SCHOOL (VMS) staff aim to create a supportive':
-          'يهدف موظفو المدرسة الافتراضية الحديثة إلى خلق بيئة داعمة وتحديّة',
+          'يهدف موظفو المدرسة الافتراضية الحديثة إلى خلق بيئة داعمة ومحفزة',
       'and challenging environment for all students to reach their potential,':
-          'لجميع الطلاب للوصول إلى إمكاناتهم، والانخراط في ',
+          'لجميع الطلاب للوصول إلى أقصى إمكاناتهم، والانخراط في ',
       'engaging in continuous improvement through goal setting and':
-          ' تحسين مستمر من خلال تحديد الأهداف والتأمل',
+          ' عملة تحسين مستمرة من خلال تحديد الأهداف والتأمل',
       'reflection': '',
       'Virtual Modern School': 'المدرسة الافتراضية الحديثة ',
 
@@ -538,13 +538,13 @@ class Languages {
 
       'What Do We Do': 'ماذا نفعل',
       'We develop a culture of excellence that includes a robust instructional program aligned to the':
-          'نحن نطور ثقافة التميز التي تشمل برنامجًا تعليميًا قويًا يتوافق مع أعلى المعايير،',
+          'نحن نطور ثقافة التميز التي تشمل برنامجاً تعليمياً قوياً يتوافق مع أعلى المعايير،',
       'highest standards with a focus on implementing balanced literacy through reading and writing':
           'مع التركيز على تطبيق التعليم المميز من خلال ورش عمل القراءة والكتابة،',
       'workshops, while cultivating competency across all subject areas.':
           'من خلال تعزيز الكفاءة في جميع المواد الدراسية.',
       'We are committed to developing well-rounded students who embody our core values: Be Safe, Be Respectful, Be Responsible, and Be Mindful. Our vibrant learning environment encourages discovery and creative expression, making every student feel valued.\n\nWe provide our educators with robust professional development to enhance teaching practices and boost student success. Through collaboration and a community schools model, we align resources to ensure every student thrives. Join us in our journey towards excellence!':
-          'نحن ملتزمون بتطوير طلاب متوازنين يجسدون قيمنا الأساسية: كن آمناً، وكن محترماً، وكن مسؤولا، وكن واعياً. تشجع بيئة التعلم الحيوية لدينا على الاكتشاف والتعبير الإبداعي، مما يجعل كل طالب يشعر بالتقدير.\n\n نحن نقدم لمعلمينا تطويراً مهنياً قوياً لتعزيز ممارسات التدريس وزيادة نجاح الطلاب. من خلال التعاون ونموذج المدارس المجتمعية، نقوم بتنسيق الموارد لضمان ازدهار كل طالب.\n\n انضم إلينا في رحلتنا نحو التميز!',
+          'نحن ملتزمون بتطوير طلاب متوازنين يجسدون قيمنا الأساسية: كن آمناً، وكن محترماً، وكن مسؤولاً، وكن واعياً. تشجع بيئة التعلم الحيوية لدينا على الاكتشاف والتعبير الإبداعي، مما يجعل كل طالب يشعر بالتقدير.\n\n نحن نقدم لمعلمينا تطويراً مهنياً قوياً لتعزيز ممارسات التدريس وزيادة نجاح الطلاب. من خلال التعاون ونموذج المدارس المجتمعية، نقوم بتنسيق الموارد لضمان ازدهار كل طالب.\n\n انضم إلينا في رحلتنا نحو التميز!',
       //////////////////////////////////section 7////////////////////////////////////////
       'Openning Hours': 'ساعات العمل',
       '8 AM -----> 1 PM': '8 صباحاً---------> 1 ظهراً',
@@ -939,6 +939,8 @@ class Languages {
       'Hidden': 'مخفي',
       'UnHidden': 'غير مخفي',
       'Is It Hidden': 'هل هو مخفي',
+      'Add Multiple Correct Questions': 'أضف سؤال متعدد الإجابات',
+      "MultiChoise": "اختر الإجابات الصحيحة",
     },
     'en': {
       'Welcome Laith Haitham Azzam': 'Welcome Laith Haitham Azzam',
@@ -1870,8 +1872,8 @@ class Languages {
       'Hidden': 'Hidden',
       'UnHidden': 'UnHidden',
       'Is It Hidden': 'Is It Hidden',
-      '': '',
-      '': '',
+      'Add Multiple Correct Questions': 'Add Multiple Correct Questions',
+      'MultiChoise': 'Multi Choice',
       '': '',
       '': '',
       '': '',

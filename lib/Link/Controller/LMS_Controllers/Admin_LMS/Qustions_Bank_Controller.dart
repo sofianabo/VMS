@@ -60,7 +60,9 @@ class Qustions_Bank_Controller extends GetxController {
       "subTitle":
           "A multiple-choice question with a list of options that allows you to select multiple choices instead of one."
               .tr,
-      "onTap": () {}
+      "onTap": () {
+         Get.find<Selected_Class_Controller>().addToPath("MultiChoise".tr);
+      }
     },
     {
       "icon": LMS_Icons.same,
@@ -68,7 +70,10 @@ class Qustions_Bank_Controller extends GetxController {
       "subTitle":
           "A question similar to traditional matching, in that it is a text that must be matched with a text from the added elements."
               .tr,
-      "onTap": () {}
+      "onTap": () {
+         Get.find<Selected_Class_Controller>()
+            .addToPath("Matching".tr);
+      }
     },
   ];
 
