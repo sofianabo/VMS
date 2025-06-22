@@ -12,6 +12,8 @@ import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Pages_LmsScreen/Pag
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Question_Bank/ArticleQuestion/ArticleQuestionManagment.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Question_Bank/Choose_The_Correct_Answer/Choose_the_correct_answer.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Question_Bank/Fill_The_Blank/Fill_The_Blank.dart';
+import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Question_Bank/MatchingQuestion/MatchingQuestion.dart';
+import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Question_Bank/MultiChoiseQuestion.dart/Multi_Choise_Question.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Question_Bank/Question_Bank_Page.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Question_Bank/TrueOrFalse/TrueOrFalseQuestionManagment.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Quiz_Pages_LMS/Quiz_Page/Quiz_LMSPage.dart';
@@ -61,7 +63,14 @@ class Selected_Class_Screen extends StatelessWidget {
                     return QuestionBankPage();
                   } else if (current == "True or False".tr) {
                     return Trueorfalsequestionmanagment();
-                  } else if (current == "article".tr) {
+                  }
+                  else if (current == "MultiChoise".tr){
+                    return Multi_Choise_Question();
+                  }
+                  else if(current == "Matching".tr){
+                    return Matching_Question();
+                  }
+                   else if (current == "article".tr) {
                     return Articlequestionmanagment();
                   } else if (current == "Choose the correct answer".tr) {
                     return Choose_the_correct_answer();
