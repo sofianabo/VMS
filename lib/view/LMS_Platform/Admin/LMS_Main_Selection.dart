@@ -85,7 +85,6 @@ class Selected_Class_Screen extends StatelessWidget {
                   } else if (current == "Add Questions".tr) {
                     return QuizQuestion();
                   } else {
-                    // return QuizQuestion();
                     return SelectedClassLMs();
                   }
                 },

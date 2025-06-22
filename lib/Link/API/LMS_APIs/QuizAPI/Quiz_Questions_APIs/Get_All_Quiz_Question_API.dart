@@ -9,19 +9,20 @@ import 'package:vms_school/Link/Model/LMS_Model/Questions_Models/Quiz_Qustions_M
 
 class Get_Quiz_Questions_API {
   Dio dio = Dio();
-  Get_Quiz_Questions({required String quizId}) async {
+  Get_Quiz_Questions() async {
+    var controller = Get.find<Quiz_Questions_Controller>();
     String myURI = "$hostPort$getQuizQuestion";
     try {
-      Get.find<Quiz_Questions_Controller>().Set_is_Loading(true);
+      controller.Set_is_Loading(true);
       var response = await dio.post(myURI,
           data: {
-            "quizId": quizId,
+            "quizId": controller.quiz_Id,
           },
           options: getDioOptions());
 
       if (response.statusCode == 200) {
         Quiz_Qustions_Model model = Quiz_Qustions_Model.fromJson(response.data);
-        Get.find<Quiz_Questions_Controller>().SetData(model);
+        controller.SetData(model);
       } else {
         ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,

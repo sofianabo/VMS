@@ -30,7 +30,6 @@ class _QuizLmspagesState extends State<QuizLmspage> {
   @override
   initState() {
     Get_LMS_Curriculm_API().Get_LMS_Curriculm();
-
     Getallquizlmsapi().Getallquizlms();
     Dropdownsemsesterapi(context).Dropdownsemsester();
 
