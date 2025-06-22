@@ -17,6 +17,7 @@ import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Quiz_Pages_LMS/Quiz
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Quiz_Pages_LMS/Quiz_Question_LMS/Add_Quiz_Dialogs/Add_From_Bank/TrueOrFalse/Quiz_True_Or_False_Question_Managment.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Quiz_Pages_LMS/Quiz_Question_LMS/Add_Quiz_Dialogs/Add_Single_Choice_Dialog.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Quiz_Pages_LMS/Quiz_Question_LMS/Add_Quiz_Dialogs/Add_True_False_Quiz_Dialog.dart';
+import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Quiz_Pages_LMS/Quiz_Question_LMS/Preview_Quiz.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Quiz_Pages_LMS/Quiz_Question_LMS/Questions_List_Wedget.dart';
 
 Widget buildDescriptionWithTextFields(
@@ -53,7 +54,10 @@ Widget buildDescriptionWithTextFields(
   );
 }
 
-Widget buildButtonsRow() {
+Widget buildButtonsRow({
+  required double screenWidth,
+  required double fontSize,
+}) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
@@ -111,7 +115,7 @@ Widget buildButtonsRow() {
         }
       }),
       buildAddButton('Preview'.tr, Icons.preview_rounded, onPressed: () async {
-        await Get_Quiz_Questions_API().Get_Quiz_Questions();
+        Get.dialog(showFullQuestionsPreviewDialog());
       }),
     ],
   );

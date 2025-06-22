@@ -18,7 +18,8 @@ class QuizQuestion extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                buildButtonsRow(),
+                buildButtonsRow(
+                    fontSize: isSmallScreen, screenWidth: screenWidth),
                 const SizedBox(height: 20),
                 buildQuizCard(context, isSmallScreen, screenWidth),
               ],
