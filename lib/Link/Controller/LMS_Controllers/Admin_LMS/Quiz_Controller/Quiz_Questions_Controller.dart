@@ -8,6 +8,9 @@ class Quiz_Questions_Controller extends GetxController {
   int? quiz_Id;
   TextEditingController Blank = TextEditingController();
   TextEditingController Single_Choice = TextEditingController();
+  TextEditingController Muilti_Choice = TextEditingController();
+  TextEditingController Same_Choice = TextEditingController();
+  TextEditingController drag_Choice = TextEditingController();
   TextEditingController Text_Question = TextEditingController();
   TextEditingController True_False = TextEditingController();
 
@@ -27,6 +30,9 @@ class Quiz_Questions_Controller extends GetxController {
     } else if (type.toLowerCase() == "singlechoice") {
       Single_Choice.clear();
       Single_Choice.text = text;
+    } else if (type.toLowerCase() == "multichoice") {
+      Muilti_Choice.clear();
+      Muilti_Choice.text = text;
     } else if (type.toLowerCase() == "text") {
       Text_Question.clear();
       Text_Question.text = text;
@@ -117,6 +123,8 @@ class Quiz_Questions_Controller extends GetxController {
         return 'اجب عن الأسئلة التالية';
       case 'blank':
         return 'املأ الفراغات التالية';
+      case 'multichoice':
+        return 'اختر الإجابات الصحيحة في كل مما يأتي';
       default:
         return 'اكتب نص السؤال هنا';
     }
@@ -314,6 +322,9 @@ class Quiz_Questions_Controller extends GetxController {
           break;
         case "SingleChoice":
           Single_Choice.text = question.name ?? '';
+          break;
+        case "MultiChoice":
+          Muilti_Choice.text = question.name ?? '';
           break;
         case "Text":
           Text_Question.text = question.name ?? '';

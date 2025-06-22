@@ -38,8 +38,6 @@ Widget buildQuestionsList(
           }
 
           final questionType = questionGroup.qustionList![0].type;
-          final questionName =
-              controller.allQuestions![index].question?.name ?? '';
 
           Widget questionWidget;
           switch (questionType) {
@@ -72,6 +70,15 @@ Widget buildQuestionsList(
               break;
             case "Text":
               questionWidget = _buildTextQuestion(
+                controller: controller,
+                questionGroup: questionGroup,
+                index: index,
+                screenWidth: screenWidth,
+                isSmallScreen: isSmallScreen,
+              );
+              break;
+            case "MultiChoice":
+              questionWidget = _buildMuiltiChoiceQuestion(
                 controller: controller,
                 questionGroup: questionGroup,
                 index: index,
@@ -367,6 +374,98 @@ Widget _buildSingleChoiceQuestion({
         screenWidth: screenWidth,
         isSmallScreen: isSmallScreen,
         textController: controller.Single_Choice,
+      ),
+      ...questionGroup.qustionList!.asMap().entries.map((entry) {
+        final questionIndex = entry.key;
+        final question = entry.value;
+        return Column(
+          spacing: 15.0,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                if (question.description != null)
+                  Text(
+                    "${questionIndex + 1} )- ${question.description}",
+                    style: TextStyle(fontSize: isSmallScreen),
+                  ),
+                if (question.mark != null)
+                  _buildMarkInput(
+                    question: question,
+                    controller: controller,
+                    isSmallScreen: isSmallScreen,
+                  ),
+              ],
+            ),
+            Column(
+              spacing: 2.0,
+              children: [
+                if (question.answer != null && question.answer!.isNotEmpty)
+                  ...question.answer!.map((answer) {
+                    return Container(
+                      width: screenWidth,
+                      padding: const EdgeInsets.all(10),
+                      margin: const EdgeInsets.symmetric(vertical: 5.0),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        border: Border.all(
+                          color: answer.trueAcss == 1
+                              ? Get.theme.canvasColor
+                              : Get.theme.textTheme.titleMedium!.color!,
+                          width: 0.5,
+                        ),
+                        color: answer.trueAcss == 1
+                            ? Get.theme.canvasColor
+                            : Get.theme.cardColor,
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Colors.black26,
+                            offset: Offset(0, 2),
+                            blurRadius: 1,
+                          ),
+                        ],
+                      ),
+                      child: Text(
+                        answer.choise ?? '',
+                        maxLines: 10,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontSize: isSmallScreen,
+                          color: answer.trueAcss == 1
+                              ? Colors.white
+                              : Get.theme.textTheme.titleMedium!.color,
+                        ),
+                      ),
+                    );
+                  }).toList(),
+              ],
+            ),
+          ],
+        );
+      }).toList(),
+    ],
+  );
+}
+
+Widget _buildMuiltiChoiceQuestion({
+  required Quiz_Questions_Controller controller,
+  required questionGroup,
+  required int index,
+  required double screenWidth,
+  required double isSmallScreen,
+}) {
+  return Column(
+    spacing: 15.0,
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      _buildQuestionHeader(
+        controller: controller,
+        questionGroup: questionGroup,
+        index: index,
+        screenWidth: screenWidth,
+        isSmallScreen: isSmallScreen,
+        textController: controller.Muilti_Choice,
       ),
       ...questionGroup.qustionList!.asMap().entries.map((entry) {
         final questionIndex = entry.key;

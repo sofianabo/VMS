@@ -14,7 +14,9 @@ import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Quiz_Pages_LMS/Quiz
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Quiz_Pages_LMS/Quiz_Question_LMS/Add_Quiz_Dialogs/Add_From_Bank/ArticleQuestion/Add_ArticleQuestionManagment.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Quiz_Pages_LMS/Quiz_Question_LMS/Add_Quiz_Dialogs/Add_From_Bank/Choose_The_Correct_Answer/Choose_the_correct_answer.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Quiz_Pages_LMS/Quiz_Question_LMS/Add_Quiz_Dialogs/Add_From_Bank/Fill_The_Blank/Quiz_Fill_The_Blank_Bank.dart';
+import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Quiz_Pages_LMS/Quiz_Question_LMS/Add_Quiz_Dialogs/Add_From_Bank/Muilti_Choice/Add_Multi_Choise_Question_Bank.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Quiz_Pages_LMS/Quiz_Question_LMS/Add_Quiz_Dialogs/Add_From_Bank/TrueOrFalse/Quiz_True_Or_False_Question_Managment.dart';
+import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Quiz_Pages_LMS/Quiz_Question_LMS/Add_Quiz_Dialogs/Add_Multi_Choice_Question_Dialog.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Quiz_Pages_LMS/Quiz_Question_LMS/Add_Quiz_Dialogs/Add_Single_Choice_Dialog.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Quiz_Pages_LMS/Quiz_Question_LMS/Add_Quiz_Dialogs/Add_True_False_Quiz_Dialog.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Quiz_Pages_LMS/Quiz_Question_LMS/Preview_Quiz.dart';
@@ -527,10 +529,14 @@ Widget buildSidePanel(BuildContext context) {
                         style: Get.theme.textTheme.titleMedium!
                             .copyWith(fontSize: 14)),
                     buildAddButton("Add as a new question".tr, Icons.add,
-                        size: 250, onPressed: () {}),
+                        size: 250, onPressed: () {
+                      Get.dialog(Add_Multi_Choise_Question_Dialog());
+                    }),
                     buildAddButton(
                         "Addition from the bank".tr, LMS_Icons.multiselect,
-                        size: 250, onPressed: () {}),
+                        size: 250, onPressed: () {
+                      Get.dialog(Add_Multi_Choise_Question_From_Bank());
+                    }),
                     Divider(
                       color: Get.theme.textTheme.titleMedium!.color,
                       thickness: 0.5,

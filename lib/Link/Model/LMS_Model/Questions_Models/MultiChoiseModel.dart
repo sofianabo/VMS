@@ -23,11 +23,10 @@ class MultiChoiseModel {
 
 class Question {
   int? id;
-  Null? fileId;
+  int? fileId;
   String? type;
   String? description;
-  Null? isEng;
-  Null? mark;
+  int? isEng;
   List<Answer>? answer;
 
   Question(
@@ -36,7 +35,6 @@ class Question {
       this.type,
       this.description,
       this.isEng,
-      this.mark,
       this.answer});
 
   Question.fromJson(Map<String, dynamic> json) {
@@ -45,7 +43,6 @@ class Question {
     type = json['type'];
     description = json['description'];
     isEng = json['isEng'];
-    mark = json['mark'];
     if (json['answer'] != null) {
       answer = <Answer>[];
       json['answer'].forEach((v) {
@@ -61,7 +58,6 @@ class Question {
     data['type'] = this.type;
     data['description'] = this.description;
     data['isEng'] = this.isEng;
-    data['mark'] = this.mark;
     if (this.answer != null) {
       data['answer'] = this.answer!.map((v) => v.toJson()).toList();
     }
