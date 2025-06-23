@@ -61,7 +61,7 @@ class Qustions_Bank_Controller extends GetxController {
           "A multiple-choice question with a list of options that allows you to select multiple choices instead of one."
               .tr,
       "onTap": () {
-         Get.find<Selected_Class_Controller>().addToPath("MultiChoise".tr);
+        Get.find<Selected_Class_Controller>().addToPath("MultiChoise".tr);
       }
     },
     {
@@ -71,8 +71,18 @@ class Qustions_Bank_Controller extends GetxController {
           "A question similar to traditional matching, in that it is a text that must be matched with a text from the added elements."
               .tr,
       "onTap": () {
+        Get.find<Selected_Class_Controller>().addToPath("Matching".tr);
+      }
+    },
+    {
+      "icon": LMS_Icons.multiselect,
+      "text": "Multi Choise with Picture".tr,
+      "subTitle":
+          "A list of options that allows you to respond to an image with one option or multiple options."
+              .tr,
+      "onTap": () {
          Get.find<Selected_Class_Controller>()
-            .addToPath("Matching".tr);
+            .addToPath("Multi Choice Picture".tr);
       }
     },
   ];

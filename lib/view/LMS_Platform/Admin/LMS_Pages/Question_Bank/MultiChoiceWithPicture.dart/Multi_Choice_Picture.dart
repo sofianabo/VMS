@@ -1,29 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:vms_school/Link/API/LMS_APIs/QuestionAPI/MatchingAPI/Get_Matching_Question_API.dart';
 import 'package:vms_school/Link/API/LMS_APIs/QuestionAPI/MultiChoiseAPI/Get_Multi_Choice_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
-import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/QuestionBank_Controllers/MatchingQuestionController.dart';
-import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/QuestionBank_Controllers/Multi_Choise_Question_Controller.dart';
+import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/QuestionBank_Controllers/Multi_Choice_Picture_Controller.dart';
 import 'package:vms_school/view/Both_Platform/widgets/Squer_Button_Enabled_Disabled.dart';
 import 'package:vms_school/view/Both_Platform/widgets/TextFormSearch.dart';
-import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Question_Bank/MatchingQuestion/AddMatchingQuestion.dart';
-import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Question_Bank/MatchingQuestion/MatchingQuestionGrid.dart';
+import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Question_Bank/MultiChoiceWithPicture.dart/Add_Multi_Choice_Picture.dart';
+import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Question_Bank/MultiChoiceWithPicture.dart/Multi_Choice_Picture_Grid.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Question_Bank/MultiChoiseQuestion.dart/Add_Multi_Choise_Question.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Question_Bank/MultiChoiseQuestion.dart/Multi_Choise_Question_Grid.dart';
 
-class Matching_Question extends StatefulWidget {
-  const Matching_Question({super.key});
+class Multi_Choice_Picture extends StatefulWidget {
+  const Multi_Choice_Picture({super.key});
 
   @override
-  State<Matching_Question> createState() => _Matching_QuestionState();
+  State<Multi_Choice_Picture> createState() => _Multi_Choice_PictureState();
 }
 
-class _Matching_QuestionState extends State<Matching_Question> {
+class _Multi_Choice_PictureState extends State<Multi_Choice_Picture> {
   @override
   initState() {
-    Get_Matching_Question_Api().getMatchingQuestions();
+    Get_Multi_Choice_Api().Get_Multi_Choice();
     super.initState();
   }
 
@@ -34,7 +32,7 @@ class _Matching_QuestionState extends State<Matching_Question> {
     return Column(
       children: [
         if (screenWidth > 769)
-          GetBuilder<Matching_Question_Controller>(builder: (controller) {
+          GetBuilder<Multi_Choice_Picture_Controller>(builder: (controller) {
             return Container(
               width: screenWidth,
               margin: const EdgeInsets.only(left: 40.0, right: 40.0, top: 0.0),
@@ -60,17 +58,15 @@ class _Matching_QuestionState extends State<Matching_Question> {
                           !(Get.find<Add_Data_controller>().roll != "observer"),
                       icon: Icons.add,
                       onTap: () {
-                        controller.resetAllFields();
-
-                        Get.dialog(Add_Matching_Question(),
-                            barrierDismissible: false);
+                        controller.initialAddCurr();
+                        Get.dialog(Add_Multi_Choice_Picture());
                       })
                 ],
               ),
             );
           }),
         if (screenWidth <= 769)
-          GetBuilder<Matching_Question_Controller>(builder: (controller) {
+          GetBuilder<Multi_Choice_Picture_Controller>(builder: (controller) {
             return Container(
               width: screenWidth,
               margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 10.0),
@@ -101,16 +97,16 @@ class _Matching_QuestionState extends State<Matching_Question> {
                             "observer"),
                         icon: Icons.add,
                         onTap: () {
-                          controller.resetAllFields();
-                          Get.dialog(Add_Matching_Question(),
-                              barrierDismissible: false);
+                          controller.initialAddCurr();
+
+                          Get.dialog(Add_Multi_Choice_Picture());
                         })
                   ],
                 ),
               ),
             );
           }),
-        GetBuilder<Matching_Question_Controller>(builder: (controller) {
+        GetBuilder<Multi_Choice_Picture_Controller>(builder: (controller) {
           if (controller.isLoading == true) {
             return Expanded(
               child: Center(
@@ -128,7 +124,7 @@ class _Matching_QuestionState extends State<Matching_Question> {
                           fontSize: 22, fontWeight: FontWeight.normal))),
             );
           }
-          return Matching_Question_Grid();
+          return Multi_Choice_Picture_Grid();
         }),
       ],
     );

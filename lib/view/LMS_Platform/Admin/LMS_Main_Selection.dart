@@ -13,6 +13,7 @@ import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Question_Bank/Artic
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Question_Bank/Choose_The_Correct_Answer/Choose_the_correct_answer.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Question_Bank/Fill_The_Blank/Fill_The_Blank.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Question_Bank/MatchingQuestion/MatchingQuestion.dart';
+import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Question_Bank/MultiChoiceWithPicture.dart/Multi_Choice_Picture.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Question_Bank/MultiChoiseQuestion.dart/Multi_Choise_Question.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Question_Bank/Question_Bank_Page.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Question_Bank/TrueOrFalse/TrueOrFalseQuestionManagment.dart';
@@ -69,6 +70,9 @@ class Selected_Class_Screen extends StatelessWidget {
                   }
                   else if(current == "Matching".tr){
                     return Matching_Question();
+                  }
+                  else if(current == "Multi Choice Picture".tr){
+                    return Multi_Choice_Picture();
                   }
                    else if (current == "article".tr) {
                     return Articlequestionmanagment();

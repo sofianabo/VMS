@@ -15,8 +15,7 @@ class Add_Matching_Question extends StatefulWidget {
   const Add_Matching_Question({super.key});
 
   @override
-  State<Add_Matching_Question> createState() =>
-      _Add_Matching_QuestionState();
+  State<Add_Matching_Question> createState() => _Add_Matching_QuestionState();
 }
 
 class _Add_Matching_QuestionState extends State<Add_Matching_Question> {
@@ -47,6 +46,7 @@ class _Add_Matching_QuestionState extends State<Add_Matching_Question> {
                   ques: cont.firstSectionOptions,
                   ans: cont.secondSectionOptions,
                 );
+               
               }
             }
           },
@@ -58,7 +58,8 @@ class _Add_Matching_QuestionState extends State<Add_Matching_Question> {
         width: 600,
         constraints: BoxConstraints(maxHeight: 500),
         child: SingleChildScrollView(
-          child: GetBuilder<Matching_Question_Controller>(builder: (controller) {
+          child:
+              GetBuilder<Matching_Question_Controller>(builder: (controller) {
             return Column(
               children: [
                 Textfildwithupper(
@@ -77,8 +78,10 @@ class _Add_Matching_QuestionState extends State<Add_Matching_Question> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Text("القسم الأول".tr, style: TextStyle(fontWeight: FontWeight.bold)),
-                    Text("القسم الثاني".tr, style: TextStyle(fontWeight: FontWeight.bold)),
+                    Text("Questions".tr,
+                        style: TextStyle(fontWeight: FontWeight.bold)),
+                    Text("Answers".tr,
+                        style: TextStyle(fontWeight: FontWeight.bold)),
                   ],
                 ),
                 const SizedBox(height: 10),
@@ -121,15 +124,18 @@ class _Add_Matching_QuestionState extends State<Add_Matching_Question> {
                             // حقل القسم الأول
                             Expanded(
                               child: Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 4.0),
                                 child: TextField(
                                   controller: TextEditingController(
-                                    text: controller.firstSectionOptions[index]),
+                                      text: controller
+                                          .firstSectionOptions[index]),
                                   onChanged: (value) {
-                                    controller.firstSectionOptions[index] = value;
+                                    controller.firstSectionOptions[index] =
+                                        value;
                                   },
                                   decoration: InputDecoration(
-                                    hintText: "الإدخال ${index + 1}".tr,
+                                    hintText: "Question".tr,
                                     border: OutlineInputBorder(),
                                   ),
                                 ),
@@ -138,21 +144,29 @@ class _Add_Matching_QuestionState extends State<Add_Matching_Question> {
                             // حقل القسم الثاني
                             Expanded(
                               child: Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 4.0),
                                 child: TextField(
                                   controller: TextEditingController(
-                                    text: index < controller.secondSectionOptions.length
-                                        ? controller.secondSectionOptions[index]
-                                        : ''),
+                                      text: index <
+                                              controller
+                                                  .secondSectionOptions.length
+                                          ? controller
+                                              .secondSectionOptions[index]
+                                          : ''),
                                   onChanged: (value) {
-                                    if (index < controller.secondSectionOptions.length) {
-                                      controller.secondSectionOptions[index] = value;
+                                    if (index <
+                                        controller
+                                            .secondSectionOptions.length) {
+                                      controller.secondSectionOptions[index] =
+                                          value;
                                     } else {
-                                      controller.secondSectionOptions.add(value);
+                                      controller.secondSectionOptions
+                                          .add(value);
                                     }
                                   },
                                   decoration: InputDecoration(
-                                    hintText: "الإدخال ${index + 1}".tr,
+                                    hintText: "Answer".tr,
                                     border: OutlineInputBorder(),
                                   ),
                                 ),

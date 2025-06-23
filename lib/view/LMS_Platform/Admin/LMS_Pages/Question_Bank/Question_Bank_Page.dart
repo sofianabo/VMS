@@ -134,7 +134,7 @@ class _QuestionBankPageState extends State<QuestionBankPage> {
                   crossAxisSpacing: 20.0,
                   mainAxisSpacing: 20.0,
                   childAspectRatio: getChildAspectRatio()),
-              itemCount: 7,
+              itemCount: 8,
               itemBuilder: (context, index) {
                 return HoverScaleCard(
                   child: GestureDetector(
