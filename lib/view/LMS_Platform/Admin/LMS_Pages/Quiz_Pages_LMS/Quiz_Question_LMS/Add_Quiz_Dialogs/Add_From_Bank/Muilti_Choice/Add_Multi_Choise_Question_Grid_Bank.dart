@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/LMS_APIs/QuestionAPI/MultiChoiseAPI/Delete_Multi_Choice_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Quiz_Controller/Quiz_Multi_Choise_Controller.dart';
@@ -125,7 +126,8 @@ class _Add_Multi_Choise_Question_Grid_From_BankState
                                     .toList();
                             QustionList newQuestion = QustionList(
                               id: controller.filterdQuestions![index].id,
-                              fileId: null,
+                              fileId:
+                                  controller.filterdQuestions![index].fileId,
                               type: controller.filterdQuestions![index].type,
                               description: controller
                                   .filterdQuestions![index].description,
@@ -143,6 +145,17 @@ class _Add_Multi_Choise_Question_Grid_From_BankState
                   )
                 ],
               ),
+              controller.filterdQuestions![index].fileId == null
+                  ? Text("")
+                  : Center(
+                      child: SizedBox(
+                          width: 300,
+                          height: 200,
+                          child: Image.network(
+                            "$getimage${controller.filterdQuestions![index].fileId}",
+                            fit: BoxFit.fitWidth,
+                          )),
+                    ),
               ListView.builder(
                 shrinkWrap: true,
                 itemCount: controller.filterdQuestions![index].answer!.length,

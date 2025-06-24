@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dropzone/flutter_dropzone.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/API/LMS_APIs/QuestionAPI/MultiChoiseAPI/Add_Multi_Choise_API.dart';
@@ -23,6 +24,7 @@ class _Add_Multi_Choise_QuestionState extends State<Add_Multi_Choise_Question> {
   final TextEditingController _optionController = TextEditingController();
   final FocusNode _optionFocusNode = FocusNode();
   var cont = Get.find<Multi_Choise_Question_Controller>();
+  DropzoneViewController? ctrl;
 
   @override
   void dispose() {
@@ -48,7 +50,10 @@ class _Add_Multi_Choise_QuestionState extends State<Add_Multi_Choise_Question> {
                   trueIndexes: cont.correctAnswersIndices,
                   Question: Question.text,
                   answer: cont.options,
-                ); // تم التعديل هنا
+                  Image: cont.selectedImage.value,
+                );
+                cont.initialAddCurr();
+// تم التعديل هنا
               }
             }
           },
@@ -75,6 +80,85 @@ class _Add_Multi_Choise_QuestionState extends State<Add_Multi_Choise_Question> {
                   Uptext: "Add Multiple Correct Questions".tr, // تم التعديل هنا
                   hinttext:
                       "Add Multiple Correct Questions".tr, // تم التعديل هنا
+                ),
+                GestureDetector(
+                  onTap: () {
+                    controller.pickImage();
+                  },
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 500),
+                    decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.all(Radius.circular(5)),
+                      border: Border.all(color: const Color(0xffD9D9D9)),
+                      color: controller.isHoveringimage
+                          ? Theme.of(context).primaryColor
+                          : Theme.of(context).cardColor,
+                    ),
+                    alignment: Alignment.center,
+                    width: 600,
+                    height: 100,
+                    child: Stack(
+                      children: [
+                        DropzoneView(
+                          operation: DragOperation.copy,
+                          cursor: CursorType.Default,
+                          onCreated: (DropzoneViewController controller) {
+                            ctrl = controller;
+                          },
+                          onHover: () {
+                            controller.updateHoverImage(true);
+                          },
+                          onLeave: () {
+                            controller.updateHoverImage(false);
+                          },
+                          onDropFiles:
+                              (List<DropzoneFileInterface>? files) async {
+                            if (files != null && files.length == 1) {
+                              final file = files.first;
+                              final mimeType = await ctrl?.getFileMIME(file);
+                              final fileName = await ctrl?.getFilename(file);
+                              final fileBytes = await ctrl?.getFileData(file);
+                              if (mimeType == 'image/jpeg' ||
+                                  mimeType == 'image/png' ||
+                                  fileName!.toLowerCase().endsWith('.jpg') ||
+                                  fileName.toLowerCase().endsWith('.jpeg') ||
+                                  fileName.toLowerCase().endsWith('.png')) {
+                                controller.selectedImage.value = fileBytes;
+                                controller.updateTextImage(
+                                    "Image Successfully Dropped!");
+                              } else {
+                                controller.updateTextImage(
+                                    "Error: Unsupported File Type.");
+                              }
+                            } else {
+                              controller.updateTextImage(
+                                  "Error: Only One File Is Allowed.");
+                            }
+                          },
+                        ),
+                        Center(
+                          child: controller.selectedImage.value != null
+                              ? IconButton(
+                                  onPressed: () {
+                                    controller.ClearImage();
+                                  },
+                                  icon: Icon(
+                                    Icons.delete_outline_outlined,
+                                    color: Colors.redAccent,
+                                  ))
+                              : Text(
+                                  textAlign: TextAlign.center,
+                                  controller.imageStatus,
+                                  style: TextStyle(
+                                    color: controller.isHoveringimage
+                                        ? Colors.white
+                                        : const Color(0xffCBBFBF),
+                                  ),
+                                ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
                 const SizedBox(height: 20),
                 Row(

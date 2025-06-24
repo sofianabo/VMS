@@ -53,7 +53,7 @@ class Curriculumn_Controller extends GetxController {
 
   bool isFailingSubject = false;
   bool isLoading = true;
-  bool isHoveringFile = false;
+  bool isHoveringFile = false; 
   String fileStatus = "Click To Add File\nOr\nDrag And Drop File Here".tr;
   bool isHoveringimage = false;
   String imageStatus = "Click To Add Image\nOr\nDrag And Drop Image Here".tr;

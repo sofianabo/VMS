@@ -56,7 +56,9 @@ class _Multi_Choise_QuestionState extends State<Multi_Choise_Question> {
                           !(Get.find<Add_Data_controller>().roll != "observer"),
                       icon: Icons.add,
                       onTap: () {
-                        Get.dialog(Add_Multi_Choise_Question());
+                          controller.initialAddCurr();
+
+                        Get.dialog(Add_Multi_Choise_Question(),barrierDismissible: false);
                       })
                 ],
               ),
@@ -94,7 +96,9 @@ class _Multi_Choise_QuestionState extends State<Multi_Choise_Question> {
                             "observer"),
                         icon: Icons.add,
                         onTap: () {
-                          Get.dialog(Add_Multi_Choise_Question());
+                          controller.initialAddCurr();
+
+                        Get.dialog(Add_Multi_Choise_Question(),barrierDismissible: false);
                         })
                   ],
                 ),

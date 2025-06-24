@@ -74,17 +74,7 @@ class Qustions_Bank_Controller extends GetxController {
         Get.find<Selected_Class_Controller>().addToPath("Matching".tr);
       }
     },
-    {
-      "icon": LMS_Icons.multiselect,
-      "text": "Multi Choise with Picture".tr,
-      "subTitle":
-          "A list of options that allows you to respond to an image with one option or multiple options."
-              .tr,
-      "onTap": () {
-         Get.find<Selected_Class_Controller>()
-            .addToPath("Multi Choice Picture".tr);
-      }
-    },
+  
   ];
 
   bool isLoading = true;

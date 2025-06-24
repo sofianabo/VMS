@@ -1099,6 +1099,8 @@ class Languages {
       'Answers': 'الأجوبة',
       'Answer': 'الجواب',
       'Matching': 'مطابقة',
+      'Click To Add Image\nOr\nDrag And Drop Image Here \n (Image entry is not required)':
+          'اسحب و أفلت الصورة \n أو \n اضغط لإضافة صورة \n (إدخال الصورة غير ضروري)',
     },
     'en': {
       'Welcome Laith Haitham Azzam': 'Welcome Laith Haitham Azzam',
@@ -2185,6 +2187,19 @@ class Languages {
       'Answers': 'Answers',
       'Answer': 'Answer',
       'Matching': 'Matching',
+      'Click To Add Image\nOr\nDrag And Drop Image Here \n (Image entry is not required)':
+          'Click To Add Image\nOr\nDrag And Drop Image Here \n (Image entry is not required)',
+      '': '',
+      '': '',
+      '': '',
+      '': '',
+      '': '',
+      '': '',
+      '': '',
+      '': '',
+      '': '',
+      '': '',
+      '': '',
       '': '',
     }
   };

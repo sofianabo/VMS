@@ -85,7 +85,7 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
                       if (await Add_Curriculm_API(context).Add_Curriculm(
                             name: name.text,
                             Ename: enname.text,
-                            file: controller.selectedFile.value,
+                            file: controller.selectedFile.value, 
                             Image: controller.selectedImage.value,
                             maxMark: max.text,
                             PassingMark: Passing.text,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/LMS_APIs/QuestionAPI/Choose_The_Correct_API.dart/Delete_Choose_The_Correct_API.dart';
 import 'package:vms_school/Link/API/LMS_APIs/QuestionAPI/MultiChoiseAPI/Delete_Multi_Choice_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
@@ -188,7 +189,8 @@ class _Multi_Choise_Question_GridState
                                     Row(
                                       children: [
                                         Text(
-                                          "Are you sure you want to delete this question ?".tr
+                                          "Are you sure you want to delete this question ?"
+                                              .tr
                                               .tr,
                                           style: Get.theme.textTheme.bodyMedium!
                                               .copyWith(
@@ -207,6 +209,17 @@ class _Multi_Choise_Question_GridState
                   )
                 ],
               ),
+              controller.filterdQuestions![index].fileId == null
+                  ? Text("")
+                  : Center(
+                      child: SizedBox(
+                          width: 300,
+                          height: 200,
+                          child: Image.network(
+                            "$getimage${controller.filterdQuestions![index].fileId}",
+                            fit: BoxFit.fitWidth,
+                          )),
+                    ),
               ListView.builder(
                 shrinkWrap: true,
                 itemCount: controller.filterdQuestions![index].answer!.length,

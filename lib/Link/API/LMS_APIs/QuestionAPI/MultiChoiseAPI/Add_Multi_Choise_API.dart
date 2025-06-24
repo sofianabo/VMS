@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:get/get_core/src/get_main.dart';
 import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/DioOption.dart';
@@ -18,22 +20,46 @@ class Add_Multi_Choise_Api {
   Add_Multi_Choise({
     required String Question,
     required List<String> answer,
-    required List<int> trueIndexes, // تعديل لدعم أكثر من إجابة صحيحة
+    required List<int> trueIndexes,
+        Uint8List? Image,
+ // تعديل لدعم أكثر من إجابة صحيحة
   }) async {
     CancelToken cancelToken = CancelToken();
     Loading_Dialog(cancelToken: cancelToken);
     try {
+
+        FormData formData = FormData();
+
+      formData.fields.addAll([
+        MapEntry( 'classId', Get.find<Selected_Class_Controller>().classid.toString(),),
+        MapEntry(        'currId', Get.find<Qustions_Bank_Controller>().id.toString(),
+),
+        MapEntry("type", "MultiChoice"),
+    
+        MapEntry( "trueIndex", trueIndexes.toList().toString(),),
+        MapEntry(
+           "description", Question
+        ),
+      ]);
+       for (int i = 0; i < answer.length; i++) {
+        formData.fields
+            .add(MapEntry('answer[$i]', answer[i].toString()));
+      }
+       for (int i = 0; i < trueIndexes.length; i++) {
+        formData.fields
+            .add(MapEntry('trueIndex[$i]', trueIndexes[i].toString()));
+      }
+        if (Image != null) {
+        formData.files.add(MapEntry(
+          "file",
+          MultipartFile.fromBytes(Image, filename: "Image.jpg"),
+        ));
+      }
+
       var controller = Get.find<Multi_Choise_Question_Controller>();
       String myurl = "$hostPort$addQuestion";
 
-      var response = await dio.post(data: {
-        'classId': Get.find<Selected_Class_Controller>().classid,
-        'currId': Get.find<Qustions_Bank_Controller>().id,
-        "type": "MultiChoice", // تغيير نوع السؤال
-        "answer": answer,
-        "trueIndex": trueIndexes, // إرسال مصفوفة الإجابات الصحيحة
-        "description": Question
-      }, cancelToken: cancelToken, myurl, options: getDioOptions());
+      var response = await dio.post(data: formData, cancelToken: cancelToken, myurl, options: getDioOptions());
 
       if (response.statusCode == 200) {
         gets.Get.back();
