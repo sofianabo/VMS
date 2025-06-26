@@ -42,7 +42,10 @@ class Qustions_Bank_Controller extends GetxController {
       "subTitle":
           "Match images and texts by dragging and dropping them onto their appropriate places."
               .tr,
-      "onTap": () {}
+      "onTap": () {
+    Get.find<Selected_Class_Controller>().addToPath("Drag and Drop".tr);
+      
+      }
     },
     {
       "icon": LMS_Icons.paper,

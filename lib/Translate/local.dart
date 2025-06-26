@@ -1101,6 +1101,11 @@ class Languages {
       'Matching': 'مطابقة',
       'Click To Add Image\nOr\nDrag And Drop Image Here \n (Image entry is not required)':
           'اسحب و أفلت الصورة \n أو \n اضغط لإضافة صورة \n (إدخال الصورة غير ضروري)',
+      'Text': 'نص',
+      'Image': 'صورة',
+      'Enter question text': 'أدخل نص السؤال',
+      'Enter answer text': 'أدخل نص الجواب',
+      'Drag and Drop': 'سحب و إفلات',
     },
     'en': {
       'Welcome Laith Haitham Azzam': 'Welcome Laith Haitham Azzam',
@@ -2189,11 +2194,11 @@ class Languages {
       'Matching': 'Matching',
       'Click To Add Image\nOr\nDrag And Drop Image Here \n (Image entry is not required)':
           'Click To Add Image\nOr\nDrag And Drop Image Here \n (Image entry is not required)',
-      '': '',
-      '': '',
-      '': '',
-      '': '',
-      '': '',
+      'Text': 'Text',
+      'Image': 'Image',
+      'Enter question text': 'Enter question text',
+      'Enter answer text': 'Enter answer text',
+      'Drag and Drop': 'Drag and Drop',
       '': '',
       '': '',
       '': '',
