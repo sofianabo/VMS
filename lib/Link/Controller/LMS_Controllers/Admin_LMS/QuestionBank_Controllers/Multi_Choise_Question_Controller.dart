@@ -1,4 +1,7 @@
+import 'dart:typed_data';
+
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/Model/LMS_Model/Questions_Models/MultiChoiseModel.dart';
 
@@ -55,7 +58,8 @@ class Multi_Choise_Question_Controller extends GetxController {
 
     // تحديث مؤشرات الإجابات الصحيحة
     _correctAnswersIndices.removeWhere((i) => i == index);
-    _correctAnswersIndices.value = _correctAnswersIndices.map((i) => i > index ? i - 1 : i).toList().obs;
+    _correctAnswersIndices.value =
+        _correctAnswersIndices.map((i) => i > index ? i - 1 : i).toList().obs;
 
     update();
   }
@@ -77,7 +81,10 @@ class Multi_Choise_Question_Controller extends GetxController {
       if (_options[i].trim().isEmpty) {
         _options.removeAt(i);
         _correctAnswersIndices.removeWhere((idx) => idx == i);
-        _correctAnswersIndices.value = _correctAnswersIndices.map((idx) => idx > i ? idx - 1 : idx).toList().obs;
+        _correctAnswersIndices.value = _correctAnswersIndices
+            .map((idx) => idx > i ? idx - 1 : idx)
+            .toList()
+            .obs;
       }
     }
 
@@ -189,6 +196,52 @@ class Multi_Choise_Question_Controller extends GetxController {
     IsAnameError = false;
     iscurrError = false;
     isLinkError = false;
+    update();
+  }
+
+  String imageStatus =
+      "Click To Add Image\nOr\nDrag And Drop Image Here \n (Image entry is not required)"
+          .tr;
+  bool isHoveringimage = false;
+
+  Rx<Uint8List?> selectedImage = Rx<Uint8List?>(null);
+  final ImagePicker _picker = ImagePicker();
+  Future<void> pickImage() async {
+    final XFile? pickedFile =
+        await _picker.pickImage(source: ImageSource.gallery, imageQuality: 80);
+    if (pickedFile != null) {
+      Uint8List fileBytes = await pickedFile.readAsBytes();
+      selectedImage.value = fileBytes;
+    }
+    update();
+  }
+
+  void updateHoverImage(bool value) {
+    isHoveringimage = value;
+    update();
+  }
+
+  void updateTextImage(String value) {
+    imageStatus = value;
+    isHoveringimage = false;
+    update();
+  }
+
+  void ClearImage() {
+    selectedImage.value = null;
+    updateHoverImage(false);
+    updateTextImage(
+        "Click To Add Image\nOr\nDrag And Drop Image Here \n (Image entry is not required)"
+            .tr);
+    update();
+  }
+
+  initialAddCurr() {
+    imageStatus =
+        "Click To Add Image\nOr\nDrag And Drop Image Here \n (Image entry is not required)"
+            .tr;
+    selectedImage.value = null;
+
     update();
   }
 }

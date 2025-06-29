@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/Model/LMS_Model/Questions_Models/MatchingQuestionModel.dart';
 
-class Matching_Question_Controller extends GetxController {
+class Quiz_Matching_Question_Controller extends GetxController {
   String? filterName = '';
   List<Question>? questions;
   List<Question>? filterdQuestions;

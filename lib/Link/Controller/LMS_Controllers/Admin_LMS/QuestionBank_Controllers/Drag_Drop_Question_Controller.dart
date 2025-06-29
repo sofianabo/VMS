@@ -1,15 +1,39 @@
+import 'dart:typed_data';
+
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
-import 'package:vms_school/Link/Model/LMS_Model/Questions_Models/MatchingQuestionModel.dart';
+import 'package:vms_school/Link/Model/LMS_Model/Questions_Models/DragDrop_Question_Model.dart';
 
-class Matching_Question_Controller extends GetxController {
+class DragDrop_Question_Items {
+  String? text;
+  String? imagePath;
+  Uint8List? imageBytes; // إضافة هذا الحقل لتخزين بايتات الصورة
+  bool showTextField;
+
+  DragDrop_Question_Items({
+    this.text,
+    this.imagePath,
+    this.imageBytes,
+    this.showTextField = false,
+  });
+
+  bool get isEmpty =>
+      (text == null || text!.isEmpty) &&
+      (imagePath == null || imagePath!.isEmpty);
+  bool get isText => text != null && text!.isNotEmpty;
+  bool get isImage => imagePath != null && imagePath!.isNotEmpty;
+}
+
+class DragDrop_Question_Controller extends GetxController {
   String? filterName = '';
   List<Question>? questions;
   List<Question>? filterdQuestions;
 
   // قوائم الخيارات للقسمين
-  final RxList<String> firstSectionOptions = <String>[].obs;
-  final RxList<String> secondSectionOptions = <String>[].obs;
+  final RxList<DragDrop_Question_Items> firstSectionOptions =
+      <DragDrop_Question_Items>[].obs;
+  final RxList<DragDrop_Question_Items> secondSectionOptions =
+      <DragDrop_Question_Items>[].obs;
 
   void clearFilter() {
     searchByName("");
@@ -18,18 +42,18 @@ class Matching_Question_Controller extends GetxController {
 
   // إضافة زوج جديد من الخيارات
   void addOption() {
-    firstSectionOptions.add("");
-    secondSectionOptions.add("");
+    firstSectionOptions.add(DragDrop_Question_Items());
+    secondSectionOptions.add(DragDrop_Question_Items());
     update();
   }
 
   // التحقق من إمكانية إضافة خيار جديد
   bool canAddNewOption() {
     if (firstSectionOptions.isEmpty) return true;
-    
+
     // لا يمكن إضافة خيار جديد إذا كان آخر خيار في أي قسم فارغًا
-    return firstSectionOptions.last.trim().isNotEmpty && 
-           secondSectionOptions.last.trim().isNotEmpty;
+    return !firstSectionOptions.last.isEmpty &&
+        !secondSectionOptions.last.isEmpty;
   }
 
   // إزالة زوج من الخيارات
@@ -43,6 +67,74 @@ class Matching_Question_Controller extends GetxController {
     update();
   }
 
+  void updateFirstSectionText(int index, String text) {
+    if (index < firstSectionOptions.length) {
+      firstSectionOptions[index] = DragDrop_Question_Items(
+        text: text,
+        imagePath: null,
+        showTextField: text.isEmpty, // يظهر الحقل إذا كان النص فارغاً
+      );
+      update();
+    }
+  }
+
+  void toggleTextField(int index, bool isFirstSection) {
+    if (isFirstSection) {
+      firstSectionOptions[index] = DragDrop_Question_Items(
+        text: firstSectionOptions[index].text,
+        imagePath: null,
+        showTextField: true, // إظهار حقل النص عند الضغط
+      );
+    } else {
+      secondSectionOptions[index] = DragDrop_Question_Items(
+        text: secondSectionOptions[index].text,
+        imagePath: null,
+        showTextField: true, // إظهار حقل النص عند الضغط
+      );
+    }
+    update();
+  }
+
+  // تحديث نص السؤال
+
+  // تحديث صورة السؤال
+  void updateFirstSectionImage(int index, String imagePath,
+      [Uint8List? bytes]) {
+    if (index < firstSectionOptions.length) {
+      firstSectionOptions[index] = DragDrop_Question_Items(
+        text: null,
+        imagePath: imagePath,
+        imageBytes: bytes,
+      );
+      update();
+    }
+  }
+
+  // تحديث نص الإجابة
+  void updateSecondSectionText(int index, String text) {
+    if (index < secondSectionOptions.length) {
+      secondSectionOptions[index] = DragDrop_Question_Items(
+        text: text,
+        imagePath: null,
+        showTextField: text.isEmpty, // يظهر الحقل إذا كان النص فارغاً
+      );
+      update();
+    }
+  }
+
+  // تحديث صورة الإجابة
+  void updateSecondSectionImage(int index, String imagePath,
+      [Uint8List? bytes]) {
+    if (index < secondSectionOptions.length) {
+      secondSectionOptions[index] = DragDrop_Question_Items(
+        text: null,
+        imagePath: imagePath,
+        imageBytes: bytes,
+      );
+      update();
+    }
+  }
+
   // تنظيف الخيارات الفارغة
   void validateAndCleanOptions() {
     // إزالة الأزواج التي يكون أحد قسميها فارغًا
@@ -50,14 +142,13 @@ class Matching_Question_Controller extends GetxController {
       if (i >= firstSectionOptions.length || i >= secondSectionOptions.length) {
         continue;
       }
-      
-      if (firstSectionOptions[i].trim().isEmpty || 
-          secondSectionOptions[i].trim().isEmpty) {
+
+      if (firstSectionOptions[i].isEmpty || secondSectionOptions[i].isEmpty) {
         firstSectionOptions.removeAt(i);
         secondSectionOptions.removeAt(i);
       }
     }
-    
+
     update();
   }
 
@@ -68,22 +159,21 @@ class Matching_Question_Controller extends GetxController {
       ErrorMessage('يجب إدخال زوجين على الأقل'.tr);
       return false;
     }
-    
+
     // يجب أن يكون عدد العناصر متساويًا في القسمين
     if (firstSectionOptions.length != secondSectionOptions.length) {
       ErrorMessage('يجب أن يتطابق عدد العناصر في القسمين'.tr);
       return false;
     }
-    
+
     // التحقق من عدم وجود خيارات فارغة
     for (int i = 0; i < firstSectionOptions.length; i++) {
-      if (firstSectionOptions[i].trim().isEmpty || 
-          secondSectionOptions[i].trim().isEmpty) {
+      if (firstSectionOptions[i].isEmpty || secondSectionOptions[i].isEmpty) {
         ErrorMessage('يجب تعبئة جميع الحقول'.tr);
         return false;
       }
     }
-    
+
     return true;
   }
 
@@ -112,7 +202,7 @@ class Matching_Question_Controller extends GetxController {
 
   bool isLoading = true;
 
-  void setQuestion(MatchingQuestionModel model) {
+  void setQuestion(DragDrop_Question_Model model) {
     questions = model.question;
     filterdQuestions = List.from(questions!);
 
@@ -123,15 +213,9 @@ class Matching_Question_Controller extends GetxController {
     SetIsLoading(false);
     update();
   }
-
   void addQuestion(Question question) {
-    questions!.insert(0, question);
-    filterdQuestions = List.from(questions!);
-
-    if (filterName != null && filterName!.isNotEmpty) {
-      searchByName(filterName.toString());
-    }
-    clearData();
+    questions?.insert(0, question);
+    filterdQuestions = List.from(questions ?? []);
     update();
   }
 
@@ -164,9 +248,9 @@ class Matching_Question_Controller extends GetxController {
   }
 
   void resetAllFields() {
-  firstSectionOptions.clear();
-  secondSectionOptions.clear();
-  IsAnameError = false;
-  update();
-}
+    firstSectionOptions.clear();
+    secondSectionOptions.clear();
+    IsAnameError = false;
+    update();
+  }
 }

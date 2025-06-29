@@ -42,7 +42,10 @@ class Qustions_Bank_Controller extends GetxController {
       "subTitle":
           "Match images and texts by dragging and dropping them onto their appropriate places."
               .tr,
-      "onTap": () {}
+      "onTap": () {
+    Get.find<Selected_Class_Controller>().addToPath("Drag and Drop".tr);
+      
+      }
     },
     {
       "icon": LMS_Icons.paper,
@@ -61,7 +64,7 @@ class Qustions_Bank_Controller extends GetxController {
           "A multiple-choice question with a list of options that allows you to select multiple choices instead of one."
               .tr,
       "onTap": () {
-         Get.find<Selected_Class_Controller>().addToPath("MultiChoise".tr);
+        Get.find<Selected_Class_Controller>().addToPath("MultiChoise".tr);
       }
     },
     {
@@ -71,10 +74,10 @@ class Qustions_Bank_Controller extends GetxController {
           "A question similar to traditional matching, in that it is a text that must be matched with a text from the added elements."
               .tr,
       "onTap": () {
-         Get.find<Selected_Class_Controller>()
-            .addToPath("Matching".tr);
+        Get.find<Selected_Class_Controller>().addToPath("Matching".tr);
       }
     },
+  
   ];
 
   bool isLoading = true;

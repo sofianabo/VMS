@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Quiz_Controller/Quiz_Questions_Controller.dart';
 import 'package:vms_school/view/Both_Platform/widgets/LargeTextField.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Quiz_Pages_LMS/Quiz_Question_LMS/Wedgets_Questions.dart';
@@ -490,6 +491,17 @@ Widget _buildMuiltiChoiceQuestion({
                   ),
               ],
             ),
+            question.fileId == null 
+                ? Text("")
+                : Center(
+                    child: SizedBox(
+                        width: 300,
+                        height: 200,
+                        child: Image.network(
+                          "$getimage${question.fileId}",
+                          fit: BoxFit.fitWidth,
+                        )),
+                  ),
             Column(
               spacing: 2.0,
               children: [

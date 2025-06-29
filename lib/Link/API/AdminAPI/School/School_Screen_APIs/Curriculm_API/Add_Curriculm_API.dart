@@ -14,7 +14,7 @@ class Add_Curriculm_API {
   Dio dio = Dio();
 
   Add_Curriculm({
-    subjectId,
+    subjectId, 
     semesterId,
     name,
     Ename,

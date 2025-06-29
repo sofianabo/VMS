@@ -11,6 +11,7 @@ import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/LinksLMS/LinkLMSMan
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Pages_LmsScreen/PagesLmsMangament.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Question_Bank/ArticleQuestion/ArticleQuestionManagment.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Question_Bank/Choose_The_Correct_Answer/Choose_the_correct_answer.dart';
+import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Question_Bank/DragDrop_Question.dart/DragDrop_Question.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Question_Bank/Fill_The_Blank/Fill_The_Blank.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Question_Bank/MatchingQuestion/MatchingQuestion.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Question_Bank/MultiChoiseQuestion.dart/Multi_Choise_Question.dart';
@@ -63,20 +64,21 @@ class Selected_Class_Screen extends StatelessWidget {
                     return QuestionBankPage();
                   } else if (current == "True or False".tr) {
                     return Trueorfalsequestionmanagment();
-                  }
-                  else if (current == "MultiChoise".tr){
+                  } else if (current == "MultiChoise".tr) {
                     return Multi_Choise_Question();
-                  }
-                  else if(current == "Matching".tr){
+                  } else if (current == "Matching".tr) {
                     return Matching_Question();
-                  }
-                   else if (current == "article".tr) {
+                  } else if (current == "article".tr) {
                     return Articlequestionmanagment();
                   } else if (current == "Choose the correct answer".tr) {
                     return Choose_the_correct_answer();
                   } else if (current == "Fill in the blanks".tr) {
                     return Fill_The_Blank();
-                  } else if (current == "Trivia".tr) {
+                  }
+                  else if(current == "Drag and Drop".tr){
+                    return Dragdrop_Question();
+                  }
+                   else if (current == "Trivia".tr) {
                     return Text("Trivia");
                   } else if (current == "All Students".tr) {
                     return LMS_Students();
