@@ -239,3 +239,4 @@ String addQuizQuestion = "addQuizQuestion";
 String getQuizQuestion = "getQuizQuestion";
 String addQuizLms = "addQuizLms";
 String deletetQuizLms = "deletetQuizLms";
+String addFile1 = "addFile1";

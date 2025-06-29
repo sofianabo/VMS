@@ -1,0 +1,20 @@
+{
+"jalaaSettings": {
+  "shId": 2,
+  "mainCurriculum": [
+    1,
+    12,
+    8,16,5,9
+  ],
+  "downCurriculum": [
+    2,
+    11
+  ],
+  "Molahdat": {
+    "firstSemester": "jhkhkjhkj",
+    "secondSemester": null,
+    "manager": null,
+    "schoolmanager": "علاء ايري"
+  }
+}
+}

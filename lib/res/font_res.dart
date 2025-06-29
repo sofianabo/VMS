@@ -14,4 +14,6 @@ class FontRes {
   static const String LMS_ICONS = 'LMS_Icons';
   static const String SANSATION_REGULAR = 'Sansation_Regular';
   static const String VMS_ICONS = 'VMS_Icons';
+  static const String TIMES = 'times';
+  static const String TIMESBD = 'timesbd';
 }
