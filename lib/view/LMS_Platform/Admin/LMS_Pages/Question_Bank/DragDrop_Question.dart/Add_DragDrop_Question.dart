@@ -3,6 +3,7 @@ import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/API/LMS_APIs/QuestionAPI/DragDrop_Question_APi/Add_DragDrop_API.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/QuestionBank_Controllers/Drag_Drop_Question_Controller.dart';
@@ -213,14 +214,19 @@ class _Add_Dragdrop_QuestionState extends State<Add_Dragdrop_Question> {
 
   Widget _buildOptionSection(BuildContext context, int index,
       bool isFirstSection, DragDrop_Question_Items option) {
+    // استخدم TextEditingController الموجود في الـ option بدلاً من إنشاء واحد جديد
     TextEditingController textController =
         TextEditingController(text: option.text ?? '');
-    const fixedHeight = 100.0; // ارتفاع ثابت لجميع العناصر
+    textController.selection = TextSelection.fromPosition(
+      TextPosition(offset: textController.text.length),
+    );
+
+    const fixedHeight = 120.0;
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 4.0),
       child: SizedBox(
-        height: fixedHeight, // تحديد ارتفاع ثابت
+        height: fixedHeight,
         child: Column(
           children: [
             Row(
@@ -237,6 +243,8 @@ class _Add_Dragdrop_QuestionState extends State<Add_Dragdrop_Question> {
                       } else {
                         cont.toggleTextField(index, false);
                       }
+                      // إعادة بناء الويدجت لتحديث الواجهة فورًا
+                      setState(() {});
                     },
                     child: Text(
                       "Text".tr,
@@ -300,42 +308,61 @@ class _Add_Dragdrop_QuestionState extends State<Add_Dragdrop_Question> {
           border: Border.all(color: Colors.grey),
           borderRadius: BorderRadius.circular(4),
         ),
-        child: Stack(
-          children: [
-            Center(
-              child: option.imageBytes != null
-                  ? Image.memory(
-                      option.imageBytes!,
-                      height: double.infinity,
-                      width: double.infinity,
-                      fit: BoxFit.contain,
-                    )
-                  : Image.network(
-                      option.imagePath!,
-                      height: double.infinity,
-                      width: double.infinity,
-                      fit: BoxFit.contain,
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  IconButton(
+                    icon: const Icon(
+                      Icons.close,
+                      color: Colors.red,
+                      size: 10,
                     ),
-            ),
-            Positioned(
-              right: 0,
-              top: 0,
-              child: IconButton(
-                icon: const Icon(Icons.close, color: Colors.red),
-                onPressed: () {
-                  if (isFirstSection) {
-                    cont.updateFirstSectionText(index, '');
-                  } else {
-                    cont.updateSecondSectionText(index, '');
-                  }
-                },
+                    onPressed: () {
+                      if (isFirstSection) {
+                        cont.updateFirstSectionText(index, '');
+                      } else {
+                        cont.updateSecondSectionText(index, '');
+                      }
+                    },
+                  ),
+                ],
               ),
-            ),
-          ],
+              const SizedBox(height: 4),
+              GestureDetector(
+                onTap: () {
+                  _showImageDialog(context, option.imagePath!);
+                },
+                child: MouseRegion(
+                  cursor: SystemMouseCursors.click,
+                  child: Icon(Icons.image,
+                      size: 20, color: Get.theme.primaryColor),
+                ),
+              )
+            ],
+          ),
         ),
       );
     } else {
       return Container();
     }
+  }
+
+  void _showImageDialog(BuildContext context, String imageUrl) {
+    showDialog(
+        context: context,
+        builder: (context) => Dialog(
+              child: InteractiveViewer(
+                panEnabled: true,
+                minScale: 0.5,
+                maxScale: 3,
+                child: imageUrl.startsWith('http')
+                    ? Image.network(imageUrl)
+                    : Image.memory(base64Decode(imageUrl.split(',').last)),
+              ),
+            ));
   }
 }

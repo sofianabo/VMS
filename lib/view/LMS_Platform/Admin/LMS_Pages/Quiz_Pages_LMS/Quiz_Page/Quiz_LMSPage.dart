@@ -348,9 +348,11 @@ class _QuizLmspagesState extends State<QuizLmspage> {
                         GestureDetector(
                           onTap: () async {
                             Duration? picked = await showDurationPicker(
-                              context: context,
-                              initialTime: Duration(hours: 0, minutes: 0),
-                            );
+                                context: context,
+                                initialTime: Duration(hours: 0, minutes: 0),
+                                decoration: BoxDecoration(
+                                    color: Get.theme.cardColor,
+                                    backgroundBlendMode: BlendMode.color));
                             if (picked != null) {
                               Econtroller.updateFieldError("per", false);
                               period.text =

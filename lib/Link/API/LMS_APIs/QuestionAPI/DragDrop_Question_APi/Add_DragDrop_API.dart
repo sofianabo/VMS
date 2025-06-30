@@ -99,13 +99,17 @@ class Add_Dragdrop_Api {
       );
 
       if (response.statusCode == 200) {
-        DragDrop_Question_Model DragDrop_Question = DragDrop_Question_Model.fromJson(response.data);
+        DragDrop_Question_Model DragDrop_Question =
+            DragDrop_Question_Model.fromJson(response.data);
         // if (matchingModel.question != null && matchingModel.question!.isNotEmpty) {
-          controller.addQuestion(DragDrop_Question.question![0]);
-          Get.back(); // إغلاق dialog التحميل
-          return true;
-        
-        throw Exception("لا توجد بيانات مستلمة");
+        controller.addQuestion(DragDrop_Question.question![0]);
+        Get.back();
+        Get.back();
+
+        // إغلاق dialog التحميل
+        return true;
+
+        // throw Exception("لا توجد بيانات مستلمة");
       } else {
         throw DioException(
           requestOptions: response.requestOptions,

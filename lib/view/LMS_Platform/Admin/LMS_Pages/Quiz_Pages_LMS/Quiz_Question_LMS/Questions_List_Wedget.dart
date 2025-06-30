@@ -491,7 +491,7 @@ Widget _buildMuiltiChoiceQuestion({
                   ),
               ],
             ),
-            question.fileId == null 
+            question.fileId == null
                 ? Text("")
                 : Center(
                     child: SizedBox(
