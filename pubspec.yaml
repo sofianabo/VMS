@@ -124,6 +124,12 @@ flutter:
     - family: LMS_Icons
       fonts:
         - asset: fonts/LMS_Icons.ttf
+
+    - family: tnr
+      fonts:
+        - asset: fonts/times.ttf
+        - asset: fonts/timesbd.ttf
+          weight: 700
   # fonts:
   #   - family: Schyler
   #     fonts:
