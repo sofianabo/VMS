@@ -65,6 +65,22 @@ class Allquizcontroller extends GetxController {
 
     update();
   }
+void Update_Quiz(QuizLms updatedQuiz, int index) {
+  if (quizLMS == null || index < 0 || index >= quizLMS!.length) return;
+
+  // تحديث العنصر في القائمة الأصلية
+  quizLMS![index] = updatedQuiz;
+  
+  // تحديث القائمة المصفاة
+  filtered_quizLMS = List.from(quizLMS!);
+
+  // إذا كان هناك بحث فعال، قم بإعادة تطبيقه
+  if (filterName != null && filterName!.isNotEmpty) {
+    searchByName(filterName.toString(), currindex);
+  }
+
+  update(); // إشعار GetX بالتحديث
+}
 
   void Delete_Quiz(QuizLms cthc) {
     quizLMS!.remove(cthc);
@@ -328,14 +344,14 @@ class Allquizcontroller extends GetxController {
     update();
   }
 
-  bool Hidden = false;
-  updateHid(bool value) {
+  int Hidden = 0;
+  updateHid(int value) {
     Hidden = value;
     update();
   }
 
   void reset() {
-    Hidden = false;
+    Hidden = 0;
     dialog_currIndex = "";
     semesterDialogIndex = "";
     dateindex.value = null;

@@ -228,7 +228,7 @@ class _QuizLmspagesState extends State<QuizLmspage> {
                         controller.dateindex.toString(),
                         period.text,
                         name.text,
-                        controller.Hidden,
+                        controller.Hidden == 1 ? true : false,
                         max.text,
                         min.text);
                     Get.back();
@@ -396,11 +396,254 @@ class _QuizLmspagesState extends State<QuizLmspage> {
                           children: [
                             Checkbox(
                               checkColor: Colors.white,
-                              value: controller.Hidden,
+                              value: controller.Hidden == 1 ? true : false,
                               onChanged: (value) {
                                 if (Get.find<Add_Data_controller>().roll !=
                                     "subAdmin") {
-                                  controller.updateHid(value!);
+                                  controller.updateHid(value == true ? 1 : 0);
+                                }
+                              },
+                            ),
+                            Text("Is It Hidden".tr),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          apptitle: "Add Exam".tr,
+          subtitle: "none");
+    }));
+    // Get.find<Allquizcontroller>().initialData();
+    // period.clear();
+    // max.clear();
+    // min.clear();
+  }
+
+  EditQuizDialog(int index) {
+    var controller = Get.find<Allquizcontroller>();
+    max.text = controller.filtered_quizLMS[index].maxMark.toString();
+
+    min.text = controller.filtered_quizLMS[index].passingMark.toString();
+
+    period.text = controller.filtered_quizLMS[index].period.toString();
+
+    controller.dateindex.value =
+        DateTime.parse(controller.filtered_quizLMS[index].startDate.toString());
+
+    controller.updateFieldError("max", false);
+    controller.updateFieldError("min", false);
+    controller.updateFieldError("per", false);
+    controller.updateFieldError("date", false);
+
+    Get.dialog(barrierDismissible: false,
+        GetBuilder<Allquizcontroller>(builder: (Econtroller) {
+      return VMSAlertDialog(
+          action: [
+            ButtonDialog(
+                text: "Add Exam".tr,
+                onPressed: () async {
+                  bool IsmaxError = max.text.trim().isEmpty;
+                  bool IsminError = min.text.trim().isEmpty;
+                  bool IsperError = period.text.trim().isEmpty;
+                  bool IsNameError = name.text.trim().isEmpty;
+                  bool IsdateError = controller.dateindex.value == null;
+
+                  Econtroller.updateFieldError("max", IsmaxError);
+                  Econtroller.updateFieldError("min", IsminError);
+                  Econtroller.updateFieldError("per", IsperError);
+                  Econtroller.updateFieldError("date", IsdateError);
+                  Econtroller.updateFieldError("name", IsNameError);
+
+                  if (!(IsmaxError ||
+                      IsminError ||
+                      IsperError ||
+                      IsNameError ||
+                      IsdateError)) {
+                    await Addquizlmsapi(context).Addquizlms(
+                        controller.dialogCurrList
+                            .indexOf(controller.selectdialog_CurrIndex),
+                        controller.typeDialogList
+                            .indexOf(controller.selectedTypeDialog),
+                        controller.dateindex.toString(),
+                        period.text,
+                        name.text,
+                        controller.Hidden == 1 ? true : false,
+                        max.text,
+                        min.text);
+                    Get.back();
+                  }
+                },
+                color: Get.theme.primaryColor,
+                width: 120)
+          ],
+          contents: Container(
+            width: Get.width / 3,
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 15.0),
+                    child: Wrap(
+                      runSpacing: 8.0,
+                      spacing: 8.0,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 28.0),
+                          child: Quizlmsdropdown(
+                              isError: Econtroller.IscurrError,
+                              // isDisabled: Econtroller.classDialogIndex == "",
+                              Isloading: Econtroller.isCuriculmDialogLoading,
+                              title: "Curriculum".tr,
+                              width: 220,
+                              type: "curiculmDialog"),
+                        ),
+                        Textfildwithupper(
+                            onChanged: (value) {
+                              if (value.isNotEmpty) {
+                                Econtroller.updateFieldError("name", false);
+                              }
+                            },
+                            isRequired: true,
+                            isError: Econtroller.IsAnameError,
+                            Uptext: "Name".tr,
+                            width: 220,
+                            controller: name,
+                            hinttext: "Name".tr),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 15.0),
+                    child: Wrap(
+                      runSpacing: 8.0,
+                      spacing: 8.0,
+                      children: [
+                        Quizlmsdropdown(
+                            isError: Econtroller.IssemesterError,
+                            Isloading: Econtroller.issemesterLoading,
+                            title: "season".tr,
+                            width: 220,
+                            type: "semesterDialog"),
+                        GetBuilder<Examtabledialogcontroller>(builder: (c) {
+                          return Quizlmsdropdown(
+                              isError: Econtroller.IstypeError,
+                              isDisabled: Econtroller.semesterDialogIndex == "",
+                              Isloading: c.isTypeLoading,
+                              title: "Type".tr,
+                              width: 220,
+                              type: "typeDialog");
+                        }),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 15.0),
+                    child: Wrap(
+                      runSpacing: 8.0,
+                      spacing: 8.0,
+                      children: [
+                        Textfildwithupper(
+                            fieldType: "number",
+                            onChanged: (value) {
+                              if (value.isNotEmpty) {
+                                if (value == "0") {
+                                  max.text = "1";
+                                }
+                                Econtroller.updateFieldError("max", false);
+                              }
+                            },
+                            isRequired: true,
+                            isError: Econtroller.ISmaxError,
+                            Uptext: "Max Mark".tr,
+                            width: 220,
+                            controller: max,
+                            hinttext: "Max Mark".tr),
+                        Textfildwithupper(
+                            fieldType: "number",
+                            onChanged: (value) {
+                              if (value.isNotEmpty) {
+                                if (value == "0") {
+                                  min.text = "1";
+                                }
+                                Econtroller.updateFieldError("min", false);
+                              }
+                            },
+                            isRequired: true,
+                            isError: Econtroller.ISminError,
+                            Uptext: "Min Mark".tr,
+                            width: 220,
+                            controller: min,
+                            hinttext: "Min Mark".tr)
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 15.0),
+                    child: Wrap(
+                      runSpacing: 8.0,
+                      spacing: 8.0,
+                      children: [
+                        GestureDetector(
+                          onTap: () async {
+                            Duration? picked = await showDurationPicker(
+                                context: context,
+                                initialTime: Duration(hours: 0, minutes: 0),
+                                decoration: BoxDecoration(
+                                    color: Get.theme.cardColor,
+                                    backgroundBlendMode: BlendMode.color));
+                            if (picked != null) {
+                              Econtroller.updateFieldError("per", false);
+                              period.text =
+                                  "${picked.inHours.toString().padLeft(2, '0')}:"
+                                  "${(picked.inMinutes % 60).toString().padLeft(2, '0')}:00";
+                            }
+                          },
+                          child: Textfildwithupper(
+                            isRequired: true,
+                            isError: Econtroller.ISperiodError,
+                            readOnly: true,
+                            enabled: false,
+                            Uptext: "Period".tr,
+                            width: 220,
+                            controller: period,
+                            hinttext: "00:00:00",
+                          ),
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 5.0),
+                              child: RichText(
+                                  text: TextSpan(
+                                      text: "Date".tr,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium)),
+                            ),
+                            examDateLMS(
+                              isError: Econtroller.ISdateError,
+                              isRequired: true,
+                              width: 220,
+                            ),
+                          ],
+                        ),
+                        Wrap(
+                          alignment: WrapAlignment.center,
+                          runAlignment: WrapAlignment.center,
+                          children: [
+                            Checkbox(
+                              checkColor: Colors.white,
+                              value: controller.Hidden == 1 ? true : false,
+                              onChanged: (value) {
+                                if (Get.find<Add_Data_controller>().roll !=
+                                    "subAdmin") {
+                                  controller.updateHid(value == true ? 1 : 0);
                                 }
                               },
                             ),

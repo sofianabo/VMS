@@ -677,7 +677,7 @@ class _ExamTableState extends State<ExamTable> {
                                           Get.dialog(barrierDismissible: false,
                                               GetBuilder<ExamTableController>(
                                                   builder: (Econtroller) {
-                                            return VMSAlertDialog(
+                                            return VMSAlertDialog( 
                                                 action: [
                                                   ButtonDialog(
                                                       text: "Edit Exam".tr,
