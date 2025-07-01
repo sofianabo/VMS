@@ -371,24 +371,14 @@ class _QuizLmspagesState extends State<QuizLmspage> {
                             hinttext: "00:00:00",
                           ),
                         ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 5.0),
-                              child: RichText(
-                                  text: TextSpan(
-                                      text: "Date".tr,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyMedium)),
-                            ),
-                            examDateLMS(
-                              isError: Econtroller.ISdateError,
-                              isRequired: true,
-                              width: 220,
-                            ),
-                          ],
+                        Padding(
+                          padding: const EdgeInsets.only(top: 5.0),
+                          child: examDateLms(
+                            Uptext: "Date".tr,
+                            isError: Econtroller.ISdateError,
+                            isRequired: true,
+                            width: 220,
+                          ),
                         ),
                         Wrap(
                           alignment: WrapAlignment.center,
@@ -614,24 +604,14 @@ class _QuizLmspagesState extends State<QuizLmspage> {
                             hinttext: "00:00:00",
                           ),
                         ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 5.0),
-                              child: RichText(
-                                  text: TextSpan(
-                                      text: "Date".tr,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyMedium)),
-                            ),
-                            examDateLMS(
-                              isError: Econtroller.ISdateError,
-                              isRequired: true,
-                              width: 220,
-                            ),
-                          ],
+                        Padding(
+                          padding: const EdgeInsets.only(top: 5.0),
+                          child: examDateLms(
+                            Uptext: "Date".tr,
+                            isError: Econtroller.ISdateError,
+                            isRequired: true,
+                            width: 220,
+                          ),
                         ),
                         Wrap(
                           alignment: WrapAlignment.center,

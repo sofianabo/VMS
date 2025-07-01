@@ -643,7 +643,7 @@ class Add_Students_Controller extends GetxController {
         ISfirstNameError = newValue;
         break;
       case 'last':
-        ISlastNameError = newValue;
+        ISlastNameError = newValue; 
         break;
       case 'birthdate':
         IsBirthdateError = newValue;

@@ -42,6 +42,26 @@ class Homeworkcontroller extends GetxController {
     update();
   }
 
+  void Add_Homework(Homeworke cthc) {
+    homework!.insert(0, cthc);
+    filteredhomework = List.from(homework!);
+
+    if (filterName != null && filterName!.isNotEmpty) {
+      searchByName(filterName.toString(), currindex);
+    }
+    // clearData();
+    update();
+  }
+
+  void Delete_Question(Homeworke cthc) {
+    homework!.remove(cthc);
+    filteredhomework = List.from(homework!);
+    if (filterName != null && filterName!.isNotEmpty) {
+      searchByName(filterName.toString(), currindex);
+    }
+    update();
+  }
+
   bool isLoading = true;
   bool isHoveringFile = false;
   String fileStatus = "Click To Add File\nOr\nDrag And Drop File Here".tr;

@@ -1054,16 +1054,19 @@ class PenaltyEndDate extends StatelessWidget {
 
 class examDate extends StatelessWidget {
   final double width;
+  final String Uptext;
   final double? height;
   final bool isRequired; // متغير لتحديد إذا كان الحقل مطلوبًا.
-  final bool isError; // متغير لتحديد إذا كان الحقل مطلوبًا.
+  final bool isError; // ✅ إضافة متغير للتحقق من الخطأ
 
   const examDate({
     super.key,
     required this.width,
+    required this.Uptext,
     this.height,
+    this.isError = false, // ✅ افتراضي لا يوجد خطأ
+
     this.isRequired = false, // افتراضي الحقل غير مطلوب.
-    this.isError = false, // افتراضي الحقل غير مطلوب.
   });
 
   @override
@@ -1071,12 +1074,31 @@ class examDate extends StatelessWidget {
     final ExamTableController controller = Get.put(ExamTableController());
     return Obx(
       () => Container(
+        height: 80,
         width: width,
         alignment: Alignment.center,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Padding(
+              padding: const EdgeInsets.only(bottom: 3.0),
+              child: RichText(
+                text: TextSpan(
+                  text: Uptext,
+                  style: Theme.of(context).textTheme.bodyMedium,
+                  children: isRequired
+                      ? [
+                          const TextSpan(
+                            text: " *",
+                            style: TextStyle(color: Colors.red, fontSize: 14),
+                          ),
+                        ]
+                      : [],
+                ),
+              ),
+            ),
+
             SizedBox(
               height: height ?? 40,
               child: TextFormField(
@@ -1088,13 +1110,21 @@ class examDate extends StatelessWidget {
                       : '',
                 ),
                 readOnly: true,
-                onTap: () => controller.selectDateIndex(context),
+                onTap: () {
+                  if (Get.find<Add_Data_controller>().roll != "observer" &&
+                      Get.find<Add_Data_controller>().roll != "supervisor" &&
+                      Get.find<Add_Data_controller>().roll != "subAdmin") {
+                    controller.selectDateIndex(context);
+                  }
+                },
                 decoration: InputDecoration(
                   hintText: "yyyy-MM-dd",
                   hintStyle: Theme.of(context)
                       .textTheme
-                      .titleMedium!
+                      .bodyMedium!
                       .copyWith(fontSize: 14, color: const Color(0xffD9D9D9)),
+
+                  // ✅ تغيير لون الحدود بناءً على قيمة isError
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
                     borderSide: BorderSide(
@@ -1120,18 +1150,23 @@ class examDate extends StatelessWidget {
                       color: Theme.of(context).primaryColor,
                       size: 16,
                     ),
-                    onPressed: () => controller.selectDateIndex(context),
+                    onPressed: () {
+                      if (Get.find<Add_Data_controller>().roll != "observer" &&
+                          Get.find<Add_Data_controller>().roll !=
+                              "supervisor" &&
+                          Get.find<Add_Data_controller>().roll != "subAdmin") {
+                        controller.selectDateIndex(context);
+                      }
+                    },
                   ),
                 ),
               ),
             ),
+            // ✅ عرض رسالة خطأ إذا كان هناك خطأ
             if (isError)
-              const Padding(
-                padding: EdgeInsets.only(top: 5.0),
-                child: Text(
-                  "يجب إدخال تاريخ صحيح",
-                  style: TextStyle(color: Colors.red, fontSize: 12),
-                ),
+              Text(
+                "يجب إدخال تاريخ صحيح",
+                style: TextStyle(color: Colors.red, fontSize: 12),
               ),
           ],
         ),
@@ -1767,18 +1802,21 @@ class HomeWorkSubmissionDate extends StatelessWidget {
   }
 }
 
-class examDateLMS extends StatelessWidget {
+class examDateLms extends StatelessWidget {
   final double width;
+  final String Uptext;
   final double? height;
   final bool isRequired; // متغير لتحديد إذا كان الحقل مطلوبًا.
-  final bool isError; // متغير لتحديد إذا كان الحقل مطلوبًا.
+  final bool isError; // ✅ إضافة متغير للتحقق من الخطأ
 
-  const examDateLMS({
+  const examDateLms({
     super.key,
     required this.width,
+    required this.Uptext,
     this.height,
+    this.isError = false, // ✅ افتراضي لا يوجد خطأ
+
     this.isRequired = false, // افتراضي الحقل غير مطلوب.
-    this.isError = false, // افتراضي الحقل غير مطلوب.
   });
 
   @override
@@ -1786,12 +1824,31 @@ class examDateLMS extends StatelessWidget {
     final Allquizcontroller controller = Get.put(Allquizcontroller());
     return Obx(
       () => Container(
+        height: 80,
         width: width,
         alignment: Alignment.center,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Padding(
+              padding: const EdgeInsets.only(bottom: 3.0),
+              child: RichText(
+                text: TextSpan(
+                  text: Uptext,
+                  style: Theme.of(context).textTheme.bodyMedium,
+                  children: isRequired
+                      ? [
+                          const TextSpan(
+                            text: " *",
+                            style: TextStyle(color: Colors.red, fontSize: 14),
+                          ),
+                        ]
+                      : [],
+                ),
+              ),
+            ),
+
             SizedBox(
               height: height ?? 40,
               child: TextFormField(
@@ -1803,13 +1860,21 @@ class examDateLMS extends StatelessWidget {
                       : '',
                 ),
                 readOnly: true,
-                onTap: () => controller.selectDateIndex(context),
+                onTap: () {
+                  if (Get.find<Add_Data_controller>().roll != "observer" &&
+                      Get.find<Add_Data_controller>().roll != "supervisor" &&
+                      Get.find<Add_Data_controller>().roll != "subAdmin") {
+                    controller.selectDateIndex(context);
+                  }
+                },
                 decoration: InputDecoration(
                   hintText: "yyyy-MM-dd",
                   hintStyle: Theme.of(context)
                       .textTheme
-                      .titleMedium!
+                      .bodyMedium!
                       .copyWith(fontSize: 14, color: const Color(0xffD9D9D9)),
+
+                  // ✅ تغيير لون الحدود بناءً على قيمة isError
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
                     borderSide: BorderSide(
@@ -1835,18 +1900,23 @@ class examDateLMS extends StatelessWidget {
                       color: Theme.of(context).primaryColor,
                       size: 16,
                     ),
-                    onPressed: () => controller.selectDateIndex(context),
+                    onPressed: () {
+                      if (Get.find<Add_Data_controller>().roll != "observer" &&
+                          Get.find<Add_Data_controller>().roll !=
+                              "supervisor" &&
+                          Get.find<Add_Data_controller>().roll != "subAdmin") {
+                        controller.selectDateIndex(context);
+                      }
+                    },
                   ),
                 ),
               ),
             ),
+            // ✅ عرض رسالة خطأ إذا كان هناك خطأ
             if (isError)
-              const Padding(
-                padding: EdgeInsets.only(top: 5.0),
-                child: Text(
-                  "يجب إدخال تاريخ صحيح",
-                  style: TextStyle(color: Colors.red, fontSize: 12),
-                ),
+              Text(
+                "يجب إدخال تاريخ صحيح",
+                style: TextStyle(color: Colors.red, fontSize: 12),
               ),
           ],
         ),

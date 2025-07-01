@@ -233,10 +233,10 @@ class Homeworkgrid extends StatelessWidget {
                                                             Deletehomeworllmsapi(
                                                                     context)
                                                                 .Deletehomeworllms(
-                                                                    id: control
-                                                                        .filteredhomework![
+                                                                    h: control
+                                                                        .filteredhomework[
                                                                             index]
-                                                                        .id,
+                                                                        ,
                                                                    );
                                                           },
                                                           color: const Color(

@@ -7,16 +7,19 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/API/LMS_APIs/Admin/GetHomework_LMSAPI.dart';
+import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/HomeworkController.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Selected_Screen.dart';
+import 'package:vms_school/Link/Model/LMS_Model/HomeWorkLMSModel.dart';
 import 'package:vms_school/view/Both_Platform/widgets/Loading_Dialog.dart';
 
 class Deletehomeworllmsapi {
   BuildContext context;
   Deletehomeworllmsapi(this.context);
   Dio dio = Dio();
+  final controller = Get.find<Homeworkcontroller>();
 
   Deletehomeworllms({
-    required id,
+    required Homeworke h,
   }) async {
     try {
       CancelToken cancelToken = CancelToken();
@@ -26,13 +29,15 @@ class Deletehomeworllmsapi {
       var response = await dio.post(
           cancelToken: cancelToken,
           myurl,
-          data: {"homeworkId": id},
+          data: {"homeworkId": h.id},
           options: getDioOptions());
       if (response.statusCode == 200) {
         Get.back();
         Get.back();
-        await GethomeworkLmsapi().GethomeworkLms(
-            id: Get.find<Selected_Class_Controller>().divisionid);
+       
+        controller.Delete_Question(h);
+        // await GethomeworkLmsapi().GethomeworkLms(
+        //     id: Get.find<Selected_Class_Controller>().divisionid);
       } else {
         ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,

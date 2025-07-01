@@ -151,7 +151,7 @@ class _ExamTableState extends State<ExamTable> {
                       children: [
                         DropDownexamTable(
                             IsError: Econtroller.IssemesterError,
-                            isLoading: Econtroller.issemesterLoading, 
+                            isLoading: Econtroller.issemesterLoading,
                             title: "season".tr,
                             width: 220,
                             type: "semesterDialog"),
@@ -238,24 +238,14 @@ class _ExamTableState extends State<ExamTable> {
                             hinttext: "00:00:00",
                           ),
                         ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 5.0),
-                              child: RichText(
-                                  text: TextSpan(
-                                      text: "Date".tr,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyMedium)),
-                            ),
-                            examDate(
-                              isError: Econtroller.ISdateError,
-                              isRequired: true,
-                              width: 220,
-                            ),
-                          ],
+                        Padding(
+                          padding: const EdgeInsets.only(top: 5.0),
+                          child: examDate(
+                            Uptext: "Date".tr,
+                            isError: Econtroller.ISdateError,
+                            isRequired: true,
+                            width: 220,
+                          ),
                         )
                       ],
                     ),
@@ -677,7 +667,7 @@ class _ExamTableState extends State<ExamTable> {
                                           Get.dialog(barrierDismissible: false,
                                               GetBuilder<ExamTableController>(
                                                   builder: (Econtroller) {
-                                            return VMSAlertDialog( 
+                                            return VMSAlertDialog(
                                                 action: [
                                                   ButtonDialog(
                                                       text: "Edit Exam".tr,
@@ -865,29 +855,22 @@ class _ExamTableState extends State<ExamTable> {
                                                                     hinttext:
                                                                         "00:00:00"),
                                                               ),
-                                                              Column(
-                                                                crossAxisAlignment:
-                                                                    CrossAxisAlignment
-                                                                        .start,
-                                                                children: [
-                                                                  Padding(
-                                                                    padding: const EdgeInsets
+                                                              Padding(
+                                                                padding:
+                                                                    const EdgeInsets
                                                                         .only(
-                                                                        bottom:
+                                                                        top:
                                                                             5.0),
-                                                                    child: RichText(
-                                                                        text: TextSpan(
-                                                                            text:
-                                                                                "Date".tr,
-                                                                            style: Get.theme.textTheme.bodyMedium)),
-                                                                  ),
-                                                                  examDate(
-                                                                    isError:
-                                                                        Econtroller
-                                                                            .ISdateError,
-                                                                    width: 220,
-                                                                  ),
-                                                                ],
+                                                                child: examDate(
+                                                                  Uptext:
+                                                                      "Date".tr,
+                                                                  isError:
+                                                                      Econtroller
+                                                                          .ISdateError,
+                                                                  isRequired:
+                                                                      true,
+                                                                  width: 220,
+                                                                ),
                                                               )
                                                             ],
                                                           ),

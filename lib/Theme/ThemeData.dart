@@ -29,7 +29,8 @@ class theme {
     dialogBackgroundColor: Colors.white,
     secondaryHeaderColor: Colors.black,
     dialogTheme: DialogTheme(
-      titleTextStyle: TextStyle(color: const Color(0xff19478d),fontFamily: IsAr),
+      titleTextStyle:
+          TextStyle(color: const Color(0xff19478d), fontFamily: IsAr),
     ),
     canvasColor: const Color(0xff134B70),
     disabledColor: Color(0xffBABDC6),

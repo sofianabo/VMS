@@ -428,8 +428,8 @@ class _QuizQuestionpagegridState extends State<QuizQuestionpagegrid> {
                       quiz: controller.filtered_quizLMS[index],
                       name: name.text,
                       id: controller.filtered_quizLMS[index].id,
-                      PassingMark:int.parse(min.text) ,
-                      maxMark: int.parse(max.text) ,
+                      PassingMark: int.parse(min.text),
+                      maxMark: int.parse(max.text),
                       hidden: controller.Hidden,
                       period: period.text,
                       startDate: controller.dateindex.toString(),
@@ -464,25 +464,14 @@ class _QuizQuestionpagegridState extends State<QuizQuestionpagegrid> {
                             width: 220,
                             controller: name,
                             hinttext: "Name".tr),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 5.0),
-                              child: RichText(
-                                  text: TextSpan(
-                                      text: "Date".tr,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyMedium)),
-                            ),
-                            examDateLMS(
-                              isError: Econtroller.ISdateError,
-                              isRequired: true,
-                              width: 220,
-                              
-                            ),
-                          ],
+                        Padding(
+                          padding: const EdgeInsets.only(top: 5.0),
+                          child: examDateLms(
+                            Uptext: "Date".tr,
+                            isError: Econtroller.ISdateError,
+                            isRequired: true,
+                            width: 220,
+                          ),
                         ),
                       ],
                     ),
@@ -564,11 +553,11 @@ class _QuizQuestionpagegridState extends State<QuizQuestionpagegrid> {
                           children: [
                             Checkbox(
                               checkColor: Colors.white,
-                              value: controller.Hidden==1?true:false,
-                              onChanged: ( value) {
+                              value: controller.Hidden == 1 ? true : false,
+                              onChanged: (value) {
                                 if (Get.find<Add_Data_controller>().roll !=
                                     "subAdmin") {
-                                  controller.updateHid(value==true?1:0);
+                                  controller.updateHid(value == true ? 1 : 0);
                                 }
                               },
                             ),
