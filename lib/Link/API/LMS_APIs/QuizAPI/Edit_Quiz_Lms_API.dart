@@ -44,11 +44,11 @@ class Edit_Quiz_Lms_Api {
           },
           options: getDioOptions());
       if (response.statusCode == 200) {
-        print(startDate);
+        print(startDate!.split(" ").first);
         QuizLms updatedQuiz = QuizLms(
             id: id,
             name: name,
-            startDate: startDate,
+            startDate: startDate!.split(" ").first,
             period: period,
             maxMark: maxMark,
             passingMark: PassingMark,

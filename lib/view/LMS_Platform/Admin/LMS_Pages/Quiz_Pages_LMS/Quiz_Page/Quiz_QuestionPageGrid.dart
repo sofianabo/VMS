@@ -192,7 +192,357 @@ class _QuizQuestionpagegridState extends State<QuizQuestionpagegrid> {
                                                 "observer"),
                                             icon: Icons.edit_note_outlined,
                                             onTap: () {
-                                              EditQuizDialog(index);
+                                              max.text = control
+                                                  .filtered_quizLMS[index]
+                                                  .maxMark
+                                                  .toString();
+                                              name.text = control
+                                                  .filtered_quizLMS[index].name
+                                                  .toString();
+                                              min.text = control
+                                                  .filtered_quizLMS[index]
+                                                  .passingMark
+                                                  .toString();
+
+                                              period.text = control
+                                                  .filtered_quizLMS[index]
+                                                  .period
+                                                  .toString();
+
+                                              control.dateindex.value =
+                                                  DateTime.parse(control
+                                                      .filtered_quizLMS[index]
+                                                      .startDate
+                                                      .toString());
+
+                                              control.updateFieldError(
+                                                  "max", false);
+                                              control.updateFieldError(
+                                                  "min", false);
+                                              control.updateFieldError(
+                                                  "per", false);
+                                              control.updateFieldError(
+                                                  "date", false);
+
+                                              Get.dialog(
+                                                  barrierDismissible: false,
+                                                  GetBuilder<Allquizcontroller>(
+                                                      builder: (Econtroller) {
+                                                return VMSAlertDialog(
+                                                    action: [
+                                                      ButtonDialog(
+                                                          text: "Edit Exam".tr,
+                                                          onPressed: () async {
+                                                            bool IsmaxError =
+                                                                max.text
+                                                                    .trim()
+                                                                    .isEmpty;
+                                                            bool IsminError =
+                                                                min.text
+                                                                    .trim()
+                                                                    .isEmpty;
+                                                            bool IsperError =
+                                                                period.text
+                                                                    .trim()
+                                                                    .isEmpty;
+                                                            bool IsNameError =
+                                                                name.text
+                                                                    .trim()
+                                                                    .isEmpty;
+                                                            bool IsdateError =
+                                                                control.dateindex
+                                                                        .value ==
+                                                                    null;
+
+                                                            Econtroller
+                                                                .updateFieldError(
+                                                                    "max",
+                                                                    IsmaxError);
+                                                            Econtroller
+                                                                .updateFieldError(
+                                                                    "min",
+                                                                    IsminError);
+                                                            Econtroller
+                                                                .updateFieldError(
+                                                                    "per",
+                                                                    IsperError);
+                                                            Econtroller
+                                                                .updateFieldError(
+                                                                    "date",
+                                                                    IsdateError);
+                                                            Econtroller
+                                                                .updateFieldError(
+                                                                    "name",
+                                                                    IsNameError);
+
+                                                            if (!(IsmaxError ||
+                                                                IsminError ||
+                                                                IsperError ||
+                                                                IsNameError ||
+                                                                IsdateError)) {
+                                                              await Edit_Quiz_Lms_Api(
+                                                                      context)
+                                                                  .Edit_Quiz_Lms(
+                                                                quiz: control
+                                                                        .filtered_quizLMS[
+                                                                    index],
+                                                                name: name.text,
+                                                                id: control
+                                                                    .filtered_quizLMS[
+                                                                        index]
+                                                                    .id,
+                                                                PassingMark: int
+                                                                    .parse(min
+                                                                        .text),
+                                                                maxMark: int
+                                                                    .parse(max
+                                                                        .text),
+                                                                hidden: control
+                                                                    .Hidden,
+                                                                period:
+                                                                    period.text,
+                                                                startDate: control
+                                                                    .dateindex
+                                                                    .toString(),
+                                                              );
+                                                              Get.back();
+                                                            }
+                                                          },
+                                                          color: Get.theme
+                                                              .primaryColor,
+                                                          width: 120)
+                                                    ],
+                                                    contents: Container(
+                                                      width: Get.width / 3,
+                                                      child:
+                                                          SingleChildScrollView(
+                                                        child: Column(
+                                                          mainAxisSize:
+                                                              MainAxisSize.min,
+                                                          children: [
+                                                            Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .only(
+                                                                      top:
+                                                                          15.0),
+                                                              child: Wrap(
+                                                                runSpacing: 8.0,
+                                                                spacing: 8.0,
+                                                                children: [
+                                                                  Textfildwithupper(
+                                                                      onChanged:
+                                                                          (value) {
+                                                                        if (value
+                                                                            .isNotEmpty) {
+                                                                          Econtroller.updateFieldError(
+                                                                              "name",
+                                                                              false);
+                                                                        }
+                                                                      },
+                                                                      isRequired:
+                                                                          true,
+                                                                      isError:
+                                                                          Econtroller
+                                                                              .IsAnameError,
+                                                                      Uptext:
+                                                                          "Name"
+                                                                              .tr,
+                                                                      width:
+                                                                          220,
+                                                                      controller:
+                                                                          name,
+                                                                      hinttext:
+                                                                          "Name"
+                                                                              .tr),
+                                                                  Padding(
+                                                                    padding: const EdgeInsets
+                                                                        .only(
+                                                                        top:
+                                                                            5.0),
+                                                                    child:
+                                                                        examDateLms(
+                                                                      Uptext:
+                                                                          "Date"
+                                                                              .tr,
+                                                                      isError:
+                                                                          Econtroller
+                                                                              .ISdateError,
+                                                                      isRequired:
+                                                                          true,
+                                                                      width:
+                                                                          220,
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                            Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .only(
+                                                                      top:
+                                                                          15.0),
+                                                              child: Wrap(
+                                                                runSpacing: 8.0,
+                                                                spacing: 8.0,
+                                                                children: [
+                                                                  Textfildwithupper(
+                                                                      fieldType:
+                                                                          "number",
+                                                                      onChanged:
+                                                                          (value) {
+                                                                        if (value
+                                                                            .isNotEmpty) {
+                                                                          if (value ==
+                                                                              "0") {
+                                                                            max.text =
+                                                                                "1";
+                                                                          }
+                                                                          Econtroller.updateFieldError(
+                                                                              "max",
+                                                                              false);
+                                                                        }
+                                                                      },
+                                                                      isRequired:
+                                                                          true,
+                                                                      isError:
+                                                                          Econtroller
+                                                                              .ISmaxError,
+                                                                      Uptext:
+                                                                          "Max Mark"
+                                                                              .tr,
+                                                                      width:
+                                                                          220,
+                                                                      controller:
+                                                                          max,
+                                                                      hinttext:
+                                                                          "Max Mark"
+                                                                              .tr),
+                                                                  Textfildwithupper(
+                                                                      fieldType:
+                                                                          "number",
+                                                                      onChanged:
+                                                                          (value) {
+                                                                        if (value
+                                                                            .isNotEmpty) {
+                                                                          if (value ==
+                                                                              "0") {
+                                                                            min.text =
+                                                                                "1";
+                                                                          }
+                                                                          Econtroller.updateFieldError(
+                                                                              "min",
+                                                                              false);
+                                                                        }
+                                                                      },
+                                                                      isRequired:
+                                                                          true,
+                                                                      isError:
+                                                                          Econtroller
+                                                                              .ISminError,
+                                                                      Uptext:
+                                                                          "Min Mark"
+                                                                              .tr,
+                                                                      width:
+                                                                          220,
+                                                                      controller:
+                                                                          min,
+                                                                      hinttext:
+                                                                          "Min Mark"
+                                                                              .tr)
+                                                                ],
+                                                              ),
+                                                            ),
+                                                            Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .only(
+                                                                      top:
+                                                                          15.0),
+                                                              child: Wrap(
+                                                                runSpacing: 8.0,
+                                                                spacing: 8.0,
+                                                                children: [
+                                                                  GestureDetector(
+                                                                    onTap:
+                                                                        () async {
+                                                                      Duration? picked = await showDurationPicker(
+                                                                          context:
+                                                                              context,
+                                                                          initialTime: Duration(
+                                                                              hours:
+                                                                                  0,
+                                                                              minutes:
+                                                                                  0),
+                                                                          decoration: BoxDecoration(
+                                                                              color: Get.theme.cardColor,
+                                                                              backgroundBlendMode: BlendMode.color));
+                                                                      if (picked !=
+                                                                          null) {
+                                                                        Econtroller.updateFieldError(
+                                                                            "per",
+                                                                            false);
+                                                                        period.text =
+                                                                            "${picked.inHours.toString().padLeft(2, '0')}:"
+                                                                            "${(picked.inMinutes % 60).toString().padLeft(2, '0')}:00";
+                                                                      }
+                                                                    },
+                                                                    child:
+                                                                        Textfildwithupper(
+                                                                      isRequired:
+                                                                          true,
+                                                                      isError:
+                                                                          Econtroller
+                                                                              .ISperiodError,
+                                                                      readOnly:
+                                                                          true,
+                                                                      enabled:
+                                                                          false,
+                                                                      Uptext:
+                                                                          "Period"
+                                                                              .tr,
+                                                                      width:
+                                                                          220,
+                                                                      controller:
+                                                                          period,
+                                                                      hinttext:
+                                                                          "00:00:00",
+                                                                    ),
+                                                                  ),
+                                                                  Row(
+                                                                    children: [
+                                                                      Checkbox(
+                                                                        checkColor:
+                                                                            Colors.white,
+                                                                        value: control.Hidden ==
+                                                                                1
+                                                                            ? true
+                                                                            : false,
+                                                                        onChanged:
+                                                                            (value) {
+                                                                          if (Get.find<Add_Data_controller>().roll !=
+                                                                              "subAdmin") {
+                                                                            control.updateHid(value == true
+                                                                                ? 1
+                                                                                : 0);
+                                                                          }
+                                                                        },
+                                                                      ),
+                                                                      Text("Is It Hidden"
+                                                                          .tr),
+                                                                    ],
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    apptitle: "Edit Exam".tr,
+                                                    subtitle: "none");
+                                              }));
                                             }),
                                         Squer_Button_Enabled_Disabled(
                                             isDelete: true,
@@ -382,201 +732,5 @@ class _QuizQuestionpagegridState extends State<QuizQuestionpagegrid> {
         }),
       ),
     );
-  }
-
-  EditQuizDialog(int index) {
-    var controller = Get.find<Allquizcontroller>();
-    max.text = controller.filtered_quizLMS[index].maxMark.toString();
-    name.text = controller.filtered_quizLMS[index].name.toString();
-    min.text = controller.filtered_quizLMS[index].passingMark.toString();
-
-    period.text = controller.filtered_quizLMS[index].period.toString();
-
-    controller.dateindex.value =
-        DateTime.parse(controller.filtered_quizLMS[index].startDate.toString());
-
-    controller.updateFieldError("max", false);
-    controller.updateFieldError("min", false);
-    controller.updateFieldError("per", false);
-    controller.updateFieldError("date", false);
-
-    Get.dialog(barrierDismissible: false,
-        GetBuilder<Allquizcontroller>(builder: (Econtroller) {
-      return VMSAlertDialog(
-          action: [
-            ButtonDialog(
-                text: "Edit Exam".tr,
-                onPressed: () async {
-                  bool IsmaxError = max.text.trim().isEmpty;
-                  bool IsminError = min.text.trim().isEmpty;
-                  bool IsperError = period.text.trim().isEmpty;
-                  bool IsNameError = name.text.trim().isEmpty;
-                  bool IsdateError = controller.dateindex.value == null;
-
-                  Econtroller.updateFieldError("max", IsmaxError);
-                  Econtroller.updateFieldError("min", IsminError);
-                  Econtroller.updateFieldError("per", IsperError);
-                  Econtroller.updateFieldError("date", IsdateError);
-                  Econtroller.updateFieldError("name", IsNameError);
-
-                  if (!(IsmaxError ||
-                      IsminError ||
-                      IsperError ||
-                      IsNameError ||
-                      IsdateError)) {
-                    await Edit_Quiz_Lms_Api(context).Edit_Quiz_Lms(
-                      quiz: controller.filtered_quizLMS[index],
-                      name: name.text,
-                      id: controller.filtered_quizLMS[index].id,
-                      PassingMark: int.parse(min.text),
-                      maxMark: int.parse(max.text),
-                      hidden: controller.Hidden,
-                      period: period.text,
-                      startDate: controller.dateindex.toString(),
-                    );
-                    Get.back();
-                  }
-                },
-                color: Get.theme.primaryColor,
-                width: 120)
-          ],
-          contents: Container(
-            width: Get.width / 3,
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 15.0),
-                    child: Wrap(
-                      runSpacing: 8.0,
-                      spacing: 8.0,
-                      children: [
-                        Textfildwithupper(
-                            onChanged: (value) {
-                              if (value.isNotEmpty) {
-                                Econtroller.updateFieldError("name", false);
-                              }
-                            },
-                            isRequired: true,
-                            isError: Econtroller.IsAnameError,
-                            Uptext: "Name".tr,
-                            width: 220,
-                            controller: name,
-                            hinttext: "Name".tr),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 5.0),
-                          child: examDateLms(
-                            Uptext: "Date".tr,
-                            isError: Econtroller.ISdateError,
-                            isRequired: true,
-                            width: 220,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 15.0),
-                    child: Wrap(
-                      runSpacing: 8.0,
-                      spacing: 8.0,
-                      children: [
-                        Textfildwithupper(
-                            fieldType: "number",
-                            onChanged: (value) {
-                              if (value.isNotEmpty) {
-                                if (value == "0") {
-                                  max.text = "1";
-                                }
-                                Econtroller.updateFieldError("max", false);
-                              }
-                            },
-                            isRequired: true,
-                            isError: Econtroller.ISmaxError,
-                            Uptext: "Max Mark".tr,
-                            width: 220,
-                            controller: max,
-                            hinttext: "Max Mark".tr),
-                        Textfildwithupper(
-                            fieldType: "number",
-                            onChanged: (value) {
-                              if (value.isNotEmpty) {
-                                if (value == "0") {
-                                  min.text = "1";
-                                }
-                                Econtroller.updateFieldError("min", false);
-                              }
-                            },
-                            isRequired: true,
-                            isError: Econtroller.ISminError,
-                            Uptext: "Min Mark".tr,
-                            width: 220,
-                            controller: min,
-                            hinttext: "Min Mark".tr)
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 15.0),
-                    child: Wrap(
-                      runSpacing: 8.0,
-                      spacing: 8.0,
-                      children: [
-                        GestureDetector(
-                          onTap: () async {
-                            Duration? picked = await showDurationPicker(
-                                context: context,
-                                initialTime: Duration(hours: 0, minutes: 0),
-                                decoration: BoxDecoration(
-                                    color: Get.theme.cardColor,
-                                    backgroundBlendMode: BlendMode.color));
-                            if (picked != null) {
-                              Econtroller.updateFieldError("per", false);
-                              period.text =
-                                  "${picked.inHours.toString().padLeft(2, '0')}:"
-                                  "${(picked.inMinutes % 60).toString().padLeft(2, '0')}:00";
-                            }
-                          },
-                          child: Textfildwithupper(
-                            isRequired: true,
-                            isError: Econtroller.ISperiodError,
-                            readOnly: true,
-                            enabled: false,
-                            Uptext: "Period".tr,
-                            width: 220,
-                            controller: period,
-                            hinttext: "00:00:00",
-                          ),
-                        ),
-                        Row(
-                          children: [
-                            Checkbox(
-                              checkColor: Colors.white,
-                              value: controller.Hidden == 1 ? true : false,
-                              onChanged: (value) {
-                                if (Get.find<Add_Data_controller>().roll !=
-                                    "subAdmin") {
-                                  controller.updateHid(value == true ? 1 : 0);
-                                }
-                              },
-                            ),
-                            Text("Is It Hidden".tr),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          apptitle: "Edit Exam".tr,
-          subtitle: "none");
-    }));
-    // Get.find<Allquizcontroller>().initialData();
-    // period.clear();
-    // max.clear();
-    // min.clear();
   }
 }
