@@ -1924,3 +1924,472 @@ class examDateLms extends StatelessWidget {
     );
   }
 }
+
+
+
+
+
+class firstSemesterStartDate extends StatelessWidget {
+  final double width;
+  final String label;
+  final double? height;
+  final bool isRequired;
+  final bool isError;
+  final bool enabled;
+  final Rx<DateTime?> dateValue;
+  final Function(BuildContext) onSelectDate;
+
+  const firstSemesterStartDate({
+    super.key,
+    required this.width,
+    required this.label,
+    required this.dateValue,
+    required this.onSelectDate,
+    this.height,
+    this.isRequired = false,
+    this.isError = false,
+    this.enabled = true,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Obx(
+      () => Container(
+        width: width,
+        alignment: Alignment.center,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(bottom: 5.0),
+              child: RichText(
+                text: TextSpan(
+                  text: label,
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyMedium!
+                      .copyWith(fontSize: 14),
+                  children: isRequired
+                      ? [
+                          const TextSpan(
+                            text: " *",
+                            style: TextStyle(color: Colors.red, fontSize: 14),
+                          ),
+                        ]
+                      : [],
+                ),
+              ),
+            ),
+            SizedBox(
+              height: height ?? 40,
+              child: TextFormField(
+                enabled: enabled,
+                style: const TextStyle(fontSize: 14),
+                controller: TextEditingController(
+                  text: dateValue.value != null
+                      ? DateFormat('yyyy-MM-dd').format(dateValue.value!)
+                      : '',
+                ),
+                readOnly: true,
+                onTap: () => onSelectDate(context),
+                decoration: InputDecoration(
+                  hintText: "yyyy-MM-dd",
+                  hintStyle: Theme.of(context)
+                      .textTheme
+                      .bodyMedium!
+                      .copyWith(fontSize: 14, color: const Color(0xffD9D9D9)),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5),
+                    borderSide: BorderSide(
+                      color: isError ? Colors.red : const Color(0xffD9D9D9),
+                      width: 2,
+                    ),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5),
+                    borderSide: BorderSide(
+                      color: isError ? Colors.red : const Color(0xffD9D9D9),
+                    ),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5),
+                    borderSide: BorderSide(
+                      color: isError ? Colors.red : Colors.grey,
+                    ),
+                  ),
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      Icons.calendar_today,
+                      color: Theme.of(context).primaryColor,
+                      size: 16,
+                    ),
+                    onPressed: () => onSelectDate(context),
+                  ),
+                ),
+              ),
+            ),
+            if (isError)
+              const Padding(
+                padding: EdgeInsets.only(top: 5.0),
+                child: Text(
+                  "يجب إدخال تاريخ صحيح",
+                  style: TextStyle(color: Colors.red, fontSize: 12),
+                ),
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+
+class SecondSemesterStartDate extends StatelessWidget {
+  final double width;
+  final String label;
+  final double? height;
+  final bool isRequired;
+  final bool isError;
+  final bool enabled;
+  final Rx<DateTime?> dateValue;
+  final Function(BuildContext) onSelectDate;
+
+  const SecondSemesterStartDate({
+    super.key,
+    required this.width,
+    required this.label,
+    required this.dateValue,
+    required this.onSelectDate,
+    this.height,
+    this.isRequired = false,
+    this.isError = false,
+    this.enabled = true,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Obx(
+      () => Container(
+        width: width,
+        alignment: Alignment.center,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(bottom: 5.0),
+              child: RichText(
+                text: TextSpan(
+                  text: label,
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyMedium!
+                      .copyWith(fontSize: 14),
+                  children: isRequired
+                      ? [
+                          const TextSpan(
+                            text: " *",
+                            style: TextStyle(color: Colors.red, fontSize: 14),
+                          ),
+                        ]
+                      : [],
+                ),
+              ),
+            ),
+            SizedBox(
+              height: height ?? 40,
+              child: TextFormField(
+                enabled: enabled,
+                style: const TextStyle(fontSize: 14),
+                controller: TextEditingController(
+                  text: dateValue.value != null
+                      ? DateFormat('yyyy-MM-dd').format(dateValue.value!)
+                      : '',
+                ),
+                readOnly: true,
+                onTap: () => onSelectDate(context),
+                decoration: InputDecoration(
+                  hintText: "yyyy-MM-dd",
+                  hintStyle: Theme.of(context)
+                      .textTheme
+                      .bodyMedium!
+                      .copyWith(fontSize: 14, color: const Color(0xffD9D9D9)),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5),
+                    borderSide: BorderSide(
+                      color: isError ? Colors.red : const Color(0xffD9D9D9),
+                      width: 2,
+                    ),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5),
+                    borderSide: BorderSide(
+                      color: isError ? Colors.red : const Color(0xffD9D9D9),
+                    ),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5),
+                    borderSide: BorderSide(
+                      color: isError ? Colors.red : Colors.grey,
+                    ),
+                  ),
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      Icons.calendar_today,
+                      color: Theme.of(context).primaryColor,
+                      size: 16,
+                    ),
+                    onPressed: () => onSelectDate(context),
+                  ),
+                ),
+              ),
+            ),
+            if (isError)
+              const Padding(
+                padding: EdgeInsets.only(top: 5.0),
+                child: Text(
+                  "يجب إدخال تاريخ صحيح",
+                  style: TextStyle(color: Colors.red, fontSize: 12),
+                ),
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+class FirstSemesterEndDate extends StatelessWidget {
+  final double width;
+  final String label;
+  final double? height;
+  final bool isRequired;
+  final bool isError;
+  final bool enabled;
+  final Rx<DateTime?> dateValue;
+  final Function(BuildContext) onSelectDate;
+
+  const FirstSemesterEndDate({
+    super.key,
+    required this.width,
+    required this.label,
+    required this.dateValue,
+    required this.onSelectDate,
+    this.height,
+    this.isRequired = false,
+    this.isError = false,
+    this.enabled = true,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Obx(
+      () => Container(
+        width: width,
+        alignment: Alignment.center,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(bottom: 5.0),
+              child: RichText(
+                text: TextSpan(
+                  text: label,
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyMedium!
+                      .copyWith(fontSize: 14),
+                  children: isRequired
+                      ? [
+                          const TextSpan(
+                            text: " *",
+                            style: TextStyle(color: Colors.red, fontSize: 14),
+                          ),
+                        ]
+                      : [],
+                ),
+              ),
+            ),
+            SizedBox(
+              height: height ?? 40,
+              child: TextFormField(
+                enabled: enabled,
+                style: const TextStyle(fontSize: 14),
+                controller: TextEditingController(
+                  text: dateValue.value != null
+                      ? DateFormat('yyyy-MM-dd').format(dateValue.value!)
+                      : '',
+                ),
+                readOnly: true,
+                onTap: () => onSelectDate(context),
+                decoration: InputDecoration(
+                  hintText: "yyyy-MM-dd",
+                  hintStyle: Theme.of(context)
+                      .textTheme
+                      .bodyMedium!
+                      .copyWith(fontSize: 14, color: const Color(0xffD9D9D9)),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5),
+                    borderSide: BorderSide(
+                      color: isError ? Colors.red : const Color(0xffD9D9D9),
+                      width: 2,
+                    ),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5),
+                    borderSide: BorderSide(
+                      color: isError ? Colors.red : const Color(0xffD9D9D9),
+                    ),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5),
+                    borderSide: BorderSide(
+                      color: isError ? Colors.red : Colors.grey,
+                    ),
+                  ),
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      Icons.calendar_today,
+                      color: Theme.of(context).primaryColor,
+                      size: 16,
+                    ),
+                    onPressed: () => onSelectDate(context),
+                  ),
+                ),
+              ),
+            ),
+            if (isError)
+              const Padding(
+                padding: EdgeInsets.only(top: 5.0),
+                child: Text(
+                  "يجب إدخال تاريخ صحيح",
+                  style: TextStyle(color: Colors.red, fontSize: 12),
+                ),
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+class SecondSemesterEndDate extends StatelessWidget {
+  final double width;
+  final String label;
+  final double? height;
+  final bool isRequired;
+  final bool isError;
+  final bool enabled;
+  final Rx<DateTime?> dateValue;
+  final Function(BuildContext) onSelectDate;
+
+  const SecondSemesterEndDate({
+    super.key,
+    required this.width,
+    required this.label,
+    required this.dateValue,
+    required this.onSelectDate,
+    this.height,
+    this.isRequired = false,
+    this.isError = false,
+    this.enabled = true,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Obx(
+      () => Container(
+        width: width,
+        alignment: Alignment.center,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(bottom: 5.0),
+              child: RichText(
+                text: TextSpan(
+                  text: label,
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyMedium!
+                      .copyWith(fontSize: 14),
+                  children: isRequired
+                      ? [
+                          const TextSpan(
+                            text: " *",
+                            style: TextStyle(color: Colors.red, fontSize: 14),
+                          ),
+                        ]
+                      : [],
+                ),
+              ),
+            ),
+            SizedBox(
+              height: height ?? 40,
+              child: TextFormField(
+                enabled: enabled,
+                style: const TextStyle(fontSize: 14),
+                controller: TextEditingController(
+                  text: dateValue.value != null
+                      ? DateFormat('yyyy-MM-dd').format(dateValue.value!)
+                      : '',
+                ),
+                readOnly: true,
+                onTap: () => onSelectDate(context),
+                decoration: InputDecoration(
+                  hintText: "yyyy-MM-dd",
+                  hintStyle: Theme.of(context)
+                      .textTheme
+                      .bodyMedium!
+                      .copyWith(fontSize: 14, color: const Color(0xffD9D9D9)),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5),
+                    borderSide: BorderSide(
+                      color: isError ? Colors.red : const Color(0xffD9D9D9),
+                      width: 2,
+                    ),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5),
+                    borderSide: BorderSide(
+                      color: isError ? Colors.red : const Color(0xffD9D9D9),
+                    ),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5),
+                    borderSide: BorderSide(
+                      color: isError ? Colors.red : Colors.grey,
+                    ),
+                  ),
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      Icons.calendar_today,
+                      color: Theme.of(context).primaryColor,
+                      size: 16,
+                    ),
+                    onPressed: () => onSelectDate(context),
+                  ),
+                ),
+              ),
+            ),
+            if (isError)
+              const Padding(
+                padding: EdgeInsets.only(top: 5.0),
+                child: Text(
+                  "يجب إدخال تاريخ صحيح",
+                  style: TextStyle(color: Colors.red, fontSize: 12),
+                ),
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
