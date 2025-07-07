@@ -161,7 +161,7 @@ class Languages {
       'Search By Name': 'البحث حسب الاسم',
       'Manage Student': 'إدارة الطالب',
       'Add Exam': 'إضافة امتحان',
-      'Date': 'التاريح',
+      'Date': 'التاريخ',
       'Type': 'النوع',
       'Curriculum Name': 'اسم المنهاج',
       'Period': 'الفترة الزمنية',
@@ -466,20 +466,10 @@ class Languages {
 /////////////////////////////////////section 2///////////////////////////////
       'Who Can Register At Virtual Modern School':
           'من يمكنهم التسجيل في المدرسة الافتراضية الحديثة',
-      'Anyone who resides outside Syria desires to learn the Syrian Educational Curriculums from Elementary':
-          'يمكن لأي شخص يقيم خارج سوريا ويرغب في دراسة المناهج التعليمية السورية من المرحلة  ',
-      'to Middle and High schools can enroll and graduate to be awarded the High school Diploma granted':
-          'الابتدائية إلى المرحلة المتوسطة والثانوية التسجيل والتخرج للحصول على شهادة ',
-      'by the Ministry of Education at Syrian Arab Republic':
-          'الثانوية العامة المقدمة من وزارة التربية في الجمهورية العربية السورية',
-      'People with special needs who are residing in Syria are uncapable to study in regular schools uncapable':
-          'الأشخاص ذوو الاحتياجات الخاصة المقيمون في سوريا غير قادرين على الدراسة في ',
-      'to study uncapable to study in regular schools and exceptional students cases determined by the':
-          'المدارس العادية وحالات الطلاب الاستثنائيين التي تحددها وزارة التربية والتعليم',
-      'Ministry of Education at Syrian Arab Diploma granted by the Ministry of Education at Syrian Arab':
-          'بالدبلوم العربي السوري الممنوح من وزارة التربية في الجمهورية العربية السورية',
-      'Republic': '',
-
+      'Anyone who resides outside Syria desires to learn the Syrian Educational Curriculums from Elementary to Middle and High schools can enroll and graduate to be awarded the High school Diploma granted by the Ministry of Education at Syrian Arab Republic.':
+          'يمكن لأي شخص يقيم خارج سوريا ويرغب في دراسة المناهج التعليمية السورية من المرحلة الابتدائية إلى المرحلة المتوسطة والثانوية التسجيل والتخرج للحصول على شهادة الثانوية العامة المقدمة من وزارة التربية في الجمهورية العربية السورية.',
+      'People with special needs who are residing in Syria are uncapable to study in regular schools uncapable to study uncapable to study in regular schools and exceptional students cases determined by the Ministry of Education at Syrian Arab Diploma granted by the Ministry of Education at Syrian Arab Republic.':
+          'الأشخاص ذوو الاحتياجات الخاصة المقيمون في سوريا غير قادرين على الدراسة في المدارس العادية وحالات الطلاب الاستثنائيين التي تحددها وزارة التربية والتعليم بالدبلوم العربي السوري الممنوح من وزارة التربية في الجمهورية العربية السورية.',
       //////////////////////////section 3////////////////////////////
       'How I Can Enroll At Virtual Modern School':
           'كيف يمكنني التسجيل في المدرسة الافتراضية الحديثة',
@@ -487,21 +477,17 @@ class Languages {
           'يمكن لأولياء أمور طلابنا تسجيل أبنائهم في المدرسة الافتراضية الحديثة',
       'by the following steps:': 'بالخطوات التالية:',
       '1. Enter the first and last name of the guardian':
-          '1. أدخل الاسم الأول والأخير لوَليّ الأمر',
+          '1. أدخل الاسم الأول والأخير لوَليّ الأمر.',
       '2. Enter the mobile phone number of guardian':
-          '2. أدخل رقم الهاتف المحمول لوَليّ الأمر ',
+          '2. أدخل رقم الهاتف المحمول لوَليّ الأمر. ',
       '3. Enter the Syrian national number of the guardian':
-          '3. أدخل الرقم الوطني السوري لوَليّ الأمر',
+          '3. أدخل الرقم الوطني السوري لوَليّ الأمر.',
       'Read More': 'قراءة المزيد',
 
       ////////////////////////////////////section 4////////////////////////////////
       'Why Us?': 'لماذا نحن',
-      'Virtual Modern School is an online learning platform that helps students to learn the':
-          'المدرسة الافتراضية الحديثة هي منصة تعليمية عبر الإنترنت تساعد الطلاب على  ',
-      'Syrian Education Curriculum from home. The courses of this platform are designed':
-          'تعلم المنهج التعليمي السوري من المنزل. تم تصميم الدورات في هذه المنصة للمدرسة الابتدائية،',
-      'for elementary school, middle school, and high school all in one place.':
-          'والمدرسة المتوسطة، والمدرسة الثانوية في مكان واحد.',
+      'Virtual Modern School is an online learning platform that helps students to learn the Syrian Education Curriculum from home. The courses of this platform are designed for elementary school, middle school, and high school all in one place.':
+          ' المدرسة الافتراضية الحديثة هي منصة تعليمية عبر الإنترنت تساعد الطلاب على تعلم المنهج التعليمي السوري من المنزل. تم تصميم الدورات في هذه المنصة للمدرسة الابتدائية، والمدرسة المتوسطة، والمدرسة الثانوية في مكان واحد.',
 
       'Improving educational': 'تحسين مهارات',
       'Skills': 'التعليم',
@@ -519,34 +505,21 @@ class Languages {
       ///////////////////////////////////section 5//////////////////////////////////////
 
       'Who Are We': 'من نحن',
-      'is a community of learners, including students, parents, and staff, dedicated to creating a rigorous and':
-          'المدرسة الافتراضية الحديثة هي مجتمع من المتعلمين ، بما في ذلك الطلاب وأولياء الأمور والموظفين ، مكرسين لإنشاء بيئة صارمة',
-      'VIRTUAL MODERN SCHOOL (VMS)': '',
-      'inclusive educational environment. VMS students are goal-oriented, critical thinkers, and community leaders':
-          ' و بيئة تعليمية شاملة. طلاب المدرسة هادفون ومفكرين نقديين وقادة مجتمع ملتزمون ',
-      'committed to achieving high levels of integrity and academic success.':
-          'بتحقيق مستويات عالية من النزاهة والنجاح الأكاديمي.',
+      'is a community of learners, including students, parents, and staff, dedicated to creating a rigorous and VIRTUAL MODERN SCHOOL (VMS) inclusive educational environment. VMS students are goal-oriented, critical thinkers, and community leaders committed to achieving high levels of integrity and academic success.':
+          'المدرسة الافتراضية الحديثة هي مجتمع من المتعلمين ، بما في ذلك الطلاب وأولياء الأمور والموظفين ، مكرسين لإنشاء بيئة صارمة و بيئة تعليمية شاملة. طلاب المدرسة هادفون ومفكرين نقديين وقادة مجتمع ملتزمون بتحقيق مستويات عالية من النزاهة والنجاح الأكاديمي.',
 
-      'VIRTUAL MODERN SCHOOL (VMS) staff aim to create a supportive':
-          'يهدف موظفو المدرسة الافتراضية الحديثة إلى خلق بيئة داعمة ومحفزة',
-      'and challenging environment for all students to reach their potential,':
-          'لجميع الطلاب للوصول إلى أقصى إمكاناتهم، والانخراط في ',
-      'engaging in continuous improvement through goal setting and':
-          ' عملة تحسين مستمرة من خلال تحديد الأهداف والتأمل',
-      'reflection': '',
+      "VIRTUAL MODERN SCHOOL (VMS) staff aim to create a supportive and challenging environment for all students to reach their potential, engaging in continuous improvement through goal setting and reflection":
+          'يهدف موظفو المدرسة الافتراضية الحديثة إلى خلق بيئة داعمة ومحفزة لجميع الطلاب للوصول إلى أقصى إمكاناتهم، والانخراط في عملة تحسين مستمرة من خلال تحديد الأهداف والتأمل ',
+
       'Virtual Modern School': 'المدرسة الافتراضية الحديثة ',
 
       ////////////////////////section 6//////////////////////////
 
       'What Do We Do': 'ماذا نفعل',
-      'We develop a culture of excellence that includes a robust instructional program aligned to the':
-          'نحن نطور ثقافة التميز التي تشمل برنامجاً تعليمياً قوياً يتوافق مع أعلى المعايير،',
-      'highest standards with a focus on implementing balanced literacy through reading and writing':
-          'مع التركيز على تطبيق التعليم المميز من خلال ورش عمل القراءة والكتابة،',
-      'workshops, while cultivating competency across all subject areas.':
-          'من خلال تعزيز الكفاءة في جميع المواد الدراسية.',
-      'We are committed to developing well-rounded students who embody our core values: Be Safe, Be Respectful, Be Responsible, and Be Mindful. Our vibrant learning environment encourages discovery and creative expression, making every student feel valued.\n\nWe provide our educators with robust professional development to enhance teaching practices and boost student success. Through collaboration and a community schools model, we align resources to ensure every student thrives. Join us in our journey towards excellence!':
-          'نحن ملتزمون بتطوير طلاب متوازنين يجسدون قيمنا الأساسية: كن آمناً، وكن محترماً، وكن مسؤولاً، وكن واعياً. تشجع بيئة التعلم الحيوية لدينا على الاكتشاف والتعبير الإبداعي، مما يجعل كل طالب يشعر بالتقدير.\n\n نحن نقدم لمعلمينا تطويراً مهنياً قوياً لتعزيز ممارسات التدريس وزيادة نجاح الطلاب. من خلال التعاون ونموذج المدارس المجتمعية، نقوم بتنسيق الموارد لضمان ازدهار كل طالب.\n\n انضم إلينا في رحلتنا نحو التميز!',
+      "We develop a culture of excellence that includes a robust instructional program aligned to the highest standards with a focus on implementing balanced literacy through reading and writing workshops, while cultivating competency across all subject areas.":
+          "نحن نطور ثقافة التميز التي تتضمن برنامجًا تعليميًا قويًا يتماشى مع أعلى المعايير مع التركيز على تطبيق محو الأمية المتوازن من خلال ورش العمل للقراءة والكتابة، مع تعزيز الكفاءة في جميع المواد الأكاديمية.",
+      "We are committed to developing well-rounded students who embody our core values: Be Safe, Be Respectful, Be Responsible, and Be Mindful. Our vibrant learning environment encourages discovery and creative expression, making every student feel valued.We provide our educators with robust professional development to enhance teaching practices and boost student success. Through collaboration and a community schools model, we align resources to ensure every student thrives. Join us in our journey towards excellence!":
+          "نحن ملتزمون بتطوير طلاب متكاملين يجسدون قيمنا الأساسية: كن آمناً، كن محترماً، كن مسؤولاً، وكن واعياً. بيئة التعلم النشطة لدينا تشجع على الاكتشاف والتعبير الإبداعي، مما يجعل كل طالب يشعر بالتقدير. نوفر لمعلمينا تطويراً مهنياً قوياً لتعزيز الممارسات التعليمية وزيادة نجاح الطلاب. من خلال التعاون ونموذج المدارس المجتمعية، ننسق الموارد لضمان نجاح كل طالب. انضم إلينا في رحلتنا نحو التميز.",
       //////////////////////////////////section 7////////////////////////////////////////
       'Openning Hours': 'ساعات العمل',
       '8 AM -----> 1 PM': '8 صباحاً---------> 1 ظهراً',
@@ -1106,6 +1079,7 @@ class Languages {
       'Enter question text': 'أدخل نص السؤال',
       'Enter answer text': 'أدخل نص الجواب',
       'Drag and Drop': 'سحب و إفلات',
+      'No Homework': 'لا يوجد الوظائف',
     },
     'en': {
       'Welcome Laith Haitham Azzam': 'Welcome Laith Haitham Azzam',
@@ -1347,12 +1321,11 @@ class Languages {
       'Eligibility': 'Eligibility',
       'Who Can Register At Virtual Modern School':
           'Who Can Register At Virtual Modern School',
-      'Anyone who resides outside Syria desires to learn the Syrian Educational Curriculums from Elementary':
-          'Anyone who resides outside Syria desires to learn the Syrian Educational Curriculums from Elementary',
-      'to Middle and High schools can enroll and graduate to be awarded the High school Diploma granted':
-          'to Middle and High schools can enroll and graduate to be awarded the High school Diploma granted',
-      'by the Ministry of Education at Syrian Arab Republic':
-          'by the Ministry of Education at Syrian Arab Republic',
+      'Anyone who resides outside Syria desires to learn the Syrian Educational Curriculums from Elementary to Middle and High schools can enroll and graduate to be awarded the High school Diploma granted by the Ministry of Education at Syrian Arab Republic.':
+          "Anyone who resides outside Syria desires to learn the Syrian Educational Curriculums from Elementary to Middle and High schools can enroll and graduate to be awarded the High school Diploma granted by the Ministry of Education at Syrian Arab Republic.",
+      'People with special needs who are residing in Syria are uncapable to study in regular schools uncapable to study uncapable to study in regular schools and exceptional students cases determined by the Ministry of Education at Syrian Arab Diploma granted by the Ministry of Education at Syrian Arab Republic.':
+          "People with special needs who are residing in Syria are uncapable to study in regular schools uncapable to study uncapable to study in regular schools and exceptional students cases determined by the Ministry of Education at Syrian Arab Diploma granted by the Ministry of Education at Syrian Arab Republic.",
+
       'Back': 'Back',
       'Selected': 'Selected',
       'Original Order': 'Original Order',
@@ -1485,20 +1458,17 @@ class Languages {
           'Parents of our students can register their sons in the Virtual Modern School',
       'by the following steps:': 'by the following steps:',
       '1. Enter the first and last name of the guardian':
-          '1. Enter the first and last name of the guardian',
+          '1. Enter the first and last name of the guardian.',
       '2. Enter the mobile phone number of guardian':
-          '2. Enter the mobile phone number of guardian',
+          '2. Enter the mobile phone number of guardian.',
       '3. Enter the Syrian national number of the guardian':
-          '3. Enter the Syrian national number of the guardian',
+          '3. Enter the Syrian national number of the guardian.',
       'Read More': 'Read More',
       //////////////////////////////////section 4/////////////////////////////////////
       'Why Us?': 'Why Us?',
-      'Virtual Modern School is an online learning platform that helps students to learn the':
-          'Virtual Modern School is an online learning platform that helps students to learn the',
-      'Syrian Education Curriculum from home. The courses of this platform are designed':
-          'Syrian Education Curriculum from home. The courses of this platform are designed',
-      'for elementary school, middle school, and high school all in one place.':
-          '.for elementary school, middle school, and high school all in one place',
+      'Virtual Modern School is an online learning platform that helps students to learn the Syrian Education Curriculum from home. The courses of this platform are designed for elementary school, middle school, and high school all in one place.':
+          'Virtual Modern School is an online learning platform that helps students to learn the Syrian Education Curriculum from home. The courses of this platform are designed for elementary school, middle school, and high school all in one place ',
+
       'Improving educational': 'Improving educational',
       'Skills': 'Skills',
       'Smart virtual': 'Smart virtual',
@@ -1512,34 +1482,21 @@ class Languages {
       'options': 'options',
       ////////////////////////////// section 5/////////////////////////////////////
       'Who Are We': 'Who Are We',
-      'is a community of learners, including students, parents, and staff, dedicated to creating a rigorous and':
-          'is a community of learners, including students, parents, and staff, dedicated to creating a rigorous and',
-      'VIRTUAL MODERN SCHOOL (VMS)': 'VIRTUAL MODERN SCHOOL (VMS)',
-      'inclusive educational environment. VMS students are goal-oriented, critical thinkers, and community leaders':
-          'inclusive educational environment. VMS students are goal-oriented, critical thinkers, and community leaders',
-      'committed to achieving high levels of integrity and academic success.':
-          '.committed to achieving high levels of integrity and academic success',
-      'VIRTUAL MODERN SCHOOL (VMS) staff aim to create a supportive':
-          'VIRTUAL MODERN SCHOOL (VMS) staff aim to create a supportive',
-      'and challenging environment for all students to reach their potential,':
-          'and challenging environment for all students to reach their potential,',
-      'engaging in continuous improvement through goal setting and':
-          'engaging in continuous improvement through goal setting and',
-      'reflection': '.reflection',
+      'is a community of learners, including students, parents, and staff, dedicated to creating a rigorous and VIRTUAL MODERN SCHOOL (VMS) inclusive educational environment. VMS students are goal-oriented, critical thinkers, and community leaders committed to achieving high levels of integrity and academic success.':
+          'is a community of learners, including students, parents, and staff, dedicated to creating a rigorous and VIRTUAL MODERN SCHOOL (VMS) inclusive educational environment. VMS students are goal-oriented, critical thinkers, and community leaders committed to achieving high levels of integrity and academic success',
+
+      "VIRTUAL MODERN SCHOOL (VMS) staff aim to create a supportive and challenging environment for all students to reach their potential, engaging in continuous improvement through goal setting and reflection":
+          "VIRTUAL MODERN SCHOOL (VMS) staff aim to create a supportive and challenging environment for all students to reach their potential, engaging in continuous improvement through goal setting and reflection",
+
       'Virtual Modern School': 'Virtual Modern School',
 
       /////////////////////section 6///////////////////////////
 
       'What Do We Do': 'What Do We Do',
-      'We develop a culture of excellence that includes a robust instructional program aligned to the':
-          'We develop a culture of excellence that includes a robust instructional program aligned to the',
-      'highest standards with a focus on implementing balanced literacy through reading and writing':
-          'highest standards with a focus on implementing balanced literacy through reading and writing',
-      'workshops, while cultivating competency across all subject areas.':
-          '.workshops, while cultivating competency across all subject areas',
-      'We are committed to developing well-rounded students who embody our core values: Be Safe, Be Respectful, Be Responsible, and Be Mindful. Our vibrant learning environment encourages discovery and creative expression, making every student feel valued.\n\nWe provide our educators with robust professional development to enhance teaching practices and boost student success. Through collaboration and a community schools model, we align resources to ensure every student thrives. Join us in our journey towards excellence!':
-          'We are committed to developing well-rounded students who embody our core values: Be Safe, Be Respectful, Be Responsible, and Be Mindful. Our vibrant learning environment encourages discovery and creative expression, making every student feel valued \n\nWe provide our educators with robust professional development to enhance teaching practices and boost student success. Through collaboration and a community schools model, we align resources to ensure every student thrives. Join us in our journey towards excellence',
-
+      "We develop a culture of excellence that includes a robust instructional program aligned to the highest standards with a focus on implementing balanced literacy through reading and writing workshops, while cultivating competency across all subject areas.":
+          "We develop a culture of excellence that includes a robust instructional program aligned to the highest standards with a focus on implementing balanced literacy through reading and writing workshops, while cultivating competency across all subject areas",
+      "We are committed to developing well-rounded students who embody our core values: Be Safe, Be Respectful, Be Responsible, and Be Mindful. Our vibrant learning environment encourages discovery and creative expression, making every student feel valued.We provide our educators with robust professional development to enhance teaching practices and boost student success. Through collaboration and a community schools model, we align resources to ensure every student thrives. Join us in our journey towards excellence!":
+          "We are committed to developing well-rounded students who embody our core values: Be Safe, Be Respectful, Be Responsible, and Be Mindful. Our vibrant learning environment encourages discovery and creative expression, making every student feel valued.We provide our educators with robust professional development to enhance teaching practices and boost student success. Through collaboration and a community schools model, we align resources to ensure every student thrives. Join us in our journey towards excellence",
       //////////////////////////section 7////////////////////////////
       'Openning Hours': 'Openning Hours',
       '8 AM -----> 1 PM': 'from 8 AM at 1 PM',
@@ -2199,7 +2156,7 @@ class Languages {
       'Enter question text': 'Enter question text',
       'Enter answer text': 'Enter answer text',
       'Drag and Drop': 'Drag and Drop',
-      '': '',
+      'No Homework': 'No Homework',
       '': '',
       '': '',
       '': '',

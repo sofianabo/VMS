@@ -6,22 +6,24 @@ import 'package:image_picker/image_picker.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/API/LMS_APIs/QuestionAPI/DragDrop_Question_APi/Add_DragDrop_API.dart';
-import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/QuestionBank_Controllers/Drag_Drop_Question_Controller.dart';
+import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Quiz_Controller/Quiz_DragDrop_Question_Controller.dart';
 import 'package:vms_school/view/Both_Platform/widgets/ButtonsDialog.dart';
 import 'package:vms_school/view/Both_Platform/widgets/Squer_Button_Enabled_Disabled.dart';
 import 'package:vms_school/view/Both_Platform/widgets/TextFildWithUpper.dart';
 import 'package:vms_school/view/Both_Platform/widgets/VMSAlertDialog.dart';
 
-class Add_Dragdrop_Question extends StatefulWidget {
-  const Add_Dragdrop_Question({super.key});
+class Add_Dragdrop_Question_To_Quiz extends StatefulWidget {
+  const Add_Dragdrop_Question_To_Quiz({super.key});
 
   @override
-  State<Add_Dragdrop_Question> createState() => _Add_Dragdrop_QuestionState();
+  State<Add_Dragdrop_Question_To_Quiz> createState() =>
+      _Add_Dragdrop_Question_To_QuizState();
 }
 
-class _Add_Dragdrop_QuestionState extends State<Add_Dragdrop_Question> {
+class _Add_Dragdrop_Question_To_QuizState
+    extends State<Add_Dragdrop_Question_To_Quiz> {
   final TextEditingController Question = TextEditingController();
-  var cont = Get.find<DragDrop_Question_Controller>();
+  var cont = Get.find<Quiz_DragDrop_Question_Controller>();
   final ImagePicker _picker = ImagePicker();
 
   @override
@@ -60,46 +62,46 @@ class _Add_Dragdrop_QuestionState extends State<Add_Dragdrop_Question> {
         ButtonDialog(
           color: Get.theme.primaryColor,
           onPressed: () async {
-            bool isquestion = Question.text.isEmpty;
-            cont.updateFieldError("aname", isquestion);
+            // bool isquestion = Question.text.isEmpty;
+            // cont.updateFieldError("aname", isquestion);
 
-            if (!isquestion) {
-              cont.validateAndCleanOptions();
-              if (cont.validateBeforeSave()) {
-                List<Map<String, dynamic>> questions = [];
-                List<Map<String, dynamic>> answers = [];
+            // if (!isquestion) {
+            //   cont.validateAndCleanOptions();
+            //   if (cont.validateBeforeSave()) {
+            //     List<Map<String, dynamic>> questions = [];
+            //     List<Map<String, dynamic>> answers = [];
 
-                for (var option in cont.firstSectionOptions) {
-                  questions.add({
-                    'text': option.text,
-                    'file': option.imagePath,
-                  });
-                }
+            //     for (var option in cont.firstSectionOptions) {
+            //       questions.add({
+            //         'text': option.text,
+            //         'file': option.imagePath,
+            //       });
+            //     }
 
-                for (var option in cont.secondSectionOptions) {
-                  answers.add({
-                    'text': option.text,
-                    'file': option.imagePath,
-                  });
-                }
+            //     for (var option in cont.secondSectionOptions) {
+            //       answers.add({
+            //         'text': option.text,
+            //         'file': option.imagePath,
+            //       });
+            //     }
 
-                await Add_Dragdrop_Api().Add_Dragdrop(
-                  Question: Question.text,
-                  questions: questions
-                      .map((q) => {
-                            'text': q['text'],
-                            'file': q['file'], // تغيير من image إلى file
-                          })
-                      .toList(),
-                  answers: answers
-                      .map((a) => {
-                            'text': a['text'],
-                            'file': a['file'], // تغيير من image إلى file
-                          })
-                      .toList(),
-                );
-              }
-            }
+            //     await Add_Dragdrop_Api().Add_Dragdrop(
+            //       Question: Question.text,
+            //       questions: questions
+            //           .map((q) => {
+            //                 'text': q['text'],
+            //                 'file': q['file'], // تغيير من image إلى file
+            //               })
+            //           .toList(),
+            //       answers: answers
+            //           .map((a) => {
+            //                 'text': a['text'],
+            //                 'file': a['file'], // تغيير من image إلى file
+            //               })
+            //           .toList(),
+            //     );
+            //   }
+            // }
           },
           width: 150,
           text: "Add Question".tr,
@@ -109,8 +111,8 @@ class _Add_Dragdrop_QuestionState extends State<Add_Dragdrop_Question> {
         width: 600,
         constraints: const BoxConstraints(maxHeight: 500),
         child: SingleChildScrollView(
-          child:
-              GetBuilder<DragDrop_Question_Controller>(builder: (controller) {
+          child: GetBuilder<Quiz_DragDrop_Question_Controller>(
+              builder: (controller) {
             return Column(
               children: [
                 Textfildwithupper(
@@ -213,7 +215,7 @@ class _Add_Dragdrop_QuestionState extends State<Add_Dragdrop_Question> {
   }
 
   Widget _buildOptionSection(BuildContext context, int index,
-      bool isFirstSection, DragDrop_Question_Items option) {
+      bool isFirstSection, Quiz_DragDrop_Question_Items option) {
     // استخدم TextEditingController الموجود في الـ option بدلاً من إنشاء واحد جديد
     TextEditingController textController =
         TextEditingController(text: option.text ?? '');
@@ -281,7 +283,7 @@ class _Add_Dragdrop_QuestionState extends State<Add_Dragdrop_Question> {
     );
   }
 
-  Widget _buildContentSection(DragDrop_Question_Items option,
+  Widget _buildContentSection(Quiz_DragDrop_Question_Items option,
       TextEditingController textController, int index, bool isFirstSection) {
     if (option.showTextField || option.isText) {
       return TextField(

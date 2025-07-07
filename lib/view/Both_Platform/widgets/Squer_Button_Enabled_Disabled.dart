@@ -46,7 +46,7 @@ class _Squer_Button_Enabled_DisabledState
                     ? Get.theme.disabledColor
                     : widget.isDelete
                         ? Color(0xffB03D3D)
-                        : Theme.of(context).cardColor),
+                        : Theme.of(context).primaryColorDark),
                 shape: const WidgetStatePropertyAll(RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(5))))),
             onPressed: !widget.validate ? widget.onTap : () {},

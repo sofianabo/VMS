@@ -9,13 +9,17 @@ import 'package:vms_school/Link/Model/LMS_Model/Questions_Models/Quiz_Qustions_M
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/view/Both_Platform/widgets/ButtonsDialog.dart';
 import 'package:vms_school/view/Both_Platform/widgets/VMSAlertDialog.dart';
+import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Quiz_Pages_LMS/Quiz_Question_LMS/Add_Quiz_Dialogs/Add_DragDrop_Question_to_Quiz.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Quiz_Pages_LMS/Quiz_Question_LMS/Add_Quiz_Dialogs/Add_Essay_Questions_Quiz_Dialog.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Quiz_Pages_LMS/Quiz_Question_LMS/Add_Quiz_Dialogs/Add_Fill_The_Blanks_Dialog.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Quiz_Pages_LMS/Quiz_Question_LMS/Add_Quiz_Dialogs/Add_From_Bank/ArticleQuestion/Add_ArticleQuestionManagment.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Quiz_Pages_LMS/Quiz_Question_LMS/Add_Quiz_Dialogs/Add_From_Bank/Choose_The_Correct_Answer/Choose_the_correct_answer.dart';
+import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Quiz_Pages_LMS/Quiz_Question_LMS/Add_Quiz_Dialogs/Add_From_Bank/DragDrop/DragDrop_From_Bank_Managment.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Quiz_Pages_LMS/Quiz_Question_LMS/Add_Quiz_Dialogs/Add_From_Bank/Fill_The_Blank/Quiz_Fill_The_Blank_Bank.dart';
+import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Quiz_Pages_LMS/Quiz_Question_LMS/Add_Quiz_Dialogs/Add_From_Bank/Matching/Matching_From_Bank_Managment.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Quiz_Pages_LMS/Quiz_Question_LMS/Add_Quiz_Dialogs/Add_From_Bank/Muilti_Choice/Add_Multi_Choise_Question_Bank.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Quiz_Pages_LMS/Quiz_Question_LMS/Add_Quiz_Dialogs/Add_From_Bank/TrueOrFalse/Quiz_True_Or_False_Question_Managment.dart';
+import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Quiz_Pages_LMS/Quiz_Question_LMS/Add_Quiz_Dialogs/Add_Matching_To_Bank.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Quiz_Pages_LMS/Quiz_Question_LMS/Add_Quiz_Dialogs/Add_Multi_Choice_Question_Dialog.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Quiz_Pages_LMS/Quiz_Question_LMS/Add_Quiz_Dialogs/Add_Single_Choice_Dialog.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Quiz_Pages_LMS/Quiz_Question_LMS/Add_Quiz_Dialogs/Add_True_False_Quiz_Dialog.dart';
@@ -492,10 +496,14 @@ Widget buildSidePanel(BuildContext context) {
                         style: Get.theme.textTheme.titleMedium!
                             .copyWith(fontSize: 14)),
                     buildAddButton("Add as a new question".tr, Icons.add,
-                        size: 250, onPressed: () {}),
+                        size: 250, onPressed: () {
+                      Get.dialog(Add_Dragdrop_Question_To_Quiz());
+                    }),
                     buildAddButton(
                         "Addition from the bank".tr, LMS_Icons.dragdrop,
-                        size: 250, onPressed: () {}),
+                        size: 250, onPressed: () {
+                      Get.dialog(Dragdrop_From_Bank_Managment());
+                    }),
                     Divider(
                       color: Get.theme.textTheme.titleMedium!.color,
                       thickness: 0.5,
@@ -550,9 +558,13 @@ Widget buildSidePanel(BuildContext context) {
                         style: Get.theme.textTheme.titleMedium!
                             .copyWith(fontSize: 14)),
                     buildAddButton("Add as a new question".tr, Icons.add,
-                        size: 250, onPressed: () {}),
+                        size: 250, onPressed: () {
+                      Get.dialog(Add_Matching_To_Bank());
+                    }),
                     buildAddButton("Addition from the bank".tr, LMS_Icons.same,
-                        size: 250, onPressed: () {}),
+                        size: 250, onPressed: () {
+                      Get.dialog(Matching_From_Bank_Managment());
+                    }),
                     Divider(
                       color: Get.theme.textTheme.titleMedium!.color,
                       thickness: 0.5,

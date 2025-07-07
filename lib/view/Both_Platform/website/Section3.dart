@@ -104,6 +104,13 @@ class Section3 extends StatelessWidget {
                 ),
               ),
               Row(
+                mainAxisAlignment: Get.find<LocalizationController>()
+                            .currentLocale
+                            .value
+                            .languageCode ==
+                        'ar'
+                    ? MainAxisAlignment.start
+                    : MainAxisAlignment.end,
                 children: [
                   Padding(
                     padding: EdgeInsets.only(left: 20.0, right: 20.0),
@@ -120,28 +127,23 @@ class Section3 extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                              textAlign: TextAlign.center,
                               "Parents of our students can register their children in the Virtual Modern School"
                                   .tr,
                               style: Get.theme.textTheme.bodyMedium!
                                   .copyWith(fontSize: 14)),
                           Text("by the following steps:".tr,
-                              textAlign: TextAlign.center,
                               style: Get.theme.textTheme.bodyMedium!
                                   .copyWith(fontSize: 14)),
                           Text(
-                              textAlign: TextAlign.center,
                               "1. Enter the first and last name of the guardian"
                                   .tr,
                               style: Get.theme.textTheme.bodyMedium!
                                   .copyWith(fontSize: 14)),
                           Text(
                               "2. Enter the mobile phone number of guardian".tr,
-                              textAlign: TextAlign.center,
                               style: Get.theme.textTheme.bodyMedium!
                                   .copyWith(fontSize: 14)),
                           Text(
-                              textAlign: TextAlign.center,
                               "3. Enter the Syrian national number of the guardian"
                                   .tr,
                               style: Get.theme.textTheme.bodyMedium!
@@ -202,7 +204,6 @@ class Section3 extends StatelessWidget {
                               style: Get.theme.textTheme.bodyMedium!
                                   .copyWith(fontSize: 14)),
                           Text(
-                              textAlign: TextAlign.center,
                               maxLines: 2,
                               "1. Enter the first and last name of the guardian"
                                   .tr,
@@ -210,12 +211,10 @@ class Section3 extends StatelessWidget {
                                   .copyWith(fontSize: 14)),
                           Text(
                               "2. Enter the mobile phone number of guardian".tr,
-                              textAlign: TextAlign.center,
                               maxLines: 2,
                               style: Get.theme.textTheme.bodyMedium!
                                   .copyWith(fontSize: 14)),
                           Text(
-                              textAlign: TextAlign.center,
                               maxLines: 2,
                               "3. Enter the Syrian national number of the guardian"
                                   .tr,

@@ -7,21 +7,25 @@ import 'package:vms_school/Link/Model/LMS_Model/Questions_Models/DragDrop_Questi
 class DragDrop_Question_Items {
   String? text;
   String? imagePath;
-  Uint8List? imageBytes; // إضافة هذا الحقل لتخزين بايتات الصورة
+  Uint8List? imageBytes;
+  bool isTextSelected; // إضافة حقل لتتبع حالة اختيار النص
+  bool isImageSelected; // إضافة حقل لتتبع حالة اختيار الصورة
   bool showTextField;
 
   DragDrop_Question_Items({
     this.text,
     this.imagePath,
     this.imageBytes,
+    this.isTextSelected = false,
+    this.isImageSelected = false,
     this.showTextField = false,
   });
 
   bool get isEmpty =>
       (text == null || text!.isEmpty) &&
       (imagePath == null || imagePath!.isEmpty);
-  bool get isText => text != null && text!.isNotEmpty;
-  bool get isImage => imagePath != null && imagePath!.isNotEmpty;
+  bool get isText => isTextSelected && text != null;
+  bool get isImage => isImageSelected && imagePath != null;
 }
 
 class DragDrop_Question_Controller extends GetxController {
@@ -29,7 +33,6 @@ class DragDrop_Question_Controller extends GetxController {
   List<Question>? questions;
   List<Question>? filterdQuestions;
 
-  // قوائم الخيارات للقسمين
   final RxList<DragDrop_Question_Items> firstSectionOptions =
       <DragDrop_Question_Items>[].obs;
   final RxList<DragDrop_Question_Items> secondSectionOptions =
@@ -40,23 +43,18 @@ class DragDrop_Question_Controller extends GetxController {
     update();
   }
 
-  // إضافة زوج جديد من الخيارات
   void addOption() {
     firstSectionOptions.add(DragDrop_Question_Items());
     secondSectionOptions.add(DragDrop_Question_Items());
     update();
   }
 
-  // التحقق من إمكانية إضافة خيار جديد
   bool canAddNewOption() {
     if (firstSectionOptions.isEmpty) return true;
-
-    // لا يمكن إضافة خيار جديد إذا كان آخر خيار في أي قسم فارغًا
     return !firstSectionOptions.last.isEmpty &&
         !secondSectionOptions.last.isEmpty;
   }
 
-  // إزالة زوج من الخيارات
   void removeOption(int index) {
     if (index < firstSectionOptions.length) {
       firstSectionOptions.removeAt(index);
@@ -67,77 +65,97 @@ class DragDrop_Question_Controller extends GetxController {
     update();
   }
 
+  // تعديل دالة تحديث النص للحفاظ على حالة الاختيار
   void updateFirstSectionText(int index, String text) {
     if (index < firstSectionOptions.length) {
+      var currentOption = firstSectionOptions[index];
       firstSectionOptions[index] = DragDrop_Question_Items(
         text: text,
-        imagePath: null,
-        showTextField: text.isEmpty, // يظهر الحقل إذا كان النص فارغاً
+        imagePath: currentOption.imagePath,
+        imageBytes: currentOption.imageBytes,
+        isTextSelected: true, // التأكد من بقاء النص محددًا
+        isImageSelected: false,
+        showTextField: true,
       );
       update();
     }
   }
 
+  // تعديل دالة التبديل لتحديد النص أو الصورة
   void toggleTextField(int index, bool isFirstSection) {
     if (isFirstSection) {
+      var currentOption = firstSectionOptions[index];
       firstSectionOptions[index] = DragDrop_Question_Items(
-        text: firstSectionOptions[index].text,
-        imagePath: null,
-        showTextField: true, // إظهار حقل النص عند الضغط
+        text: currentOption.text,
+        imagePath: currentOption.imagePath,
+        imageBytes: currentOption.imageBytes,
+        isTextSelected: true, // تحديد خيار النص
+        isImageSelected: false, // إلغاء تحديد خيار الصورة
+        showTextField: true,
       );
     } else {
+      var currentOption = secondSectionOptions[index];
       secondSectionOptions[index] = DragDrop_Question_Items(
-        text: secondSectionOptions[index].text,
-        imagePath: null,
-        showTextField: true, // إظهار حقل النص عند الضغط
+        text: currentOption.text,
+        imagePath: currentOption.imagePath,
+        imageBytes: currentOption.imageBytes,
+        isTextSelected: true, // تحديد خيار النص
+        isImageSelected: false, // إلغاء تحديد خيار الصورة
+        showTextField: true,
       );
     }
     update();
   }
 
-  // تحديث نص السؤال
-
-  // تحديث صورة السؤال
+  // تعديل دالة تحديث الصورة للحفاظ على حالة الاختيار
   void updateFirstSectionImage(int index, String imagePath,
       [Uint8List? bytes]) {
     if (index < firstSectionOptions.length) {
+      var currentOption = firstSectionOptions[index];
       firstSectionOptions[index] = DragDrop_Question_Items(
-        text: null,
+        text: currentOption.text,
         imagePath: imagePath,
         imageBytes: bytes,
+        isTextSelected: false, // إلغاء تحديد خيار النص
+        isImageSelected: true, // تحديد خيار الصورة
+        showTextField: false,
       );
       update();
     }
   }
 
-  // تحديث نص الإجابة
   void updateSecondSectionText(int index, String text) {
     if (index < secondSectionOptions.length) {
+      var currentOption = secondSectionOptions[index];
       secondSectionOptions[index] = DragDrop_Question_Items(
         text: text,
-        imagePath: null,
-        showTextField: text.isEmpty, // يظهر الحقل إذا كان النص فارغاً
+        imagePath: currentOption.imagePath,
+        imageBytes: currentOption.imageBytes,
+        isTextSelected: true, // التأكد من بقاء النص محددًا
+        isImageSelected: false,
+        showTextField: true,
       );
       update();
     }
   }
 
-  // تحديث صورة الإجابة
   void updateSecondSectionImage(int index, String imagePath,
       [Uint8List? bytes]) {
     if (index < secondSectionOptions.length) {
+      var currentOption = secondSectionOptions[index];
       secondSectionOptions[index] = DragDrop_Question_Items(
-        text: null,
+        text: currentOption.text,
         imagePath: imagePath,
         imageBytes: bytes,
+        isTextSelected: false, // إلغاء تحديد خيار النص
+        isImageSelected: true, // تحديد خيار الصورة
+        showTextField: false,
       );
       update();
     }
   }
 
-  // تنظيف الخيارات الفارغة
   void validateAndCleanOptions() {
-    // إزالة الأزواج التي يكون أحد قسميها فارغًا
     for (int i = firstSectionOptions.length - 1; i >= 0; i--) {
       if (i >= firstSectionOptions.length || i >= secondSectionOptions.length) {
         continue;
@@ -148,25 +166,20 @@ class DragDrop_Question_Controller extends GetxController {
         secondSectionOptions.removeAt(i);
       }
     }
-
     update();
   }
 
-  // التحقق من صحة البيانات قبل الحفظ
   bool validateBeforeSave() {
-    // يجب أن يكون هناك زوجان على الأقل
     if (firstSectionOptions.length < 2 || secondSectionOptions.length < 2) {
       ErrorMessage('يجب إدخال زوجين على الأقل'.tr);
       return false;
     }
 
-    // يجب أن يكون عدد العناصر متساويًا في القسمين
     if (firstSectionOptions.length != secondSectionOptions.length) {
       ErrorMessage('يجب أن يتطابق عدد العناصر في القسمين'.tr);
       return false;
     }
 
-    // التحقق من عدم وجود خيارات فارغة
     for (int i = 0; i < firstSectionOptions.length; i++) {
       if (firstSectionOptions[i].isEmpty || secondSectionOptions[i].isEmpty) {
         ErrorMessage('يجب تعبئة جميع الحقول'.tr);
@@ -177,7 +190,6 @@ class DragDrop_Question_Controller extends GetxController {
     return true;
   }
 
-  // تنظيف البيانات بعد الإضافة
   void clearData() {
     firstSectionOptions.clear();
     secondSectionOptions.clear();
@@ -213,6 +225,7 @@ class DragDrop_Question_Controller extends GetxController {
     SetIsLoading(false);
     update();
   }
+
   void addQuestion(Question question) {
     questions?.insert(0, question);
     filterdQuestions = List.from(questions ?? []);

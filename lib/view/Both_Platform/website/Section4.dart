@@ -35,169 +35,60 @@ class Section4 extends StatelessWidget {
             SizedBox(
               height: h / 27.36,
             ),
-            Text(
-                "Virtual Modern School is an online learning platform that helps students to learn the"
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: Text(
+                'Virtual Modern School is an online learning platform that helps students to learn the Syrian Education Curriculum from home. The courses of this platform are designed for elementary school, middle school, and high school all in one place.'
                     .tr,
-                style: Get.theme.textTheme.bodyMedium!),
-            Text(
-                "Syrian Education Curriculum from home. The courses of this platform are designed"
-                    .tr,
-                style: Get.theme.textTheme.bodyMedium!),
-            Text(
-                "for elementary school, middle school, and high school all in one place."
-                    .tr,
-                style: Get.theme.textTheme.bodyMedium!),
-            SizedBox(
-              height: h / 34.2,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Container(
-                  padding: EdgeInsets.only(top: h / 68.4, bottom: h / 68.4),
-                  height: h / 3.10909,
-                  width: w / 6.736,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30),
-                      color: Get.theme.scaffoldBackgroundColor),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Image.asset(
-                        "assets/images/section4-image1.png",
-                        height: h / 7.6,
-                      ),
-                      SizedBox(
-                        height: h / 68.4,
-                      ),
-                      Text("Improving educational".tr,
-                          style: Get.theme.textTheme.bodyMedium!),
-                      Text("Skills".tr, style: Get.theme.textTheme.bodyMedium!)
-                    ],
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.only(top: h / 68.4, bottom: h / 68.4),
-                  height: h / 3.10909,
-                  width: w / 6.736,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30),
-                      color: Get.theme.scaffoldBackgroundColor),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Image.asset(
-                        "assets/images/section4-image2.png",
-                        height: h / 7.6,
-                      ),
-                      SizedBox(
-                        height: h / 68.4,
-                      ),
-                      Text("Smart virtual".tr,
-                          style: Get.theme.textTheme.bodyMedium!),
-                      Text("meeting".tr, style: Get.theme.textTheme.bodyMedium!)
-                    ],
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.only(top: h / 68.4, bottom: h / 68.4),
-                  height: h / 3.10909,
-                  width: w / 6.736,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30),
-                      color: Get.theme.scaffoldBackgroundColor),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Image.asset(
-                        "assets/images/section4-image3.png",
-                        height: h / 7.6,
-                      ),
-                      SizedBox(
-                        height: h / 68.4,
-                      ),
-                      Text("Outstanding".tr,
-                          style: Get.theme.textTheme.bodyMedium!),
-                      Text("user - friendliness".tr,
-                          style: Get.theme.textTheme.bodyMedium!)
-                    ],
-                  ),
-                ),
-              ],
+                style: Get.theme.textTheme.bodyMedium!,
+                textAlign: TextAlign.center,
+                maxLines: 4,
+                overflow: TextOverflow.ellipsis,
+              ),
             ),
             SizedBox(
               height: h / 34.2,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+            Wrap(
+              spacing: 20,
+              runSpacing: 20,
+              alignment: WrapAlignment.spaceAround,
               children: [
-                Container(
-                  padding: EdgeInsets.only(top: h / 68.4, bottom: h / 68.4),
-                  height: h / 3.10909,
+                Section4Card(
+                  hight: h / 3.10909,
                   width: w / 6.736,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30),
-                      color: Get.theme.scaffoldBackgroundColor),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Image.asset(
-                        "assets/images/section4-image4.png",
-                        height: h / 7.6,
-                      ),
-                      SizedBox(
-                        height: h / 68.4,
-                      ),
-                      Text("Instant live".tr,
-                          style: Get.theme.textTheme.bodyMedium!),
-                      Text("Lessons".tr, style: Get.theme.textTheme.bodyMedium!)
-                    ],
-                  ),
+                  imagePath: "assets/images/section4-image1.png",
+                  textLines: ["Improving educational", "Skills"],
                 ),
-                Container(
-                  padding: EdgeInsets.only(top: h / 68.4, bottom: h / 68.4),
-                  height: h / 3.10909,
+                Section4Card(
+                  hight: h / 3.10909,
                   width: w / 6.736,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30),
-                      color: Get.theme.scaffoldBackgroundColor),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Image.asset(
-                        "assets/images/section4-image5.png",
-                        height: h / 7.6,
-                      ),
-                      SizedBox(
-                        height: h / 68.4,
-                      ),
-                      Text("Focus on results".tr,
-                          style: Get.theme.textTheme.bodyMedium!)
-                    ],
-                  ),
+                  imagePath: "assets/images/section4-image2.png",
+                  textLines: ["Smart virtual", "meeting"],
                 ),
-                Container(
-                  padding: EdgeInsets.only(top: h / 68.4, bottom: h / 68.4),
-                  height: h / 3.10909,
+                Section4Card(
+                  hight: h / 3.10909,
                   width: w / 6.736,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30),
-                      color: Get.theme.scaffoldBackgroundColor),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Image.asset(
-                        "assets/images/section4-image6.png",
-                        height: h / 7.6,
-                      ),
-                      SizedBox(
-                        height: h / 68.4,
-                      ),
-                      Text("Multiple registration".tr,
-                          style: Get.theme.textTheme.bodyMedium!),
-                      Text("options".tr, style: Get.theme.textTheme.bodyMedium!)
-                    ],
-                  ),
+                  imagePath: "assets/images/section4-image3.png",
+                  textLines: ["Outstanding", "user - friendliness"],
+                ),
+                Section4Card(
+                  hight: h / 3.10909,
+                  width: w / 6.736,
+                  imagePath: "assets/images/section4-image4.png",
+                  textLines: ["Instant live", "Lessons"],
+                ),
+                Section4Card(
+                  hight: h / 3.10909,
+                  width: w / 6.736,
+                  imagePath: "assets/images/section4-image5.png",
+                  textLines: ["Focus on results"],
+                ),
+                Section4Card(
+                  hight: h / 3.10909,
+                  width: w / 6.736,
+                  imagePath: "assets/images/section4-image6.png",
+                  textLines: ["Multiple registration", "options"],
                 ),
               ],
             ),
@@ -228,80 +119,58 @@ class Section4 extends StatelessWidget {
                       )),
                 )),
             Padding(
-              padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-              child: Column(
-                children: [
-                  Text(
-                      textAlign: TextAlign.center,
-                      "Virtual Modern School is an online learning platform that helps students to learn the"
-                          .tr,
-                      style: Get.theme.textTheme.bodyMedium!
-                          .copyWith(fontSize: 12.0)),
-                  Text(
-                      textAlign: TextAlign.center,
-                      "Syrian Education Curriculum from home. The courses of this platform are designed"
-                          .tr,
-                      style: Get.theme.textTheme.bodyMedium!
-                          .copyWith(fontSize: 12.0)),
-                  Text(
-                      textAlign: TextAlign.center,
-                      "for elementary school, middle school, and high school all in one place."
-                          .tr,
-                      style: Get.theme.textTheme.bodyMedium!
-                          .copyWith(fontSize: 12.0)),
-                ],
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: Text(
+                'Virtual Modern School is an online learning platform that helps students to learn the Syrian Education Curriculum from home. The courses of this platform are designed for elementary school, middle school, and high school all in one place.'
+                    .tr,
+                style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 12.0),
+                textAlign: TextAlign.center,
+                maxLines: 4,
+                overflow: TextOverflow.ellipsis,
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 15.0),
-              child: Column(
+              child: Wrap(
+                spacing: 10,
+                runSpacing: 10,
+                alignment: WrapAlignment.spaceAround,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Section4Card(
-                        hight: 180,
-                        width: (w - 90) / 3,
-                        imagePath: "assets/images/section4-image1.png",
-                        textLines: ["Improving educational", "Skills"],
-                      ),
-                      Section4Card(
-                        hight: 180,
-                        width: (w - 90) / 3,
-                        imagePath: "assets/images/section4-image2.png",
-                        textLines: ["Smart virtual", "meeting"],
-                      ),
-                      Section4Card(
-                        hight: 180,
-                        width: (w - 90) / 3,
-                        imagePath: "assets/images/section4-image3.png",
-                        textLines: ["Outstanding", "user - friendliness"],
-                      ),
-                    ],
+                  Section4Card(
+                    hight: 180,
+                    width: (w - 90) / 3,
+                    imagePath: "assets/images/section4-image1.png",
+                    textLines: ["Improving educational", "Skills"],
                   ),
-                  SizedBox(height: h / 34.2),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Section4Card(
-                        hight: 180,
-                        width: (w - 90) / 3,
-                        imagePath: "assets/images/section4-image4.png",
-                        textLines: ["Instant live", "Lessons"],
-                      ),
-                      Section4Card(
-                        hight: 180,
-                        width: (w - 90) / 3,
-                        imagePath: "assets/images/section4-image5.png",
-                        textLines: ["Focus on results"],
-                      ),
-                      Section4Card(
-                        hight: 180,
-                        width: (w - 90) / 3,
-                        imagePath: "assets/images/section4-image6.png",
-                        textLines: ["Multiple registration", "options"],
-                      ),
-                    ],
+                  Section4Card(
+                    hight: 180,
+                    width: (w - 90) / 3,
+                    imagePath: "assets/images/section4-image2.png",
+                    textLines: ["Smart virtual", "meeting"],
+                  ),
+                  Section4Card(
+                    hight: 180,
+                    width: (w - 90) / 3,
+                    imagePath: "assets/images/section4-image3.png",
+                    textLines: ["Outstanding", "user - friendliness"],
+                  ),
+                  Section4Card(
+                    hight: 180,
+                    width: (w - 90) / 3,
+                    imagePath: "assets/images/section4-image4.png",
+                    textLines: ["Instant live", "Lessons"],
+                  ),
+                  Section4Card(
+                    hight: 180,
+                    width: (w - 90) / 3,
+                    imagePath: "assets/images/section4-image5.png",
+                    textLines: ["Focus on results"],
+                  ),
+                  Section4Card(
+                    hight: 180,
+                    width: (w - 90) / 3,
+                    imagePath: "assets/images/section4-image6.png",
+                    textLines: ["Multiple registration", "options"],
                   ),
                 ],
               ),
@@ -331,80 +200,58 @@ class Section4 extends StatelessWidget {
                       style: Get.theme.textTheme.titleMedium!.copyWith()),
                 )),
             Padding(
-              padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-              child: Column(
-                children: [
-                  Text(
-                      textAlign: TextAlign.center,
-                      "Virtual Modern School is an online learning platform that helps students to learn the"
-                          .tr,
-                      style: Get.theme.textTheme.bodyMedium!
-                          .copyWith(fontSize: 12.0)),
-                  Text(
-                      textAlign: TextAlign.center,
-                      "Syrian Education Curriculum from home. The courses of this platform are designed"
-                          .tr,
-                      style: Get.theme.textTheme.bodyMedium!
-                          .copyWith(fontSize: 12.0)),
-                  Text(
-                      textAlign: TextAlign.center,
-                      "for elementary school, middle school, and high school all in one place."
-                          .tr,
-                      style: Get.theme.textTheme.bodyMedium!
-                          .copyWith(fontSize: 12.0)),
-                ],
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: Text(
+                'Virtual Modern School is an online learning platform that helps students to learn the Syrian Education Curriculum from home. The courses of this platform are designed for elementary school, middle school, and high school all in one place.'
+                    .tr,
+                style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 12.0),
+                textAlign: TextAlign.center,
+                maxLines: 6,
+                overflow: TextOverflow.ellipsis,  
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 15.0),
-              child: Column(
+              child: Wrap(
+                spacing: 10,
+                runSpacing: 10,
+                alignment: WrapAlignment.spaceAround,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Section4Card(
-                        hight: 180,
-                        width: (w - 90) / 3,
-                        imagePath: "assets/images/section4-image1.png",
-                        textLines: ["Improving educational", "Skills"],
-                      ),
-                      Section4Card(
-                        hight: 180,
-                        width: (w - 90) / 3,
-                        imagePath: "assets/images/section4-image2.png",
-                        textLines: ["Smart virtual", "meeting"],
-                      ),
-                      Section4Card(
-                        hight: 180,
-                        width: (w - 90) / 3,
-                        imagePath: "assets/images/section4-image3.png",
-                        textLines: ["Outstanding", "user - friendliness"],
-                      ),
-                    ],
+                  Section4Card(
+                    hight: 180,
+                    width: (w - 90) / 3,
+                    imagePath: "assets/images/section4-image1.png",
+                    textLines: ["Improving educational", "Skills"],
                   ),
-                  SizedBox(height: h / 34.2),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Section4Card(
-                        hight: 180,
-                        width: (w - 90) / 3,
-                        imagePath: "assets/images/section4-image4.png",
-                        textLines: ["Instant live", "Lessons"],
-                      ),
-                      Section4Card(
-                        hight: 180,
-                        width: (w - 90) / 3,
-                        imagePath: "assets/images/section4-image5.png",
-                        textLines: ["Focus on results"],
-                      ),
-                      Section4Card(
-                        hight: 180,
-                        width: (w - 90) / 3,
-                        imagePath: "assets/images/section4-image6.png",
-                        textLines: ["Multiple registration", "options"],
-                      ),
-                    ],
+                  Section4Card(
+                    hight: 180,
+                    width: (w - 90) / 3,
+                    imagePath: "assets/images/section4-image2.png",
+                    textLines: ["Smart virtual", "meeting"],
+                  ),
+                  Section4Card(
+                    hight: 180,
+                    width: (w - 90) / 3,
+                    imagePath: "assets/images/section4-image3.png",
+                    textLines: ["Outstanding", "user - friendliness"],
+                  ),
+                  Section4Card(
+                    hight: 180,
+                    width: (w - 90) / 3,
+                    imagePath: "assets/images/section4-image4.png",
+                    textLines: ["Instant live", "Lessons"],
+                  ),
+                  Section4Card(
+                    hight: 180,
+                    width: (w - 90) / 3,
+                    imagePath: "assets/images/section4-image5.png",
+                    textLines: ["Focus on results"],
+                  ),
+                  Section4Card(
+                    hight: 180,
+                    width: (w - 90) / 3,
+                    imagePath: "assets/images/section4-image6.png",
+                    textLines: ["Multiple registration", "options"],
                   ),
                 ],
               ),
