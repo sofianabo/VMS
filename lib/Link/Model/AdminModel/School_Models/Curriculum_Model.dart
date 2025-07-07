@@ -23,6 +23,7 @@ class Curriculum_Model {
 
 class Curriculum {
   int? id;
+  int? curriculumId;
   int? fileId;
   int? imageId;
   String? name;
@@ -30,11 +31,12 @@ class Curriculum {
   int? maxMark;
   int? passingMark;
   int? type;
+  List<Semester>? semester;
   Subject? subject;
-  Semester? semester;
 
   Curriculum(
       {this.id,
+      this.curriculumId,
       this.fileId,
       this.imageId,
       this.name,
@@ -42,11 +44,12 @@ class Curriculum {
       this.maxMark,
       this.passingMark,
       this.type,
-      this.subject,
-      this.semester});
+      this.semester,
+      this.subject});
 
   Curriculum.fromJson(Map<String, dynamic> json) {
     id = json['id'];
+    curriculumId = json['curriculumId'];
     fileId = json['fileId'];
     imageId = json['ImageId'];
     name = json['name'];
@@ -54,16 +57,20 @@ class Curriculum {
     maxMark = json['maxMark'];
     passingMark = json['PassingMark'];
     type = json['type'];
+    if (json['semester'] != null) {
+      semester = <Semester>[];
+      json['semester'].forEach((v) {
+        semester!.add(new Semester.fromJson(v));
+      });
+    }
     subject =
         json['subject'] != null ? new Subject.fromJson(json['subject']) : null;
-    semester = json['semester'] != null
-        ? new Semester.fromJson(json['semester'])
-        : null;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
+    data['curriculumId'] = this.curriculumId;
     data['fileId'] = this.fileId;
     data['ImageId'] = this.imageId;
     data['name'] = this.name;
@@ -71,12 +78,34 @@ class Curriculum {
     data['maxMark'] = this.maxMark;
     data['PassingMark'] = this.passingMark;
     data['type'] = this.type;
+    if (this.semester != null) {
+      data['semester'] = this.semester!.map((v) => v.toJson()).toList();
+    }
     if (this.subject != null) {
       data['subject'] = this.subject!.toJson();
     }
-    if (this.semester != null) {
-      data['semester'] = this.semester!.toJson();
-    }
+    return data;
+  }
+}
+
+class Semester {
+  int? id;
+  String? name;
+  String? enName;
+
+  Semester({this.id, this.name, this.enName});
+
+  Semester.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    name = json['name'];
+    enName = json['enName'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['name'] = this.name;
+    data['enName'] = this.enName;
     return data;
   }
 }
@@ -99,25 +128,6 @@ class Subject {
     data['name'] = this.name;
     data['enName'] = this.enName;
     data['hasCurriculum'] = this.hasCurriculum;
-    return data;
-  }
-}
-
-class Semester {
-  String? name;
-  String? enName;
-
-  Semester({this.name, this.enName});
-
-  Semester.fromJson(Map<String, dynamic> json) {
-    name = json['name'];
-    enName = json['enName'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.name;
-    data['enName'] = this.enName;
     return data;
   }
 }

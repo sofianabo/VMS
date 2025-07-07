@@ -36,8 +36,9 @@ class Curriculumn_Controller extends GetxController {
 
     if (semester != null && semester.isNotEmpty) {
       tempFilteredList = tempFilteredList.where((cur) {
-        return cur.semester!.enName == semester ||
-            cur.semester!.name == semester;
+        return cur.semester
+                ?.any((s) => s.enName == semester || s.name == semester) ??
+            false;
       }).toList();
     }
 
@@ -53,7 +54,7 @@ class Curriculumn_Controller extends GetxController {
 
   bool isFailingSubject = false;
   bool isLoading = true;
-  bool isHoveringFile = false; 
+  bool isHoveringFile = false;
   String fileStatus = "Click To Add File\nOr\nDrag And Drop File Here".tr;
   bool isHoveringimage = false;
   String imageStatus = "Click To Add Image\nOr\nDrag And Drop Image Here".tr;
@@ -165,10 +166,12 @@ class Curriculumn_Controller extends GetxController {
 
     if (semesterIndex.isNotEmpty) {
       filteredCurriculum = filteredCurriculum.where((emp) {
-        return emp.semester!.name == semesterIndex ||
-            emp.semester!.enName == semesterIndex;
+        return emp.semester?.any(
+                (s) => s.name == semesterIndex || s.enName == semesterIndex) ??
+            false;
       }).toList();
     }
+
     if (subjectIndex.isNotEmpty) {
       filteredCurriculum = filteredCurriculum.where((emp) {
         return emp.subject!.name == subjectIndex ||

@@ -40,8 +40,8 @@ class Curriculumn_LMS_Controller extends GetxController {
 
     if (semester != null && semester.isNotEmpty) {
       tempFilteredList = tempFilteredList.where((cur) {
-        return cur.semester!.enName == semester ||
-            cur.semester!.name == semester;
+        return cur.semester!
+            .any((s) => s.enName == semester || s.name == semester);
       }).toList();
     }
 
@@ -169,10 +169,12 @@ class Curriculumn_LMS_Controller extends GetxController {
 
     if (semesterIndex.isNotEmpty) {
       filteredCurriculum = filteredCurriculum.where((emp) {
-        return emp.semester!.name == semesterIndex ||
-            emp.semester!.enName == semesterIndex;
+        return emp.semester?.any(
+                (s) => s.name == semesterIndex || s.enName == semesterIndex) ??
+            false;
       }).toList();
     }
+
     if (subjectIndex.isNotEmpty) {
       filteredCurriculum = filteredCurriculum.where((emp) {
         return emp.subject!.name == subjectIndex ||
