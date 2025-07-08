@@ -87,7 +87,7 @@ class _Add_SessionState extends State<Add_Session> {
                       startDate: controller.startDate.value.toString(),
                       endDate: controller.endDate.value.toString(),
                       sessionId: controller.selectedDropdownValue.value,
-                      firstDays:
+                      firstStart:
                           controller.firstsemesterStartDate.value.toString(),
                       firstEnd:
                           controller.firstsemesterendDate.value.toString(),
@@ -95,7 +95,7 @@ class _Add_SessionState extends State<Add_Session> {
                           controller.secondsemesterStartDate.value.toString(),
                       secondEnd:
                           controller.secondsemesterendDate.value.toString(),
-                      firstStart: firstSemDay.text,
+                      firstDays: firstSemDay.text,
                       secondDays: secondSemDay.text,
                     );
                   }
@@ -276,8 +276,12 @@ class _Add_SessionState extends State<Add_Session> {
                               }
                             },
                             controller: firstSemDay,
-                            Uptext: "Number of actual working days".tr,
-                            hinttext: "Number of actual working days".tr),
+                            Uptext:
+                                "Number of actual working days in first semster"
+                                    .tr,
+                            hinttext:
+                                "Number of actual working days in first semster"
+                                    .tr),
                         Textfildwithupper(
                             isRequired: true,
                             fieldType: 'number',
@@ -291,8 +295,12 @@ class _Add_SessionState extends State<Add_Session> {
                               }
                             },
                             controller: secondSemDay,
-                            Uptext: "Number of actual working days".tr,
-                            hinttext: "Number of actual working days".tr),
+                            Uptext:
+                                "Number of actual working days in second semester"
+                                    .tr,
+                            hinttext:
+                                "Number of actual working days in second semester"
+                                    .tr),
                       ],
                     ),
                   ),

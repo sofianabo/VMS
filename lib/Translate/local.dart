@@ -1080,6 +1080,15 @@ class Languages {
       'Enter answer text': 'أدخل نص الجواب',
       'Drag and Drop': 'سحب و إفلات',
       'No Homework': 'لا يوجد الوظائف',
+
+      'First Semester Start Date': 'تاريخ بداية الفصل الأول',
+      'Second Semester Start Date': 'تاريخ بداية الفصل الثاني',
+      'First Semester End Date': 'تاريخ نهاية الفصل الأول',
+      'Second Semester End Date': 'تاريخ نهاية الفصل الثاني',
+      'Number of actual working days in first semster':
+          'عدد أيام الدوام الفعلي في الفصل الأول',
+      'Number of actual working days in second semester':
+          'عدد أيام الدوام الفعلي في الفصل الثاني',
     },
     'en': {
       'Welcome Laith Haitham Azzam': 'Welcome Laith Haitham Azzam',
@@ -2157,6 +2166,20 @@ class Languages {
       'Enter answer text': 'Enter answer text',
       'Drag and Drop': 'Drag and Drop',
       'No Homework': 'No Homework',
+
+      'First Semester Start Date': 'First Semester Start Date',
+      'Second Semester Start Date': 'Second Semester Start Date',
+      'First Semester End Date': 'First Semester End Date',
+      'Second Semester End Date': 'Second Semester End Date',
+      'Number of actual working days in first semster':
+          'Number of actual working days in first semster',
+      'Number of actual working days in second semester':
+          'Number of actual working days in second semester',
+      '': '',
+      '': '',
+      '': '',
+      '': '',
+      '': '',
       '': '',
       '': '',
       '': '',

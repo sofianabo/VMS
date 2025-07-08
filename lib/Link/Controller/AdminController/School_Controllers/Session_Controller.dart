@@ -94,6 +94,7 @@ class SessionController extends GetxController {
         endDate.value = null;
       }
     }
+    update();
   }
 
   void selectEndDate(BuildContext context) async {
@@ -120,16 +121,18 @@ class SessionController extends GetxController {
       endDate.value = picked;
       updateFieldError("end", false);
     }
+    update();
   }
 
   void selectFirstSemsterStartDate(BuildContext context) async {
     final DateTime now = DateTime.now();
-    final DateTime minDate = DateTime(now.year - 1); // سنة قبل الحالية
-    final DateTime maxDate = DateTime(now.year + 2); // سنتان بعد الحالية
+    final DateTime minDate = DateTime(startDate.value!.year,
+        startDate.value!.month, startDate.value!.day); // سنة قبل الحالية
+    final DateTime maxDate = DateTime(endDate.value!.year); // سنتان بعد الحالية
 
     final DateTime? picked = await showDatePicker(
       context: context,
-      initialDate: firstsemesterStartDate.value ?? now,
+      initialDate: startDate.value ?? now,
       firstDate: minDate,
       lastDate: maxDate,
     );
@@ -142,6 +145,7 @@ class SessionController extends GetxController {
         firstsemesterendDate.value = null;
       }
     }
+    update();
   }
 
   void selectFirstSemesterEndDate(BuildContext context) async {
@@ -152,9 +156,9 @@ class SessionController extends GetxController {
     final DateTime minEndDate = firstsemesterStartDate.value!
         .add(Duration(days: 1)); // بعد البدء بيوم واحد على الأقل
     final DateTime maxEndDate = DateTime(
-      firstsemesterStartDate.value!.year + 2, // نفس اليوم والشهر بعد سنتين
-      firstsemesterStartDate.value!.month,
-      firstsemesterStartDate.value!.day,
+      endDate.value!.year, // نفس اليوم والشهر بعد سنتين
+      endDate.value!.month,
+      endDate.value!.day,
     ); // حتى سنتين بعد السنة الحالية
 
     final DateTime? picked = await showDatePicker(
@@ -168,16 +172,20 @@ class SessionController extends GetxController {
       firstsemesterendDate.value = picked;
       updateFieldError("firstEnd", false);
     }
+    update();
   }
 
   void selectSecondSemsterStartDate(BuildContext context) async {
     final DateTime now = DateTime.now();
-    final DateTime minDate = DateTime(now.year - 1); // سنة قبل الحالية
-    final DateTime maxDate = DateTime(now.year + 2); // سنتان بعد الحالية
+    final DateTime minDate = DateTime(
+        firstsemesterendDate.value!.year,
+        firstsemesterendDate.value!.month,
+        firstsemesterendDate.value!.day); // سنة قبل الحالية
+    final DateTime maxDate = DateTime(endDate.value!.year); // سنتان بعد الحالية
 
     final DateTime? picked = await showDatePicker(
       context: context,
-      initialDate: secondsemesterStartDate.value ?? now,
+      initialDate: firstsemesterendDate.value ?? now,
       firstDate: minDate,
       lastDate: maxDate,
     );
@@ -191,6 +199,7 @@ class SessionController extends GetxController {
         secondsemesterendDate.value = null;
       }
     }
+    update();
   }
 
   void selectSecondSemesterEndDate(BuildContext context) async {
@@ -201,9 +210,9 @@ class SessionController extends GetxController {
     final DateTime minEndDate = secondsemesterStartDate.value!
         .add(Duration(days: 1)); // بعد البدء بيوم واحد على الأقل
     final DateTime maxEndDate = DateTime(
-      secondsemesterStartDate.value!.year + 2, // نفس اليوم والشهر بعد سنتين
-      secondsemesterStartDate.value!.month,
-      secondsemesterStartDate.value!.day,
+      endDate.value!.year, // نفس اليوم والشهر بعد سنتين
+      endDate.value!.month,
+      endDate.value!.day,
     ); // حتى سنتين بعد السنة الحالية
 
     final DateTime? picked = await showDatePicker(
@@ -217,6 +226,7 @@ class SessionController extends GetxController {
       secondsemesterendDate.value = picked;
       updateFieldError("secondEnd", false);
     }
+    update();
   }
 
   bool IsnameError = false;
@@ -234,10 +244,10 @@ class SessionController extends GetxController {
       case 'name':
         IsnameError = newValue;
         break;
-        case 'firstDays':
+      case 'firstDays':
         IsFirstDaysError = newValue;
         break;
-        case 'secondDays':
+      case 'secondDays':
         IsSecondDaysError = newValue;
         break;
       case 'start':
