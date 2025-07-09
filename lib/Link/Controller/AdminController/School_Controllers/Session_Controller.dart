@@ -69,6 +69,10 @@ class SessionController extends GetxController {
 
   Rx<DateTime?> startDate = Rx<DateTime?>(null);
   Rx<DateTime?> endDate = Rx<DateTime?>(null);
+  Rx<DateTime?> firstsemesterStartDate = Rx<DateTime?>(null);
+  Rx<DateTime?> firstsemesterendDate = Rx<DateTime?>(null);
+  Rx<DateTime?> secondsemesterStartDate = Rx<DateTime?>(null);
+  Rx<DateTime?> secondsemesterendDate = Rx<DateTime?>(null);
 
   void selectStartDate(BuildContext context) async {
     final DateTime now = DateTime.now();
@@ -89,27 +93,6 @@ class SessionController extends GetxController {
           endDate.value!.isBefore(picked.add(Duration(days: 1)))) {
         endDate.value = null;
       }
-    }
-  }
-
-  bool IsnameError = false;
-  bool IsstartError = false;
-  bool IsEndError = false;
-
-  void updateFieldError(String type, bool newValue) {
-    switch (type) {
-      case 'name':
-        IsnameError = newValue;
-        break;
-      case 'start':
-        IsstartError = newValue;
-        break;
-      case 'end':
-        IsEndError = newValue;
-        break;
-
-      default:
-        print("Error: Invalid type");
     }
     update();
   }
@@ -138,14 +121,174 @@ class SessionController extends GetxController {
       endDate.value = picked;
       updateFieldError("end", false);
     }
+    update();
+  }
+
+  void selectFirstSemsterStartDate(BuildContext context) async {
+    final DateTime now = DateTime.now();
+    final DateTime minDate = DateTime(startDate.value!.year,
+        startDate.value!.month, startDate.value!.day); // سنة قبل الحالية
+    final DateTime maxDate = DateTime(endDate.value!.year); // سنتان بعد الحالية
+
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: startDate.value ?? now,
+      firstDate: minDate,
+      lastDate: maxDate,
+    );
+
+    if (picked != null) {
+      firstsemesterStartDate.value = picked;
+      updateFieldError("firstStart", false);
+      if (firstsemesterendDate.value != null &&
+          firstsemesterendDate.value!.isBefore(picked.add(Duration(days: 1)))) {
+        firstsemesterendDate.value = null;
+      }
+    }
+    update();
+  }
+
+  void selectFirstSemesterEndDate(BuildContext context) async {
+    if (firstsemesterStartDate.value == null) {
+      return;
+    }
+
+    final DateTime minEndDate = firstsemesterStartDate.value!
+        .add(Duration(days: 1)); // بعد البدء بيوم واحد على الأقل
+    final DateTime maxEndDate = DateTime(
+      endDate.value!.year, // نفس اليوم والشهر بعد سنتين
+      endDate.value!.month,
+      endDate.value!.day,
+    ); // حتى سنتين بعد السنة الحالية
+
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: firstsemesterendDate.value ?? minEndDate,
+      firstDate: minEndDate,
+      lastDate: maxEndDate,
+    );
+
+    if (picked != null) {
+      firstsemesterendDate.value = picked;
+      updateFieldError("firstEnd", false);
+    }
+    update();
+  }
+
+  void selectSecondSemsterStartDate(BuildContext context) async {
+    final DateTime now = DateTime.now();
+    final DateTime minDate = DateTime(
+        firstsemesterendDate.value!.year,
+        firstsemesterendDate.value!.month,
+        firstsemesterendDate.value!.day); // سنة قبل الحالية
+    final DateTime maxDate = DateTime(endDate.value!.year); // سنتان بعد الحالية
+
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: firstsemesterendDate.value ?? now,
+      firstDate: minDate,
+      lastDate: maxDate,
+    );
+
+    if (picked != null) {
+      secondsemesterStartDate.value = picked;
+      updateFieldError("secondStart", false);
+      if (secondsemesterendDate.value != null &&
+          secondsemesterendDate.value!
+              .isBefore(picked.add(Duration(days: 1)))) {
+        secondsemesterendDate.value = null;
+      }
+    }
+    update();
+  }
+
+  void selectSecondSemesterEndDate(BuildContext context) async {
+    if (secondsemesterStartDate.value == null) {
+      return;
+    }
+
+    final DateTime minEndDate = secondsemesterStartDate.value!
+        .add(Duration(days: 1)); // بعد البدء بيوم واحد على الأقل
+    final DateTime maxEndDate = DateTime(
+      endDate.value!.year, // نفس اليوم والشهر بعد سنتين
+      endDate.value!.month,
+      endDate.value!.day,
+    ); // حتى سنتين بعد السنة الحالية
+
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: secondsemesterendDate.value ?? minEndDate,
+      firstDate: minEndDate,
+      lastDate: maxEndDate,
+    );
+
+    if (picked != null) {
+      secondsemesterendDate.value = picked;
+      updateFieldError("secondEnd", false);
+    }
+    update();
+  }
+
+  bool IsnameError = false;
+  bool IsstartError = false;
+  bool IsEndError = false;
+  bool IsFirstStartError = false;
+  bool IsFirstEndError = false;
+  bool IsSecondStartError = false;
+  bool IsSecondEndError = false;
+  bool IsFirstDaysError = false;
+  bool IsSecondDaysError = false;
+
+  void updateFieldError(String type, bool newValue) {
+    switch (type) {
+      case 'name':
+        IsnameError = newValue;
+        break;
+      case 'firstDays':
+        IsFirstDaysError = newValue;
+        break;
+      case 'secondDays':
+        IsSecondDaysError = newValue;
+        break;
+      case 'start':
+        IsstartError = newValue;
+        break;
+      case 'end':
+        IsEndError = newValue;
+        break;
+      case 'firstStart':
+        IsFirstStartError = newValue;
+        break;
+      case 'firstEnd':
+        IsFirstEndError = newValue;
+        break;
+      case 'secondStart':
+        IsSecondStartError = newValue;
+        break;
+      case 'secondEnd':
+        IsSecondEndError = newValue;
+        break;
+
+      default:
+        print("Error: Invalid type");
+    }
+    update();
   }
 
   Rx<DateTime?> get selectStartDateindex => startDate;
   Rx<DateTime?> get selectEndDateindex => endDate;
+  Rx<DateTime?> get selectFirstStartindex => firstsemesterStartDate;
+  Rx<DateTime?> get selectFirstEndindex => firstsemesterendDate;
+  Rx<DateTime?> get selectSecondStartindex => secondsemesterStartDate;
+  Rx<DateTime?> get selectSecondEndindex => secondsemesterendDate;
 
   void initialData() {
     startDate.value = null;
     endDate.value = null;
+    firstsemesterStartDate.value = null;
+    firstsemesterendDate.value = null;
+    secondsemesterStartDate.value = null;
+    secondsemesterendDate.value = null;
     checkbox1.value = false;
     checkbox2.value = false;
     checkbox3.value = false;
@@ -196,7 +339,7 @@ class SessionController extends GetxController {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   // القائمة المنسدلة
-                  DropdownButton<String>( 
+                  DropdownButton<String>(
                     dropdownColor: Get.theme.cardColor,
                     iconDisabledColor: Colors.grey,
                     borderRadius: BorderRadius.all(Radius.circular(3)),

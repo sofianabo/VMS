@@ -15,14 +15,20 @@ class Add_Session_API {
   Dio dio = Dio();
 
   Add_Session(
-    String year,
-    String startDate,
-    String endDate,
+    {String? year,
+    String? startDate,
+    String? endDate,
+    String? firstStart,
+    String? firstEnd,
+    String? secondStart,
+    String? secondEnd,
+    String? firstDays,
+    String? secondDays,
     String? sessionId, // ملاحظة: تصحيح كتابة "seassionId" إلى "sessionId"
     bool? classs,
     bool? devi,
     bool? qt,
-    bool? rsett,
+    bool? rsett,}
   ) async {
     CancelToken cancelToken = CancelToken();
     Loading_Dialog(cancelToken: cancelToken);
@@ -34,6 +40,12 @@ class Add_Session_API {
         'year': year,
         'startDate': startDate,
         'endDate': endDate,
+        'firstSemesterStart': firstStart,
+        'firstSemesterEnd': firstEnd,
+        'secondSemesterStart': secondStart,
+        'secondSemesterEnd': secondEnd,
+        'firstSemesterCount': firstDays,
+        'secondSemesterCount': secondDays,
       };
 
       // إضافة sessionId فقط إذا كان موجوداً و classs == true
