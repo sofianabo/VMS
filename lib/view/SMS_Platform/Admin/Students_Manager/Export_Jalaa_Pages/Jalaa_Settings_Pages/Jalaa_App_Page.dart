@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students/Jalaa_APIS/Get_All_Class_Not_Has_Temp.dart';
+import 'package:vms_school/Link/API/AdminAPI/Students/Jalaa_APIS/Get_All_Settings_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Jalaa_For_Students/Jalaa_Page_Controller.dart';
 import 'package:vms_school/view/Both_Platform/widgets/Squer_Button_Enabled_Disabled.dart';
@@ -18,7 +19,7 @@ class Jalaa_Up_Page extends StatefulWidget {
 class _Jalaa_Up_PageState extends State<Jalaa_Up_Page> {
   @override
   void initState() {
-    // GetAllGuardiansAPI(context).getAllGuardian();
+    Get_All_Jalaa_Settings_API().Get_All_Jalaa_Settings();
     // TODO: implement initState
     super.initState();
   }
@@ -31,7 +32,7 @@ class _Jalaa_Up_PageState extends State<Jalaa_Up_Page> {
     return Column(
       children: [
         Container(
-          width: w,
+          width: (w >= 732 ? w * 0.9 : w * 0.82),
           margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
           child: Padding(
             padding: const EdgeInsets.only(left: 8.0),
@@ -50,7 +51,7 @@ class _Jalaa_Up_PageState extends State<Jalaa_Up_Page> {
                     onchange: (value) {
                       // controller.searchJalaa(value);
                     },
-                    width: w >= 732 ? w * 0.7 : w * 0.9,
+                    width: (w >= 732 ? w * 0.8 : w * 0.70) - 20,
                     radius: 5,
                     controller: search,
                     suffixIcon:

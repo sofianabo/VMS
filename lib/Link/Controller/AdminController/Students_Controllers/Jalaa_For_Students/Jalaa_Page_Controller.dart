@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/Curriculum_Model.dart';
+import 'package:vms_school/Link/Model/AdminModel/Students_Models/Jalaa_Models/All_Jalaas_Model.dart';
 import 'package:vms_school/Link/Model/AdminModel/Students_Models/Jalaa_Models/QuizTypeForSemesterJalaa.dart'
     as Qt;
 import 'package:vms_school/view/Both_Platform/widgets/VMSAlertDialog.dart';
@@ -30,6 +31,8 @@ class Jalaa_Page_Controller extends GetxController {
       "text": "قالب إعدادي (تاسع)",
     },
   ];
+  List<JalaaSettings>? jalaaSettings;
+
   List<Data>? classes;
   List<Curriculum> curriculum = [];
 
@@ -69,7 +72,6 @@ class Jalaa_Page_Controller extends GetxController {
   // Loading
   bool isLoading = false;
   bool isClassLoading = false;
-  List<int> filteredCurriculum = [0];
   void setIsLoading(bool value) {
     isLoading = value;
     update();
@@ -128,9 +130,15 @@ class Jalaa_Page_Controller extends GetxController {
   }
 
   bool isCurrLoading = false;
+  bool isJalaaLoading = false;
 
   void SetCurrIsLoading(bool bool) {
     isCurrLoading = bool;
+    update();
+  }
+
+  void SetJalaasIsLoading(bool bool) {
+    isJalaaLoading = bool;
     update();
   }
 
@@ -144,6 +152,13 @@ class Jalaa_Page_Controller extends GetxController {
     primarySubjects = [];
     secondarySubjects = [];
     SetCurrIsLoading(false); // خلص التحميل
+    update();
+  }
+
+  void Set_Jalaas_Data(All_Jalaas_Model all_Jalaa_Models) {
+    jalaaSettings = all_Jalaa_Models.jalaaSettings;
+
+    SetJalaasIsLoading(false); // خلص التحميل
     update();
   }
 

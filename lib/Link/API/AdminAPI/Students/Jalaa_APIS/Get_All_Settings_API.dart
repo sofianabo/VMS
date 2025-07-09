@@ -1,0 +1,44 @@
+import 'package:dio/dio.dart';
+import 'package:get/get.dart';
+import 'package:vms_school/Link/API/API.dart';
+import 'package:vms_school/Link/API/DioOption.dart' show getDioOptions;
+import 'package:vms_school/Link/API/Error_API.dart' show ErrorHandler;
+import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Jalaa_For_Students/Jalaa_Page_Controller.dart';
+import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/Sessions_DropDown_Controller.dart';
+import 'package:vms_school/Link/Model/AdminModel/Students_Models/Jalaa_Models/All_Jalaas_Model.dart';
+import 'package:vms_school/Link/Model/AdminModel/Students_Models/Jalaa_Models/Class_Model.dart';
+import 'package:vms_school/Link/Model/AdminModel/Students_Models/Jalaa_Models/QuizTypeForSemesterJalaa.dart';
+
+class Get_All_Jalaa_Settings_API {
+  Get_All_Jalaa_Settings_API();
+  Dio dio = Dio();
+  Get_All_Jalaa_Settings() async {
+    final controller = Get.find<Jalaa_Page_Controller>();
+
+    try {
+      controller.SetJalaasIsLoading(true);
+      String myurl = "$hostPort$getSetting";
+      var response = await dio.post(myurl, options: getDioOptions());
+      if (response.statusCode == 200) {
+        All_Jalaas_Model all_jalaas_model =
+            All_Jalaas_Model.fromJson(response.data);
+        controller.Set_Jalaas_Data(all_jalaas_model);
+      } else {
+        ErrorHandler.handleDioError(DioException(
+          requestOptions: response.requestOptions,
+          response: response,
+          type: DioExceptionType.badResponse,
+        ));
+      }
+    } catch (e) {
+      print(e);
+      if (e is DioException) {
+        ErrorHandler.handleDioError(e);
+      } else if (e is Exception) {
+        ErrorHandler.handleException(e);
+      } else {
+        ErrorHandler.handleException(Exception(e.toString()));
+      }
+    }
+  }
+}
