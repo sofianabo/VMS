@@ -568,6 +568,9 @@ class _DraweHomeState extends State<DraweHome> {
                                         cont.updateContent(
                                             "Curriculum Management");
                                       }
+                                      if (value == "Jalaa Settings".tr) {
+                                        cont.updateContent("Jalaa Settings");
+                                      }
                                       Get.find<DraweController>()
                                           .opendrawer(false);
                                     },
@@ -596,6 +599,10 @@ class _DraweHomeState extends State<DraweHome> {
                                       PopupMenuItem<String>(
                                         value: 'Curriculum Management'.tr,
                                         child: Text('Curriculum Management'.tr),
+                                      ),
+                                      PopupMenuItem<String>(
+                                        value: 'Jalaa Settings'.tr,
+                                        child: Text('Jalaa Settings'.tr),
                                       ),
                                     ],
                                   ),

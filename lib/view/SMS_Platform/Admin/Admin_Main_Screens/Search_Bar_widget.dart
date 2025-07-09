@@ -97,7 +97,7 @@ class _SearchWithSuggestionsState extends State<SearchWithSuggestions> {
           "Teacher Management",
           "Teacher Status",
           "Manage Teacher Attendance",
-
+          "Jalaa Settings",
           // من Employees -> PopupMenuButton
           "Employee Management",
           "Employee Attendance",
@@ -202,7 +202,7 @@ class _SearchWithSuggestionsState extends State<SearchWithSuggestions> {
           "Class Management",
           "Division Management",
           "Curriculum Management",
-
+          "Jalaa Settings",
           // من General -> PopupMenuButton
           "School Data Management",
           "Electronic Library",

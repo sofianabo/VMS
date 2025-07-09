@@ -320,6 +320,9 @@ class _SideBarAdminState extends State<SideBarAdmin> {
                         if (value == "Curriculum Management".tr) {
                           cont.updateContent("Curriculum Management");
                         }
+                        if (value == "Jalaa Settings".tr) {
+                          cont.updateContent("Jalaa Settings");
+                        }
                       },
                       itemBuilder: (BuildContext context) =>
                           <PopupMenuEntry<String>>[
@@ -346,6 +349,10 @@ class _SideBarAdminState extends State<SideBarAdmin> {
                         PopupMenuItem<String>(
                           value: 'Curriculum Management'.tr,
                           child: Text('Curriculum Management'.tr),
+                        ),
+                        PopupMenuItem<String>(
+                          value: 'Jalaa Settings'.tr,
+                          child: Text('Jalaa Settings'.tr),
                         ),
                       ],
                     ),
