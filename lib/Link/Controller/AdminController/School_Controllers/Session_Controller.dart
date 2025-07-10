@@ -29,6 +29,12 @@ class SessionController extends GetxController {
         'startDate': stu.startDate,
         'endDate': stu.endDate,
         'hasStudents': stu.hasStudent == 1 ? true : false,
+        'firstStart': stu.firstSemesterStart,
+        'firstEnd': stu.firstSemesterEnd,
+        'firstCount': stu.firstSemesterCount,
+        'secondStart': stu.secondSemesterStart,
+        'secondEnd': stu.secondSemesterEnd,
+        'secondCount': stu.secondSemesterCount
       });
     }
     Get.find<MyChildren_Controller>().setAllSession(sessions);
@@ -77,7 +83,7 @@ class SessionController extends GetxController {
   void selectStartDate(BuildContext context) async {
     final DateTime now = DateTime.now();
     final DateTime minDate = DateTime(now.year - 1); // سنة قبل الحالية
-    final DateTime maxDate = DateTime(now.year + 2); // سنتان بعد الحالية
+    final DateTime maxDate = DateTime(now.year + 3); // سنتان بعد الحالية
 
     final DateTime? picked = await showDatePicker(
       context: context,
@@ -90,8 +96,21 @@ class SessionController extends GetxController {
       startDate.value = picked;
       updateFieldError("start", false);
       if (endDate.value != null &&
-          endDate.value!.isBefore(picked.add(Duration(days: 1)))) {
+          endDate.value!.isBefore(picked.add(const Duration(days: 1)))) {
         endDate.value = null;
+      }
+
+      if (firstsemesterStartDate.value != null &&
+          firstsemesterStartDate.value!.isBefore(picked)) {
+        firstsemesterStartDate.value = null;
+        firstsemesterendDate.value = null;
+      }
+
+      if (secondsemesterStartDate.value != null &&
+          (secondsemesterStartDate.value!.isAtSameMomentAs(picked) ||
+              secondsemesterStartDate.value!.isBefore(picked))) {
+        secondsemesterStartDate.value = null;
+        secondsemesterendDate.value = null;
       }
     }
     update();
@@ -120,6 +139,27 @@ class SessionController extends GetxController {
     if (picked != null) {
       endDate.value = picked;
       updateFieldError("end", false);
+      if (firstsemesterendDate.value != null &&
+          firstsemesterendDate.value!.isAfter(picked)) {
+        firstsemesterendDate.value = null;
+      }
+
+      if (secondsemesterendDate.value != null &&
+          secondsemesterendDate.value!.isAfter(picked)) {
+        secondsemesterendDate.value = null;
+      }
+
+      if (firstsemesterStartDate.value != null &&
+          (firstsemesterStartDate.value!.isAfter(picked) ||
+              firstsemesterStartDate.value!.isAtSameMomentAs(picked))) {
+        firstsemesterStartDate.value = null;
+      }
+
+      if (secondsemesterStartDate.value != null &&
+          (secondsemesterStartDate.value!.isAfter(picked) ||
+              secondsemesterStartDate.value!.isAtSameMomentAs(picked))) {
+        secondsemesterStartDate.value = null;
+      }
     }
     update();
   }
@@ -128,7 +168,8 @@ class SessionController extends GetxController {
     final DateTime now = DateTime.now();
     final DateTime minDate = DateTime(startDate.value!.year,
         startDate.value!.month, startDate.value!.day); // سنة قبل الحالية
-    final DateTime maxDate = DateTime(endDate.value!.year); // سنتان بعد الحالية
+    final DateTime maxDate = DateTime(endDate.value!.year, endDate.value!.month,
+        endDate.value!.day); // سنتان بعد الحالية
 
     final DateTime? picked = await showDatePicker(
       context: context,
@@ -141,8 +182,16 @@ class SessionController extends GetxController {
       firstsemesterStartDate.value = picked;
       updateFieldError("firstStart", false);
       if (firstsemesterendDate.value != null &&
-          firstsemesterendDate.value!.isBefore(picked.add(Duration(days: 1)))) {
+          firstsemesterendDate.value!
+              .isBefore(picked.add(const Duration(days: 1)))) {
         firstsemesterendDate.value = null;
+      }
+
+      if (secondsemesterStartDate.value != null &&
+          (secondsemesterStartDate.value!.isBefore(picked) ||
+              secondsemesterStartDate.value!.isAtSameMomentAs(picked))) {
+        secondsemesterStartDate.value = null;
+        secondsemesterendDate.value = null;
       }
     }
     update();
@@ -171,6 +220,12 @@ class SessionController extends GetxController {
     if (picked != null) {
       firstsemesterendDate.value = picked;
       updateFieldError("firstEnd", false);
+      if (secondsemesterStartDate.value != null &&
+          secondsemesterStartDate.value!
+              .isBefore(picked.add(const Duration(days: 1)))) {
+        secondsemesterStartDate.value = null;
+        secondsemesterendDate.value = null;
+      }
     }
     update();
   }
@@ -180,12 +235,13 @@ class SessionController extends GetxController {
     final DateTime minDate = DateTime(
         firstsemesterendDate.value!.year,
         firstsemesterendDate.value!.month,
-        firstsemesterendDate.value!.day); // سنة قبل الحالية
-    final DateTime maxDate = DateTime(endDate.value!.year); // سنتان بعد الحالية
+        firstsemesterendDate.value!.day + 1); // سنة قبل الحالية
+    final DateTime maxDate = DateTime(endDate.value!.year, endDate.value!.month,
+        endDate.value!.day); // سنتان بعد الحالية
 
     final DateTime? picked = await showDatePicker(
       context: context,
-      initialDate: firstsemesterendDate.value ?? now,
+      // initialDate: firstsemesterendDate.value ?? now,
       firstDate: minDate,
       lastDate: maxDate,
     );
@@ -195,7 +251,7 @@ class SessionController extends GetxController {
       updateFieldError("secondStart", false);
       if (secondsemesterendDate.value != null &&
           secondsemesterendDate.value!
-              .isBefore(picked.add(Duration(days: 1)))) {
+              .isBefore(picked.add(const Duration(days: 1)))) {
         secondsemesterendDate.value = null;
       }
     }
@@ -297,6 +353,12 @@ class SessionController extends GetxController {
     IsnameError = false;
     IsstartError = false;
     IsEndError = false;
+    IsFirstStartError = false;
+    IsFirstEndError = false;
+    IsSecondStartError = false;
+    IsSecondEndError = false;
+    IsFirstDaysError = false;
+    IsSecondDaysError = false;
     currentYear = 0.obs;
     update();
   }

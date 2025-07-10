@@ -10,13 +10,19 @@ import 'package:vms_school/view/Both_Platform/widgets/Loading_Dialog.dart';
 class Edit_Session_API {
   BuildContext context;
   Edit_Session_API(this.context);
-  Dio dio = Dio();
+  Dio dio = Dio(); 
 
   Edit_Session({
     year,
     startDate,
     endDate,
     sessionId,
+    String? firstStart,
+    String? firstEnd,
+    String? secondStart,
+    String? secondEnd,
+    String? firstDays,
+    String? secondDays,
   }) async {
     CancelToken cancelToken = CancelToken();
     Loading_Dialog(cancelToken: cancelToken);
@@ -30,6 +36,12 @@ class Edit_Session_API {
             'sessionId': '$sessionId',
             'startDate': '$startDate',
             'endDate': '$endDate',
+             'firstSemesterStart': firstStart,
+        'firstSemesterEnd': firstEnd,
+        'secondSemesterStart': secondStart,
+        'secondSemesterEnd': secondEnd,
+        'firstSemesterCount': firstDays,
+        'secondSemesterCount': secondDays,
           },
           options: getDioOptions());
       if (response.statusCode == 200) {

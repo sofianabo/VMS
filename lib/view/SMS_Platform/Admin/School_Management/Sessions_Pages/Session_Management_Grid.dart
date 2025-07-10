@@ -12,6 +12,7 @@ import 'package:vms_school/view/Both_Platform/widgets/ButtonsDialog.dart';
 import 'package:vms_school/view/Both_Platform/widgets/Calender.dart';
 import 'package:vms_school/view/Both_Platform/widgets/GridAnimation.dart';
 import 'package:vms_school/view/Both_Platform/widgets/Schema_Widget.dart';
+import 'package:vms_school/view/Both_Platform/widgets/TextFildWithUpper.dart';
 import 'package:vms_school/view/Both_Platform/widgets/TextFildWithUpper_Num.dart';
 import 'package:vms_school/view/Both_Platform/widgets/VMSAlertDialog.dart';
 
@@ -20,6 +21,8 @@ class SessionManagementGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController secondSemDay = TextEditingController();
+    TextEditingController firstSemDay = TextEditingController();
     final screenWidth = MediaQuery.of(context).size.width;
     int getCrossAxisCount() {
       if (screenWidth >= 1278) return 5;
@@ -490,6 +493,13 @@ class SessionManagementGrid extends StatelessWidget {
                                                 .toString()
                                                 .substring(0, 4)) +
                                             1;
+
+                                        firstSemDay.text = control
+                                            .Sessionss[index]['firstCount']
+                                            .toString();
+                                        secondSemDay.text = control
+                                            .Sessionss[index]['secondCount']
+                                            .toString();
                                         Get.find<SessionController>()
                                                 .startDate
                                                 .value =
@@ -500,6 +510,29 @@ class SessionManagementGrid extends StatelessWidget {
                                                 .value =
                                             DateTime.parse(control
                                                 .Sessionss[index]['endDate']);
+                                        Get.find<SessionController>()
+                                                .firstsemesterStartDate
+                                                .value =
+                                            DateTime.parse(
+                                                control.Sessionss[index]
+                                                    ['firstStart']);
+                                        Get.find<SessionController>()
+                                                .firstsemesterendDate
+                                                .value =
+                                            DateTime.parse(control
+                                                .Sessionss[index]['firstEnd']);
+
+                                        Get.find<SessionController>()
+                                                .secondsemesterStartDate
+                                                .value =
+                                            DateTime.parse(
+                                                control.Sessionss[index]
+                                                    ['secondStart']);
+                                        Get.find<SessionController>()
+                                                .secondsemesterendDate
+                                                .value =
+                                            DateTime.parse(control
+                                                .Sessionss[index]['secondEnd']);
 
                                         Get.dialog(barrierDismissible: false,
                                             GetBuilder<SessionController>(
@@ -526,6 +559,51 @@ class SessionManagementGrid extends StatelessWidget {
                                                                   .endDate.value
                                                                   .toString() ==
                                                               "";
+                                                      bool isStartFirstEmpty = controller
+                                                                  .firstsemesterStartDate
+                                                                  .value ==
+                                                              null ||
+                                                          controller
+                                                                  .firstsemesterStartDate
+                                                                  .value
+                                                                  .toString() ==
+                                                              "";
+                                                      bool isStartSecondEmpty = controller
+                                                                  .secondsemesterStartDate
+                                                                  .value ==
+                                                              null ||
+                                                          controller
+                                                                  .secondsemesterStartDate
+                                                                  .value
+                                                                  .toString() ==
+                                                              "";
+                                                      bool isEndfirstEmpty = controller
+                                                                  .firstsemesterendDate
+                                                                  .value ==
+                                                              null ||
+                                                          controller
+                                                                  .firstsemesterendDate
+                                                                  .value
+                                                                  .toString() ==
+                                                              "";
+                                                      bool isEndSecondEmpty = controller
+                                                                  .secondsemesterendDate
+                                                                  .value ==
+                                                              null ||
+                                                          controller
+                                                                  .secondsemesterendDate
+                                                                  .value
+                                                                  .toString() ==
+                                                              "";
+                                                      bool isfirstDaysEmpty =
+                                                          firstSemDay.text
+                                                              .trim()
+                                                              .isEmpty;
+                                                      bool isSecondDaysEmpty =
+                                                          secondSemDay.text
+                                                              .trim()
+                                                              .isEmpty;
+
                                                       bool isNameEmpty = controller
                                                               .sessionController
                                                               .text
@@ -553,29 +631,77 @@ class SessionManagementGrid extends StatelessWidget {
                                                           .updateFieldError(
                                                               "end",
                                                               isEndEmpty);
+                                                      controller
+                                                          .updateFieldError(
+                                                              "firstStart",
+                                                              isStartFirstEmpty);
+                                                      controller
+                                                          .updateFieldError(
+                                                              "firstEnd",
+                                                              isEndfirstEmpty);
+                                                      controller.updateFieldError(
+                                                          "secondStart",
+                                                          isStartSecondEmpty);
+                                                      controller
+                                                          .updateFieldError(
+                                                              "secondEnd",
+                                                              isEndSecondEmpty);
+                                                      controller
+                                                          .updateFieldError(
+                                                              "firstDays",
+                                                              isfirstDaysEmpty);
+                                                      controller
+                                                          .updateFieldError(
+                                                              "secondDays",
+                                                              isSecondDaysEmpty);
 
                                                       if (!(isNameEmpty ||
                                                           isStartEmpty ||
-                                                          isEndEmpty)) {
-                                                        await Edit_Session_API(
-                                                                context)
-                                                            .Edit_Session(
-                                                          sessionId:
-                                                              control.Sessionss[
-                                                                  index]['id'],
-                                                          year:
-                                                              "${Get.find<SessionController>().sessionController.text}-${int.parse(Get.find<SessionController>().sessionController.text) + 1}",
-                                                          startDate: Get.find<
-                                                                  SessionController>()
-                                                              .startDate
-                                                              .value
-                                                              .toString(),
-                                                          endDate: Get.find<
-                                                                  SessionController>()
-                                                              .endDate
-                                                              .value
-                                                              .toString(),
-                                                        );
+                                                          isEndEmpty ||
+                                                          isStartFirstEmpty ||
+                                                          isEndfirstEmpty ||
+                                                          isStartSecondEmpty ||
+                                                          isEndSecondEmpty ||
+                                                          isfirstDaysEmpty ||
+                                                          isSecondDaysEmpty)) {
+                                                        await Edit_Session_API(context).Edit_Session(
+                                                            sessionId:
+                                                                control.Sessionss[index]
+                                                                    ['id'],
+                                                            year:
+                                                                "${Get.find<SessionController>().sessionController.text}-${int.parse(Get.find<SessionController>().sessionController.text) + 1}",
+                                                            startDate:
+                                                                Get.find<SessionController>()
+                                                                    .startDate
+                                                                    .value
+                                                                    .toString(),
+                                                            endDate:
+                                                                Get.find<SessionController>()
+                                                                    .endDate
+                                                                    .value
+                                                                    .toString(),
+                                                            firstStart:
+                                                                Get.find<SessionController>()
+                                                                    .firstsemesterStartDate
+                                                                    .value
+                                                                    .toString(),
+                                                            firstEnd: Get.find<SessionController>()
+                                                                .firstsemesterendDate
+                                                                .value
+                                                                .toString(),
+                                                            secondStart:
+                                                                Get.find<SessionController>()
+                                                                    .secondsemesterStartDate
+                                                                    .value
+                                                                    .toString(),
+                                                            secondEnd: Get.find<SessionController>()
+                                                                .secondsemesterendDate
+                                                                .value
+                                                                .toString(),
+                                                            firstDays: firstSemDay
+                                                                .text,
+                                                            secondDays:
+                                                                secondSemDay.text);
                                                       }
                                                     },
                                                     color: Theme.of(context)
@@ -716,7 +842,187 @@ class SessionManagementGrid extends StatelessWidget {
                                                           ),
                                                         ],
                                                       ),
-                                                    )
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              top: 15.0),
+                                                      child: Wrap(
+                                                        runAlignment:
+                                                            WrapAlignment.start,
+                                                        crossAxisAlignment:
+                                                            WrapCrossAlignment
+                                                                .start,
+                                                        alignment:
+                                                            WrapAlignment.start,
+                                                        runSpacing: 20.0,
+                                                        spacing: 20.0,
+                                                        children: [
+                                                          firstSemesterStartDate(
+                                                            width: screenWidth >=
+                                                                    690
+                                                                ? 300
+                                                                : (screenWidth) -
+                                                                    70,
+                                                            label:
+                                                                "First Semester Start Date"
+                                                                    .tr,
+                                                            dateValue: controller
+                                                                .firstsemesterStartDate,
+                                                            onSelectDate: controller
+                                                                .selectFirstSemsterStartDate,
+                                                            isRequired: true,
+                                                            isError: controller
+                                                                .IsFirstStartError,
+                                                          ),
+                                                          FirstSemesterEndDate(
+                                                            width: screenWidth >=
+                                                                    690
+                                                                ? 300
+                                                                : (screenWidth) -
+                                                                    70,
+                                                            label:
+                                                                "First Semester End Date"
+                                                                    .tr,
+                                                            dateValue: controller
+                                                                .firstsemesterendDate,
+                                                            onSelectDate: controller
+                                                                .selectFirstSemesterEndDate,
+                                                            isRequired: true,
+                                                            isError: controller
+                                                                .IsFirstEndError,
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              top: 15.0),
+                                                      child: Wrap(
+                                                        runAlignment:
+                                                            WrapAlignment.start,
+                                                        crossAxisAlignment:
+                                                            WrapCrossAlignment
+                                                                .start,
+                                                        alignment:
+                                                            WrapAlignment.start,
+                                                        runSpacing: 20.0,
+                                                        spacing: 20.0,
+                                                        children: [
+                                                          SecondSemesterStartDate(
+                                                            width: screenWidth >=
+                                                                    690
+                                                                ? 300
+                                                                : (screenWidth) -
+                                                                    70,
+                                                            label:
+                                                                "Second Semester Start Date"
+                                                                    .tr,
+                                                            dateValue: controller
+                                                                .secondsemesterStartDate,
+                                                            onSelectDate: controller
+                                                                .selectSecondSemsterStartDate,
+                                                            isRequired: true,
+                                                            isError: controller
+                                                                .IsSecondStartError,
+                                                          ),
+                                                          SecondSemesterEndDate(
+                                                            width: screenWidth >=
+                                                                    690
+                                                                ? 300
+                                                                : (screenWidth) -
+                                                                    70,
+                                                            label:
+                                                                "Second Semester End Date"
+                                                                    .tr,
+                                                            dateValue: controller
+                                                                .secondsemesterendDate,
+                                                            onSelectDate: controller
+                                                                .selectSecondSemesterEndDate,
+                                                            isRequired: true,
+                                                            isError: controller
+                                                                .IsSecondEndError,
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              top: 15.0),
+                                                      child: Wrap(
+                                                        runAlignment:
+                                                            WrapAlignment.start,
+                                                        crossAxisAlignment:
+                                                            WrapCrossAlignment
+                                                                .start,
+                                                        alignment:
+                                                            WrapAlignment.start,
+                                                        runSpacing: 20.0,
+                                                        spacing: 20.0,
+                                                        children: [
+                                                          Textfildwithupper(
+                                                              isRequired: true,
+                                                              fieldType:
+                                                                  'number',
+                                                              width: screenWidth >=
+                                                                      690
+                                                                  ? 300
+                                                                  : (screenWidth) -
+                                                                      70,
+                                                              isError: controller
+                                                                  .IsFirstDaysError,
+                                                              onChanged:
+                                                                  (value) {
+                                                                if (value
+                                                                    .isNotEmpty) {
+                                                                  controller
+                                                                      .updateFieldError(
+                                                                          "firstDays",
+                                                                          false);
+                                                                }
+                                                              },
+                                                              controller:
+                                                                  firstSemDay,
+                                                              Uptext:
+                                                                  "Number of actual working days in first semster"
+                                                                      .tr,
+                                                              hinttext:
+                                                                  "Number of actual working days in first semster"
+                                                                      .tr),
+                                                          Textfildwithupper(
+                                                              isRequired: true,
+                                                              fieldType:
+                                                                  'number',
+                                                              width: screenWidth >=
+                                                                      690
+                                                                  ? 300
+                                                                  : (screenWidth) -
+                                                                      70,
+                                                              isError: controller
+                                                                  .IsSecondDaysError,
+                                                              onChanged:
+                                                                  (value) {
+                                                                if (value
+                                                                    .isNotEmpty) {
+                                                                  controller
+                                                                      .updateFieldError(
+                                                                          "secondDays",
+                                                                          false);
+                                                                }
+                                                              },
+                                                              controller:
+                                                                  secondSemDay,
+                                                              Uptext:
+                                                                  "Number of actual working days in second semester"
+                                                                      .tr,
+                                                              hinttext:
+                                                                  "Number of actual working days in second semester"
+                                                                      .tr),
+                                                        ],
+                                                      ),
+                                                    ),
                                                   ],
                                                 ),
                                               ),
