@@ -1,8 +1,9 @@
 // String hostPort = "https://lion-secure-strongly.ngrok-free.app/api/";
-// String hostPort = "https://api.vmssyria.com/public/api/";
+// String hostPort = "https://api.vmssyria.com/api/";
 String hostPort = "http://192.168.1.18:8000/api/";
-// String hostPort = "http://192.168.1.45:8000/api/";
+// String hostPort = "http://192.168.32.56:8000/api/";
 //..................... Guardians API Start ...................//
+
 String enroll = "Enroll";
 String resendCodeGurdian = "resendCodeGurdian";
 String verifyCodeAndEnroll = "verifyCodeAndEnroll";
@@ -12,6 +13,9 @@ String getMyData = 'getMyData';
 String updateGuardian = 'updateGuardian';
 String getStudentMarksById = 'getStudentMarksById';
 String resendRegister = "resendRegister";
+String getQuizTypeJalaa = "getQuizTypeJalaa";
+String getSetting = "getSetting";
+
 //..................... Guardians API End ...................//
 
 //..................... Teacher API Start ...................//
@@ -27,7 +31,9 @@ String getCurriculumByTeacher = "getCurriculumByTeacher";
 //..................... Teacher API End ...................//
 
 //..................... Admin API Start ...................//
+
 //..................... Students ...................//
+
 String addGuardian = "addGuardian";
 String getguardians = "getAllGuardian";
 String editGuardian = "updateGuardian";
@@ -162,6 +168,9 @@ String getQuizType = "getAllQuizType";
 String getStudentMarks = "getStudentMarks";
 String getQuizTypeIdesAndName = "getQuizTypeIdesAndName";
 String addQuizTypeOperation = "addQuizTypeOperation";
+
+String getClassNotjalaa = "getClassNotjalaa";
+String addJalaaSetting = "addJalaaSettings";
 
 //..................... Admin ...................//
 

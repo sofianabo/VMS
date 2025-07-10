@@ -33,6 +33,7 @@ import 'package:vms_school/view/SMS_Platform/Admin/School_Management/Grade_Pages
 import 'package:vms_school/view/SMS_Platform/Admin/School_Management/School_Data/SchoolDataMGMT.dart';
 import 'package:vms_school/view/SMS_Platform/Admin/School_Management/Sessions_Pages/Session_Management.dart';
 import 'package:vms_school/view/SMS_Platform/Admin/Admin_Main_Screens/SideBarAdmin.dart';
+import 'package:vms_school/view/SMS_Platform/Admin/Students_Manager/Export_Jalaa_Pages/Jalaa_Settings_Pages/Jalaa_App_Page.dart';
 import 'package:vms_school/view/SMS_Platform/Admin/Students_Manager/StudentStatus.dart';
 import 'package:vms_school/view/SMS_Platform/Admin/Students_Manager/StudentsAttendanceManagment.dart';
 import 'package:vms_school/view/SMS_Platform/Admin/Students_Manager/Students_Marks/Students_Marks.dart';
@@ -191,6 +192,8 @@ class _AdminHomeState extends State<AdminHome> {
                                                   return Students_Marks();
                                                 case "School Content":
                                                   return School_Content();
+                                                case "Jalaa Settings":
+                                                  return Jalaa_Up_Page();
                                                 default:
                                                   return AdminDashboard();
                                               }

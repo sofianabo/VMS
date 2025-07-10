@@ -36,6 +36,7 @@ import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AdminStudentsAttendens.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AllStudentsController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Jalaa_For_Students/Jalaa_Controller.dart';
+import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Jalaa_For_Students/Jalaa_Page_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/PenaltiesAndRewardsController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/RequestsController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Student_Attendenc_Controller.dart';
@@ -182,6 +183,7 @@ class AppBindings extends Bindings {
     Get.lazyPut(() => StudentmarksTeachercontroller(), fenix: true);
     Get.lazyPut(() => Examtabledialogcontroller(), fenix: true);
     Get.lazyPut(() => Jalaa_Controller(), fenix: true);
+    Get.lazyPut(() => Jalaa_Page_Controller(), fenix: true);
     //...................................LMS Bindings.......................................................//
     Get.lazyPut(() => Selected_Class_Controller(), fenix: true);
     Get.lazyPut(() => Home_Controller_LMS(), fenix: true);
