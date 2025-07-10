@@ -127,7 +127,7 @@ int calculateTotalCMarks(List<MainCurriculum>? mainCurriculum) {
     for (var curriculum in mainCurriculum) {
       if (curriculum.insideCurr != null) {
         for (var inside in curriculum.insideCurr!) {
-          total += inside.cMark ?? 0;
+          total += inside.maxMark ?? 0;
         }
       }
     }

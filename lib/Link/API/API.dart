@@ -171,6 +171,8 @@ String addQuizTypeOperation = "addQuizTypeOperation";
 
 String getClassNotjalaa = "getClassNotjalaa";
 String addJalaaSetting = "addJalaaSettings";
+String deleteJalaa = "deleteJalaa";
+String exportJalaa = "exportJalaa";
 
 //..................... Admin ...................//
 

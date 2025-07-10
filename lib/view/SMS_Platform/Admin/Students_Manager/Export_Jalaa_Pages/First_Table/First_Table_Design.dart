@@ -53,7 +53,7 @@ class First_Table_Design extends StatelessWidget {
                     buildDgree(mainCurr.curriculumName ?? '',
                         isLeft: true, isRight: true, isBold: true),
                     buildDgree(
-                        mainCurr.insideCurr!.first.cMark?.toString() ?? '',
+                        mainCurr.insideCurr!.first.maxMark?.toString() ?? '',
                         isLeft: true,
                         isBold: true),
                     buildSplitDgree(
@@ -147,7 +147,7 @@ class First_Table_Design extends StatelessWidget {
                       children: mainCurr.insideCurr!
                           .map((subCurr) => buildTowDgreeMarks(data: [
                                 {
-                                  "text": mainCurr.insideCurr!.first.cMark
+                                  "text": mainCurr.insideCurr!.first.maxMark
                                           .toString() ??
                                       '',
                                   "width": 38
@@ -367,7 +367,7 @@ class First_Table_Design extends StatelessWidget {
                 children: [
                   buildDgree('${mainCurr.curriculumName}',
                       isLeft: true, isRight: true, isBold: true),
-                  buildDgree('${mainCurr.insideCurr!.first.cMark ?? ''}',
+                  buildDgree('${mainCurr.insideCurr!.first.maxMark ?? ''}',
                       isLeft: true, isBold: true),
                   buildSplitDgree(
                     data: [

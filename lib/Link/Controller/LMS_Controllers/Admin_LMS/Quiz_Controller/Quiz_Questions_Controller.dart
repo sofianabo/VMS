@@ -9,6 +9,7 @@ class Quiz_Questions_Controller extends GetxController {
   TextEditingController Blank = TextEditingController();
   TextEditingController Single_Choice = TextEditingController();
   TextEditingController Muilti_Choice = TextEditingController();
+  TextEditingController Matching = TextEditingController();
   TextEditingController Same_Choice = TextEditingController();
   TextEditingController drag_Choice = TextEditingController();
   TextEditingController Text_Question = TextEditingController();
@@ -33,6 +34,9 @@ class Quiz_Questions_Controller extends GetxController {
     } else if (type.toLowerCase() == "multichoice") {
       Muilti_Choice.clear();
       Muilti_Choice.text = text;
+    } else if (type.toLowerCase() == "matching") {
+      Matching.clear();
+      Matching.text = text;
     } else if (type.toLowerCase() == "text") {
       Text_Question.clear();
       Text_Question.text = text;

@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
@@ -22,6 +21,7 @@ class Get_Quiz_Questions_API {
 
       if (response.statusCode == 200) {
         Quiz_Qustions_Model model = Quiz_Qustions_Model.fromJson(response.data);
+        print(model.allQuestions!.length);
         controller.SetData(model);
       } else {
         ErrorHandler.handleDioError(DioException(

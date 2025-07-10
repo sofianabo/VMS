@@ -267,4 +267,16 @@ class Jalaa_Page_Controller extends GetxController {
     selectedFirst.clear();
     selectedSecond.clear();
   }
+
+  deleteTemp(JalaaSettings jalaa) {
+    print(jalaaSettings![0]);
+    jalaaSettings!.remove(jalaa);
+    update();
+  }
+
+  void addJalaa(JalaaSettings all_jalaas_model) {
+    jalaaSettings ??= [];
+    jalaaSettings!.add(all_jalaas_model);
+    update();
+  }
 }

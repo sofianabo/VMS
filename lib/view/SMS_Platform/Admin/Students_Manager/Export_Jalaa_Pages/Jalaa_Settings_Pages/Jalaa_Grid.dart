@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
+import 'package:vms_school/Link/API/AdminAPI/Students/Jalaa_APIS/Delete_Jalaa_Settings.dart';
+import 'package:vms_school/Link/API/AdminAPI/Students/Jalaa_APIS/Preview_Jalaa_Settings.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Jalaa_For_Students/Jalaa_Page_Controller.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/view/Both_Platform/widgets/ButtonsDialog.dart';
@@ -131,6 +133,11 @@ class All_Jalaas_Grid extends StatelessWidget {
                         return HoverScaleCard(
                           child: GestureDetector(
                             onTap: () async {},
+                            onLongPress: () async {
+                              Preview_Jalaa_Settings_API()
+                                  .Preview_Jalaa_Settings(
+                                      id: control.jalaaSettings![index].id);
+                            },
                             child: Container(
                                 padding: const EdgeInsets.only(bottom: 15),
                                 decoration: BoxDecoration(
@@ -178,8 +185,8 @@ class All_Jalaas_Grid extends StatelessWidget {
                                                                 .value
                                                                 .languageCode ==
                                                             'ar'
-                                                        ? "${control.jalaaSettings![index].classes!.name}"
-                                                        : "${control.jalaaSettings![index].classes!.enName}",
+                                                        ? "${control.jalaaSettings![index].classes!.name ?? ""}"
+                                                        : "${control.jalaaSettings![index].classes!.enName ?? ""}",
                                                     style: Get.theme.textTheme
                                                         .titleLarge!
                                                         .copyWith(
@@ -224,14 +231,11 @@ class All_Jalaas_Grid extends StatelessWidget {
                                                       width: 100,
                                                       text: "Delete".tr,
                                                       onPressed: () async {
-                                                        // await Delete_Student_API(
-                                                        //     context)
-                                                        //     .Delete_Student(
-                                                        //     id: control
-                                                        //         .filteredStudents[
-                                                        //     index]
-                                                        //         .id
-                                                        //         .toString());
+                                                        await Delete_Jalaa_Settings_API()
+                                                            .Delete_Jalaa_Settings(
+                                                                Jalaa: control
+                                                                        .jalaaSettings![
+                                                                    index]);
                                                       },
                                                       color: const Color(
                                                           0xffB03D3D),
@@ -255,12 +259,11 @@ class All_Jalaas_Grid extends StatelessWidget {
                                                             color:
                                                                 Colors.black),
                                                         maxLines: 3,
-                                                        "Do You Want To Deletee"
-                                                                .tr +
-                                                            "jalaa".tr),
+                                                        "Do you want to delete this template ?"
+                                                            .tr),
                                                   ),
                                                   apptitle:
-                                                      "Delete Students".tr,
+                                                      "Delete template".tr,
                                                   subtitle: "none"));
                                             },
                                             icon: const Icon(VMS_Icons.bin),

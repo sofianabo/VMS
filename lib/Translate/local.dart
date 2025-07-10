@@ -25,8 +25,11 @@ class Languages {
       'You Don`t Have Account ?': 'لا تملك حساب ؟',
       'Question Bank': 'بنك الاسئلة',
       'Trivia': 'السبور',
+      'Do you want to delete this template ?':
+          'هل انت متأكد من حذفك لهاذا النموذج ؟',
       'Resend!': 'اعادة ارسال!',
       'Verify': 'التحقق',
+      'Delete template': 'حذف النموذج',
       'There is no open academic year available to add classes to. Please add an open academic year and try again.':
           'لا توجد سنة دراسية مفتوحة بعد لاضافة صفوف اليها الرجاء اضافة سنة دراسية مفتوحة و قم بالمحاولة مجدداً',
       'No Penalties': 'لا يوجد عقوبات',
@@ -1681,6 +1684,9 @@ class Languages {
       'Not Selected': "Not Selected",
       'Sub Admin': "Sub Admin",
       'Salary': 'Salary',
+      'Delete template': 'Delete template',
+      'Do you want to delete this template ?':
+          'Do you want to delete this template ?',
       'Employee': 'Employees',
       'Employee Bank Info': 'Employee Bank Info',
       'IFSC Code': 'IFSC Code',

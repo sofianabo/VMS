@@ -10,98 +10,133 @@ class Second_Table_Design extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<Jalaa_Controller>(builder: (controller) {
+      final first = controller.rebortCard!.rebort!.attendance!.firstSemester!;
+      final second = controller.rebortCard!.rebort!.attendance!.secondSemester!;
+
       return Table(
         defaultVerticalAlignment: TableCellVerticalAlignment.middle,
         columnWidths: {
-          0: FixedColumnWidth(80), // الدرجة العظمى
-          1: FixedColumnWidth(40), // الدرجة العظمى
-          2: FixedColumnWidth(40), // الدرجة العظمى
-          3: FixedColumnWidth(80), // الدرجة العظمى
-          4: FixedColumnWidth(55), // الدرجة العظمى
+          0: FixedColumnWidth(80),
+          1: FixedColumnWidth(40),
+          2: FixedColumnWidth(40),
+          3: FixedColumnWidth(80),
+          4: FixedColumnWidth(55),
         },
         children: [
           TableRow(
             children: [
               buildRotateWithTextCell('الدوام المدرسي', "الفصل الأول",
                   isRight: true),
-              buildRotateWithTextCell('الدوام الفعلي',
-                  "${controller.rebortCard!.rebort!.attendance!.firstSemester!.dawamFiele ?? 0}",
+              buildRotateWithTextCell(
+                  'الدوام الفعلي', "${first.dawamFile ?? 0}",
                   isRight: true),
-              buildRotateWithTextCell('دوام التلميذ',
-                  "${controller.rebortCard!.rebort!.attendance!.firstSemester!.studentAttendance ?? 0}",
+              buildRotateWithTextCell(
+                  'دوام التلميذ', "${first.studentAttendance ?? 0}",
                   isRight: true),
               buildRotateGheabCell('الغياب', isRight: true),
-              buildRotateWithTextCellWithBottom('النسبة المئوية\nللدوام',
-                  "${((int.parse((controller.rebortCard!.rebort!.attendance!.firstSemester!.studentAttendance ?? 0).toString()) * 100) / int.parse(controller.rebortCard!.rebort!.attendance!.firstSemester!.dawamFiele.toString())).ceil()}%",
-                  isLeft: true, isRight: true),
+              buildRotateWithTextCellWithBottom(
+                'النسبة المئوية\nللدوام',
+                calculateAttendancePercentage(
+                  int.tryParse(first.studentAttendance.toString()) ?? 0,
+                  int.tryParse(first.dawamFile.toString()) ?? 0,
+                ),
+                isLeft: true,
+                isRight: true,
+              ),
             ],
           ),
           TableRow(
             children: [
               buildDgreeSecondTable('الفصل الثاني', isRight: true),
+              buildDgreeSecondTable(isRight: true, '${second.dawamFile ?? 0}'),
               buildDgreeSecondTable(
-                  isRight: true,
-                  '${controller.rebortCard!.rebort!.attendance!.secondSemester!.dawamFiele}'),
-              buildDgreeSecondTable(
-                  isRight: true,
-                  '${controller.rebortCard!.rebort!.attendance!.secondSemester!.studentAttendance}'),
+                  isRight: true, '${second.studentAttendance ?? 0}'),
               buildSplitDgreeSecondTable(
                 isRight: true,
                 data: [
                   {
-                    "text": GheabAttendance(controller.rebortCard!.rebort!
-                        .attendance!.secondSemester!.mobararAttendance
-                        .toString()),
+                    "text": GheabAttendance('${second.mobararAttendance ?? 0}'),
                     "width": 38,
                   },
                   {
-                    "text": GheabAttendance(controller.rebortCard!.rebort!
-                        .attendance!.secondSemester!.notMobararAttendance
-                        .toString()),
+                    "text":
+                        GheabAttendance('${second.notMobararAttendance ?? 0}'),
                     "width": 40,
                   },
                 ],
               ),
               buildDgreeSecondTable(
-                  "${((int.parse(controller.rebortCard!.rebort!.attendance!.secondSemester!.studentAttendance.toString()) * 100) / int.parse(controller.rebortCard!.rebort!.attendance!.secondSemester!.dawamFiele.toString())).ceil()}%",
-                  isLeft: true,
-                  isRight: true),
+                calculateAttendancePercentage(
+                  int.tryParse(second.studentAttendance.toString()) ?? 0,
+                  int.tryParse(second.dawamFile.toString()) ?? 0,
+                ),
+                isLeft: true,
+                isRight: true,
+              ),
             ],
           ),
           TableRow(
             children: [
               buildDgreeSecondTable('المجموع', isRight: true),
               buildDgreeSecondTable(
-                  isRight: true,
-                  '${int.parse(controller.rebortCard!.rebort!.attendance!.firstSemester!.dawamFiele.toString()) + int.parse(controller.rebortCard!.rebort!.attendance!.secondSemester!.dawamFiele.toString())}'),
+                isRight: true,
+                '${(int.tryParse(first.dawamFile.toString()) ?? 0) + (int.tryParse(second.dawamFile.toString()) ?? 0)}',
+              ),
               buildDgreeSecondTable(
-                  isRight: true,
-                  '${int.parse(controller.rebortCard!.rebort!.attendance!.firstSemester!.studentAttendance.toString()) + int.parse(controller.rebortCard!.rebort!.attendance!.secondSemester!.studentAttendance.toString())}'),
+                isRight: true,
+                '${(int.tryParse(first.studentAttendance.toString()) ?? 0) + (int.tryParse(second.studentAttendance.toString()) ?? 0)}',
+              ),
               buildSplitDgreeSecondTable(
                 isRight: true,
                 data: [
                   {
                     "text": GheabAttendance(
-                      '${int.parse(controller.rebortCard!.rebort!.attendance!.firstSemester!.mobararAttendance.toString()) + int.parse(controller.rebortCard!.rebort!.attendance!.secondSemester!.mobararAttendance.toString())}',
+                      '${(int.tryParse(first.mobararAttendance.toString()) ?? 0) + (int.tryParse(second.mobararAttendance.toString()) ?? 0)}',
                     ),
                     "width": 38,
                   },
                   {
                     "text": GheabAttendance(
-                      '${int.parse(controller.rebortCard!.rebort!.attendance!.firstSemester!.notMobararAttendance.toString()) + int.parse(controller.rebortCard!.rebort!.attendance!.secondSemester!.notMobararAttendance.toString())}',
+                      '${(int.tryParse(first.notMobararAttendance.toString()) ?? 0) + (int.tryParse(second.notMobararAttendance.toString()) ?? 0)}',
                     ),
                     "width": 40,
                   },
                 ],
               ),
               buildDgreeSecondTable(
-                  "${((((int.parse(controller.rebortCard!.rebort!.attendance!.firstSemester!.studentAttendance.toString()) * 100) / int.parse(controller.rebortCard!.rebort!.attendance!.firstSemester!.dawamFiele.toString())).ceil()) + ((int.parse(controller.rebortCard!.rebort!.attendance!.secondSemester!.studentAttendance.toString()) * 100) / int.parse(controller.rebortCard!.rebort!.attendance!.secondSemester!.dawamFiele.toString())).ceil()) / 2}%",
-                  isLeft: true,
-                  isRight: true),
+                calculateAverageAttendance(
+                  student1:
+                      int.tryParse(first.studentAttendance.toString()) ?? 0,
+                  total1: int.tryParse(first.dawamFile.toString()) ?? 0,
+                  student2:
+                      int.tryParse(second.studentAttendance.toString()) ?? 0,
+                  total2: int.tryParse(second.dawamFile.toString()) ?? 0,
+                ),
+                isLeft: true,
+                isRight: true,
+              ),
             ],
           ),
         ],
       );
     });
   }
+}
+
+// دالة لحساب النسبة بشكل آمن
+String calculateAttendancePercentage(int student, int total) {
+  if (total == 0) return '0%';
+  return "${((student * 100) / total).ceil()}%";
+}
+
+// دالة لحساب المعدل بين نسبتين مع حماية من NaN
+String calculateAverageAttendance({
+  required int student1,
+  required int total1,
+  required int student2,
+  required int total2,
+}) {
+  double percent1 = total1 == 0 ? 0 : (student1 * 100) / total1;
+  double percent2 = total2 == 0 ? 0 : (student2 * 100) / total2;
+  return "${((percent1.ceil() + percent2.ceil()) / 2).ceil()}%";
 }

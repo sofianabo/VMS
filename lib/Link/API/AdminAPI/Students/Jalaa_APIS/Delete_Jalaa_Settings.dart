@@ -8,41 +8,24 @@ import 'package:vms_school/Link/Model/AdminModel/School_Models/Curriculum_Model.
 import 'package:vms_school/Link/Model/AdminModel/Students_Models/Jalaa_Models/All_Jalaas_Model.dart';
 import 'package:vms_school/view/Both_Platform/widgets/Loading_Dialog.dart';
 
-class Add_Jalaa_Settings_API {
-  Add_Jalaa_Settings_API();
+class Delete_Jalaa_Settings_API {
+  Delete_Jalaa_Settings_API();
   Dio dio = Dio();
-  Add_Jalaa_Settings() async {
+  Delete_Jalaa_Settings({required JalaaSettings Jalaa}) async {
     final controller = Get.find<Jalaa_Page_Controller>();
     try {
       CancelToken cancelToken = CancelToken();
       Loading_Dialog(cancelToken: cancelToken);
-      String myurl = "$hostPort$addJalaaSetting";
+      String myurl = "$hostPort$deleteJalaa";
       var response = await dio.post(
           cancelToken: cancelToken,
-          data: {
-            "jalaaSettings": {
-              "shId": controller.templeteId,
-              "mainCurriculum": controller.getPrimaryIds(),
-              "downCurriculum": controller.getSecondaryIds(),
-              "quizTypes": controller.getSemester(),
-              "classId": controller.Classid,
-              "Molahdat": {
-                "firstSemester": "jhkhkjhkj",
-                "secondSemester": null,
-                "manager": null
-              }
-            }
-          },
+          data: {"id": Jalaa.id},
           myurl,
           options: getDioOptions());
       if (response.statusCode == 200) {
-        All_Jalaas_Model allModel = All_Jalaas_Model.fromJson(response.data);
+        controller.deleteTemp(Jalaa);
         Get.back();
         Get.back();
-        // أضف كل عنصر داخل القائمة إلى الكونترولر
-        for (var jalaa in allModel.jalaaSettings ?? []) {
-          controller.addJalaa(jalaa);
-        }
       } else {
         ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,

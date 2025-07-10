@@ -6,6 +6,7 @@ import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Quiz_Contro
 import 'package:vms_school/view/Both_Platform/widgets/LargeTextField.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Quiz_Pages_LMS/Quiz_Question_LMS/Wedgets_Questions.dart';
 import 'package:vms_school/view/LMS_Platform/Widget/TextFild_Question.dart';
+import 'package:vms_school/Link/Model/LMS_Model/Questions_Models/Quiz_Qustions_Model.dart';
 
 Widget buildQuestionsList(
     {required double screenWidth, required double isSmallScreen}) {
@@ -87,6 +88,16 @@ Widget buildQuestionsList(
                 isSmallScreen: isSmallScreen,
               );
               break;
+            case "Matching":
+              questionWidget = _buildMatchingQuestion(
+                controller: controller,
+                questionGroup: questionGroup,
+                index: index,
+                screenWidth: screenWidth,
+                isSmallScreen: isSmallScreen,
+              );
+              break;
+
             default:
               return const SizedBox.shrink();
           }
@@ -100,6 +111,117 @@ Widget buildQuestionsList(
         },
       );
     },
+  );
+}
+
+Widget _buildMatchingQuestion({
+  required Quiz_Questions_Controller controller,
+  required Question questionGroup, // النوع من موديلك الأساسي
+  required int index,
+  required double screenWidth,
+  required double isSmallScreen,
+}) {
+  // استخراج أسئلة وأجوبة من qustionList
+  List<String> questions = [];
+  List<String> answers = [];
+
+  if (questionGroup.qustionList != null) {
+    for (var q in questionGroup.qustionList!) {
+      // نص السؤال (الوصف أو النص)
+      String questionText = q.description ?? q.text ?? '';
+      questions.add(questionText);
+
+      // الجواب: نستخرج أول إجابة إن وجدت كـ نص
+      if (q.answer != null && q.answer!.isNotEmpty) {
+        // نأخذ إما choise أو text
+        String ansText = q.answer![0].choise ?? q.answer![0].text ?? '';
+        answers.add(ansText);
+      } else {
+        answers.add('');
+      }
+    }
+  }
+
+  return Container(
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(5),
+      border: Border.all(
+        color: Get.textTheme.titleMedium!.color!,
+        width: 0.5,
+      ),
+      color: Get.theme.cardColor,
+    ),
+    child: Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Text("Questions".tr,
+                  style: TextStyle(fontWeight: FontWeight.bold)),
+              Text("Answers".tr, style: TextStyle(fontWeight: FontWeight.bold)),
+            ],
+          ),
+        ),
+        ListView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: questions.length,
+          itemBuilder: (context, pairIndex) {
+            return Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+              child: Row(
+                children: [
+                  // مربع السؤال
+                  Expanded(
+                    child: Container(
+                      padding: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color:
+                              Theme.of(context).textTheme.titleMedium!.color!,
+                          width: 0.5,
+                        ),
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: Text(
+                        questions[pairIndex],
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  // سهم المطابقة
+                  Icon(Icons.arrow_forward,
+                      color: Get.theme.textTheme.bodyMedium!.color),
+                  const SizedBox(width: 10),
+                  // مربع الجواب
+                  Expanded(
+                    child: Container(
+                      padding: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color:
+                              Theme.of(context).textTheme.titleMedium!.color!,
+                          width: 0.5,
+                        ),
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: Text(
+                        answers[pairIndex],
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
+        ),
+      ],
+    ),
   );
 }
 
@@ -492,7 +614,9 @@ Widget _buildMuiltiChoiceQuestion({
               ],
             ),
             question.fileId == null
-                ? Text("")
+                ? Center(
+                    child: Text(""),
+                  )
                 : Center(
                     child: SizedBox(
                         width: 300,

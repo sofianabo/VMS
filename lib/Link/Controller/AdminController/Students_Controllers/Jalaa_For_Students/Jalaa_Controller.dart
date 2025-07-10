@@ -4,103 +4,12 @@ import 'package:vms_school/Link/Model/AdminModel/Students_Models/Jalaa_Model.dar
 class Jalaa_Controller extends GetxController {
   Rebort_Card? rebortCard;
 
-  @override
-  void onInit() {
-    super.onInit();
-    loadInitialData();
-  }
-
-  void loadInitialData() {
-    // البيانات بشكل Map لتتوافق مع fromJson
-    Map<String, dynamic> jsonData = {
-      "rebort": {
-        "studentsInfo": {
-          "tasalsol": 1,
-          "studentsFullName": "ليث عزام",
-          "fatherName": "هيثم",
-          "motherName": "ماجده",
-          "division": "ماجده",
-          "Birthdate": "13/1/2003",
-          "language": "الانكليزية",
-          "raqSejel": 150,
-          "seassion": "2023/2024"
-        },
-        "mainCurriculum": [
-          {
-            "curriculumName": "العربية لغتي",
-            "maxMark": 200,
-            "passingMark": 100,
-            "insideCurr": [
-              {
-                "cName": "المهارات الشفوية",
-                "cMark": 120,
-                "Marks": [111, 200, 200, 200]
-              },
-              {
-                "cName": "المهارات اللغوية",
-                "cMark": 120,
-                "Marks": [145, 200, 200, 200]
-              }
-            ]
-          },
-          {
-            "curriculumName": "التربية الدينية",
-            "maxMark": 200,
-            "passingMark": 100,
-            "insideCurr": [
-              {
-                "cName": "التربية الدينية",
-                "cMark": 150,
-                "Marks": [200, 200, 200, 200]
-              }
-            ]
-          }
-        ],
-        "downCurriculum": [
-          {
-            "curriculumName": "التربية الدينية",
-            "maxMark": 200,
-            "passingMark": 100,
-            "insideCurr": [
-              {
-                "cName": "التربية الدينية",
-                "cMark": 150,
-                "Marks": [200, 200, 200, 200]
-              }
-            ]
-          }
-        ],
-        "attendance": {
-          "firstSemester": {
-            "studentAttendance": 94,
-            "mobarar_Attendance": 0,
-            "not_Mobarar_Attendance": 0,
-            "dawam_Fiele": 94
-          },
-          "secondSemester": {
-            "studentAttendance": 94,
-            "mobarar_Attendance": 0,
-            "not_Mobarar_Attendance": 0,
-            "dawam_Fiele": 94
-          }
-        },
-        "solok": [200, 200],
-        "Molahdat": {
-          "firstSemester": null,
-          "secondSemester": null,
-          "manager": null,
-          "schoolmanager": null
-        }
-      }
-    };
-
-    // تحويل البيانات باستخدام fromJson
-    rebortCard = Rebort_Card.fromJson(jsonData);
-    update();
-  }
-
   void setRebort(Rebort rebort) {
-    rebortCard?.rebort = rebort;
+    if (rebortCard == null) {
+      rebortCard = Rebort_Card(rebort: rebort);
+    } else {
+      rebortCard!.rebort = rebort;
+    }
     update();
   }
 }
@@ -223,3 +132,98 @@ String stripOptionalTashkeel(String input) {
     },
   );
 }
+//
+// @override
+// void onInit() {
+//   super.onInit();
+//   loadInitialData();
+// }
+//
+// void loadInitialData() {
+//   // البيانات بشكل Map لتتوافق مع fromJson
+//   Map<String, dynamic> jsonData = {
+//     "rebort": {
+//       "studentsInfo": {
+//         "tasalsol": 1,
+//         "studentsFullName": "ليث عزام",
+//         "fatherName": "هيثم",
+//         "motherName": "ماجده",
+//         "division": "ماجده",
+//         "Birthdate": "13/1/2003",
+//         "language": "الانكليزية",
+//         "raqSejel": 150,
+//         "seassion": "2023/2024"
+//       },
+//       "mainCurriculum": [
+//         {
+//           "curriculumName": "العربية لغتي",
+//           "maxMark": 200,
+//           "passingMark": 100,
+//           "insideCurr": [
+//             {
+//               "cName": "المهارات الشفوية",
+//               "cMark": 120,
+//               "Marks": [111, 200, 200, 200]
+//             },
+//             {
+//               "cName": "المهارات اللغوية",
+//               "cMark": 120,
+//               "Marks": [145, 200, 200, 200]
+//             }
+//           ]
+//         },
+//         {
+//           "curriculumName": "التربية الدينية",
+//           "maxMark": 200,
+//           "passingMark": 100,
+//           "insideCurr": [
+//             {
+//               "cName": "التربية الدينية",
+//               "cMark": 150,
+//               "Marks": [200, 200, 200, 200]
+//             }
+//           ]
+//         }
+//       ],
+//       "downCurriculum": [
+//         {
+//           "curriculumName": "التربية الدينية",
+//           "maxMark": 200,
+//           "passingMark": 100,
+//           "insideCurr": [
+//             {
+//               "cName": "التربية الدينية",
+//               "cMark": 150,
+//               "Marks": [200, 200, 200, 200]
+//             }
+//           ]
+//         }
+//       ],
+//       "attendance": {
+//         "firstSemester": {
+//           "studentAttendance": 94,
+//           "mobarar_Attendance": 0,
+//           "not_Mobarar_Attendance": 0,
+//           "dawam_Fiele": 94
+//         },
+//         "secondSemester": {
+//           "studentAttendance": 94,
+//           "mobarar_Attendance": 0,
+//           "not_Mobarar_Attendance": 0,
+//           "dawam_Fiele": 94
+//         }
+//       },
+//       "solok": [200, 200],
+//       "Molahdat": {
+//         "firstSemester": null,
+//         "secondSemester": null,
+//         "manager": null,
+//         "schoolmanager": null
+//       }
+//     }
+//   };
+//
+//   // تحويل البيانات باستخدام fromJson
+//   rebortCard = Rebort_Card.fromJson(jsonData);
+//   update();
+// }

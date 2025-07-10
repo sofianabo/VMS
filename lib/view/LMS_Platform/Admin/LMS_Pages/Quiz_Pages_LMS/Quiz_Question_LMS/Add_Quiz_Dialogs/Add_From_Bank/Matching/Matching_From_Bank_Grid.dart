@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:vms_school/Link/API/LMS_APIs/QuestionAPI/MatchingAPI/Delete_Matching_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
-import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/QuestionBank_Controllers/MatchingQuestionController.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Quiz_Controller/Quiz_Matching_Question_Controller.dart';
+import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Quiz_Controller/Quiz_Questions_Controller.dart';
 import 'package:vms_school/Translate/local_controller.dart';
-import 'package:vms_school/view/Both_Platform/widgets/ButtonsDialog.dart';
 import 'package:vms_school/view/Both_Platform/widgets/Squer_Button_Enabled_Disabled.dart';
-import 'package:vms_school/view/Both_Platform/widgets/VMSAlertDialog.dart';
+import 'package:vms_school/Link/Model/LMS_Model/Questions_Models/MatchingQuestionModel.dart'
+    as matching;
+import 'package:vms_school/Link/Model/LMS_Model/Questions_Models/Quiz_Qustions_Model.dart';
 
 class Matching_From_Bank_Grid extends StatefulWidget {
   const Matching_From_Bank_Grid({super.key});
@@ -114,20 +114,50 @@ class _Matching_From_Bank_GridState extends State<Matching_From_Bank_Grid> {
                               "observer"),
                           icon: Icons.add,
                           onTap: () {
-                            // QustionList newQuestion = QustionList(
-                            //   id: controller.filterdQuestions![index].id,
-                            //   fileId: null,
-                            //   type: controller.filterdQuestions![index].type,
-                            //   description: controller
-                            //       .filterdQuestions![index].description,
-                            //   isEng: 0,
-                            //   mark: 20,
-                            //   answer: [], // تحويل إلى List<Answer>
-                            // );
-                            // // إنشاء السؤال مع جميع البيانات المطلوبة
+                            matching.Question rawQuestion =
+                                controller.filterdQuestions![index];
 
-                            // Get.find<Quiz_Questions_Controller>()
-                            //     .addSingleQuestionFromBank(newQuestion);
+// تحقق من وجود بيانات
+                            if (rawQuestion.questions != null &&
+                                rawQuestion.answer != null &&
+                                rawQuestion.questions!.length ==
+                                    rawQuestion.answer!.length) {
+                              List<Answer> convertedAnswers = [];
+
+                              for (int i = 0;
+                                  i < rawQuestion.questions!.length;
+                                  i++) {
+                                convertedAnswers.add(Answer(
+                                  id: null,
+                                  choise: null,
+                                  trueAcss: 1,
+                                  questionId: rawQuestion.id,
+                                  questionBankId: null,
+                                  fileId: null,
+                                  text:
+                                      '${rawQuestion.questions![i]} = ${rawQuestion.answer![i]}',
+                                ));
+                              }
+
+                              QustionList newQuestion = QustionList(
+                                id: null,
+                                fileId: null,
+                                type: rawQuestion.type ?? "Matching",
+                                description: rawQuestion.description,
+                                isEng: rawQuestion.isEng,
+                                mark: rawQuestion.mark ?? 20,
+                                questionId: rawQuestion.id,
+                                questionBankId: null,
+                                text: rawQuestion.description,
+                                answer: convertedAnswers,
+                              );
+
+                              Get.find<Quiz_Questions_Controller>()
+                                  .addSingleQuestionFromBank(newQuestion);
+                            } else {
+                              Get.snackbar("خطأ",
+                                  "البيانات غير مكتملة أو غير متطابقة بين السؤال والإجابة");
+                            }
                           }),
                     ],
                   )

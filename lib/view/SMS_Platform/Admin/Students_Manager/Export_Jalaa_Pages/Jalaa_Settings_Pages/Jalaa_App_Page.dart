@@ -32,7 +32,7 @@ class _Jalaa_Up_PageState extends State<Jalaa_Up_Page> {
     return Column(
       children: [
         Container(
-          width: (w >= 732 ? w * 0.9 : w * 0.82),
+          width: w * 0.9,
           margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
           child: Padding(
             padding: const EdgeInsets.only(left: 8.0),
@@ -45,13 +45,13 @@ class _Jalaa_Up_PageState extends State<Jalaa_Up_Page> {
               children: [
                 GetBuilder<Jalaa_Page_Controller>(builder: (controller) {
                   return TextFormSearch(
+                    width: w * 0.80,
                     click: () {
                       // controller.clearFilter();
                     },
                     onchange: (value) {
                       // controller.searchJalaa(value);
                     },
-                    width: (w >= 732 ? w * 0.8 : w * 0.70) - 20,
                     radius: 5,
                     controller: search,
                     suffixIcon:

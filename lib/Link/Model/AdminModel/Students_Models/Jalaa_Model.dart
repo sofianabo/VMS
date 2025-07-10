@@ -7,14 +7,6 @@ class Rebort_Card {
     rebort =
         json['rebort'] != null ? new Rebort.fromJson(json['rebort']) : null;
   }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.rebort != null) {
-      data['rebort'] = this.rebort!.toJson();
-    }
-    return data;
-  }
 }
 
 class Rebort {
@@ -22,16 +14,18 @@ class Rebort {
   List<MainCurriculum>? mainCurriculum;
   List<MainCurriculum>? downCurriculum;
   Attendance? attendance;
-  List<int>? solok;
   Molahdat? molahdat;
+  List<int>? solok;
+  int? shId;
 
   Rebort(
       {this.studentsInfo,
       this.mainCurriculum,
       this.downCurriculum,
       this.attendance,
+      this.molahdat,
       this.solok,
-      this.molahdat});
+      this.shId});
 
   Rebort.fromJson(Map<String, dynamic> json) {
     studentsInfo = json['studentsInfo'] != null
@@ -52,33 +46,11 @@ class Rebort {
     attendance = json['attendance'] != null
         ? new Attendance.fromJson(json['attendance'])
         : null;
-    solok = json['solok'].cast<int>();
     molahdat = json['Molahdat'] != null
         ? new Molahdat.fromJson(json['Molahdat'])
         : null;
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.studentsInfo != null) {
-      data['studentsInfo'] = this.studentsInfo!.toJson();
-    }
-    if (this.mainCurriculum != null) {
-      data['mainCurriculum'] =
-          this.mainCurriculum!.map((v) => v.toJson()).toList();
-    }
-    if (this.downCurriculum != null) {
-      data['downCurriculum'] =
-          this.downCurriculum!.map((v) => v.toJson()).toList();
-    }
-    if (this.attendance != null) {
-      data['attendance'] = this.attendance!.toJson();
-    }
-    data['solok'] = this.solok;
-    if (this.molahdat != null) {
-      data['Molahdat'] = this.molahdat!.toJson();
-    }
-    return data;
+    solok = json['solok'].cast<int>();
+    shId = json['shId'];
   }
 }
 
@@ -115,35 +87,16 @@ class StudentsInfo {
     raqSejel = json['raqSejel'];
     seassion = json['seassion'];
   }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['tasalsol'] = this.tasalsol;
-    data['studentsFullName'] = this.studentsFullName;
-    data['fatherName'] = this.fatherName;
-    data['motherName'] = this.motherName;
-    data['division'] = this.division;
-    data['Birthdate'] = this.birthdate;
-    data['language'] = this.language;
-    data['raqSejel'] = this.raqSejel;
-    data['seassion'] = this.seassion;
-    return data;
-  }
 }
 
 class MainCurriculum {
   String? curriculumName;
-  int? maxMark;
-  int? passingMark;
   List<InsideCurr>? insideCurr;
 
-  MainCurriculum(
-      {this.curriculumName, this.maxMark, this.passingMark, this.insideCurr});
+  MainCurriculum({this.curriculumName, this.insideCurr});
 
   MainCurriculum.fromJson(Map<String, dynamic> json) {
     curriculumName = json['curriculumName'];
-    maxMark = json['maxMark'];
-    passingMark = json['passingMark'];
     if (json['insideCurr'] != null) {
       insideCurr = <InsideCurr>[];
       json['insideCurr'].forEach((v) {
@@ -151,38 +104,21 @@ class MainCurriculum {
       });
     }
   }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['curriculumName'] = this.curriculumName;
-    data['maxMark'] = this.maxMark;
-    data['passingMark'] = this.passingMark;
-    if (this.insideCurr != null) {
-      data['insideCurr'] = this.insideCurr!.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
 }
 
 class InsideCurr {
   String? cName;
-  int? cMark;
+  int? maxMark;
+  int? passingMark;
   List<int>? marks;
 
-  InsideCurr({this.cName, this.cMark, this.marks});
+  InsideCurr({this.cName, this.maxMark, this.passingMark, this.marks});
 
   InsideCurr.fromJson(Map<String, dynamic> json) {
     cName = json['cName'];
-    cMark = json['cMark'];
+    maxMark = json['maxMark'];
+    passingMark = json['passingMark'];
     marks = json['Marks'].cast<int>();
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['cName'] = this.cName;
-    data['cMark'] = this.cMark;
-    data['Marks'] = this.marks;
-    return data;
   }
 }
 
@@ -200,45 +136,25 @@ class Attendance {
         ? new FirstSemester.fromJson(json['secondSemester'])
         : null;
   }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.firstSemester != null) {
-      data['firstSemester'] = this.firstSemester!.toJson();
-    }
-    if (this.secondSemester != null) {
-      data['secondSemester'] = this.secondSemester!.toJson();
-    }
-    return data;
-  }
 }
 
 class FirstSemester {
   int? studentAttendance;
   int? mobararAttendance;
   int? notMobararAttendance;
-  int? dawamFiele;
+  int? dawamFile;
 
   FirstSemester(
       {this.studentAttendance,
       this.mobararAttendance,
       this.notMobararAttendance,
-      this.dawamFiele});
+      this.dawamFile});
 
   FirstSemester.fromJson(Map<String, dynamic> json) {
     studentAttendance = json['studentAttendance'];
     mobararAttendance = json['mobarar_Attendance'];
     notMobararAttendance = json['not_Mobarar_Attendance'];
-    dawamFiele = json['dawam_Fiele'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['studentAttendance'] = this.studentAttendance;
-    data['mobarar_Attendance'] = this.mobararAttendance;
-    data['not_Mobarar_Attendance'] = this.notMobararAttendance;
-    data['dawam_Fiele'] = this.dawamFiele;
-    return data;
+    dawamFile = json['dawam_File'];
   }
 }
 
@@ -259,14 +175,5 @@ class Molahdat {
     secondSemester = json['secondSemester'];
     manager = json['manager'];
     schoolmanager = json['schoolmanager'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['firstSemester'] = this.firstSemester;
-    data['secondSemester'] = this.secondSemester;
-    data['manager'] = this.manager;
-    data['schoolmanager'] = this.schoolmanager;
-    return data;
   }
 }
