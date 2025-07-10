@@ -216,13 +216,13 @@ class _Add_SessionState extends State<Add_Session> {
                           isRequired: true,
                           isError: controller.IsFirstStartError,
                         ),
-                        SecondSemesterStartDate(
+                        FirstSemesterEndDate(
                           width: screenWidth >= 690 ? 300 : (screenWidth) - 70,
-                          label: "Second Semester Start Date".tr,
-                          dateValue: controller.secondsemesterStartDate,
-                          onSelectDate: controller.selectSecondSemsterStartDate,
+                          label: "First Semester End Date".tr,
+                          dateValue: controller.firstsemesterendDate,
+                          onSelectDate: controller.selectFirstSemesterEndDate,
                           isRequired: true,
-                          isError: controller.IsSecondStartError,
+                          isError: controller.IsFirstEndError,
                         ),
                       ],
                     ),
@@ -236,13 +236,13 @@ class _Add_SessionState extends State<Add_Session> {
                       runSpacing: 20.0,
                       spacing: 20.0,
                       children: [
-                        FirstSemesterEndDate(
+                        SecondSemesterStartDate(
                           width: screenWidth >= 690 ? 300 : (screenWidth) - 70,
-                          label: "First Semester End Date".tr,
-                          dateValue: controller.firstsemesterendDate,
-                          onSelectDate: controller.selectFirstSemesterEndDate,
+                          label: "Second Semester Start Date".tr,
+                          dateValue: controller.secondsemesterStartDate,
+                          onSelectDate: controller.selectSecondSemsterStartDate,
                           isRequired: true,
-                          isError: controller.IsFirstEndError,
+                          isError: controller.IsSecondStartError,
                         ),
                         SecondSemesterEndDate(
                           width: screenWidth >= 690 ? 300 : (screenWidth) - 70,
