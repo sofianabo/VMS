@@ -13,39 +13,45 @@ class Add_Curriculm_API {
   Add_Curriculm_API(this.context);
   Dio dio = Dio();
 
-  Add_Curriculm({
-    subjectId, 
-    semesterId,
-    name,
-    Ename,
-    maxMark,
-    PassingMark,
-    type,
+  Future<int?> Add_Curriculm({
+    required int subjectId,
+    required String name,
+    required String Ename,
+    required String maxMark,
+    required String PassingMark,
+    required bool type,
     Uint8List? file,
     Uint8List? Image,
+    List<Map<String, dynamic>>? subCurr, // المناهج الفرعية
   }) async {
     CancelToken cancelToken = CancelToken();
     Loading_Dialog(cancelToken: cancelToken);
     try {
       FormData formData = FormData();
 
+      // إضافة الحقول الأساسية
       formData.fields.addAll([
         MapEntry('subjectId', subjectId.toString()),
         MapEntry('name', name),
         MapEntry('enName', Ename),
-        MapEntry('maxMark', maxMark.toString()),
-        MapEntry('PassingMark', PassingMark.toString()),
-        MapEntry(
-          'type',
-          '${type == true ? 1 : 0}',
-        ),
+        MapEntry('maxMark', maxMark),
+        MapEntry('PassingMark', PassingMark),
+        MapEntry('type', type ? '1' : '0'),
       ]);
 
-      for (int i = 0; i < semesterId.length; i++) {
-        formData.fields
-            .add(MapEntry('semesterId[$i]', semesterId[i].toString()));
+      // إضافة المناهج الفرعية إذا وجدت
+      if (subCurr != null && subCurr.isNotEmpty) {
+        for (int i = 0; i < subCurr.length; i++) {
+          formData.fields.addAll([
+            MapEntry('sub[$i][name]', subCurr[i]['name']),
+            MapEntry('sub[$i][enName]', subCurr[i]['enname']),
+            MapEntry('sub[$i][maxMark]', subCurr[i]['max']),
+            MapEntry('sub[$i][PassingMark]', subCurr[i]['passing']),
+          ]);
+        }
       }
 
+      // إضافة الملفات
       if (file != null) {
         formData.files.add(MapEntry(
           "file",
@@ -71,9 +77,7 @@ class Add_Curriculm_API {
 
       if (response.statusCode == 200) {
         gets.Get.back();
-
         gets.Get.back();
-
         Get_All_Curriculm_API(context).Get_All_Curriculm();
       } else {
         ErrorHandler.handleDioError(DioException(
@@ -91,6 +95,7 @@ class Add_Curriculm_API {
       } else {
         ErrorHandler.handleException(Exception(e.toString()));
       }
+      return null;
     }
   }
 }

@@ -1,4 +1,5 @@
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -7,22 +8,25 @@ import 'package:vms_school/Link/Model/AdminModel/School_Models/Curriculum_Model.
 class Curriculumn_Controller extends GetxController {
   List<Curriculum>? curriculum;
   String? filterName = '';
-  String? filterSemester = '';
+  // String? filterSemester = '';
   String? filterSubject = '';
   List<Curriculum> filteredCurriculum = [];
-  int? semesterId;
+  // int? semesterId;
   int? subjectId;
 
-  List<String> selectedSemesterss = [];
-  List<int> selectedSemesterIds = [];
-  String selectdialog_SemesterIndex = '';
+  // List<String> selectedSemesterss = [];
+  // List<int> selectedSemesterIds = [];
+  // String selectdialog_SemesterIndex = '';
 
   void clearFilter() {
-    searchByName("", semesterIndex, subjectIndex);
+    // searchByName("", semesterIndex, subjectIndex);
+    searchByName("", subjectIndex);
+
     update();
   }
 
-  void searchByName(String? nameQuery, String? semester, String? subject) {
+  void searchByName(String? nameQuery, String? subject) {
+    //, String? semester
     filterName = nameQuery;
     List<Curriculum> tempFilteredList = List.from(curriculum!);
     if (nameQuery != null && nameQuery.isNotEmpty) {
@@ -34,13 +38,13 @@ class Curriculumn_Controller extends GetxController {
       }).toList();
     }
 
-    if (semester != null && semester.isNotEmpty) {
-      tempFilteredList = tempFilteredList.where((cur) {
-        return cur.semester
-                ?.any((s) => s.enName == semester || s.name == semester) ??
-            false;
-      }).toList();
-    }
+    // if (semester != null && semester.isNotEmpty) {
+    //   tempFilteredList = tempFilteredList.where((cur) {
+    //     return cur.semester
+    //             ?.any((s) => s.enName == semester || s.name == semester) ??
+    //         false;
+    //   }).toList();
+    // }
 
     if (subject != null && subject.isNotEmpty) {
       tempFilteredList = tempFilteredList.where((cur) {
@@ -119,22 +123,22 @@ class Curriculumn_Controller extends GetxController {
   }
 
   String subjectIndex = "";
-  String semesterIndex = "";
+  // String semesterIndex = "";
   String dialog_SubjectIndex = "";
-  String dialog_SemesterIndex = "";
+  // String dialog_SemesterIndex = "";
 
   List<String> listsubject = [];
   List<String> list_Dialog_Subject = [];
-  List<String> list_Dialog_semester = [
-    "The First Semester".tr,
-    "The Second Semester".tr,
-    "The Third Semester".tr,
-  ];
-  List<String> listSemester = [
-    "The First Semester",
-    "The Second Semester",
-    "The Third Semester",
-  ];
+  // List<String> list_Dialog_semester = [
+  //   "The First Semester".tr,
+  //   "The Second Semester".tr,
+  //   "The Third Semester".tr,
+  // ];
+  // List<String> listSemester = [
+  //   "The First Semester",
+  //   "The Second Semester",
+  //   "The Third Semester",
+  // ];
 
   void selectIndex(String type, String? index) {
     switch (type) {
@@ -144,14 +148,14 @@ class Curriculumn_Controller extends GetxController {
       case 'Dialog_Subject':
         dialog_SubjectIndex = index ?? "";
         break;
-      case 'semester':
-        semesterIndex = index ?? "";
-        break;
-      case 'Dialog_semester':
-        dialog_SemesterIndex = index ?? "";
-        break;
+      // case 'semester':
+      //   semesterIndex = index ?? "";
+      //   break;
+      // case 'Dialog_semester':
+      //   dialog_SemesterIndex = index ?? "";
+      //   break;
     }
-    searchByName(filterName, semesterIndex, subjectIndex);
+    searchByName(filterName, subjectIndex); // semesterIndex,
     update();
   }
 
@@ -160,17 +164,17 @@ class Curriculumn_Controller extends GetxController {
 
     filteredCurriculum = List.from(curriculum!);
 
-    if (filterName != null && filterName!.isNotEmpty) {
-      searchByName(filterName.toString(), semesterIndex, subjectIndex);
-    }
+    // if (filterName != null && filterName!.isNotEmpty) {
+    //   searchByName(filterName.toString(), semesterIndex, subjectIndex);
+    // }
 
-    if (semesterIndex.isNotEmpty) {
-      filteredCurriculum = filteredCurriculum.where((emp) {
-        return emp.semester?.any(
-                (s) => s.name == semesterIndex || s.enName == semesterIndex) ??
-            false;
-      }).toList();
-    }
+    // if (semesterIndex.isNotEmpty) {
+    //   filteredCurriculum = filteredCurriculum.where((emp) {
+    //     return emp.semester?.any(
+    //             (s) => s.name == semesterIndex || s.enName == semesterIndex) ??
+    //         false;
+    //   }).toList();
+    // }
 
     if (subjectIndex.isNotEmpty) {
       filteredCurriculum = filteredCurriculum.where((emp) {
@@ -200,19 +204,19 @@ class Curriculumn_Controller extends GetxController {
       case 'Dialog_Subject':
         list_Dialog_Subject = options;
         break;
-      case 'semester':
-        listSemester = options;
-        break;
-      case 'Dialog_semester':
-        list_Dialog_semester = options;
-        break;
+      // case 'semester':
+      //   listSemester = options;
+      //   break;
+      // case 'Dialog_semester':
+      //   list_Dialog_semester = options;
+      //   break;
     }
     update();
   }
 
   String get selectsubjectIndex => subjectIndex;
 
-  String get selectsemesterIndex => semesterIndex;
+  // String get selectsemesterIndex => semesterIndex;
 
   String get selectdialog_SubjectIndex => dialog_SubjectIndex;
 
@@ -226,15 +230,15 @@ class Curriculumn_Controller extends GetxController {
     update();
   }
 
-  void set_semesteridx(id) {
-    semesterId = id;
-    update();
-  }
+  // void set_semesteridx(id) {
+  //   semesterId = id;
+  //   update();
+  // }
 
   bool IsAnameError = false;
   bool IsEnameError = false;
   bool IsSubjectError = false;
-  bool IsSemesterError = false;
+  // bool IsSemesterError = false;
   bool IsMaxError = false;
   bool IsPassingError = false;
   bool IsImageError = false;
@@ -251,9 +255,9 @@ class Curriculumn_Controller extends GetxController {
       case 'subject':
         IsSubjectError = newValue;
         break;
-      case 'semester':
-        IsSemesterError = newValue;
-        break;
+      // case 'semester':
+      //   IsSemesterError = newValue;
+      //   break;
       case 'max':
         IsMaxError = newValue;
         break;
@@ -290,30 +294,54 @@ class Curriculumn_Controller extends GetxController {
 
   void initialScreen() {
     subjectIndex = "";
-    semesterIndex = "";
+    // semesterIndex = "";
     update();
   }
 
   initialAddCurr() {
-    selectedSemesterss = [];
-    selectedSemesterIds = [];
-    selectdialog_SemesterIndex = '';
+    // selectedSemesterss = [];
+    // selectedSemesterIds = [];
+    // selectdialog_SemesterIndex = '';
     fileStatus = "Click To Add File\nOr\nDrag And Drop File Here".tr;
     imageStatus = "Click To Add Image\nOr\nDrag And Drop Image Here".tr;
     dialog_SubjectIndex = "";
-    dialog_SemesterIndex = "";
+    // dialog_SemesterIndex = "";
     isFailingSubject = false;
     selectedImage.value = null;
     selectedFile.value = null;
+    clearSubCurrFields();
     updateFieldError("aname", false);
     updateFieldError("ename", false);
     updateFieldError("max", false);
     updateFieldError("passing", false);
     updateFieldError("subject", false);
-    updateFieldError("semester", false);
+    // updateFieldError("semester", false);
     updateFieldError("image", false);
     updateFieldError("file", false);
 
+    update();
+  }
+
+  // في نهاية Curriculumn_Controller
+  List<Map<String, TextEditingController>> subCurrFields = [];
+
+  void addSubCurrFieldSet() {
+    subCurrFields.add({
+      'name': TextEditingController(),
+      'enname': TextEditingController(),
+      'max': TextEditingController(),
+      'passing': TextEditingController(),
+    });
+    update();
+  }
+
+  void removeSubCurrFieldSet(int index) {
+    subCurrFields.removeAt(index);
+    update();
+  }
+
+  void clearSubCurrFields() {
+    subCurrFields.clear();
     update();
   }
 }

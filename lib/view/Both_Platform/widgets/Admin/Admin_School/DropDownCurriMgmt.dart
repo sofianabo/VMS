@@ -28,136 +28,138 @@ class DropDownCurriMgmt extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<Curriculumn_Controller>(builder: (cont) {
       // معالجة خاصة لنوع Dialog_semester
-      if (type == 'Dialog_semester') {
-        return _buildMultiSelectSemester(cont, context);
-      } else {
-        return _buildNormalDropdown(cont, context);
-      }
+      // if (type == 'Dialog_semester') {
+      //   // return _buildMultiSelectSemester(cont, context);
+      // } else {
+      //   return _buildNormalDropdown(cont, context);
+      // }
+return _buildNormalDropdown(cont, context);
+      
     });
   }
 
-  Widget _buildMultiSelectSemester(
-      Curriculumn_Controller cont, BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        InkWell(
-          onTap: () => _showSemesterSelectionDialog(cont, context),
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-            width: width,
-            height: 40,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5),
-              border: isError
-                  ? Border.all(color: Colors.red)
-                  : Border.all(color: color ?? const Color(0xffD9D9D9)),
-            ),
-            child: Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    cont.selectdialog_SemesterIndex.isEmpty
-                        ? title.tr
-                        : cont.selectdialog_SemesterIndex.tr,
-                    style: Get.theme.textTheme.bodyMedium,
-                  ),
-                ),
-                Icon(
-                  Icons.arrow_drop_down,
-                  color: Get.theme.secondaryHeaderColor,
-                ),
-              ],
-            ),
-          ),
-        ),
-        if (isError)
-          Text(
-            "Please select true value".tr,
-            style: const TextStyle(color: Colors.red, fontSize: 12),
-          ),
-      ],
-    );
-  }
+  // Widget _buildMultiSelectSemester(
+  //     Curriculumn_Controller cont, BuildContext context) {
+  //   return Column(
+  //     crossAxisAlignment: CrossAxisAlignment.start,
+  //     children: [
+  //       InkWell(
+  //         onTap: () => _showSemesterSelectionDialog(cont, context),
+  //         child: Container(
+  //           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+  //           width: width,
+  //           height: 40,
+  //           decoration: BoxDecoration(
+  //             borderRadius: BorderRadius.circular(5),
+  //             border: isError
+  //                 ? Border.all(color: Colors.red)
+  //                 : Border.all(color: color ?? const Color(0xffD9D9D9)),
+  //           ),
+  //           child: Row(
+  //             children: [
+  //               Expanded(
+  //                 child: Text(
+  //                   cont.selectdialog_SemesterIndex.isEmpty
+  //                       ? title.tr
+  //                       : cont.selectdialog_SemesterIndex.tr,
+  //                   style: Get.theme.textTheme.bodyMedium,
+  //                 ),
+  //               ),
+  //               Icon(
+  //                 Icons.arrow_drop_down,
+  //                 color: Get.theme.secondaryHeaderColor,
+  //               ),
+  //             ],
+  //           ),
+  //         ),
+  //       ),
+  //       if (isError)
+  //         Text(
+  //           "Please select true value".tr,
+  //           style: const TextStyle(color: Colors.red, fontSize: 12),
+  //         ),
+  //     ],
+  //   );
+  // }
 
-  void _showSemesterSelectionDialog(
-      Curriculumn_Controller cont, BuildContext context) {
-    final List<String> semesters = cont.list_Dialog_semester;
-    List<String> selected = cont.selectdialog_SemesterIndex.isNotEmpty
-        ? cont.selectdialog_SemesterIndex.split(', ')
-        : [];
+  // void _showSemesterSelectionDialog(
+  //     Curriculumn_Controller cont, BuildContext context) {
+  //   final List<String> semesters = cont.list_Dialog_semester;
+  //   List<String> selected = cont.selectdialog_SemesterIndex.isNotEmpty
+  //       ? cont.selectdialog_SemesterIndex.split(', ')
+  //       : [];
 
-    showDialog(
-      context: context,
-      builder: (ctx) {
-        return StatefulBuilder(
-          builder: (context, setState) {
-            return VMSAlertDialog(
-                action: [
-                  TextButton(
-                    onPressed: () => Get.back(),
-                    child: Text("Cancel".tr),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      cont.selectdialog_SemesterIndex = selected.join(', ');
-                      if (selected.isNotEmpty) {
-                        cont.updateFieldError("semester", false);
-                        cont.selectedSemesterss = selected;
-                        _updateSemesterIds(cont, selected);
-                      } else {
-                        cont.updateFieldError("semester", true);
-                        cont.selectedSemesterss = [];
-                      }
+  //   showDialog(
+  //     context: context,
+  //     builder: (ctx) {
+  //       return StatefulBuilder(
+  //         builder: (context, setState) {
+  //           return VMSAlertDialog(
+  //               action: [
+  //                 TextButton(
+  //                   onPressed: () => Get.back(),
+  //                   child: Text("Cancel".tr),
+  //                 ),
+  //                 TextButton(
+  //                   onPressed: () {
+  //                     cont.selectdialog_SemesterIndex = selected.join(', ');
+  //                     if (selected.isNotEmpty) {
+  //                       cont.updateFieldError("semester", false);
+  //                       cont.selectedSemesterss = selected;
+  //                       _updateSemesterIds(cont, selected);
+  //                     } else {
+  //                       cont.updateFieldError("semester", true);
+  //                       cont.selectedSemesterss = [];
+  //                     }
 
-                      cont.update();
-                      Get.back();
-                    },
-                    child: Text("Done".tr),
-                  ),
-                ],
-                contents: SingleChildScrollView(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: semesters.map((semester) {
-                      return CheckboxListTile(
-                        title: Text(semester.tr),
-                        value: selected.contains(semester),
-                        onChanged: (isChecked) {
-                          setState(() {
-                            if (isChecked!) {
-                              selected.add(semester);
-                            } else {
-                              selected.remove(semester);
-                            }
-                          });
-                        },
-                      );
-                    }).toList(),
-                  ),
-                ),
-                apptitle: "Select Semesters".tr,
-                subtitle: "none");
-          },
-        );
-      },
-    );
-  }
+  //                     cont.update();
+  //                     Get.back();
+  //                   },
+  //                   child: Text("Done".tr),
+  //                 ),
+  //               ],
+  //               contents: SingleChildScrollView(
+  //                 child: Column(
+  //                   mainAxisSize: MainAxisSize.min,
+  //                   children: semesters.map((semester) {
+  //                     return CheckboxListTile(
+  //                       title: Text(semester.tr),
+  //                       value: selected.contains(semester),
+  //                       onChanged: (isChecked) {
+  //                         setState(() {
+  //                           if (isChecked!) {
+  //                             selected.add(semester);
+  //                           } else {
+  //                             selected.remove(semester);
+  //                           }
+  //                         });
+  //                       },
+  //                     );
+  //                   }).toList(),
+  //                 ),
+  //               ),
+  //               apptitle: "Select Semesters".tr,
+  //               subtitle: "none");
+  //         },
+  //       );
+  //     },
+  //   );
+  // }
 
-  void _updateSemesterIds(Curriculumn_Controller cont, List<String> selected) {
-    cont.selectedSemesterIds = [];
-    for (var semester in selected) {
-      if (semester == "The First Semester" || semester == "الفصل الأول") {
-        cont.selectedSemesterIds.add(1);
-      } else if (semester == "The Second Semester" ||
-          semester == "الفصل الثاني") {
-        cont.selectedSemesterIds.add(2);
-      } else if (semester == "The Third Semester" ||
-          semester == "الفصل الثالث") {
-        cont.selectedSemesterIds.add(3);
-      }
-    }
-  }
+  // void _updateSemesterIds(Curriculumn_Controller cont, List<String> selected) {
+  //   cont.selectedSemesterIds = [];
+  //   for (var semester in selected) {
+  //     if (semester == "The First Semester" || semester == "الفصل الأول") {
+  //       cont.selectedSemesterIds.add(1);
+  //     } else if (semester == "The Second Semester" ||
+  //         semester == "الفصل الثاني") {
+  //       cont.selectedSemesterIds.add(2);
+  //     } else if (semester == "The Third Semester" ||
+  //         semester == "الفصل الثالث") {
+  //       cont.selectedSemesterIds.add(3);
+  //     }
+  //   }
+  // }
 
   Widget _buildNormalDropdown(
       Curriculumn_Controller cont, BuildContext context) {
@@ -169,11 +171,11 @@ class DropDownCurriMgmt extends StatelessWidget {
             ? cont.selectsubjectIndex
             : title;
         break;
-      case 'semester':
-        currentValue = cont.selectsemesterIndex.isNotEmpty
-            ? cont.selectsemesterIndex
-            : title;
-        break;
+      // case 'semester':
+      //   currentValue = cont.selectsemesterIndex.isNotEmpty
+      //       ? cont.selectsemesterIndex
+      //       : title;
+      //   break;
       case 'Dialog_Subject':
         currentValue = cont.selectdialog_SubjectIndex.isNotEmpty
             ? cont.selectdialog_SubjectIndex
@@ -301,17 +303,17 @@ class DropDownCurriMgmt extends StatelessWidget {
         }).toList());
         break;
 
-      case 'semester':
-        items.addAll(cont.listSemester.map((String value) {
-          return DropdownMenuItem<String>(
-            value: value,
-            child: Text(
-              value.tr,
-              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
-            ),
-          );
-        }).toList());
-        break;
+      // case 'semester':
+      //   items.addAll(cont.listSemester.map((String value) {
+      //     return DropdownMenuItem<String>(
+      //       value: value,
+      //       child: Text(
+      //         value.tr,
+      //         style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
+      //       ),
+      //     );
+      //   }).toList());
+      //   break;
 
       case 'Dialog_Subject':
         items.addAll(cont.list_Dialog_Subject.map((String value) {
@@ -325,17 +327,17 @@ class DropDownCurriMgmt extends StatelessWidget {
         }).toList());
         break;
 
-      case 'Dialog_semester':
-        items.addAll(cont.list_Dialog_semester.map((String value) {
-          return DropdownMenuItem<String>(
-            value: value,
-            child: Text(
-              value.tr,
-              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
-            ),
-          );
-        }).toList());
-        break;
+      // case 'Dialog_semester':
+      //   items.addAll(cont.list_Dialog_semester.map((String value) {
+      //     return DropdownMenuItem<String>(
+      //       value: value,
+      //       child: Text(
+      //         value.tr,
+      //         style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
+      //       ),
+      //     );
+      //   }).toList());
+      //   break;
     }
 
     return items;
