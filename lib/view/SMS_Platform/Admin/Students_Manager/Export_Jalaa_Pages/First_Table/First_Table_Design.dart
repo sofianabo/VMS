@@ -47,46 +47,94 @@ class First_Table_Design extends StatelessWidget {
               if ((mainCurr.insideCurr?.length ?? 0) <= 1) {
                 // مادة عادية
                 final marks = mainCurr.insideCurr!.first.marks ?? [];
+                final passing = mainCurr.insideCurr!.first.passingMark ?? 0;
 
                 return TableRow(
                   children: [
                     buildDgree(mainCurr.curriculumName ?? '',
-                        isLeft: true, isRight: true, isBold: true),
+                        isLeft: true,
+                        isRight: true,
+                        isBold: true,
+                        passingMark: passing,
+                        passingRatio: 1),
                     buildDgree(
+                        passingMark: passing,
+                        passingRatio: 1,
                         mainCurr.insideCurr!.first.maxMark?.toString() ?? '',
                         isLeft: true,
                         isBold: true),
                     buildSplitDgree(
                       data: [
-                        {"text": safeMarkText(marks, 0), "width": 39},
-                        {"text": safeMarkText(marks, 1), "width": 60},
+                        {
+                          "text": safeMarkText(marks, 0),
+                          "mark": safeMarkText(marks, 0),
+                          "width": 39,
+                          "passingMark": passing,
+                          "passingRatio": 0.6,
+                        },
+                        {
+                          "text": safeMarkText(marks, 1),
+                          "mark": safeMarkText(marks, 1),
+                          "width": 60,
+                          "passingMark": passing,
+                          "passingRatio": 0.4,
+                        },
                         {
                           "text": (safeMarkNumber(marks, 0) +
                                   safeMarkNumber(marks, 1))
                               .toString(),
-                          "width": 100
+                          "mark": (safeMarkNumber(marks, 0) +
+                                  safeMarkNumber(marks, 1))
+                              .toString(),
+                          "width": 100,
+                          "passingMark": passing,
+                          "passingRatio": 1,
                         },
                         {
                           "text": numberToArabicWords(
                               (safeMarkNumber(marks, 0) +
                                       safeMarkNumber(marks, 1))
                                   .toString()),
-                          "width": 101
+                          "mark": (safeMarkNumber(marks, 0) +
+                                  safeMarkNumber(marks, 1))
+                              .toString(),
+                          "width": 101,
+                          "passingMark": passing,
+                          "passingRatio": 1,
                         },
                       ],
                     ),
                     buildSplitDgree(
                       isRight: true,
                       data: [
-                        {"text": safeMarkText(marks, 2), "width": 38},
-                        {"text": safeMarkText(marks, 3), "width": 59},
+                        {
+                          "text": safeMarkText(marks, 2),
+                          "mark": safeMarkText(marks, 2),
+                          "width": 38,
+                          "passingMark": passing,
+                          "passingRatio": 0.6,
+                        },
+                        {
+                          "text": safeMarkText(marks, 3),
+                          "mark": safeMarkText(marks, 3),
+                          "width": 59,
+                          "passingMark": passing,
+                          "passingRatio": 0.4,
+                        },
                         {
                           "text": marks.length > 2
                               ? (safeMarkNumber(marks, 2) +
                                       safeMarkNumber(marks, 3))
                                   .toString()
                               : "",
-                          "width": 100
+                          "mark": marks.length > 2
+                              ? (safeMarkNumber(marks, 2) +
+                                      safeMarkNumber(marks, 3))
+                                  .toString()
+                              : "",
+                          "width": 100,
+                          "passingMark": passing,
+                          "passingRatio": 1,
                         },
                         {
                           "text": marks.length > 2
@@ -94,11 +142,22 @@ class First_Table_Design extends StatelessWidget {
                                       safeMarkNumber(marks, 3))
                                   .toString())
                               : "",
-                          "width": 101
+                          "mark": marks.length > 2
+                              ? (safeMarkNumber(marks, 2) +
+                                      safeMarkNumber(marks, 3))
+                                  .toString()
+                              : "",
+                          "width": 101,
+                          "passingMark": passing,
+                          "passingRatio": 1,
                         },
                       ],
                     ),
-                    buildDgree('', isLeft: true, isRight: true),
+                    buildDgree('',
+                        isLeft: true,
+                        isRight: true,
+                        passingMark: passing,
+                        passingRatio: 1),
                     buildDgree(
                         marks.length > 2
                             ? (safeMarkNumber(marks, 0) +
@@ -107,7 +166,15 @@ class First_Table_Design extends StatelessWidget {
                                     safeMarkNumber(marks, 3))
                                 .toString()
                             : " ",
-                        isLeft: true),
+                        marks: marks.length > 2
+                            ? (safeMarkNumber(marks, 0) +
+                                safeMarkNumber(marks, 1) +
+                                safeMarkNumber(marks, 2) +
+                                safeMarkNumber(marks, 3))
+                            : 0,
+                        isLeft: true,
+                        passingMark: passing * 2,
+                        passingRatio: 1),
                     buildSplitDgree(
                       data: [
                         {
@@ -120,7 +187,18 @@ class First_Table_Design extends StatelessWidget {
                                   .ceil()
                                   .toString()
                               : "",
-                          "width": 99
+                          "mark": marks.length > 2
+                              ? ((safeMarkNumber(marks, 0) +
+                                          safeMarkNumber(marks, 1) +
+                                          safeMarkNumber(marks, 2) +
+                                          safeMarkNumber(marks, 3)) /
+                                      2)
+                                  .ceil()
+                                  .toString()
+                              : "",
+                          "width": 99,
+                          "passingMark": passing,
+                          "passingRatio": 1,
                         },
                         {
                           "text": marks.length > 2
@@ -131,7 +209,17 @@ class First_Table_Design extends StatelessWidget {
                                       2)
                                   .toString())
                               : "",
-                          "width": 99
+                          "mark": marks.length > 2
+                              ? ((safeMarkNumber(marks, 0) +
+                                          safeMarkNumber(marks, 1) +
+                                          safeMarkNumber(marks, 2) +
+                                          safeMarkNumber(marks, 3)) /
+                                      2)
+                                  .toString()
+                              : "",
+                          "width": 99,
+                          "passingMark": passing,
+                          "passingRatio": 1,
                         },
                       ],
                     ),
@@ -158,19 +246,43 @@ class First_Table_Design extends StatelessWidget {
                     Column(
                       children: mainCurr.insideCurr!.map((subCurr) {
                         final marks = subCurr.marks ?? [];
+                        final passingmark = subCurr.passingMark ?? 0;
+
                         return buildTowDgreeMarks(
                           data: [
-                            {"text": safeMarkText(marks, 0), "width": 39},
-                            {"text": safeMarkText(marks, 1), "width": 60},
+                            {
+                              "text": safeMarkText(marks, 0),
+                              "mark": safeMarkText(marks, 0),
+                              "width": 39,
+                              "passingMark": passingmark,
+                              "passingRatio": 0.6,
+                            },
+                            {
+                              "text": safeMarkText(marks, 1),
+                              "mark": safeMarkText(marks, 1),
+                              "width": 60,
+                              "passingMark": passingmark,
+                              "passingRatio": 0.4,
+                            },
                             {
                               "text": (safeMarkNumber(marks, 0) +
                                       safeMarkNumber(marks, 1))
                                   .toString(),
+                              "mark": (safeMarkNumber(marks, 0) +
+                                      safeMarkNumber(marks, 1))
+                                  .toString(),
+                              "passingMark": passingmark,
+                              "passingRatio": 1,
                               "width": 100
                             },
                             {
                               "text": numberToArabicWords(
                                   "${(safeMarkNumber(marks, 0) + safeMarkNumber(marks, 1)).toString()}"),
+                              "passingMark": passingmark,
+                              "passingRatio": 1,
+                              "mark": (safeMarkNumber(marks, 0) +
+                                      safeMarkNumber(marks, 1))
+                                  .toString(),
                               "width": 101
                             },
                           ],
@@ -180,18 +292,38 @@ class First_Table_Design extends StatelessWidget {
                     Column(
                       children: mainCurr.insideCurr!.map((subCurr) {
                         final marks = subCurr.marks ?? [];
+                        final passingmark = subCurr.passingMark ?? 0;
                         return buildTowDgreeMarks(
                           isRight: true,
                           data: [
-                            {"text": safeMarkText(marks, 2), "width": 38},
-                            {"text": safeMarkText(marks, 3), "width": 59},
+                            {
+                              "text": safeMarkText(marks, 2),
+                              "mark": safeMarkText(marks, 2),
+                              "width": 38,
+                              "passingMark": passingmark,
+                              "passingRatio": 0.6,
+                            },
+                            {
+                              "text": safeMarkText(marks, 3),
+                              "mark": safeMarkText(marks, 3),
+                              "width": 59,
+                              "passingMark": passingmark,
+                              "passingRatio": 0.4,
+                            },
                             {
                               "text": marks.length > 2
                                   ? (safeMarkNumber(marks, 2) +
                                           safeMarkNumber(marks, 3))
                                       .toString()
                                   : "",
-                              "width": 100
+                              "mark": marks.length > 2
+                                  ? (safeMarkNumber(marks, 2) +
+                                          safeMarkNumber(marks, 3))
+                                      .toString()
+                                  : "",
+                              "width": 100,
+                              "passingMark": passingmark,
+                              "passingRatio": 1,
                             },
                             {
                               "text": marks.length > 2
@@ -200,6 +332,13 @@ class First_Table_Design extends StatelessWidget {
                                               safeMarkNumber(marks, 3))
                                           .toString())
                                   : "",
+                              "mark": marks.length > 2
+                                  ? (safeMarkNumber(marks, 2) +
+                                          safeMarkNumber(marks, 3))
+                                      .toString()
+                                  : "",
+                              "passingMark": passingmark,
+                              "passingRatio": 1,
                               "width": 101
                             },
                           ],
@@ -215,6 +354,7 @@ class First_Table_Design extends StatelessWidget {
                     Column(
                       children: mainCurr.insideCurr!.map((subCurr) {
                         final marks = subCurr.marks ?? [];
+                        final passing = subCurr.passingMark ?? 0;
                         int sum = 0;
 
                         final val1 = marks[0]; // مثلاً oral
@@ -227,6 +367,9 @@ class First_Table_Design extends StatelessWidget {
                           data: [
                             {
                               "text": marks.length > 2 ? sum.toString() : "",
+                              "mark": marks.length > 2 ? sum.toString() : "",
+                              "passingMark": passing * 2,
+                              "passingRatio": 1,
                               "width": 58
                             },
                           ],
@@ -237,6 +380,7 @@ class First_Table_Design extends StatelessWidget {
                     Column(
                       children: mainCurr.insideCurr!.map((subCurr) {
                         final marks = subCurr.marks ?? [];
+                        final passing = subCurr.passingMark ?? [];
                         int sum = 0;
 
                         final val1 = marks[0]; // مثلاً oral
@@ -251,11 +395,19 @@ class First_Table_Design extends StatelessWidget {
                             {
                               "text":
                                   "${marks.length > 2 ? double.parse((sum / 2).toString()).ceil() : ""}",
+                              "mark":
+                                  "${marks.length > 2 ? double.parse((sum / 2).toString()).ceil() : ""}",
+                              "passingMark": passing,
+                              "passingRatio": 1,
                               "width": 99
                             },
                             {
                               "text":
                                   "${marks.length > 2 ? numberToArabicWords("${sum / 2}") : ""}",
+                              "mark":
+                                  "${marks.length > 2 ? double.parse((sum / 2).toString()).ceil() : ""}",
+                              "passingMark": passing,
+                              "passingRatio": 1,
                               "width": 99
                             },
                           ],
@@ -270,10 +422,19 @@ class First_Table_Design extends StatelessWidget {
           // The Sum Table Row
           TableRow(
             children: [
-              buildDgree('المجموع العام',
-                  isLeft: true, isRight: true, isBold: true),
+              buildDgree(
+                'المجموع العام',
+                isLeft: true,
+                isRight: true,
+                isBold: true,
+                passingMark: 100,
+                passingRatio: 1,
+              ),
 
               buildDgree(
+                passingMark: calculateTotalPassingMarks(
+                    controller.rebortCard!.rebort!.mainCurriculum),
+                passingRatio: 1,
                 '${calculateTotalCMarks(controller.rebortCard!.rebort!.mainCurriculum)}',
                 isLeft: true,
                 isBold: true,
@@ -289,13 +450,21 @@ class First_Table_Design extends StatelessWidget {
                   {
                     "text":
                         "${(safeMarkNumberAtIndex(0) + safeMarkNumberAtIndex(1)).ceil()}",
+                    "mark":
+                        "${(safeMarkNumberAtIndex(0) + safeMarkNumberAtIndex(1)).ceil()}",
                     "width": 100,
+                    "passingMark": getTotalPassingMarks(),
+                    "passingRatio": 1,
                   },
                   {
                     "text": numberToArabicWords(
                       "${(safeMarkNumberAtIndex(0) + safeMarkNumberAtIndex(1)).ceil()}",
                     ),
+                    "mark":
+                        "${(safeMarkNumberAtIndex(0) + safeMarkNumberAtIndex(1)).ceil()}",
                     "width": 100,
+                    "passingMark": getTotalPassingMarks(),
+                    "passingRatio": 1,
                   }
                 ],
               ),
@@ -312,7 +481,12 @@ class First_Table_Design extends StatelessWidget {
                     "text": controller.rebortCard!.rebort!.solok!.length >= 2
                         ? "${(safeMarkNumberAtIndex(2) + safeMarkNumberAtIndex(3)).ceil()}"
                         : "",
+                    "mark": controller.rebortCard!.rebort!.solok!.length >= 2
+                        ? "${(safeMarkNumberAtIndex(2) + safeMarkNumberAtIndex(3)).ceil()}"
+                        : "",
                     "width": 100,
+                    "passingMark": getTotalPassingMarks(),
+                    "passingRatio": 1,
                   },
                   {
                     "text": controller.rebortCard!.rebort!.solok!.length >= 2
@@ -320,7 +494,12 @@ class First_Table_Design extends StatelessWidget {
                             "${(safeMarkNumberAtIndex(2) + safeMarkNumberAtIndex(3)).ceil()}",
                           )
                         : "",
+                    "mark": controller.rebortCard!.rebort!.solok!.length >= 2
+                        ? "${(safeMarkNumberAtIndex(2) + safeMarkNumberAtIndex(3)).ceil()}"
+                        : "",
                     "width": 100,
+                    "passingMark": getTotalPassingMarks(),
+                    "passingRatio": 1,
                   }
                 ],
               ),
@@ -328,11 +507,19 @@ class First_Table_Design extends StatelessWidget {
               buildDgree('', isRight: true, isLeft: true),
 
               buildDgree(
-                isLeft: true,
-                controller.rebortCard!.rebort!.solok!.length >= 2
-                    ? '${(safeMarkNumberAtIndex(0) + safeMarkNumberAtIndex(1) + safeMarkNumberAtIndex(2) + safeMarkNumberAtIndex(3)).ceil()}'
-                    : " ",
-              ),
+                  isLeft: true,
+                  controller.rebortCard!.rebort!.solok!.length >= 2
+                      ? '${(safeMarkNumberAtIndex(0) + safeMarkNumberAtIndex(1) + safeMarkNumberAtIndex(2) + safeMarkNumberAtIndex(3)).ceil()}'
+                      : " ",
+                  marks: controller.rebortCard!.rebort!.solok!.length >= 2
+                      ? ((safeMarkNumberAtIndex(0) +
+                              safeMarkNumberAtIndex(1) +
+                              safeMarkNumberAtIndex(2) +
+                              safeMarkNumberAtIndex(3))
+                          .ceil())
+                      : 0,
+                  passingMark: getTotalPassingMarks() * 2,
+                  passingRatio: 1),
 
               buildSplitDgree(
                 data: [
@@ -340,7 +527,12 @@ class First_Table_Design extends StatelessWidget {
                     "text": controller.rebortCard!.rebort!.solok!.length >= 2
                         ? '${marksall(controller.rebortCard!.rebort!.mainCurriculum)}'
                         : "",
+                    "mark": controller.rebortCard!.rebort!.solok!.length >= 2
+                        ? '${marksall(controller.rebortCard!.rebort!.mainCurriculum)}'
+                        : "",
                     "width": 99,
+                    "passingMark": getTotalPassingMarks(),
+                    "passingRatio": 1,
                   },
                   {
                     "text": controller.rebortCard!.rebort!.solok!.length >= 2
@@ -349,6 +541,11 @@ class First_Table_Design extends StatelessWidget {
                           )
                         : "",
                     "width": 99,
+                    "mark": controller.rebortCard!.rebort!.solok!.length >= 2
+                        ? '${marksall(controller.rebortCard!.rebort!.mainCurriculum)}'
+                        : "",
+                    "passingMark": getTotalPassingMarks(),
+                    "passingRatio": 1,
                   },
                 ],
               ),
@@ -357,6 +554,7 @@ class First_Table_Design extends StatelessWidget {
           if (controller.rebortCard?.rebort?.downCurriculum != null)
             ...controller.rebortCard!.rebort!.downCurriculum!.map((mainCurr) {
               final marks = mainCurr.insideCurr!.first.marks ?? [];
+              final passing = mainCurr.insideCurr!.first.passingMark ?? 0;
 
               final int mark0 = safeMarkNumber(marks, 0);
               final int mark1 = safeMarkNumber(marks, 1);
@@ -377,10 +575,16 @@ class First_Table_Design extends StatelessWidget {
                       },
                       {
                         "text": safeMarkText(marks, 0),
+                        "mark": safeMarkText(marks, 0),
                         "width": 100,
+                        "passingMark": passing,
+                        "passingRatio": 1,
                       },
                       {
                         "text": numberToArabicWords('$mark0'),
+                        "mark": safeMarkText(marks, 0),
+                        "passingMark": passing,
+                        "passingRatio": 1,
                         "width": 100,
                       }
                     ],
@@ -397,7 +601,13 @@ class First_Table_Design extends StatelessWidget {
                             controller.rebortCard!.rebort!.solok!.length >= 2
                                 ? "$mark1"
                                 : "",
+                        "mark":
+                            controller.rebortCard!.rebort!.solok!.length >= 2
+                                ? "$mark1"
+                                : "",
                         "width": 100,
+                        "passingMark": passing,
+                        "passingRatio": 1,
                       },
                       {
                         "text":
@@ -405,6 +615,12 @@ class First_Table_Design extends StatelessWidget {
                                 ? numberToArabicWords('$mark1')
                                 : "",
                         "width": 100,
+                        "mark":
+                            controller.rebortCard!.rebort!.solok!.length >= 2
+                                ? "$mark1"
+                                : "",
+                        "passingMark": passing,
+                        "passingRatio": 1,
                       }
                     ],
                   ),
@@ -414,11 +630,15 @@ class First_Table_Design extends StatelessWidget {
                     '',
                   ),
                   buildDgree(
-                    isLeft: true,
-                    controller.rebortCard!.rebort!.solok!.length >= 2
-                        ? '$sum'
-                        : " ",
-                  ),
+                      isLeft: true,
+                      controller.rebortCard!.rebort!.solok!.length >= 2
+                          ? '$sum'
+                          : " ",
+                      marks: controller.rebortCard!.rebort!.solok!.length >= 2
+                          ? sum
+                          : 0,
+                      passingMark: passing * 2,
+                      passingRatio: 1),
                   buildSplitDgree(
                     data: [
                       {
@@ -426,6 +646,12 @@ class First_Table_Design extends StatelessWidget {
                             controller.rebortCard!.rebort!.solok!.length >= 2
                                 ? '${avg.ceil()}'
                                 : "",
+                        "mark":
+                            controller.rebortCard!.rebort!.solok!.length >= 2
+                                ? '${avg.ceil()}'
+                                : "",
+                        "passingMark": passing,
+                        "passingRatio": 1,
                         "width": 99,
                       },
                       {
@@ -434,6 +660,12 @@ class First_Table_Design extends StatelessWidget {
                                 ? numberToArabicWords('${avg.ceil()}')
                                 : "",
                         "width": 99,
+                        "mark":
+                            controller.rebortCard!.rebort!.solok!.length >= 2
+                                ? '${avg.ceil()}'
+                                : "",
+                        "passingMark": passing,
+                        "passingRatio": 1,
                       },
                     ],
                   ),
@@ -441,7 +673,7 @@ class First_Table_Design extends StatelessWidget {
               );
             }).toList(),
 
-          //The Sum Table Row
+          //The solok Table Row
           TableRow(
             children: [
               buildDgree('السلوك', isLeft: true, isRight: true, isBold: true),
@@ -459,11 +691,17 @@ class First_Table_Design extends StatelessWidget {
                   {
                     "text": controller.rebortCard!.rebort!.solok![0],
                     "width": 100,
+                    "mark": controller.rebortCard!.rebort!.solok![0],
+                    "passingMark": 100,
+                    "passingRatio": 1,
                   },
                   {
                     "text":
                         "${numberToArabicWords("${controller.rebortCard!.rebort!.solok![0]}")}",
                     "width": 100,
+                    "mark": controller.rebortCard!.rebort!.solok![0],
+                    "passingMark": 100,
+                    "passingRatio": 1,
                   }
                 ],
               ),
@@ -478,12 +716,22 @@ class First_Table_Design extends StatelessWidget {
                     "text": controller.rebortCard!.rebort!.solok!.length >= 2
                         ? controller.rebortCard!.rebort!.solok![1]
                         : "",
+                    "mark": controller.rebortCard!.rebort!.solok!.length >= 2
+                        ? controller.rebortCard!.rebort!.solok![1]
+                        : "",
+                    "passingMark": 100,
+                    "passingRatio": 1,
                     "width": 100,
                   },
                   {
                     "text": controller.rebortCard!.rebort!.solok!.length >= 2
                         ? "${numberToArabicWords("${controller.rebortCard!.rebort!.solok![1]}")}"
                         : "",
+                    "mark": controller.rebortCard!.rebort!.solok!.length >= 2
+                        ? "${controller.rebortCard!.rebort!.solok![1]}"
+                        : "",
+                    "passingMark": 100,
+                    "passingRatio": 1,
                     "width": 100,
                   }
                 ],
@@ -494,11 +742,16 @@ class First_Table_Design extends StatelessWidget {
                 '',
               ),
               buildDgree(
-                isLeft: true,
-                controller.rebortCard!.rebort!.solok!.length >= 2
-                    ? "${controller.rebortCard!.rebort!.solok![0] + controller.rebortCard!.rebort!.solok![1]}"
-                    : " ",
-              ),
+                  isLeft: true,
+                  controller.rebortCard!.rebort!.solok!.length >= 2
+                      ? "${controller.rebortCard!.rebort!.solok![0] + controller.rebortCard!.rebort!.solok![1]}"
+                      : " ",
+                  passingRatio: 1,
+                  passingMark: 200,
+                  marks: controller.rebortCard!.rebort!.solok!.length >= 2
+                      ? controller.rebortCard!.rebort!.solok![0] +
+                          controller.rebortCard!.rebort!.solok![1]
+                      : 0),
               buildSplitDgree(
                 data: [
                   {
@@ -509,13 +762,31 @@ class First_Table_Design extends StatelessWidget {
                                 2)
                             .ceil()
                         : "",
+                    "mark": controller.rebortCard!.rebort!.solok!.length >= 2
+                        ? ((controller.rebortCard!.rebort!.solok![0].ceil() +
+                                    controller.rebortCard!.rebort!.solok![1]
+                                        .ceil()) /
+                                2)
+                            .ceil()
+                        : "",
                     "width": 99,
+                    "passingMark": 100,
+                    "passingRatio": 1,
                   },
                   {
                     "text": controller.rebortCard!.rebort!.solok!.length >= 2
                         ? "${numberToArabicWords("${((controller.rebortCard!.rebort!.solok![0].ceil() + controller.rebortCard!.rebort!.solok![1].ceil()) / 2).ceil()}")}"
                         : "",
+                    "mark": controller.rebortCard!.rebort!.solok!.length >= 2
+                        ? ((controller.rebortCard!.rebort!.solok![0].ceil() +
+                                    controller.rebortCard!.rebort!.solok![1]
+                                        .ceil()) /
+                                2)
+                            .ceil()
+                        : "",
                     "width": 99,
+                    "passingMark": 100,
+                    "passingRatio": 1,
                   },
                 ],
               ),
@@ -540,12 +811,28 @@ class First_Table_Design extends StatelessWidget {
                   {
                     "text":
                         '${sumMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum, 0) + controller.rebortCard!.rebort!.solok![0] + sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum, 0) + sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum, 1)}',
+                    "mark":
+                        '${sumMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum, 0) + controller.rebortCard!.rebort!.solok![0] + sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum, 0) + sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum, 1)}',
                     "width": 100,
+                    "passingMark": calculateTotalPassingMarks(
+                            controller.rebortCard!.rebort!.downCurriculum) +
+                        100 +
+                        calculateTotalPassingMarks(
+                            controller.rebortCard!.rebort!.mainCurriculum),
+                    "passingRatio": 1,
                   },
                   {
                     "text": numberToArabicWords(
                         '${sumMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum, 0) + controller.rebortCard!.rebort!.solok![0] + sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum, 0) + sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum, 1)}'),
                     "width": 100,
+                    "mark":
+                        '${sumMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum, 0) + controller.rebortCard!.rebort!.solok![0] + sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum, 0) + sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum, 1)}',
+                    "passingMark": calculateTotalPassingMarks(
+                            controller.rebortCard!.rebort!.downCurriculum) +
+                        100 +
+                        calculateTotalPassingMarks(
+                            controller.rebortCard!.rebort!.mainCurriculum),
+                    "passingRatio": 1,
                   }
                 ],
               ),
@@ -560,7 +847,16 @@ class First_Table_Design extends StatelessWidget {
                     "text": controller.rebortCard!.rebort!.solok!.length >= 2
                         ? '${sumMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum, 1) + controller.rebortCard!.rebort!.solok![1] + sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum, 2) + sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum, 3)}'
                         : '',
+                    "mark": controller.rebortCard!.rebort!.solok!.length >= 2
+                        ? '${sumMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum, 1) + controller.rebortCard!.rebort!.solok![1] + sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum, 2) + sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum, 3)}'
+                        : '',
                     "width": 100,
+                    "passingMark": calculateTotalPassingMarks(
+                            controller.rebortCard!.rebort!.downCurriculum) +
+                        100 +
+                        calculateTotalPassingMarks(
+                            controller.rebortCard!.rebort!.mainCurriculum),
+                    "passingRatio": 1,
                   },
                   {
                     "text": controller.rebortCard!.rebort!.solok!.length >= 2
@@ -568,16 +864,54 @@ class First_Table_Design extends StatelessWidget {
                             '${sumMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum, 1) + controller.rebortCard!.rebort!.solok![1] + sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum, 2) + sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum, 3)}')
                         : '',
                     "width": 100,
+                    "mark": controller.rebortCard!.rebort!.solok!.length >= 2
+                        ? '${sumMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum, 1) + controller.rebortCard!.rebort!.solok![1] + sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum, 2) + sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum, 3)}'
+                        : '',
+                    "passingMark": calculateTotalPassingMarks(
+                            controller.rebortCard!.rebort!.downCurriculum) +
+                        100 +
+                        calculateTotalPassingMarks(
+                            controller.rebortCard!.rebort!.mainCurriculum),
+                    "passingRatio": 1,
                   }
                 ],
               ),
               buildDgree('', isRight: true, isLeft: true),
               buildDgree(
-                isLeft: true,
-                controller.rebortCard!.rebort!.solok!.length >= 2
-                    ? '${(sumMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum, 0) + controller.rebortCard!.rebort!.solok![0] + sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum, 0) + sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum, 1) + sumMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum, 1) + controller.rebortCard!.rebort!.solok![1] + sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum, 2) + sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum, 3)).ceil()}'
-                    : ' ',
-              ),
+                  isLeft: true,
+                  controller.rebortCard!.rebort!.solok!.length >= 2
+                      ? '${(sumMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum, 0) + controller.rebortCard!.rebort!.solok![0] + sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum, 0) + sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum, 1) + sumMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum, 1) + controller.rebortCard!.rebort!.solok![1] + sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum, 2) + sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum, 3)).ceil()}'
+                      : ' ',
+                  marks: controller.rebortCard!.rebort!.solok!.length >= 2
+                      ? (sumMarksAtIndex(
+                                  controller.rebortCard!.rebort!.downCurriculum,
+                                  0) +
+                              controller.rebortCard!.rebort!.solok![0] +
+                              sumMarksAtIndex(
+                                  controller.rebortCard!.rebort!.mainCurriculum,
+                                  0) +
+                              sumMarksAtIndex(
+                                  controller.rebortCard!.rebort!.mainCurriculum,
+                                  1) +
+                              sumMarksAtIndex(
+                                  controller.rebortCard!.rebort!.downCurriculum,
+                                  1) +
+                              controller.rebortCard!.rebort!.solok![1] +
+                              sumMarksAtIndex(
+                                  controller.rebortCard!.rebort!.mainCurriculum,
+                                  2) +
+                              sumMarksAtIndex(
+                                  controller.rebortCard!.rebort!.mainCurriculum,
+                                  3))
+                          .ceil()
+                      : 0,
+                  passingMark: (calculateTotalPassingMarks(
+                              controller.rebortCard!.rebort!.downCurriculum) +
+                          100 +
+                          calculateTotalPassingMarks(
+                              controller.rebortCard!.rebort!.mainCurriculum)) *
+                      2,
+                  passingRatio: 1),
               buildSplitDgree(
                 data: [
                   {
@@ -585,6 +919,15 @@ class First_Table_Design extends StatelessWidget {
                         ? '${(marksall(controller.rebortCard!.rebort!.mainCurriculum) + marksall(controller.rebortCard!.rebort!.downCurriculum) + (controller.rebortCard!.rebort!.solok![0].ceil() + controller.rebortCard!.rebort!.solok![1].ceil()) / 2).ceil()}'
                         : '',
                     "width": 99,
+                    "mark": controller.rebortCard!.rebort!.solok!.length >= 2
+                        ? '${(marksall(controller.rebortCard!.rebort!.mainCurriculum) + marksall(controller.rebortCard!.rebort!.downCurriculum) + (controller.rebortCard!.rebort!.solok![0].ceil() + controller.rebortCard!.rebort!.solok![1].ceil()) / 2).ceil()}'
+                        : '',
+                    "passingMark": calculateTotalPassingMarks(
+                            controller.rebortCard!.rebort!.downCurriculum) +
+                        100 +
+                        calculateTotalPassingMarks(
+                            controller.rebortCard!.rebort!.mainCurriculum),
+                    "passingRatio": 1,
                   },
                   {
                     "text": controller.rebortCard!.rebort!.solok!.length >= 2
@@ -592,6 +935,15 @@ class First_Table_Design extends StatelessWidget {
                             '${(marksall(controller.rebortCard!.rebort!.mainCurriculum) + marksall(controller.rebortCard!.rebort!.downCurriculum) + (controller.rebortCard!.rebort!.solok![0].ceil() + controller.rebortCard!.rebort!.solok![1].ceil()) / 2).ceil()}')
                         : '',
                     "width": 99,
+                    "mark": controller.rebortCard!.rebort!.solok!.length >= 2
+                        ? '${(marksall(controller.rebortCard!.rebort!.mainCurriculum) + marksall(controller.rebortCard!.rebort!.downCurriculum) + (controller.rebortCard!.rebort!.solok![0].ceil() + controller.rebortCard!.rebort!.solok![1].ceil()) / 2).ceil()}'
+                        : '',
+                    "passingMark": calculateTotalPassingMarks(
+                            controller.rebortCard!.rebort!.downCurriculum) +
+                        100 +
+                        calculateTotalPassingMarks(
+                            controller.rebortCard!.rebort!.mainCurriculum),
+                    "passingRatio": 1,
                   },
                 ],
               ),

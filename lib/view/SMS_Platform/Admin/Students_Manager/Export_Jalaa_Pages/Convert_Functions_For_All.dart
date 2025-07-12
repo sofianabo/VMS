@@ -136,6 +136,22 @@ int calculateTotalCMarks(List<MainCurriculum>? mainCurriculum) {
   return total;
 }
 
+int calculateTotalPassingMarks(List<MainCurriculum>? mainCurriculum) {
+  int total = 0;
+
+  if (mainCurriculum != null) {
+    for (var curriculum in mainCurriculum) {
+      if (curriculum.insideCurr != null) {
+        for (var inside in curriculum.insideCurr!) {
+          total += inside.passingMark ?? 0;
+        }
+      }
+    }
+  }
+
+  return total;
+}
+
 int sumMarksAtIndex(List<MainCurriculum>? curriculumList, int index) {
   int total = 0;
 
@@ -207,4 +223,23 @@ int safeMarkNumberAtIndex(int index) {
   } catch (_) {
     return 0;
   }
+}
+
+int getTotalPassingMarks() {
+  final curriculumList =
+      Get.find<Jalaa_Controller>().rebortCard?.rebort?.mainCurriculum;
+
+  int total = 0;
+
+  if (curriculumList != null) {
+    for (var curriculum in curriculumList) {
+      if (curriculum.insideCurr != null) {
+        for (var inside in curriculum.insideCurr!) {
+          total += inside.passingMark ?? 0;
+        }
+      }
+    }
+  }
+
+  return total;
 }

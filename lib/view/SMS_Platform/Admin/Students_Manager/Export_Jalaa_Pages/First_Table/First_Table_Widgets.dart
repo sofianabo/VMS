@@ -470,8 +470,23 @@ Widget The_Final_SUM_Semester_Cell(String text, {int colSpan = 1}) {
   );
 }
 
-Widget buildDgree(String text,
-    {bool isLeft = false, bool isRight = false, bool isBold = false}) {
+Widget buildDgree(
+  String text, {
+  bool isLeft = false,
+  bool isRight = false,
+  bool isBold = false,
+  int passingMark = 100,
+  double passingRatio = 1.0, // خليها double مثلاً 0.6 = 60%
+  int? marks,
+}) {
+  double? mark = marks != null ? marks.toDouble() : null;
+
+  // إذا passingRatio بين 0 و1 (مثلاً 0.6)
+  // فالنسبة اللي تحسبها = passingMark * passingRatio
+  double passingThreshold = passingMark * passingRatio;
+
+  bool isFail = mark != null && mark < passingThreshold;
+
   return Container(
     decoration: text != ""
         ? isLeft && !isRight
@@ -513,7 +528,11 @@ Widget buildDgree(String text,
       textAlign: TextAlign.center,
       convertToArabicNumbers(text),
       style: TextStyle(
-          fontSize: 13, fontWeight: FontWeight.bold, fontFamily: "tnr"),
+        fontSize: 13,
+        fontWeight: isBold ? FontWeight.bold : FontWeight.normal,
+        fontFamily: "tnr",
+        color: isFail ? Colors.red : Colors.black,
+      ),
     ),
   );
 }
@@ -558,21 +577,37 @@ Widget buildSplitDgree({
         final index = entry.key;
         final item = entry.value;
 
+        // استخراج العلامة
+        double? mark = double.tryParse(item['mark'].toString());
+
+        // استخراج القيم، إن لم تكن موجودة لا يعتبر راسب
+        double? passingMark = item['passingMark']?.toDouble();
+        double? passingRatio = item['passingRatio']?.toDouble();
+
+        // التحقق من الرسوب فقط إذا كانت جميع القيم موجودة وصحيحة
+        bool isFail = passingMark != null &&
+            passingRatio != null &&
+            mark != null &&
+            mark < passingMark * passingRatio;
+
         return Container(
           width: item['width'].toDouble(),
           alignment: Alignment.center,
           decoration: BoxDecoration(
             border: (index != 0)
                 ? Border(right: BorderSide(color: Colors.black, width: 2))
-                : null, // لا حدود إذا كان index ليس 0 أو 1
+                : null,
           ),
           child: Text(
             textAlign: TextAlign.center,
             convertToArabicNumbers(item['text'].toString()),
             style: TextStyle(
-                fontSize: (index != data.length - 1) ? 12 : 10,
-                fontFamily: "tnr",
-                fontWeight: FontWeight.bold),
+              fontSize: (index != data.length - 1) ? 12 : 10,
+              fontFamily: "tnr",
+              fontWeight: FontWeight.bold,
+              color:
+                  isFail ? Colors.red : Colors.black, // 👈 اللون الافتراضي أسود
+            ),
           ),
         );
       }).toList(),
@@ -620,21 +655,34 @@ Widget buildTowDgreeMarks({
         final index = entry.key;
         final item = entry.value;
 
+        // استخراج البيانات
+        double? mark = double.tryParse(item['mark']?.toString() ?? '');
+        double? passingMark = item['passingMark']?.toDouble();
+        double? passingRatio = item['passingRatio']?.toDouble();
+
+        bool isFail = false;
+        if (passingMark != null && passingRatio != null && mark != null) {
+          double threshold = passingMark * passingRatio;
+          isFail = mark < threshold;
+        }
+
         return Container(
           width: item['width'].toDouble(),
           alignment: Alignment.center,
           decoration: BoxDecoration(
             border: (index != 0)
                 ? Border(right: BorderSide(color: Colors.black, width: 2))
-                : null, // لا حدود إذا كان index ليس 0 أو 1
+                : null,
           ),
           child: Text(
             textAlign: TextAlign.center,
             convertToArabicNumbers(item['text'].toString()),
             style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: (index != 3) ? 12 : 11,
-                fontFamily: "tnr"),
+              fontWeight: FontWeight.bold,
+              fontSize: (index != 3) ? 12 : 11,
+              fontFamily: "tnr",
+              color: isFail ? Colors.red : Colors.black,
+            ),
           ),
         );
       }).toList(),
@@ -659,21 +707,35 @@ Widget buildTowDgreeMarksEnd({
         final index = entry.key;
         final item = entry.value;
 
+        // استخراج القيم
+        double? mark = double.tryParse(item['mark']?.toString() ?? '');
+        double? passingMark = item['passingMark']?.toDouble();
+        double? passingRatio = item['passingRatio']?.toDouble();
+
+        // التحقق من الرسوب
+        bool isFail = false;
+        if (passingMark != null && passingRatio != null && mark != null) {
+          double threshold = passingMark * passingRatio;
+          isFail = mark < threshold;
+        }
+
         return Container(
           width: item['width'].toDouble(),
           alignment: Alignment.center,
           decoration: BoxDecoration(
             border: (index != 0)
                 ? Border(right: BorderSide(color: Colors.black, width: 2))
-                : null, // لا حدود إذا كان index ليس 0 أو 1
+                : null,
           ),
           child: Text(
             textAlign: TextAlign.center,
             convertToArabicNumbers(item['text'].toString()),
             style: TextStyle(
-                fontSize: (index != data.length - 1) ? 12 : 11,
-                fontFamily: "tnr",
-                fontWeight: FontWeight.bold),
+              fontSize: (index != data.length - 1) ? 12 : 11,
+              fontFamily: "tnr",
+              fontWeight: FontWeight.bold,
+              color: isFail ? Colors.red : Colors.black,
+            ),
           ),
         );
       }).toList(),
