@@ -23,7 +23,6 @@ class Curriculum_Model {
 
 class Curriculum {
   int? id;
-  int? curriculumId;
   int? fileId;
   int? imageId;
   String? name;
@@ -31,12 +30,12 @@ class Curriculum {
   int? maxMark;
   int? passingMark;
   int? type;
+  List<Sub>? sub;
   List<Semester>? semester;
   Subject? subject;
 
   Curriculum(
       {this.id,
-      this.curriculumId,
       this.fileId,
       this.imageId,
       this.name,
@@ -44,12 +43,12 @@ class Curriculum {
       this.maxMark,
       this.passingMark,
       this.type,
+      this.sub,
       this.semester,
       this.subject});
 
   Curriculum.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    curriculumId = json['curriculumId'];
     fileId = json['fileId'];
     imageId = json['ImageId'];
     name = json['name'];
@@ -57,6 +56,12 @@ class Curriculum {
     maxMark = json['maxMark'];
     passingMark = json['PassingMark'];
     type = json['type'];
+    if (json['sub'] != null) {
+      sub = <Sub>[];
+      json['sub'].forEach((v) {
+        sub!.add(new Sub.fromJson(v));
+      });
+    }
     if (json['semester'] != null) {
       semester = <Semester>[];
       json['semester'].forEach((v) {
@@ -70,7 +75,6 @@ class Curriculum {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
-    data['curriculumId'] = this.curriculumId;
     data['fileId'] = this.fileId;
     data['ImageId'] = this.imageId;
     data['name'] = this.name;
@@ -78,12 +82,43 @@ class Curriculum {
     data['maxMark'] = this.maxMark;
     data['PassingMark'] = this.passingMark;
     data['type'] = this.type;
+    if (this.sub != null) {
+      data['sub'] = this.sub!.map((v) => v.toJson()).toList();
+    }
     if (this.semester != null) {
       data['semester'] = this.semester!.map((v) => v.toJson()).toList();
     }
     if (this.subject != null) {
       data['subject'] = this.subject!.toJson();
     }
+    return data;
+  }
+}
+
+class Sub {
+  int? id;
+  String? name;
+  String? enName;
+  int? maxMark;
+  int? passingMark;
+
+  Sub({this.id, this.name, this.enName, this.maxMark, this.passingMark});
+
+  Sub.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    name = json['name'];
+    enName = json['enName'];
+    maxMark = json['maxMark'];
+    passingMark = json['PassingMark'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['name'] = this.name;
+    data['enName'] = this.enName;
+    data['maxMark'] = this.maxMark;
+    data['PassingMark'] = this.passingMark;
     return data;
   }
 }
