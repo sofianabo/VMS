@@ -519,9 +519,8 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                                               ),
                                               GestureDetector(
                                                 onTap: () async {
-                                                  //
-                                                  // prefs!.setBool("isLMS", true);
-                                                  // Get.offAllNamed("/adminLMS");
+                                                  prefs!.setBool("isLMS", true);
+                                                  Get.offAllNamed("/adminLMS");
                                                 },
                                                 child: Container(
                                                   padding: EdgeInsets.all(5.0),
@@ -1061,8 +1060,8 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                                     ),
                                     GestureDetector(
                                       onTap: () {
-                                        // prefs!.setBool("isLMS", true);
-                                        // Get.offAllNamed("/adminLMS");
+                                        prefs!.setBool("isLMS", true);
+                                        Get.offAllNamed("/adminLMS");
                                       },
                                       child: Container(
                                         padding: EdgeInsets.all(5.0),

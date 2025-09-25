@@ -3,8 +3,11 @@ import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/API/DioOption.dart';
 import 'package:dio/dio.dart';
+import 'package:vms_school/Link/API/LMS_APIs/Admin/GetNumberOfContentAPI.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Home_Controller.dart';
+import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Selected_Screen.dart';
 import 'package:vms_school/Link/Model/LMS_Model/Classes_Model.dart';
+import 'package:vms_school/view/LMS_Platform/Admin/LMS_Main_Selection.dart';
 
 class Get_Classes_LMS_API {
   Dio dio = Dio();

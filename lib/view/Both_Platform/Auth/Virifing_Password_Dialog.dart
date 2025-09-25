@@ -106,7 +106,7 @@ class _Virifing_Password_Dialog_State extends State<Virifing_Password_Dialog> {
                       bool isConfirmPasswordValid =
                           confirmPassword.text != password.text;
 
-                      controller.updateFieldError("password", ispassword);
+                      controller.updateFieldError("passwords", ispassword);
                       controller.updateFieldError(
                           "cpassword", iscpassword || isConfirmPasswordValid);
 
@@ -218,10 +218,10 @@ class _Virifing_Password_Dialog_State extends State<Virifing_Password_Dialog> {
                 Textfildwithupper(
                     onChanged: (value) {
                       if (value.isNotEmpty) {
-                        controller.updateFieldError("password", false);
+                        controller.updateFieldError("passwords", false);
                       }
                     },
-                    isError: controller.IsPasswordError,
+                    isError: controller.IsPasswordsError,
                     IconButton: IconButton(
                         onPressed: () {
                           controller.ChangeShowPassword(
@@ -241,6 +241,23 @@ class _Virifing_Password_Dialog_State extends State<Virifing_Password_Dialog> {
                     Uptext: "New Password".tr,
                     hinttext: "New Password".tr),
                 Textfildwithupper(
+                    EditingComplete: () {
+                      bool ispassword = password.text.isEmpty;
+                      bool iscpassword = confirmPassword.text.isEmpty;
+                      bool isConfirmPasswordValid =
+                          confirmPassword.text != password.text;
+
+                      Get.find<UserController>()
+                          .updateFieldError("passwords", ispassword);
+                      Get.find<UserController>().updateFieldError(
+                          "cpassword", iscpassword || isConfirmPasswordValid);
+
+                      if (!(ispassword ||
+                          iscpassword ||
+                          isConfirmPasswordValid)) {
+                        validateCode();
+                      }
+                    },
                     customErrorMessage: confirmPassword.text.trim() != "" &&
                             confirmPassword.text.isNotEmpty
                         ? "كلمات المرور غير متطابقة"
@@ -309,9 +326,6 @@ class _Virifing_Password_Dialog_State extends State<Virifing_Password_Dialog> {
               isLoading = LoadingStatus.normal;
             });
           }
-        },
-        onEditingComplete: () {
-          validateCode();
         },
         onTap: () {
           if (index != 0) {

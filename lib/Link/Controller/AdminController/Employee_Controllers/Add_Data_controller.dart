@@ -15,6 +15,7 @@ import 'package:vms_school/view/SMS_Platform/Teacher/Teacher_Home/TeacherProfile
 
 class Add_Data_controller extends GetxController {
   bool isLoading = true;
+  bool isLMS = false;
   MyData? myData;
   String? email;
   String? roll;
@@ -119,6 +120,7 @@ class Add_Data_controller extends GetxController {
     try {
       final prefs = await SharedPreferences.getInstance();
       final hasData = prefs.getBool("hasData") ?? false;
+      final isLMS = prefs.getBool("isLMS") ?? false;
       final isVerified = prefs.getBool("isVerified") ?? false;
       final email = prefs.getString("email") ?? "";
       final role = prefs.getString("role") ?? "";
@@ -127,6 +129,7 @@ class Add_Data_controller extends GetxController {
       sethasData(hasData);
       setEmail(email);
       setroll(role);
+      setisLMS(isLMS);
 
       if (role == "admin" ||
           role == "subAdmin" ||
@@ -200,5 +203,10 @@ class Add_Data_controller extends GetxController {
         await con.showVerificationDialog();
       }
     }
+  }
+
+  setisLMS(bool islms) {
+    isLMS = islms;
+    update();
   }
 }

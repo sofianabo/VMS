@@ -17,6 +17,25 @@ Widget buildCell(String text) {
   );
 }
 
+Widget buildleftCell(String text) {
+  return Container(
+    decoration: BoxDecoration(
+        border: Border(
+            bottom: BorderSide(color: Colors.black, width: 2),
+            right: BorderSide(color: Colors.black, width: 2),
+            top: BorderSide(color: Colors.black, width: 2))),
+    alignment: Alignment.center,
+    padding: EdgeInsets.all(8),
+    height: 110,
+    child: Text(
+      textAlign: TextAlign.center,
+      convertToArabicNumbers(text),
+      style: TextStyle(
+          fontSize: 16, fontFamily: "tnr", fontWeight: FontWeight.bold),
+    ),
+  );
+}
+
 Widget buildRotateCell(String text, {int colSpan = 1}) {
   return Container(
       height: 133,
@@ -817,6 +836,67 @@ Widget buildTowDgree(String text,
           ],
         )
       ],
+    ),
+  );
+}
+
+Widget buildCellforAll(
+  String text, {
+  bool IsLeft = false,
+  bool IsRight = false,
+  bool IsTop = false,
+  bool IsBottom = false,
+  bool IsScale = false,
+  double width = 50.0,
+  double height = 50.0,
+  double fontSize = 18.0,
+  Alignment alignment = Alignment.center,
+  EdgeInsets textPadding = EdgeInsets.zero, // 🆕 Padding مخصص للنص
+}) {
+  return Container(
+    width: width,
+    height: height,
+    decoration: BoxDecoration(
+      border: Border(
+        left: IsLeft
+            ? BorderSide(color: Colors.black, width: 2)
+            : BorderSide.none,
+        right: IsRight
+            ? BorderSide(color: Colors.black, width: 2)
+            : BorderSide.none,
+        top:
+            IsTop ? BorderSide(color: Colors.black, width: 2) : BorderSide.none,
+        bottom: IsBottom
+            ? BorderSide(color: Colors.black, width: 2)
+            : BorderSide.none,
+      ),
+    ),
+    alignment: alignment,
+    padding: EdgeInsets.zero, // نترك الحاوية بدون padding
+    child: Padding(
+      padding: textPadding, // 🟢 نضيف padding حول النص فقط
+      child: IsScale
+          ? RotatedBox(
+              quarterTurns: 3,
+              child: Text(
+                convertToArabicNumbers(text),
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: fontSize,
+                  fontFamily: "tnr",
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            )
+          : Text(
+              convertToArabicNumbers(text),
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: fontSize,
+                fontFamily: "tnr",
+                fontWeight: FontWeight.bold,
+              ),
+            ),
     ),
   );
 }

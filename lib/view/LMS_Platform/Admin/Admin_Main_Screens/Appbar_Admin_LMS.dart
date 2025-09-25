@@ -8,6 +8,7 @@ import 'package:vms_school/Link/Controller/AdminController/DrowerController.dart
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/main.dart';
 import 'package:vms_school/view/Both_Platform/widgets/Responsive.dart';
+import 'package:vms_school/view/SMS_Platform/Teacher/Teacher_Home/TeacherProfile.dart';
 
 class AppbarAdmin_LMS extends StatefulWidget {
   AppbarAdmin_LMS({super.key, required this.name});
@@ -37,6 +38,7 @@ class _AppbarAdminState extends State<AppbarAdmin_LMS> {
                     GestureDetector(
                       onTap: () {
                         Get_My_Profile.Get_My_Profile_Data();
+                        Get.dialog(Teacherprofile(), barrierDismissible: false);
                       },
                       child: Container(
                         height: 40,

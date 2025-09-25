@@ -4,19 +4,17 @@ import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Jalaa_For_Students/Jalaa_Controller.dart';
 import 'package:vms_school/view/SMS_Platform/Admin/Students_Manager/Export_Jalaa_Pages/Convert_Functions_For_All.dart';
-import 'package:vms_school/view/SMS_Platform/Admin/Students_Manager/Export_Jalaa_Pages/First_Table/First_Table_Design.dart';
-import 'package:vms_school/view/SMS_Platform/Admin/Students_Manager/Export_Jalaa_Pages/Second_Table/Second_Table_Design.dart';
-import 'package:vms_school/view/SMS_Platform/Admin/Students_Manager/Export_Jalaa_Pages/The_Bottom_Table/The_Bottom_Table_Desighn.dart';
-import 'package:vms_school/view/SMS_Platform/Admin/Students_Manager/Export_Jalaa_Pages/Third_Table/Third_Table_Design.dart';
+import 'package:vms_school/view/SMS_Platform/Admin/Students_Manager/Export_Jalaa_Pages/SHID1_Pages/First_Table_SHID1/First_Table_Design_SHID1.dart';
+import 'package:vms_school/view/SMS_Platform/Admin/Students_Manager/Export_Jalaa_Pages/SHID1_Pages/Second_Table_SHID1.dart';
 
-class ExportJalaa extends StatefulWidget {
-  ExportJalaa({super.key});
+class SH1_Jalaa extends StatefulWidget {
+  SH1_Jalaa({super.key});
 
   @override
-  State<ExportJalaa> createState() => _ExportJalaaState();
+  State<SH1_Jalaa> createState() => _SH1_JalaaState();
 }
 
-class _ExportJalaaState extends State<ExportJalaa> {
+class _SH1_JalaaState extends State<SH1_Jalaa> {
   final String fontFamily = "tnr";
 
   @override
@@ -49,35 +47,26 @@ class CustomHeaderTable extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          GetBuilder<Jalaa_Controller>(builder: (controller) {
-            int totalInsideCurrCount =
-                controller.rebortCard!.rebort!.mainCurriculum?.fold<int>(0,
-                        (sum, main) => sum + (main.insideCurr?.length ?? 0)) ??
-                    0;
-
-            return Row(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                First_Table_Design(),
-                Column(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Second_Table_Design(),
-                    Third_Table_Design(
-                      hight: totalInsideCurrCount < 7
-                          ? (15 * 2).toDouble()
-                          : (15 * (totalInsideCurrCount - 5)).toDouble(),
-                    ),
-                  ],
-                ),
-              ],
-            );
-          }),
-          The_Bottom_Table_Design()
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [First_Table_Design_SHID1(), Second_Table_Design_SHID1()],
+          ),
+          // GetBuilder<Jalaa_Controller>(builder: (controller) {
+          //   int totalInsideCurrCount =
+          //       controller.rebortCard!.rebort!.mainCurriculum?.fold<int>(0,
+          //               (sum, main) => sum + (main.insideCurr?.length ?? 0)) ??
+          //           0;
+          //
+          //   return Row(
+          //     mainAxisSize: MainAxisSize.min,
+          //     mainAxisAlignment: MainAxisAlignment.start,
+          //     crossAxisAlignment: CrossAxisAlignment.start,
+          //     children: [
+          //
+          //     ],
+          //   );
+          // }),
         ],
       ),
     );
@@ -182,7 +171,7 @@ Widget buildPrintContent() {
                       ),
                     ),
                     Text(
-                      "- الحلقة الأولى - / الصف السادس /",
+                      "- الحلقة الأولى - / الصف الأول /",
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,

@@ -16,6 +16,7 @@ class Textfildwithupper extends StatefulWidget {
     this.icon,
     this.isRequired = false,
     this.onChanged,
+    this.EditingComplete,
     this.enabled = true,
     this.hidePassword = false,
     this.fieldType = "text",
@@ -35,6 +36,7 @@ class Textfildwithupper extends StatefulWidget {
   final bool isRequired;
   final bool readOnly;
   final Function(String)? onChanged;
+  final Function()? EditingComplete;
   final bool enabled;
   final bool hidePassword;
   final String fieldType;
@@ -159,6 +161,7 @@ class _TextfildwithupperState extends State<Textfildwithupper> {
           SizedBox(
             height: widget.hight ?? 40,
             child: TextFormField(
+              onEditingComplete: widget.EditingComplete,
               obscureText: widget.hidePassword,
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     fontSize: 14,

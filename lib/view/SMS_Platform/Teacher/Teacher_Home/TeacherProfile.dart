@@ -5,6 +5,7 @@ import 'package:vms_school/Link/API/AuthAPI/LogoutAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/Admin_Profile_Content.dart';
 import 'package:vms_school/Translate/local_controller.dart';
+import 'package:vms_school/main.dart';
 import 'package:vms_school/view/Both_Platform/widgets/VMSAlertDialog.dart';
 import 'package:vms_school/view/SMS_Platform/Admin/All_Settings/Account_And_Password.dart';
 import 'package:vms_school/view/SMS_Platform/Admin/All_Settings/Add_Data_My_Account.dart';
@@ -480,6 +481,95 @@ class _TeacherprofileState extends State<Teacherprofile> {
                                                         ),
                                                       ),
                                                     ),
+                                                    if (Get.find<
+                                                            Add_Data_controller>()
+                                                        .isLMS)
+                                                      GestureDetector(
+                                                        onTap: () async {
+                                                          prefs!.setBool(
+                                                              "isLMS", false);
+                                                          Get.offAllNamed(
+                                                              "/teacher");
+                                                        },
+                                                        child: Container(
+                                                          padding:
+                                                              EdgeInsets.all(
+                                                                  5.0),
+                                                          child: Row(
+                                                            textDirection: Get.find<
+                                                                            LocalizationController>()
+                                                                        .currentLocale
+                                                                        .value
+                                                                        .languageCode ==
+                                                                    'ar'
+                                                                ? TextDirection
+                                                                    .rtl
+                                                                : TextDirection
+                                                                    .ltr,
+                                                            children: [
+                                                              Icon(Icons.grade),
+                                                              Text(
+                                                                "  " +
+                                                                    "KMS Platform"
+                                                                        .tr +
+                                                                    "  ",
+                                                                maxLines: 2,
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .center,
+                                                                overflow:
+                                                                    TextOverflow
+                                                                        .ellipsis,
+                                                              )
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    if (Get.find<
+                                                                Add_Data_controller>()
+                                                            .isLMS ==
+                                                        false)
+                                                      GestureDetector(
+                                                        onTap: () async {
+                                                          prefs!.setBool(
+                                                              "isLMS", true);
+                                                          Get.offAllNamed(
+                                                              "/adminLMS");
+                                                        },
+                                                        child: Container(
+                                                          padding:
+                                                              EdgeInsets.all(
+                                                                  5.0),
+                                                          child: Row(
+                                                            textDirection: Get.find<
+                                                                            LocalizationController>()
+                                                                        .currentLocale
+                                                                        .value
+                                                                        .languageCode ==
+                                                                    'ar'
+                                                                ? TextDirection
+                                                                    .rtl
+                                                                : TextDirection
+                                                                    .ltr,
+                                                            children: [
+                                                              Icon(Icons.grade),
+                                                              Text(
+                                                                "  " +
+                                                                    "LMS Platform"
+                                                                        .tr +
+                                                                    "  ",
+                                                                maxLines: 2,
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .center,
+                                                                overflow:
+                                                                    TextOverflow
+                                                                        .ellipsis,
+                                                              )
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ),
                                                     GestureDetector(
                                                       onTap: () {},
                                                       child:
@@ -1078,6 +1168,75 @@ class _TeacherprofileState extends State<Teacherprofile> {
                                               ),
                                             ),
                                           ),
+                                          if (Get.find<Add_Data_controller>()
+                                              .isLMS)
+                                            GestureDetector(
+                                              onTap: () async {
+                                                prefs!.setBool("isLMS", false);
+                                                Get.offAllNamed("/teacher");
+                                              },
+                                              child: Container(
+                                                padding: EdgeInsets.all(5.0),
+                                                child: Row(
+                                                  textDirection:
+                                                      Get.find<LocalizationController>()
+                                                                  .currentLocale
+                                                                  .value
+                                                                  .languageCode ==
+                                                              'ar'
+                                                          ? TextDirection.rtl
+                                                          : TextDirection.ltr,
+                                                  children: [
+                                                    Icon(Icons.grade),
+                                                    Text(
+                                                      "  " +
+                                                          "KMS Platform".tr +
+                                                          "  ",
+                                                      maxLines: 2,
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          if (Get.find<Add_Data_controller>()
+                                                  .isLMS ==
+                                              false)
+                                            GestureDetector(
+                                              onTap: () async {
+                                                prefs!.setBool("isLMS", true);
+                                                Get.offAllNamed("/adminLMS");
+                                              },
+                                              child: Container(
+                                                padding: EdgeInsets.all(5.0),
+                                                child: Row(
+                                                  textDirection:
+                                                      Get.find<LocalizationController>()
+                                                                  .currentLocale
+                                                                  .value
+                                                                  .languageCode ==
+                                                              'ar'
+                                                          ? TextDirection.rtl
+                                                          : TextDirection.ltr,
+                                                  children: [
+                                                    Icon(Icons.grade),
+                                                    Text(
+                                                      "  " +
+                                                          "LMS Platform".tr +
+                                                          "  ",
+                                                      maxLines: 2,
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
                                           GestureDetector(
                                             onTap: () {},
                                             child: PopupMenuButton<int>(

@@ -88,8 +88,6 @@ class Numberofcontentcontroller extends GetxController {
         "count": probeCount ?? 0,
       }
     ]);
-       
-
     update();
   }
 }

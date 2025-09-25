@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Link/API/LMS_APIs/Admin/GetNumberOfContentAPI.dart';
+import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Selected_Screen.dart';
 import 'package:vms_school/main.dart';
 import '../Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 
@@ -32,12 +34,22 @@ class RoleBasedMiddleware extends GetMiddleware {
     if (isLMS &&
         isLoggedIn &&
         (role == "admin" ||
+            role == "teacher" ||
             role == "subAdmin" ||
             role == "observer" ||
             role == "supervisor")) {
       Get.find<Add_Data_controller>().CheeckHasData();
       if (route != '/adminLMS') {
         return RouteSettings(name: '/adminLMS');
+      }
+    }
+    if (isLoggedIn && (role == "class")) {
+      prefs!.setBool("hasData", true);
+      prefs!.setBool("isVerified", true);
+      prefs!.setBool("isLMS", true);
+      prefs!.setString("role", "class");
+      if (route != '/Class_LMS') {
+        return RouteSettings(name: '/Class_LMS');
       }
     }
 
@@ -47,7 +59,7 @@ class RoleBasedMiddleware extends GetMiddleware {
         return const RouteSettings(name: '/guardian');
       }
     }
-    if (isLoggedIn && (role == "teacher")) {
+    if (isLMS == false && isLoggedIn && (role == "teacher")) {
       Get.find<Add_Data_controller>().CheeckHasData();
       if (route != '/teacher') {
         return const RouteSettings(name: '/teacher');
@@ -67,6 +79,7 @@ class RoleBasedMiddleware extends GetMiddleware {
         role != "supervisor" &&
         role != "observer" &&
         role != "registration" &&
+        role != "class" &&
         role != "guardian") {
       if (route == '/admin' || route == '/guardian') {
         return const RouteSettings(name: '/home');

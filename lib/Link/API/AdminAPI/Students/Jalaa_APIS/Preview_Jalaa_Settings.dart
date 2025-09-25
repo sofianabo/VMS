@@ -36,7 +36,7 @@ class Preview_Jalaa_Settings_API {
             final rebort = Rebort.fromJson(rebortJson);
             controller.setRebort(rebort);
 
-            Get.back(); // لإغلاق الديالوج السابق
+            Get.back();
             Get.to(ExportJalaa());
           } else {
             print("مفتاح rebort غير موجود أو null في JSON.");

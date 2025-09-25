@@ -28,10 +28,10 @@ class theme {
     primaryColorDark: Color(0xffF6F6F6),
     dialogBackgroundColor: Colors.white,
     secondaryHeaderColor: Colors.black,
-    dialogTheme: DialogTheme(
-      titleTextStyle:
-          TextStyle(color: const Color(0xff19478d), fontFamily: IsAr),
-    ),
+    // dialogTheme: DialogTheme(
+    //   titleTextStyle:
+    //       TextStyle(color: const Color(0xff19478d), fontFamily: IsAr),
+    // ),
     canvasColor: const Color(0xff134B70),
     disabledColor: Color(0xffBABDC6),
     textTheme: TextTheme(
@@ -132,9 +132,9 @@ class theme {
         titleLarge:
             TextStyle(color: Colors.blueGrey, fontFamily: IsAr, fontSize: 14)),
     dialogBackgroundColor: Colors.white.withOpacity(0.3),
-    dialogTheme: DialogTheme(
-      titleTextStyle: TextStyle(color: Colors.white, fontFamily: IsAr),
-    ),
+    // dialogTheme: DialogTheme(
+    //   titleTextStyle: TextStyle(color: Colors.white, fontFamily: IsAr),
+    // ),
     primaryColor: const Color(0xff464646),
     useMaterial3: true,
     cupertinoOverrideTheme: CupertinoThemeData(

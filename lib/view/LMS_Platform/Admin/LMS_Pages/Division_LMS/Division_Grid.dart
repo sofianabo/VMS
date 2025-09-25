@@ -6,6 +6,7 @@ import 'package:vms_school/Link/API/LMS_APIs/Admin/GetHomework_LMSAPI.dart';
 import 'package:vms_school/Link/API/LMS_APIs/Admin/Get_All_Curr_LMS.dart';
 import 'package:vms_school/Link/API/LMS_APIs/Admin/Get_LMS_Division.dart';
 import 'package:vms_school/Link/API/OpenURLs.dart';
+import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/LMS_Divisions_Controller.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Selected_Screen.dart';
 import 'package:vms_school/Translate/local_controller.dart';
@@ -108,11 +109,13 @@ class _DivisionGridState extends State<DivisionGrid> {
                                   height: 25,
                                   radius: 5,
                                 ),
-                                SchemaWidget(
-                                  width: 300,
-                                  height: 25,
-                                  radius: 5,
-                                ),
+                                if (Get.find<Add_Data_controller>().roll !=
+                                    "teacher")
+                                  SchemaWidget(
+                                    width: 300,
+                                    height: 25,
+                                    radius: 5,
+                                  ),
                               ],
                             )
                           ],
@@ -307,67 +310,75 @@ class _DivisionGridState extends State<DivisionGrid> {
                                                   ),
                                                 ],
                                               )),
-                                          TextButton(
-                                              style: ButtonStyle(
-                                                  backgroundColor:
-                                                      WidgetStatePropertyAll(
-                                                          Colors.transparent),
-                                                  shape: WidgetStatePropertyAll(
-                                                      RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.all(
-                                                            Radius.circular(3)),
-                                                    side: BorderSide(
-                                                        color: Get
+                                          if (Get.find<Add_Data_controller>()
+                                                  .roll !=
+                                              "teacher")
+                                            TextButton(
+                                                style: ButtonStyle(
+                                                    backgroundColor:
+                                                        WidgetStatePropertyAll(
+                                                            Colors.transparent),
+                                                    shape: WidgetStatePropertyAll(
+                                                        RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.all(
+                                                              Radius.circular(
+                                                                  3)),
+                                                      side: BorderSide(
+                                                          color: Get
+                                                              .theme
+                                                              .textTheme
+                                                              .titleMedium!
+                                                              .color!),
+                                                    ))),
+                                                onPressed: () async {
+                                                  if (control.division![index]
+                                                              .meetUrl !=
+                                                          null &&
+                                                      control
+                                                          .division![index]
+                                                          .meetUrl!
+                                                          .isNotEmpty) {
+                                                    launchLink(
+                                                      url:
+                                                          "${control.division![index].meetUrl!}",
+                                                      type: LinkType.website,
+                                                      context: context,
+                                                    );
+                                                  }
+                                                },
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  spacing: 10.0,
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              left: 5.0,
+                                                              right: 5.0),
+                                                      child: Text(
+                                                        'Meet URL'.tr,
+                                                        style: Get
                                                             .theme
                                                             .textTheme
-                                                            .titleMedium!
-                                                            .color!),
-                                                  ))),
-                                              onPressed: () async {
-                                                if (control.division![index]
-                                                            .meetUrl !=
-                                                        null &&
-                                                    control.division![index]
-                                                        .meetUrl!.isNotEmpty) {
-                                                  launchLink(
-                                                    url:
-                                                        "${control.division![index].meetUrl!}",
-                                                    type: LinkType.website,
-                                                    context: context,
-                                                  );
-                                                }
-                                              },
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                spacing: 10.0,
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 5.0,
-                                                            right: 5.0),
-                                                    child: Text(
-                                                      'Meet URL'.tr,
-                                                      style: Get.theme.textTheme
-                                                          .headlineMedium!
-                                                          .copyWith(
-                                                              color: Color
-                                                                  .fromARGB(
-                                                                      255,
-                                                                      44,
-                                                                      128,
-                                                                      184)),
+                                                            .headlineMedium!
+                                                            .copyWith(
+                                                                color: Color
+                                                                    .fromARGB(
+                                                                        255,
+                                                                        44,
+                                                                        128,
+                                                                        184)),
+                                                      ),
                                                     ),
-                                                  ),
-                                                  SvgPicture.asset(
-                                                    "assets/images/meet.svg",
-                                                    width: 14,
-                                                  ),
-                                                ],
-                                              )),
+                                                    SvgPicture.asset(
+                                                      "assets/images/meet.svg",
+                                                      width: 14,
+                                                    ),
+                                                  ],
+                                                )),
                                         ],
                                       )
                                     ],

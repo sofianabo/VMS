@@ -37,6 +37,10 @@ class LoginAPI {
         prefs!.setString("imageId", user.imageId.toString());
         prefs!.setString("fullname", user.fullName.toString());
         Get.offAllNamed('/admin');
+        if (user.roll == "class") {
+          prefs!.setBool("isLMS", true);
+          prefs!.setString("classId", user.imageId.toString());
+        }
       } else {
         ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,

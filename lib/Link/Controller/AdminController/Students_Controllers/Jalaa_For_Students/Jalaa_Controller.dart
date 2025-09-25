@@ -2,6 +2,217 @@ import 'package:get/get.dart';
 import 'package:vms_school/Link/Model/AdminModel/Students_Models/Jalaa_Model.dart';
 
 class Jalaa_Controller extends GetxController {
+  @override
+  void onInit() {
+    super.onInit();
+    loadInitialData();
+  }
+
+  void loadInitialData() {
+    // البيانات بشكل Map لتتوافق مع fromJson
+    Map<String, dynamic> jsonData = {
+      "rebort": {
+        "studentsInfo": {
+          "tasalsol": 1,
+          "studentsFullName": "\u0644\u064a\u062b \u0639\u0632\u0627\u0645",
+          "fatherName": "\u0647\u064a\u062b\u0645",
+          "motherName": "\u0645\u0627\u062c\u062f\u0647",
+          "division": "\u0645\u0627\u062c\u062f\u0647",
+          "Birthdate": "13\/1\/2003",
+          "language":
+              "\u0627\u0644\u0627\u0646\u0643\u0644\u064a\u0632\u064a\u0629",
+          "raqSejel": 150,
+          "seassion": "2023\/2024"
+        },
+        "mainCurriculum": [
+          {
+            "curriculumName":
+                "\u0627\u0644\u0644\u063a\u0629 \u0627\u0644\u0639\u0631\u0628\u064a\u0629",
+            "insideCurr": [
+              {
+                "cName":
+                    "\u0627\u0644\u0644\u063a\u0629 \u0627\u0644\u0639\u0631\u0628\u064a\u0629",
+                "maxMark": 200,
+                "passingMark": 100,
+                "Marks": [120, 80, 120, 80]
+              }
+            ]
+          },
+          {
+            "curriculumName":
+                "\u0627\u0644\u062a\u0631\u0628\u064a\u0629 \u0627\u0644\u062f\u064a\u0646\u064a\u0629",
+            "insideCurr": [
+              {
+                "cName":
+                    "\u0627\u0644\u062a\u0631\u0628\u064a\u0629 \u0627\u0644\u062f\u064a\u0646\u064a\u0629",
+                "maxMark": 200,
+                "passingMark": 100,
+                "Marks": [120, 80, 120, 80]
+              }
+            ]
+          },
+          {
+            "curriculumName":
+                "\u0627\u0644\u0644\u063a\u0629 \u0627\u0644\u0627\u0646\u0643\u0644\u064a\u0632\u064a\u0629",
+            "insideCurr": [
+              {
+                "cName":
+                    "\u0627\u0644\u0644\u063a\u0629 \u0627\u0644\u0627\u0646\u0643\u0644\u064a\u0632\u064a\u0629",
+                "maxMark": 200,
+                "passingMark": 100,
+                "Marks": [120, 80, 120, 80]
+              }
+            ]
+          },
+          {
+            "curriculumName":
+                "\u0627\u0644\u0644\u063a\u0629 \u0627\u0644\u0641\u0631\u0646\u0633\u064a\u0629",
+            "insideCurr": [
+              {
+                "cName":
+                    "\u0627\u0644\u0644\u063a\u0629 \u0627\u0644\u0641\u0631\u0646\u0633\u064a\u0629",
+                "maxMark": 200,
+                "passingMark": 100,
+                "Marks": [120, 80, 120, 80]
+              }
+            ]
+          },
+          {
+            "curriculumName": "\u0631\u064a\u0627\u0636\u064a\u0627\u062a",
+            "insideCurr": [
+              {
+                "cName": "\u0631\u064a\u0627\u0636\u064a\u0627\u062a",
+                "maxMark": 200,
+                "passingMark": 100,
+                "Marks": [120, 80, 120, 80]
+              }
+            ]
+          },
+          {
+            "curriculumName":
+                "\u0627\u062c\u062a\u0645\u0627\u0639\u064a\u0627\u062a",
+            "insideCurr": [
+              {
+                "cName":
+                    "\u0627\u062c\u062a\u0645\u0627\u0639\u064a\u0627\u062a",
+                "maxMark": 200,
+                "passingMark": 100,
+                "Marks": [120, 80, 120, 80]
+              }
+            ]
+          },
+          {
+            "curriculumName": "\u0639\u0644\u0648\u0645",
+            "insideCurr": [
+              {
+                "cName": "\u0639\u0644\u0648\u0645",
+                "maxMark": 200,
+                "passingMark": 100,
+                "Marks": [120, 80, 120, 80]
+              }
+            ]
+          },
+          {
+            "curriculumName":
+                "\u062a\u0643\u0646\u0648\u0644\u0648\u062c\u064a\u0627",
+            "insideCurr": [
+              {
+                "cName":
+                    "\u062a\u0643\u0646\u0648\u0644\u0648\u062c\u064a\u0627",
+                "maxMark": 200,
+                "passingMark": 100,
+                "Marks": [120, 80, 120, 80]
+              }
+            ]
+          },
+          {
+            "curriculumName": "\u0645\u0648\u0633\u064a\u0642\u0649",
+            "insideCurr": [
+              {
+                "cName": "\u0645\u0648\u0633\u064a\u0642\u0649",
+                "maxMark": 200,
+                "passingMark": 100,
+                "Marks": [120, 80, 120, 80]
+              }
+            ]
+          },
+          {
+            "curriculumName": "\u0631\u0633\u0645",
+            "insideCurr": [
+              {
+                "cName": "\u0631\u0633\u0645",
+                "maxMark": 200,
+                "passingMark": 100,
+                "Marks": [120, 80, 120, 80]
+              }
+            ]
+          },
+          {
+            "curriculumName": "\u0631\u064a\u0627\u0636\u0629",
+            "insideCurr": [
+              {
+                "cName": "\u0631\u064a\u0627\u0636\u0629",
+                "maxMark": 200,
+                "passingMark": 100,
+                "Marks": [120, 80, 120, 80]
+              }
+            ]
+          },
+          {
+            "curriculumName": "\u0645\u0634\u0631\u0648\u0639",
+            "insideCurr": [
+              {
+                "cName": "\u0645\u0634\u0631\u0648\u0639",
+                "maxMark": 200,
+                "passingMark": 100,
+                "Marks": [120, 80, 120, 80]
+              }
+            ]
+          }
+        ],
+        "downCurriculum": [
+          {
+            "curriculumName": "\u0645\u0647\u0646\u064a\u0629",
+            "insideCurr": [
+              {
+                "cName": "\u0645\u0647\u0646\u064a\u0629",
+                "maxMark": 200,
+                "passingMark": 100,
+                "Marks": [200, 200]
+              }
+            ]
+          }
+        ],
+        "attendance": {
+          "firstSemester": {
+            "studentAttendance": 0,
+            "mobarar_Attendance": 0,
+            "not_Mobarar_Attendance": 0,
+            "dawam_File": 0
+          },
+          "secondSemester": {
+            "studentAttendance": 0,
+            "mobarar_Attendance": 0,
+            "not_Mobarar_Attendance": 0,
+            "dawam_File": 0
+          }
+        },
+        "Molahdat": {
+          "firstSemester": "jhkhkjhkj",
+          "secondSemester": null,
+          "manager": null,
+          "schoolmanager": "Alaa Hamza"
+        },
+        "solok": [200, 200],
+        "shId": 1
+      }
+    };
+
+    // تحويل البيانات باستخدام fromJson
+    rebortCard = Rebort_Card.fromJson(jsonData);
+    update();
+  }
+
   Rebort_Card? rebortCard;
 
   void setRebort(Rebort rebort) {
@@ -132,98 +343,3 @@ String stripOptionalTashkeel(String input) {
     },
   );
 }
-//
-// @override
-// void onInit() {
-//   super.onInit();
-//   loadInitialData();
-// }
-//
-// void loadInitialData() {
-//   // البيانات بشكل Map لتتوافق مع fromJson
-//   Map<String, dynamic> jsonData = {
-//     "rebort": {
-//       "studentsInfo": {
-//         "tasalsol": 1,
-//         "studentsFullName": "ليث عزام",
-//         "fatherName": "هيثم",
-//         "motherName": "ماجده",
-//         "division": "ماجده",
-//         "Birthdate": "13/1/2003",
-//         "language": "الانكليزية",
-//         "raqSejel": 150,
-//         "seassion": "2023/2024"
-//       },
-//       "mainCurriculum": [
-//         {
-//           "curriculumName": "العربية لغتي",
-//           "maxMark": 200,
-//           "passingMark": 100,
-//           "insideCurr": [
-//             {
-//               "cName": "المهارات الشفوية",
-//               "cMark": 120,
-//               "Marks": [111, 200, 200, 200]
-//             },
-//             {
-//               "cName": "المهارات اللغوية",
-//               "cMark": 120,
-//               "Marks": [145, 200, 200, 200]
-//             }
-//           ]
-//         },
-//         {
-//           "curriculumName": "التربية الدينية",
-//           "maxMark": 200,
-//           "passingMark": 100,
-//           "insideCurr": [
-//             {
-//               "cName": "التربية الدينية",
-//               "cMark": 150,
-//               "Marks": [200, 200, 200, 200]
-//             }
-//           ]
-//         }
-//       ],
-//       "downCurriculum": [
-//         {
-//           "curriculumName": "التربية الدينية",
-//           "maxMark": 200,
-//           "passingMark": 100,
-//           "insideCurr": [
-//             {
-//               "cName": "التربية الدينية",
-//               "cMark": 150,
-//               "Marks": [200, 200, 200, 200]
-//             }
-//           ]
-//         }
-//       ],
-//       "attendance": {
-//         "firstSemester": {
-//           "studentAttendance": 94,
-//           "mobarar_Attendance": 0,
-//           "not_Mobarar_Attendance": 0,
-//           "dawam_Fiele": 94
-//         },
-//         "secondSemester": {
-//           "studentAttendance": 94,
-//           "mobarar_Attendance": 0,
-//           "not_Mobarar_Attendance": 0,
-//           "dawam_Fiele": 94
-//         }
-//       },
-//       "solok": [200, 200],
-//       "Molahdat": {
-//         "firstSemester": null,
-//         "secondSemester": null,
-//         "manager": null,
-//         "schoolmanager": null
-//       }
-//     }
-//   };
-//
-//   // تحويل البيانات باستخدام fromJson
-//   rebortCard = Rebort_Card.fromJson(jsonData);
-//   update();
-// }
