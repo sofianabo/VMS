@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Class_API/Get_Unlink_CurriculumAPI.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Curriculm_API/Get_All_Curriculm.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Class_Mgmt_Controller.dart';
 import 'package:vms_school/Translate/local_controller.dart';
@@ -16,8 +17,8 @@ Class_Curriculm_Funcation(BuildContext context) async {
   try {
     CancelToken cancelToken = CancelToken();
     Loading_Dialog(cancelToken: cancelToken);
-    if (await Get_All_Curriculm_API(context)
-            .Get_All_Curriculm(canceltoken: cancelToken) ==
+    if (await Get_Unlink_Curriculum_Api(context)
+            .Get_Unlink_Curriculum(canceltoken: cancelToken) ==
         200) {
       Get.back();
       Get.dialog(GetBuilder<ClassMgmtController>(builder: (control) {
