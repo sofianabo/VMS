@@ -32,7 +32,7 @@ class AppRoutes {
       middlewares: [RoleBasedMiddleware()],
     ),
     GetPage(
-      name: '/adminLMS',
+      name: '/VMS_LMS',
       page: () => Admin_Home_LMS(),
       middlewares: [RoleBasedMiddleware()],
     ),

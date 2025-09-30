@@ -21,7 +21,7 @@ class Add_File_API {
     required bool hidden,
   }) async {
     CancelToken cancelToken = CancelToken();
-    Loading_Dialog(cancelToken: cancelToken);
+    UploadProgressDialog.show(cancelToken: cancelToken);
     try {
       FormData formData = FormData.fromMap({
         'name': '$name',
@@ -44,8 +44,12 @@ class Add_File_API {
       var response = await dio.post(
           data: formData,
           cancelToken: cancelToken,
-          myurl,
-          options: getDioOptions());
+          myurl, onSendProgress: (int sent, int total) {
+        if (total != -1) {
+          double value = sent / total;
+          UploadProgressDialog.progress.value = value; // تحديث النسبة
+        }
+      }, options: getDioOptions());
 
       if (response.statusCode == 200) {
         gets.Get.back();

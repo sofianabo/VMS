@@ -23,6 +23,7 @@ class Languages {
       'Pages': 'الصفحات',
       'Question Types': 'أنواع الأسئلة',
       'Quiz': 'الاختبارات',
+      'Quiz Table': 'جدول الاختبارات',
       'You Don`t Have Account ?': 'لا تملك حساب ؟',
       'Question Bank': 'بنك الاسئلة',
       'Trivia': 'السبور',
@@ -175,6 +176,7 @@ class Languages {
       'Operations': 'العمليات',
       'Edit Exam': 'تعديل الامتحان',
       'Semester': 'الفصل',
+      'Login Your Account': 'تسجيل الدخول الى حسابك',
       'Curriculum': 'المنهاج',
       'season': 'الفصل',
       'New Text': 'نص جديد',
@@ -243,6 +245,8 @@ class Languages {
       'Qualification': 'المؤهلات',
       'Experience': 'الخبرات',
       'Note': 'ملاحظات',
+      'This section provides a view of all the tables of the current class, such as the schedule, tests, and exams.':
+          'يوفر هذا القسم عرضاً لجميع الجداول الصف الحالي مثل جدول (االدوام , الاختبارات,الإمتحانات )',
       'The section contains the study materials for the specified Class level.':
           'يحتوي هذا القسم على المواد الدراسية للصف الدراسي المحدد.',
       'This section contains the Divisionس within the specified Class level.':
@@ -730,6 +734,8 @@ class Languages {
       'Edit Division': 'تعديل الشعبة',
       'Do You Want To Deletediv': 'هل تريد حذف الشعبة',
       'Divisionn': '',
+      'By using this button, you log out of the current class account and switch to the teacher\'s account.':
+          'من خلال هذا الزر تقوم بتسجيل خروجك من الحساب الحالي الخاص بالصف مع الحساب الخاص بالمدرس',
       'Delete Division': 'حذف الشعبة',
       'No Divisions': 'لا يوجد شُعب',
 
@@ -1220,6 +1226,7 @@ class Languages {
       'Operations': 'Operations',
       'Edit Exam': 'Edit Exam',
       'Semester': 'Semester',
+      'Login Your Account': 'Login Your Account',
       'Curriculum': 'Curriculum',
       'season': 'semester',
       'New Text': 'New Text',
@@ -1423,6 +1430,7 @@ class Languages {
       'Muslim': 'Muslim',
       'Christian': 'Christian',
       'Widow': 'Widow',
+      'Quiz Table': 'Quiz Table',
       'Single': 'Single',
       'Add as a new question': 'Add as a new question',
       'Preview': 'Preview',
@@ -1921,6 +1929,8 @@ class Languages {
       'Academic sequence': 'Academic sequence',
       'Family notebook': 'Family notebook',
       'Degree': 'Degree',
+      'This section provides a view of all the tables of the current class, such as the schedule, tests, and exams.':
+          'This section provides a view of all the tables of the current class, such as the schedule, tests, and exams.',
       'Students Marks in': 'Students Marks in Curriculum',
       'State': 'State',
       'Guardian Mobile': 'Guardian Mobile',
@@ -1929,6 +1939,8 @@ class Languages {
       'Request Date': 'Request Date',
       'IP Address': 'IP Address',
       'Platform': 'Platform',
+      'By using this button, you log out of the current class account and switch to the teacher\'s account.':
+          'By using this button, you log out of the current class account and switch to the teacher\'s account.',
       'No Time yet': 'No Time yet',
       'No Address yet': 'No Address yet',
       'Browser Version': 'Browser Version',

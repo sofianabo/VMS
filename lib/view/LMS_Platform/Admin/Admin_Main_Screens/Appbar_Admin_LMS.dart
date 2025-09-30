@@ -4,10 +4,18 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/AdminAPI/Get_My_Profile.dart';
+import 'package:vms_school/Link/API/Teacher_API/GetMyAttendenceAPI.dart';
+import 'package:vms_school/Link/API/Teacher_API/GetMyQuizAPI.dart';
+import 'package:vms_school/Link/API/Teacher_API/StudyShareTeacherAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/DrowerController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
+import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/oneEmployeeAttendenceController.dart';
+import 'package:vms_school/Link/Controller/Teacher_Controller/QuizTableTeacherController.dart';
+import 'package:vms_school/Link/Model/AdminModel/EmployeeModels/oneEmployeeAttendenceModel.dart';
 import 'package:vms_school/main.dart';
 import 'package:vms_school/view/Both_Platform/widgets/Responsive.dart';
+import 'package:vms_school/view/Both_Platform/widgets/VMSAlertDialog.dart';
+import 'package:vms_school/view/SMS_Platform/Teacher/Functions/StudyshareTeacher.dart';
 import 'package:vms_school/view/SMS_Platform/Teacher/Teacher_Home/TeacherProfile.dart';
 
 class AppbarAdmin_LMS extends StatefulWidget {
@@ -33,6 +41,7 @@ class _AppbarAdminState extends State<AppbarAdmin_LMS> {
             child: Row(
               children: [
                 Row(
+                  spacing: 10.0,
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     GestureDetector(
@@ -108,6 +117,188 @@ class _AppbarAdminState extends State<AppbarAdmin_LMS> {
                         ),
                       ),
                     ),
+                    if (Get.find<Add_Data_controller>().roll == "teacher")
+                      Builder(builder: (context) {
+                        return IconButton(
+                          style: ButtonStyle(
+                            maximumSize:
+                                WidgetStateProperty.all(const Size(35, 35)),
+                            minimumSize:
+                                WidgetStateProperty.all(const Size(35, 35)),
+                            iconSize: WidgetStateProperty.all(14),
+                            shape: WidgetStateProperty.all(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                            ),
+                            backgroundColor: WidgetStateProperty.all(
+                              Theme.of(context).primaryColor,
+                            ),
+                          ),
+                          icon: Icon(
+                            Icons.table_view_outlined,
+                            color: Colors.white,
+                          ),
+                          color: Colors.white,
+                          onPressed: () async {
+                            final RenderBox button =
+                                context.findRenderObject() as RenderBox;
+                            final RenderBox overlay = Overlay.of(context)
+                                .context
+                                .findRenderObject() as RenderBox;
+                            final Offset position = button
+                                .localToGlobal(Offset.zero, ancestor: overlay);
+
+                            final selected = await showMenu<String>(
+                              context: context,
+                              position: RelativeRect.fromLTRB(
+                                position.dx,
+                                position.dy + button.size.height,
+                                overlay.size.width - position.dx,
+                                0,
+                              ),
+                              color: Get.theme.cardColor,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5)),
+                              items: [
+                                PopupMenuItem<String>(
+                                  value: 'ExamTable',
+                                  child: Text('Exam Table'.tr,
+                                      style: Get.theme.textTheme.bodyMedium),
+                                ),
+                                PopupMenuItem<String>(
+                                  value: 'StudyShareTable',
+                                  child: Text('StudyShare Table'.tr,
+                                      style: Get.theme.textTheme.bodyMedium),
+                                ),
+                                PopupMenuItem<String>(
+                                  value: 'Attendence',
+                                  child: Text('Attendences'.tr,
+                                      style: Get.theme.textTheme.bodyMedium),
+                                ),
+                              ],
+                            );
+
+                            if (selected == 'StudyShareTable') {
+                              modTeacher = await Studyshareteacherapi(context)
+                                  .Studyshareteacher();
+                              if (modTeacher != null)
+                                Get.dialog(VMSAlertDialog(
+                                    action: [],
+                                    contents: Studyshareteacher(),
+                                    apptitle: "StudyShare table".tr,
+                                    subtitle: ""));
+                            } else if (selected == 'ExamTable') {
+                              Get.find<Quiztableteachercontroller>()
+                                  .initialData();
+                              Getmyquizapi(context).Getmyquiz();
+                            } else if (selected == 'Attendence') {
+                              oneEmployeeAttendenceModel attendanceModel =
+                                  await Getmyattendenceapi(context)
+                                      .Getmyattendence();
+                              Get.dialog(
+                                  GetBuilder<Oneemployeeattendencecontroller>(
+                                builder: (oneControl) {
+                                  return VMSAlertDialog(
+                                    action: [],
+                                    contents: SizedBox(
+                                      width: 600,
+                                      height: Get.height,
+                                      child: Column(
+                                        children: [
+                                          SizedBox(
+                                            width: Get.width,
+                                            child: SingleChildScrollView(
+                                              child: DataTable(
+                                                border: TableBorder.all(
+                                                  color: Theme.of(context)
+                                                      .primaryColor,
+                                                  width: 1.0,
+                                                ),
+                                                columns: [
+                                                  DataColumn(
+                                                    label: Text(
+                                                      'Date'.tr,
+                                                      style: Get.theme.textTheme
+                                                          .bodyMedium,
+                                                    ),
+                                                  ),
+                                                  DataColumn(
+                                                    label: Text(
+                                                      'Status'.tr,
+                                                      style: Get.theme.textTheme
+                                                          .bodyMedium,
+                                                    ),
+                                                  ),
+                                                  DataColumn(
+                                                    label: Text(
+                                                      'Cause'.tr,
+                                                      style: Get.theme.textTheme
+                                                          .bodyMedium,
+                                                    ),
+                                                  ),
+                                                ],
+                                                rows: [
+                                                  for (var studentAttendance
+                                                      in attendanceModel
+                                                              .employeeAttendance ??
+                                                          [])
+                                                    DataRow(
+                                                      cells: [
+                                                        DataCell(
+                                                          Text(
+                                                            studentAttendance
+                                                                    .date ??
+                                                                'N/A',
+                                                            style: Theme.of(
+                                                                    context)
+                                                                .textTheme
+                                                                .bodyMedium,
+                                                          ),
+                                                        ),
+                                                        //status
+                                                        DataCell(
+                                                          Text(
+                                                            studentAttendance
+                                                                    .status
+                                                                    .toString()
+                                                                    .tr ??
+                                                                'N/A',
+                                                            style: Theme.of(
+                                                                    context)
+                                                                .textTheme
+                                                                .bodyMedium,
+                                                          ),
+                                                        ),
+                                                        DataCell(
+                                                          Text(
+                                                            studentAttendance
+                                                                    .cause ??
+                                                                'N/A',
+                                                            style: Theme.of(
+                                                                    context)
+                                                                .textTheme
+                                                                .bodyMedium,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    apptitle: "Attendences".tr,
+                                    subtitle: "none",
+                                  );
+                                },
+                              ));
+                            }
+                          },
+                        );
+                      }),
                   ],
                 ),
                 Expanded(

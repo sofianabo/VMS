@@ -25,7 +25,7 @@ class Add_Curriculm_API {
     List<Map<String, dynamic>>? subCurr, // المناهج الفرعية
   }) async {
     CancelToken cancelToken = CancelToken();
-    Loading_Dialog(cancelToken: cancelToken);
+    UploadProgressDialog.show(cancelToken: cancelToken);
     try {
       FormData formData = FormData();
 
@@ -73,6 +73,12 @@ class Add_Curriculm_API {
         data: formData,
         cancelToken: cancelToken,
         options: getDioOptions(),
+        onSendProgress: (int sent, int total) {
+          if (total != -1) {
+            double value = sent / total;
+            UploadProgressDialog.progress.value = value; // تحديث النسبة
+          }
+        },
       );
 
       if (response.statusCode == 200) {

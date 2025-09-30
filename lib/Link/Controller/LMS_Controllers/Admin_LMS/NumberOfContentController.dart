@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Icons_File/LMS_Icons/l_m_s__icons_icons.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Selected_Screen.dart';
@@ -86,7 +87,23 @@ class Numberofcontentcontroller extends GetxController {
                 .tr,
         "icon": LMS_Icons.sopor_lms,
         "count": probeCount ?? 0,
-      }
+      },
+      {
+        "name": "Quiz Table".tr,
+        "subtitle":
+            "This section provides a view of all the tables of the current class, such as the schedule, tests, and exams."
+                .tr,
+        "icon": Icons.table_view_outlined,
+        "count": "",
+      },
+      {
+        "name": "Logout".tr,
+        "subtitle":
+            "This section contains activities that include various questions about general information about all curricula within the class."
+                .tr,
+        "icon": Icons.logout,
+        "count": "",
+      },
     ]);
     update();
   }

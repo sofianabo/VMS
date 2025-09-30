@@ -308,60 +308,62 @@ class _TeacherprofileState extends State<Teacherprofile> {
                                                                   ),
                                                                 ),
                                                               ),
-                                                              GestureDetector(
-                                                                onTap: () {
-                                                                  if (add_Data_Controller
-                                                                          .isLoading ==
-                                                                      false) {
-                                                                    controller
-                                                                        .ChangeCurruntValue(
-                                                                            "My curr");
-                                                                    Get.back();
-                                                                  }
-                                                                },
-                                                                child:
-                                                                    AnimatedContainer(
-                                                                  duration: Duration(
-                                                                      milliseconds:
-                                                                          150),
-                                                                  decoration: BoxDecoration(
-                                                                      color: controller.curruntValue == "My curr"
-                                                                          ? _isDarkMode.value
-                                                                              ? Theme.of(context).indicatorColor
-                                                                              : Color(0xffEBEBEB)
-                                                                          : Theme.of(context).cardColor,
-                                                                      borderRadius: BorderRadius.all(Radius.circular(20))),
-                                                                  padding:
-                                                                      EdgeInsets
-                                                                          .all(
-                                                                              5.0),
-                                                                  child: Row(
-                                                                    textDirection: Get.find<LocalizationController>().currentLocale.value.languageCode ==
-                                                                            'ar'
-                                                                        ? TextDirection
-                                                                            .rtl
-                                                                        : TextDirection
-                                                                            .ltr,
-                                                                    children: [
-                                                                      FaIcon(
-                                                                        FontAwesomeIcons
-                                                                            .fileAlt,
-                                                                      ),
-                                                                      Text(
-                                                                        "  " +
-                                                                            "My curr".tr +
-                                                                            "  ",
-                                                                        maxLines:
-                                                                            2,
-                                                                        textAlign:
-                                                                            TextAlign.center,
-                                                                        overflow:
-                                                                            TextOverflow.ellipsis,
-                                                                      )
-                                                                    ],
+                                                              if (add_Data_Controller
+                                                                      .roll !=
+                                                                  "admin")
+                                                                GestureDetector(
+                                                                  onTap: () {
+                                                                    if (add_Data_Controller
+                                                                            .isLoading ==
+                                                                        false) {
+                                                                      controller
+                                                                          .ChangeCurruntValue(
+                                                                              "My curr");
+                                                                      Get.back();
+                                                                    }
+                                                                  },
+                                                                  child:
+                                                                      AnimatedContainer(
+                                                                    duration: Duration(
+                                                                        milliseconds:
+                                                                            150),
+                                                                    decoration: BoxDecoration(
+                                                                        color: controller.curruntValue == "My curr"
+                                                                            ? _isDarkMode.value
+                                                                                ? Theme.of(context).indicatorColor
+                                                                                : Color(0xffEBEBEB)
+                                                                            : Theme.of(context).cardColor,
+                                                                        borderRadius: BorderRadius.all(Radius.circular(20))),
+                                                                    padding:
+                                                                        EdgeInsets.all(
+                                                                            5.0),
+                                                                    child: Row(
+                                                                      textDirection: Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                                                                              'ar'
+                                                                          ? TextDirection
+                                                                              .rtl
+                                                                          : TextDirection
+                                                                              .ltr,
+                                                                      children: [
+                                                                        FaIcon(
+                                                                          FontAwesomeIcons
+                                                                              .fileAlt,
+                                                                        ),
+                                                                        Text(
+                                                                          "  " +
+                                                                              "My curr".tr +
+                                                                              "  ",
+                                                                          maxLines:
+                                                                              2,
+                                                                          textAlign:
+                                                                              TextAlign.center,
+                                                                          overflow:
+                                                                              TextOverflow.ellipsis,
+                                                                        )
+                                                                      ],
+                                                                    ),
                                                                   ),
                                                                 ),
-                                                              ),
                                                             ],
                                                           )
                                                         : Column(
@@ -534,7 +536,7 @@ class _TeacherprofileState extends State<Teacherprofile> {
                                                           prefs!.setBool(
                                                               "isLMS", true);
                                                           Get.offAllNamed(
-                                                              "/adminLMS");
+                                                              "/VMS_LMS");
                                                         },
                                                         child: Container(
                                                           padding:
@@ -991,71 +993,78 @@ class _TeacherprofileState extends State<Teacherprofile> {
                                                         ),
                                                       ),
                                                     ),
-                                                    GestureDetector(
-                                                      onTap: () {
-                                                        if (add_Data_Controller
-                                                                .isLoading ==
-                                                            false) {
-                                                          controller
-                                                              .ChangeCurruntValue(
-                                                                  "My curr");
-                                                        }
-                                                      },
-                                                      child: AnimatedContainer(
-                                                        duration: Duration(
-                                                            milliseconds: 150),
-                                                        decoration:
-                                                            BoxDecoration(
-                                                                color: controller
-                                                                            .curruntValue ==
-                                                                        "My curr"
-                                                                    ? _isDarkMode
-                                                                            .value
-                                                                        ? Theme.of(context)
-                                                                            .indicatorColor
-                                                                        : Color(
-                                                                            0xffEBEBEB)
-                                                                    : Theme.of(
-                                                                            context)
-                                                                        .cardColor,
-                                                                borderRadius: BorderRadius
-                                                                    .all(Radius
-                                                                        .circular(
-                                                                            20))),
-                                                        padding:
-                                                            EdgeInsets.all(5.0),
-                                                        child: Row(
-                                                          textDirection: Get.find<
-                                                                          LocalizationController>()
-                                                                      .currentLocale
-                                                                      .value
-                                                                      .languageCode ==
-                                                                  'ar'
-                                                              ? TextDirection
-                                                                  .rtl
-                                                              : TextDirection
-                                                                  .ltr,
-                                                          children: [
-                                                            FaIcon(
-                                                              FontAwesomeIcons
-                                                                  .fileAlt,
-                                                            ),
-                                                            Text(
-                                                              "  " +
-                                                                  "My curr".tr +
-                                                                  "  ",
-                                                              maxLines: 2,
-                                                              textAlign:
-                                                                  TextAlign
-                                                                      .center,
-                                                              overflow:
-                                                                  TextOverflow
-                                                                      .ellipsis,
-                                                            )
-                                                          ],
+                                                    if (add_Data_Controller
+                                                            .roll !=
+                                                        "admin")
+                                                      GestureDetector(
+                                                        onTap: () {
+                                                          if (add_Data_Controller
+                                                                  .isLoading ==
+                                                              false) {
+                                                            controller
+                                                                .ChangeCurruntValue(
+                                                                    "My curr");
+                                                          }
+                                                        },
+                                                        child:
+                                                            AnimatedContainer(
+                                                          duration: Duration(
+                                                              milliseconds:
+                                                                  150),
+                                                          decoration:
+                                                              BoxDecoration(
+                                                                  color: controller
+                                                                              .curruntValue ==
+                                                                          "My curr"
+                                                                      ? _isDarkMode
+                                                                              .value
+                                                                          ? Theme.of(context)
+                                                                              .indicatorColor
+                                                                          : Color(
+                                                                              0xffEBEBEB)
+                                                                      : Theme.of(
+                                                                              context)
+                                                                          .cardColor,
+                                                                  borderRadius:
+                                                                      BorderRadius.all(
+                                                                          Radius.circular(
+                                                                              20))),
+                                                          padding:
+                                                              EdgeInsets.all(
+                                                                  5.0),
+                                                          child: Row(
+                                                            textDirection: Get.find<
+                                                                            LocalizationController>()
+                                                                        .currentLocale
+                                                                        .value
+                                                                        .languageCode ==
+                                                                    'ar'
+                                                                ? TextDirection
+                                                                    .rtl
+                                                                : TextDirection
+                                                                    .ltr,
+                                                            children: [
+                                                              FaIcon(
+                                                                FontAwesomeIcons
+                                                                    .fileAlt,
+                                                              ),
+                                                              Text(
+                                                                "  " +
+                                                                    "My curr"
+                                                                        .tr +
+                                                                    "  ",
+                                                                maxLines: 2,
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .center,
+                                                                overflow:
+                                                                    TextOverflow
+                                                                        .ellipsis,
+                                                              )
+                                                            ],
+                                                          ),
                                                         ),
                                                       ),
-                                                    ),
                                                   ],
                                                 )
                                               : Column(
@@ -1208,7 +1217,7 @@ class _TeacherprofileState extends State<Teacherprofile> {
                                             GestureDetector(
                                               onTap: () async {
                                                 prefs!.setBool("isLMS", true);
-                                                Get.offAllNamed("/adminLMS");
+                                                Get.offAllNamed("/VMS_LMS");
                                               },
                                               child: Container(
                                                 padding: EdgeInsets.all(5.0),

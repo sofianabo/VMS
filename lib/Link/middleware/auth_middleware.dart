@@ -39,8 +39,8 @@ class RoleBasedMiddleware extends GetMiddleware {
             role == "observer" ||
             role == "supervisor")) {
       Get.find<Add_Data_controller>().CheeckHasData();
-      if (route != '/adminLMS') {
-        return RouteSettings(name: '/adminLMS');
+      if (route != '/VMS_LMS') {
+        return RouteSettings(name: '/VMS_LMS');
       }
     }
     if (isLoggedIn && (role == "class")) {

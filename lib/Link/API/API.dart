@@ -31,6 +31,7 @@ String getMyAttendence = "getMyAttendance";
 String getClassesByTeacher = "getClassesByTeacher";
 String getDivionByTeacher = "getDivionByTeacher";
 String getCurriculumByTeacher = "getCurriculumByTeacher";
+String loginForClass = "loginForClass";
 
 //..................... Teacher API End ...................//
 
@@ -258,3 +259,4 @@ String addQuizLms = "addQuizLms";
 String deletetQuizLms = "deletetQuizLms";
 String addFile1 = "addFile1";
 String updateLmsQuiz = "updateLmsQuiz";
+String getQuizForClass = "getQuizForClass";
