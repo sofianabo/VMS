@@ -62,7 +62,8 @@ class Drop_Edite_students extends StatelessWidget {
                                           null) {
                                         final url =
                                             '$getimage${add_controller.student!.documantes!.fatherPassport!.id}';
-                                        downloadFile(url,
+
+                                        downloader.downloadFile(url,
                                             '${add_controller.student!.firstName} ${add_controller.student!.lastName} Father Passport.${add_controller.student!.documantes!.fatherPassport!.fileType}');
                                       }
                                     },
@@ -199,7 +200,7 @@ class Drop_Edite_students extends StatelessWidget {
                                           null) {
                                         final url =
                                             '$getimage${add_controller.student!.documantes!.motherPassport!.id}';
-                                        downloadFile(url,
+                                        downloader.downloadFile(url,
                                             '${add_controller.student!.firstName} ${add_controller.student!.lastName} Mother Passport.${add_controller.student!.documantes!.motherPassport!.fileType}');
                                       }
                                     },
@@ -348,7 +349,7 @@ class Drop_Edite_students extends StatelessWidget {
                                           null) {
                                         final url =
                                             '$getimage${add_controller.student!.documantes!.sonPassport!.id}';
-                                        downloadFile(url,
+                                        downloader.downloadFile(url,
                                             '${add_controller.student!.firstName} ${add_controller.student!.lastName} son Passport.${add_controller.student!.documantes!.sonPassport!.fileType}');
                                       }
                                     },
@@ -483,7 +484,7 @@ class Drop_Edite_students extends StatelessWidget {
                                           null) {
                                         final url =
                                             '$getimage${add_controller.student!.documantes!.userID!.id}';
-                                        downloadFile(url,
+                                        downloader.downloadFile(url,
                                             '${add_controller.student!.firstName} ${add_controller.student!.lastName} userID.${add_controller.student!.documantes!.userID!.fileType}');
                                       }
                                     },
@@ -625,7 +626,7 @@ class Drop_Edite_students extends StatelessWidget {
                                           null) {
                                         final url =
                                             '$getimage${add_controller.student!.documantes!.certificate!.id}';
-                                        downloadFile(url,
+                                        downloader.downloadFile(url,
                                             '${add_controller.student!.firstName} ${add_controller.student!.lastName} certificate.${add_controller.student!.documantes!.certificate!.fileType}');
                                       }
                                     },
@@ -760,7 +761,7 @@ class Drop_Edite_students extends StatelessWidget {
                                           null) {
                                         final url =
                                             '$getimage${add_controller.student!.documantes!.academicSequence!.id}';
-                                        downloadFile(url,
+                                        downloader.downloadFile(url,
                                             '${add_controller.student!.firstName} ${add_controller.student!.lastName} academicSequence.${add_controller.student!.documantes!.academicSequence!.fileType}');
                                       }
                                     },
@@ -904,7 +905,7 @@ class Drop_Edite_students extends StatelessWidget {
                                           null) {
                                         final url =
                                             '$getimage${add_controller.student!.documantes!.familyNotebook!.id}';
-                                        downloadFile(url,
+                                        downloader.downloadFile(url,
                                             '${add_controller.student!.firstName} ${add_controller.student!.lastName} Family notebook.${add_controller.student!.documantes!.familyNotebook!.fileType}');
                                       }
                                     },

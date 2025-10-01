@@ -124,7 +124,7 @@ class _LmsStudentsgridState extends State<Files_LMS_Grid> {
                                   onTap: () {
                                     final url =
                                         '$getimage${controller.filtered_files_LMS[index].fileId}}';
-                                    downloadFile(url,
+                                    downloader.downloadFile(url,
                                         '${controller.filtered_files_LMS[index].name.toString().trim().replaceAll(" ", "_")}.pdf');
                                   }),
                               Squer_Button_Enabled_Disabled(

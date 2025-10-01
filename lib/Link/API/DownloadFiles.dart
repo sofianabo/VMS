@@ -1,31 +1,38 @@
-import 'dart:html' as html;
+export 'download_file_stub.dart'
+    if (dart.library.html) 'download_file_web.dart'
+    if (dart.library.io) 'download_file_io.dart';
 
-import 'package:dio/dio.dart';
-import 'package:get/get.dart';
-import 'package:vms_school/view/Both_Platform/widgets/Loading_Dialog.dart';
-
-Future<void> downloadFile(String url, String fileName) async {
-  Dio dio = Dio();
-  try {
-    CancelToken cancelToken = CancelToken();
-    Loading_Dialog(cancelToken: cancelToken);
-    final response = await dio.get(
-      url,
-      options: Options(responseType: ResponseType.bytes),
-      cancelToken: cancelToken,
-    );
-    if (response.statusCode == 200) {
-      final blob = html.Blob([response.data]);
-      final blobUrl = html.Url.createObjectUrlFromBlob(blob);
-      final anchor = html.AnchorElement(href: blobUrl)
-        ..target = '_blank'
-        ..download = fileName;
-      anchor.click();
-
-      html.Url.revokeObjectUrl(blobUrl);
-    } else {}
-  } catch (e) {
-  } finally {
-    Get.back();
-  }
+// 2. تعريف الواجهة المشتركة
+abstract class PlatformDownloader {
+  Future<void> downloadFile(String url, String fileName);
 }
+
+// import 'package:dio/dio.dart';
+// import 'package:get/get.dart';
+// import 'package:vms_school/view/Both_Platform/widgets/Loading_Dialog.dart';
+//
+// Future<void> downloadFile(String url, String fileName) async {
+//   Dio dio = Dio();
+//   try {
+//     CancelToken cancelToken = CancelToken();
+//     Loading_Dialog(cancelToken: cancelToken);
+//     final response = await dio.get(
+//       url,
+//       options: Options(responseType: ResponseType.bytes),
+//       cancelToken: cancelToken,
+//     );
+//     if (response.statusCode == 200) {
+//       final blob = html.Blob([response.data]);
+//       final blobUrl = html.Url.createObjectUrlFromBlob(blob);
+//       final anchor = html.AnchorElement(href: blobUrl)
+//         ..target = '_blank'
+//         ..download = fileName;
+//       anchor.click();
+//
+//       html.Url.revokeObjectUrl(blobUrl);
+//     } else {}
+//   } catch (e) {
+//   } finally {
+//     Get.back();
+//   }
+// }
