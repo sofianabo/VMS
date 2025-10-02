@@ -35,6 +35,11 @@ class AppRoutes {
       middlewares: [RoleBasedMiddleware()],
     ),
     GetPage(
+      name: '/Student_LMS',
+      page: () => Admin_Home_LMS(),
+      middlewares: [RoleBasedMiddleware()],
+    ),
+    GetPage(
       name: '/login',
       page: () => LoginScreen(), //GuardianMainScreen()
       middlewares: [RoleBasedMiddleware()],
