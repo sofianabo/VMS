@@ -59,6 +59,15 @@ class RoleBasedMiddleware extends GetMiddleware {
         return const RouteSettings(name: '/guardian');
       }
     }
+    if (isLoggedIn && (role == "student")) {
+      prefs!.setBool("hasData", true);
+      prefs!.setBool("isVerified", true);
+      prefs!.setBool("isLMS", true);
+      prefs!.setString("role", "student");
+      if (route != '/Student_LMS') {
+        return const RouteSettings(name: '/Student_LMS');
+      }
+    }
     if (isLMS == false && isLoggedIn && (role == "teacher")) {
       Get.find<Add_Data_controller>().CheeckHasData();
       if (route != '/teacher') {

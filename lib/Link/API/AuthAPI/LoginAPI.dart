@@ -27,19 +27,36 @@ class LoginAPI {
           },
           options: getDioOptions());
       if (response.statusCode == 200) {
-        UserModel user = UserModel.fromJson(response.data);
-        u.GetuserInfo(user);
-        prefs!.setBool("isLogin", true);
-        prefs!.setString("role", user.roll!);
-        prefs!.setBool("hasData", user.hasData!);
-        prefs!.setBool("isVerified", user.verified!);
-        prefs!.setString("email", user.email ?? "");
-        prefs!.setString("imageId", user.imageId.toString());
-        prefs!.setString("fullname", user.fullName.toString());
-        Get.offAllNamed('/admin');
-        if (user.roll == "class") {
+        if (response.data['roll'] == "student") {
+          prefs!.setBool("isLogin", true);
+          prefs!.setString("role", "student");
+          prefs!.setBool("hasData", true);
+          prefs!.setString("token", response.data['token']);
+          prefs!.setBool("isVerified", true);
+          prefs!.setString("imageId", response.data['imageId'] ?? "");
+          prefs!.setString("fullname", response.data['fullName']);
           prefs!.setBool("isLMS", true);
-          prefs!.setString("classId", user.imageId.toString());
+          prefs!.setString("classId", response.data['classId'].toString());
+          prefs!
+              .setString("divisionId", response.data['divisionId'].toString());
+          u.SetIsloading(false);
+          Get.offAllNamed('/admin');
+        } else {
+          UserModel user = UserModel.fromJson(response.data);
+          u.GetuserInfo(user);
+          print("mish stu");
+          prefs!.setBool("isLogin", true);
+          prefs!.setString("role", user.roll!);
+          prefs!.setBool("hasData", user.hasData!);
+          prefs!.setBool("isVerified", user.verified!);
+          prefs!.setString("email", user.email ?? "");
+          prefs!.setString("imageId", user.imageId.toString());
+          prefs!.setString("fullname", user.fullName.toString());
+          Get.offAllNamed('/admin');
+          if (user.roll == "class") {
+            prefs!.setBool("isLMS", true);
+            prefs!.setString("classId", user.imageId.toString());
+          }
         }
       } else {
         ErrorHandler.handleDioError(DioException(

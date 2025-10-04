@@ -43,11 +43,12 @@ class Teacher_Login_By_Class_API {
       return response;
     } catch (e) {
       if (e is DioException) {
-        ErrorHandler.handleDioError(e);
-      } else if (e is Exception) {
-        ErrorHandler.handleException(e);
-      } else {
-        ErrorHandler.handleException(Exception(e.toString()));
+        if (e.response!.data['message'] == "wrong userName or password") {
+          Get.back();
+          ErrorMessage(
+              "Your password is not true , Please cheek your password and try again later"
+                  .tr);
+        }
       }
     }
   }

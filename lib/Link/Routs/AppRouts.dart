@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:vms_school/Link/middleware/auth_middleware.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/Admin_Main_Screens/Admin_Home_LMS.dart';
 import 'package:vms_school/view/LMS_Platform/Class/Class_LMS.dart';
+import 'package:vms_school/view/LMS_Platform/Student/Student_LMS.dart';
 import 'package:vms_school/view/SMS_Platform/Admin/Admin_Main_Screens/AdminHome.dart';
 import 'package:vms_school/view/Both_Platform/Auth/Enroll_Screen.dart';
 import 'package:vms_school/view/Both_Platform/Auth/LoginScreen.dart';
@@ -36,7 +37,7 @@ class AppRoutes {
     ),
     GetPage(
       name: '/Student_LMS',
-      page: () => Admin_Home_LMS(),
+      page: () => Student_Home_LMS(),
       middlewares: [RoleBasedMiddleware()],
     ),
     GetPage(
