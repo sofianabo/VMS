@@ -46,7 +46,75 @@ class _Student_Home_LMSState extends State<Student_Home_LMS> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Text("data"),
+      body: GetBuilder<Selected_Class_Controller>(builder: (controller) {
+        return Column(
+          children: [
+            Appbartransaction(),
+            if (controller.teacherid != null && controller.moveMenu.length <= 1)
+              SizedBox(
+                height: 20,
+              ),
+            Expanded(
+              child: Directionality(
+                textDirection: Get.find<LocalizationController>()
+                            .currentLocale
+                            .value
+                            .languageCode ==
+                        'ar'
+                    ? TextDirection.rtl
+                    : TextDirection.ltr,
+                child: GetBuilder<Selected_Class_Controller>(
+                  builder: (controller) {
+                    if (controller.moveMenu.isEmpty) return SelectedClassLMs();
+
+                    final current = controller.moveMenu.last;
+
+                    if (current == "Curriculum".tr) {
+                      return Curriculum_ManagementLMS();
+                    } else if (current == "Divisions".tr) {
+                      return DivisionGrid();
+                    } else if (current == "Files".tr) {
+                      return Files_LMS();
+                    } else if (current == "Links".tr) {
+                      return Linklmsmangamnt();
+                    } else if (current == "Pages".tr) {
+                      return Pageslmsmangament();
+                    } else if (current == "Quiz".tr) {
+                      return QuizLmspage();
+                    } else if (current == "Question Bank".tr) {
+                      return QuestionBankPage();
+                    } else if (current == "True or False".tr) {
+                      return Trueorfalsequestionmanagment();
+                    } else if (current == "MultiChoise".tr) {
+                      return Multi_Choise_Question();
+                    } else if (current == "Matching".tr) {
+                      return Matching_Question();
+                    } else if (current == "article".tr) {
+                      return Articlequestionmanagment();
+                    } else if (current == "Choose the correct answer".tr) {
+                      return Choose_the_correct_answer();
+                    } else if (current == "Fill in the blanks".tr) {
+                      return Fill_The_Blank();
+                    } else if (current == "Drag and Drop".tr) {
+                      return Dragdrop_Question();
+                    } else if (current == "Trivia".tr) {
+                      return Text("Trivia");
+                    } else if (current == "All Students".tr) {
+                      return LMS_Students();
+                    } else if (current == "Homework".tr) {
+                      return Homeworkmanagement();
+                    } else if (current == "Add Questions".tr) {
+                      return QuizQuestion();
+                    } else {
+                      return SelectedClassLMs();
+                    }
+                  },
+                ),
+              ),
+            ),
+          ],
+        );
+      }),
     );
   }
 }
