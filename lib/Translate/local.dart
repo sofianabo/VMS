@@ -1101,6 +1101,7 @@ class Languages {
       'Number of actual working days in second semester':
           'عدد أيام الدوام الفعلي في الفصل الثاني',
       'Add Sub-Curriculum': 'إضافة منهاج فرعي',
+      'Division Room': 'الغرفة الصفية',
     },
     'en': {
       'Welcome Laith Haitham Azzam': 'Welcome Laith Haitham Azzam',
@@ -2199,7 +2200,7 @@ class Languages {
           'Number of actual working days in second semester',
       'Add Sub-Curriculum': 'Add Sub-Curriculum',
       'KMS Platform': 'KMS Platform',
-      '': '',
+      'Division Room': 'Division Room',
       '': '',
       '': '',
       '': '',

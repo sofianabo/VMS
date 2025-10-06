@@ -84,6 +84,7 @@ import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Selected_Sc
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Students_LMS_Controller.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Subject_LMS_Controller.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/TrueOrFalseController.dart';
+import 'package:vms_school/Link/Controller/LMS_Controllers/StudentLMSController.dart/MainPageContentController.dart';
 import 'package:vms_school/Link/Controller/Teacher_Controller/My_Students_Controller.dart';
 import 'package:vms_school/Link/Controller/Teacher_Controller/QuizTableTeacherController.dart';
 import 'package:vms_school/Link/Controller/Teacher_Controller/StudentMarks_TeacherController.dart';
@@ -213,5 +214,6 @@ class AppBindings extends Bindings {
     Get.lazyPut(() => Quiz_Matching_Question_Controller(), fenix: true);
     Get.lazyPut(() => DragDrop_Question_Controller(), fenix: true);
     Get.lazyPut(() => Quiz_DragDrop_Question_Controller(), fenix: true);
+    Get.lazyPut(() => Mainpagecontentcontroller(), fenix: true);
   }
 }

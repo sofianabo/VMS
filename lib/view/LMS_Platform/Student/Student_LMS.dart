@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/LMS_APIs/Admin/GetNumberOfContentAPI.dart';
+import 'package:vms_school/Link/API/LMS_APIs/StudentLms/NumberOfContentStudentAPI.dart';
+import 'package:vms_school/Link/API/OpenURLs.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Selected_Screen.dart';
+import 'package:vms_school/Link/Controller/LMS_Controllers/StudentLMSController.dart/MainPageContentController.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/main.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/Admin_Main_Screens/AppBarTransaction.dart';
@@ -24,6 +27,8 @@ import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Quiz_Pages_LMS/Quiz
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Quiz_Pages_LMS/Quiz_Question_LMS/Quiz_Question.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Selected_Class_Screen.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Students_LMS/LMS_Student.dart';
+import 'package:vms_school/view/LMS_Platform/Student/SelectedStudentLMs.dart';
+import 'package:vms_school/view/LMS_Platform/Student/curriulumStudentLMSScreen.dart';
 
 class Student_Home_LMS extends StatefulWidget {
   Student_Home_LMS({super.key});
@@ -35,8 +40,8 @@ class Student_Home_LMS extends StatefulWidget {
 class _Student_Home_LMSState extends State<Student_Home_LMS> {
   @override
   void initState() {
-    Getnumberofcontentapi()
-        .Getnumberofcontent(int.parse(prefs!.getString("classId").toString()));
+    Numberofcontentstudentapi()
+        .Numberofcontentstudent(int.parse(prefs!.getString("classId").toString()));
     Get.find<Selected_Class_Controller>().initialinClass(
         prefs!.getString("fullname").toString(),
         int.parse(prefs!.getString("classId").toString()));
@@ -50,10 +55,7 @@ class _Student_Home_LMSState extends State<Student_Home_LMS> {
         return Column(
           children: [
             Appbartransaction(),
-            if (controller.teacherid != null && controller.moveMenu.length <= 1)
-              SizedBox(
-                height: 20,
-              ),
+           
             Expanded(
               child: Directionality(
                 textDirection: Get.find<LocalizationController>()
@@ -65,14 +67,12 @@ class _Student_Home_LMSState extends State<Student_Home_LMS> {
                     : TextDirection.ltr,
                 child: GetBuilder<Selected_Class_Controller>(
                   builder: (controller) {
-                    if (controller.moveMenu.isEmpty) return SelectedClassLMs();
+                    if (controller.moveMenu.isEmpty) return Selectedstudentlms();
 
                     final current = controller.moveMenu.last;
 
                     if (current == "Curriculum".tr) {
-                      return Curriculum_ManagementLMS();
-                    } else if (current == "Divisions".tr) {
-                      return DivisionGrid();
+                      return Curriulumstudentlmsscreen();
                     } else if (current == "Files".tr) {
                       return Files_LMS();
                     } else if (current == "Links".tr) {
