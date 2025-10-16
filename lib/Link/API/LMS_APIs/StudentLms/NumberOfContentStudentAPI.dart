@@ -16,7 +16,7 @@ class Numberofcontentstudentapi {
 
     Get.find<Selected_Class_Controller>().setIsLoading(true);
     try {
-      String myurl = "$hostPort$classInfoLms";
+      String myurl = "$hostPort$studentInfoLms";
       var response = await dio.post(myurl,
           data: {'classId': id}, options: getDioOptions());
       if (response.statusCode == 200) {

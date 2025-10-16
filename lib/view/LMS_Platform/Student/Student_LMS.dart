@@ -27,7 +27,13 @@ import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Quiz_Pages_LMS/Quiz
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Quiz_Pages_LMS/Quiz_Question_LMS/Quiz_Question.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Selected_Class_Screen.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Students_LMS/LMS_Student.dart';
+import 'package:vms_school/view/LMS_Platform/Student/FilesStudent/FileStudentMange.dart';
+import 'package:vms_school/view/LMS_Platform/Student/HomeworkStudent/HomeworkStudentMange.dart';
+import 'package:vms_school/view/LMS_Platform/Student/LinkStudent/LinkStudentMange.dart';
+import 'package:vms_school/view/LMS_Platform/Student/PageStudent/PageStudentMange.dart';
+import 'package:vms_school/view/LMS_Platform/Student/QuizStudent/QuizStudentMange.dart';
 import 'package:vms_school/view/LMS_Platform/Student/SelectedStudentLMs.dart';
+import 'package:vms_school/view/LMS_Platform/Student/StudentProfile.dart';
 import 'package:vms_school/view/LMS_Platform/Student/curriulumStudentLMSScreen.dart';
 
 class Student_Home_LMS extends StatefulWidget {
@@ -40,8 +46,8 @@ class Student_Home_LMS extends StatefulWidget {
 class _Student_Home_LMSState extends State<Student_Home_LMS> {
   @override
   void initState() {
-    Numberofcontentstudentapi()
-        .Numberofcontentstudent(int.parse(prefs!.getString("classId").toString()));
+    Numberofcontentstudentapi().Numberofcontentstudent(
+        int.parse(prefs!.getString("classId").toString()));
     Get.find<Selected_Class_Controller>().initialinClass(
         prefs!.getString("fullname").toString(),
         int.parse(prefs!.getString("classId").toString()));
@@ -55,7 +61,6 @@ class _Student_Home_LMSState extends State<Student_Home_LMS> {
         return Column(
           children: [
             Appbartransaction(),
-           
             Expanded(
               child: Directionality(
                 textDirection: Get.find<LocalizationController>()
@@ -67,46 +72,33 @@ class _Student_Home_LMSState extends State<Student_Home_LMS> {
                     : TextDirection.ltr,
                 child: GetBuilder<Selected_Class_Controller>(
                   builder: (controller) {
-                    if (controller.moveMenu.isEmpty) return Selectedstudentlms();
+                    if (controller.moveMenu.isEmpty)
+                      return Selectedstudentlms();
 
                     final current = controller.moveMenu.last;
 
                     if (current == "Curriculum".tr) {
                       return Curriulumstudentlmsscreen();
+                    }
+                     else if (current == "My Profile".tr) {
+                      return Studentprofile();
+                    } 
+                     else if (current == "Homework".tr) {
+                      return Homeworkstudentmange();
                     } else if (current == "Files".tr) {
-                      return Files_LMS();
+                      return Filestudentmange();
                     } else if (current == "Links".tr) {
-                      return Linklmsmangamnt();
+                      return Linkstudentmange();
                     } else if (current == "Pages".tr) {
-                      return Pageslmsmangament();
+                      return Pagestudentmange();
                     } else if (current == "Quiz".tr) {
-                      return QuizLmspage();
-                    } else if (current == "Question Bank".tr) {
-                      return QuestionBankPage();
-                    } else if (current == "True or False".tr) {
-                      return Trueorfalsequestionmanagment();
-                    } else if (current == "MultiChoise".tr) {
-                      return Multi_Choise_Question();
-                    } else if (current == "Matching".tr) {
-                      return Matching_Question();
-                    } else if (current == "article".tr) {
-                      return Articlequestionmanagment();
-                    } else if (current == "Choose the correct answer".tr) {
-                      return Choose_the_correct_answer();
-                    } else if (current == "Fill in the blanks".tr) {
-                      return Fill_The_Blank();
-                    } else if (current == "Drag and Drop".tr) {
-                      return Dragdrop_Question();
-                    } else if (current == "Trivia".tr) {
+                      return Quizstudentmange();
+                    }  else if (current == "Trivia".tr) {
                       return Text("Trivia");
-                    } else if (current == "All Students".tr) {
-                      return LMS_Students();
-                    } else if (current == "Homework".tr) {
-                      return Homeworkmanagement();
-                    } else if (current == "Add Questions".tr) {
-                      return QuizQuestion();
-                    } else {
-                      return SelectedClassLMs();
+                    }
+                    
+                     else {
+                      return Selectedstudentlms();
                     }
                   },
                 ),

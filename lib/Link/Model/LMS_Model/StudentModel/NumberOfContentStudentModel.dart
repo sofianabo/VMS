@@ -1,9 +1,8 @@
 class NumberOfContentStudentModel {
   int? curriculmCount;
-  int? divisionCount;
   int? probeCount;
   int? quizCount;
-  int? questionBankCount;
+  int? homework;
   int? fileCount;
   int? pageCount;
   int? urlCount;
@@ -12,10 +11,9 @@ class NumberOfContentStudentModel {
 
   NumberOfContentStudentModel(
       {this.curriculmCount,
-      this.divisionCount,
       this.probeCount,
       this.quizCount,
-      this.questionBankCount,
+      this.homework,
       this.fileCount,
       this.pageCount,
       this.urlCount,
@@ -24,10 +22,9 @@ class NumberOfContentStudentModel {
 
   NumberOfContentStudentModel.fromJson(Map<String, dynamic> json) {
     curriculmCount = json['curriculmCount'];
-    divisionCount = json['divisionCount'];
     probeCount = json['probeCount'];
     quizCount = json['quizCount'];
-    questionBankCount = json['questionBankCount'];
+    homework = json['homework'];
     fileCount = json['fileCount'];
     pageCount = json['pageCount'];
     urlCount = json['urlCount'];
@@ -38,10 +35,9 @@ class NumberOfContentStudentModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['curriculmCount'] = this.curriculmCount;
-    data['divisionCount'] = this.divisionCount;
     data['probeCount'] = this.probeCount;
     data['quizCount'] = this.quizCount;
-    data['questionBankCount'] = this.questionBankCount;
+    data['homework'] = this.homework;
     data['fileCount'] = this.fileCount;
     data['pageCount'] = this.pageCount;
     data['urlCount'] = this.urlCount;

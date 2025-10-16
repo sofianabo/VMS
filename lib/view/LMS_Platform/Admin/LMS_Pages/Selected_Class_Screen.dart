@@ -54,7 +54,7 @@ class SelectedClassLMs extends StatelessWidget {
                   childAspectRatio: getChildAspectRatio()),
               itemCount: control.dataList.length,
               itemBuilder: (context, index) {
-                if (Get.find<Add_Data_controller>().roll == "class")
+                if (Get.find<Add_Data_controller>().roll == "class") {
                   return HoverScaleCard(
                     child: GestureDetector(
                       onTap: () async {
@@ -173,8 +173,9 @@ class SelectedClassLMs extends StatelessWidget {
                       ),
                     ),
                   );
+                }
                 if (index < 8 &&
-                    Get.find<Add_Data_controller>().roll != "class")
+                    Get.find<Add_Data_controller>().roll != "class") {
                   return HoverScaleCard(
                     child: GestureDetector(
                       onTap: () async {
@@ -184,6 +185,7 @@ class SelectedClassLMs extends StatelessWidget {
                         }
 
                         if (index == control.dataList.length - 2) {
+                          
                           Get.dialog(VMSAlertDialog(
                               action: [],
                               contents: Exam_Scheald(),
@@ -288,6 +290,7 @@ class SelectedClassLMs extends StatelessWidget {
                       ),
                     ),
                   );
+                }
               },
             );
     });

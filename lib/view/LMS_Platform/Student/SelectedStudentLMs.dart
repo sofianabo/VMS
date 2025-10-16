@@ -56,130 +56,128 @@ class Selectedstudentlms extends StatelessWidget {
                   childAspectRatio: getChildAspectRatio()),
               itemCount: control.dataList.length,
               itemBuilder: (context, index) {
-              
-              
-                  return HoverScaleCard(
-                    child: GestureDetector(
-                      onTap: () async {
-                        if (index ==0) {
-                          print("sssssssss");
-                          launchLink(
-                            url:
-                                "${Get.find<Mainpagecontentcontroller>().urlMeet}",
-                            type: LinkType.website,
-                            context: context,
-                          );
-                        } else {
-                          control.addToPath(
-                              "${control.dataList[index]['name']}".tr);
-                        }
+                return HoverScaleCard(
+                  child: GestureDetector(
+                    onTap: () async {
+                      if (index == 0) {
+                        print(index);
+                        launchLink(
+                          url:
+                              "${Get.find<Mainpagecontentcontroller>().urlMeet}",
+                          type: LinkType.website,
+                          context: context,
+                        );
+                      } else {
+                        control
+                            .addToPath("${control.dataList[index]['name']}".tr);
+                      }
 
-                        if (index == control.dataList.length - 2) {
-                          Get.dialog(VMSAlertDialog(
-                              action: [],
-                              contents: Exam_Scheald(),
-                              apptitle: "Exam Table".tr,
-                              subtitle: "none"));
-                        }
+                      if (index == control.dataList.length - 2) {
+                        print(control.dataList[control.dataList.length - 2]);
+                        Get.dialog(VMSAlertDialog(
+                            action: [],
+                            contents: Exam_Scheald(),
+                            apptitle: "Exam Table".tr,
+                            subtitle: "none"));
+                      }
 
-                        if (index == control.dataList.length - 1) {
-                          Get.dialog(VMSAlertDialog(
-                              action: [
-                                TextButton(
-                                  onPressed: () {
-                                    Navigator.pop(
-                                        context); // إغلاق الديالوغ بدون خروج
-                                  },
-                                  child: Text(
-                                    "إلغاء",
-                                    style: TextStyle(
-                                        color: Get.theme.primaryColor),
-                                  ),
-                                ),
-                                ButtonDialog(
-                                    text: "نعم، تسجيل الخروج",
-                                    onPressed: () async {
-                                      await Logoutapi(context)
-                                          .Logout(Type: "now");
-                                    },
-                                    color: Get.theme.primaryColor,
-                                    width: 250),
-                              ],
-                              contents: Container(
-                                width: 300,
-                                child: const Text(
-                                  "بمجرد الضغط على زر (نعم تسجيل الخروج) سيتم تسجيل خروج حساب هذا الصف وحسابك إذا كنت قد سجلت فيه من هذا الجهاز، وستفقد الوصول إليه إلا عند إعادة تسجيل الدخول مرة أخرى.",
-                                  textAlign: TextAlign.right,
-                                ),
-                              ),
-                              apptitle: "تأكيد تسجيل الخروج",
-                              subtitle: "none"));
-                        }
-                      },
-                      child: Container(
-                        padding: const EdgeInsets.all(20),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(5)),
-                            border: Border.all(
-                                color: Theme.of(context)
-                                    .textTheme
-                                    .titleMedium!
-                                    .color!,
-                                width: 0.5),
-                            color: Theme.of(context).cardColor,
-                            boxShadow: const [
-                              BoxShadow(
-                                  color: Colors.black26,
-                                  offset: Offset(0, 2),
-                                  blurRadius: 1)
-                            ]),
-                        child: Column(
-                          spacing: 16.0,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Icon(
-                              control.dataList[index]['icon'],
-                              color: Get.theme.textTheme.titleMedium!.color,
-                              size: 50.0,
-                            ),
-                            Text(control.dataList[index]['name'],
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .titleMedium!
-                                    .copyWith(
-                                      fontSize: 19,
-                                    )),
-                            Expanded(
-                              child: Center(
+                      if (index == control.dataList.length - 1) {
+                        Get.dialog(VMSAlertDialog(
+                            action: [
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.pop(
+                                      context); // إغلاق الديالوغ بدون خروج
+                                },
                                 child: Text(
-                                    maxLines: 4,
-                                    overflow: TextOverflow.ellipsis,
-                                    textAlign: TextAlign.center,
-                                    control.dataList[index]['subtitle'],
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .titleMedium!
-                                        .copyWith(
-                                          fontWeight: FontWeight.normal,
-                                          fontSize: 10,
-                                        )),
+                                  "إلغاء",
+                                  style:
+                                      TextStyle(color: Get.theme.primaryColor),
+                                ),
+                              ),
+                              ButtonDialog(
+                                  text: "نعم، تسجيل الخروج",
+                                  onPressed: () async {
+                                    await Logoutapi(context)
+                                        .Logout(Type: "now");
+                                  },
+                                  color: Get.theme.primaryColor,
+                                  width: 250),
+                            ],
+                            contents: Container(
+                              width: 300,
+                              child: const Text(
+                                "بمجرد الضغط على زر (نعم تسجيل الخروج) سيتم تسجيل خروج حساب هذا الصف وحسابك إذا كنت قد سجلت فيه من هذا الجهاز، وستفقد الوصول إليه إلا عند إعادة تسجيل الدخول مرة أخرى.",
+                                textAlign: TextAlign.right,
                               ),
                             ),
-                            if (index < control.dataList.length - 2)
-                              Text("( ${control.dataList[index]['count']} )",
+                            apptitle: "تأكيد تسجيل الخروج",
+                            subtitle: "none"));
+                      }
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.all(20),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(5)),
+                          border: Border.all(
+                              color: Theme.of(context)
+                                  .textTheme
+                                  .titleMedium!
+                                  .color!,
+                              width: 0.5),
+                          color: Theme.of(context).cardColor,
+                          boxShadow: const [
+                            BoxShadow(
+                                color: Colors.black26,
+                                offset: Offset(0, 2),
+                                blurRadius: 1)
+                          ]),
+                      child: Column(
+                        spacing: 16.0,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Icon(
+                            control.dataList[index]['icon'],
+                            color: Get.theme.textTheme.titleMedium!.color,
+                            size: 50.0,
+                          ),
+                          Text(control.dataList[index]['name'],
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleMedium!
+                                  .copyWith(
+                                    fontSize: 19,
+                                  )),
+                          Expanded(
+                            child: Center(
+                              child: Text(
+                                  maxLines: 4,
+                                  overflow: TextOverflow.ellipsis,
+                                  textAlign: TextAlign.center,
+                                  control.dataList[index]['subtitle'],
                                   style: Theme.of(context)
                                       .textTheme
                                       .titleMedium!
                                       .copyWith(
-                                        fontSize: 14,
+                                        fontWeight: FontWeight.normal,
+                                        fontSize: 10,
                                       )),
-                          ],
-                        ),
+                            ),
+                          ),
+                          if (index < control.dataList.length - 2)
+                            Text("( ${control.dataList[index]['count']} )",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleMedium!
+                                    .copyWith(
+                                      fontSize: 14,
+                                    )),
+                        ],
                       ),
                     ),
-                  );
-                
+                  ),
+                );
               },
             );
     });
