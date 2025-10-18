@@ -1108,6 +1108,8 @@ class Languages {
       'Upload Solution': 'رفع الحل',
       'No Solutions': 'لا يوجد حلول',
       'Homework Solutions': 'حلول الوظائف',
+            'Upload is done': 'تم الرفع',
+
     },
     'en': {
       'Welcome Laith Haitham Azzam': 'Welcome Laith Haitham Azzam',
@@ -2213,7 +2215,7 @@ class Languages {
       'Upload Solution': 'Upload Solution',
       'No Solutions': 'No Solutions',
       'Homework Solutions': 'Homework Solutions',
-      '': '',
+      'Upload is done': 'Upload is done',
       '': '',
     }
   };

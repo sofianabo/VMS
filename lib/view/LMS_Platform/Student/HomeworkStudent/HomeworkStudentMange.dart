@@ -5,9 +5,11 @@ import 'package:get/get.dart';
 import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/LMS_APIs/Admin/GetHomework_LMSAPI.dart';
 import 'package:vms_school/Link/API/LMS_APIs/Admin/Get_All_Curr_LMS.dart';
+import 'package:vms_school/Link/API/LMS_APIs/StudentLms/StudentHomeworkAPI.dart';
 import 'package:vms_school/Link/API/LMS_APIs/StudentLms/UploadStudentHomeworkAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/HomeworkController.dart';
+import 'package:vms_school/Link/Controller/LMS_Controllers/StudentLMSController.dart/StudentHomeworkController.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/main.dart';
 import 'package:vms_school/view/Both_Platform/widgets/ButtonsDialog.dart';
@@ -35,7 +37,7 @@ class _HomeworkstudentmangeState extends State<Homeworkstudentmange> {
   @override
   void initState() {
     Get_LMS_Curriculm_API().Get_LMS_Curriculm();
-    GethomeworkLmsapi().GethomeworkLms(id: prefs!.getString("divisionId"));
+    Studenthomeworkapi().Studenthomework(id: prefs!.getString("divisionId"));
     super.initState();
   }
 
@@ -46,7 +48,7 @@ class _HomeworkstudentmangeState extends State<Homeworkstudentmange> {
     return Column(
       children: [
         if (screenWidth > 769)
-          GetBuilder<Homeworkcontroller>(builder: (controller) {
+          GetBuilder<Studenthomeworkcontroller>(builder: (controller) {
             return Container(
               width: screenWidth,
               margin: const EdgeInsets.only(left: 40.0, right: 40.0, top: 0.0),
@@ -90,7 +92,7 @@ class _HomeworkstudentmangeState extends State<Homeworkstudentmange> {
             );
           }),
         if (screenWidth <= 769)
-          GetBuilder<Homeworkcontroller>(builder: (controller) {
+          GetBuilder<Studenthomeworkcontroller>(builder: (controller) {
             return Container(
               width: screenWidth,
               margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 10.0),
@@ -166,7 +168,7 @@ Widget ShowCorrectingHomework() {
     return 0.7;
   }
 
-  return GetBuilder<Homeworkcontroller>(builder: (control) {
+  return GetBuilder<Studenthomeworkcontroller>(builder: (control) {
     return VMSAlertDialog(
       action: [],
       contents: SizedBox(

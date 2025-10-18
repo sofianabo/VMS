@@ -261,3 +261,4 @@ String addFile1 = "addFile1";
 String updateLmsQuiz = "updateLmsQuiz";
 String getQuizForClass = "getQuizForClass";
 String studentInfoLms = "studentInfoLms";
+String studentUploadHomework = "addStudentHomework";

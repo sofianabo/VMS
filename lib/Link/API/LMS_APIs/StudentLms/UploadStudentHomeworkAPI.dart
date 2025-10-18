@@ -8,10 +8,12 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart' as gets;
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/API/LMS_APIs/Admin/GetHomework_LMSAPI.dart';
+import 'package:vms_school/Link/API/LMS_APIs/StudentLms/StudentHomeworkAPI.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Curr_LMS_Controller.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/HomeworkController.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Selected_Screen.dart';
 import 'package:vms_school/Link/Model/LMS_Model/HomeWorkLMSModel.dart';
+import 'package:vms_school/main.dart';
 import 'package:vms_school/view/Both_Platform/widgets/Loading_Dialog.dart';
 
 class Uploadstudenthomeworkapi {
@@ -22,7 +24,7 @@ class Uploadstudenthomeworkapi {
 
 
   Addfilehomework({
-    divisionId,
+    homeworkId,
     file,
     
   }) async {
@@ -31,7 +33,7 @@ class Uploadstudenthomeworkapi {
     try {
 
       FormData formData = FormData.fromMap({
-        'divisionId': '$divisionId',
+        'homeworkId': '$homeworkId',
       });
 
       if (file != null) {
@@ -41,7 +43,7 @@ class Uploadstudenthomeworkapi {
         ));
       }
 
-      String myurl = "$hostPort$addHomework";
+      String myurl = "$hostPort$studentUploadHomework";
 
       var response = await dio.post(
           data: formData,
@@ -52,6 +54,8 @@ class Uploadstudenthomeworkapi {
       if (response.statusCode == 200) { 
         gets.Get.back();
         gets.Get.back();
+            Studenthomeworkapi().Studenthomework(id: prefs!.getString("divisionId"));
+
           
       } else {
         ErrorHandler.handleDioError(DioException(

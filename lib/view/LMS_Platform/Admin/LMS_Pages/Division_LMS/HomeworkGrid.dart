@@ -600,7 +600,7 @@ class Homeworkgrid extends StatelessWidget {
                                                                     file: controll
                                                                         .selectedFile
                                                                         .value,
-                                                                    divisionId: prefs!
+                                                                    homeworkId: prefs!
                                                                         .getString(
                                                                             "divisionId"),
                                                                   );

@@ -9,6 +9,7 @@ import 'package:vms_school/Link/API/LMS_APIs/StudentLms/UploadStudentHomeworkAPI
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Curr_LMS_Controller.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/HomeworkController.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Selected_Screen.dart';
+import 'package:vms_school/Link/Controller/LMS_Controllers/StudentLMSController.dart/StudentHomeworkController.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/main.dart';
 import 'package:vms_school/view/Both_Platform/widgets/ButtonsDialog.dart';
@@ -49,7 +50,7 @@ class Homeworkstudentgrid extends StatelessWidget {
                   'ar'
               ? TextDirection.rtl
               : TextDirection.ltr,
-      child: GetBuilder<Homeworkcontroller>(builder: (control) {
+      child: GetBuilder<Studenthomeworkcontroller>(builder: (control) {
         return control.isLoading
             ? GridView.builder(
                 padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
@@ -210,6 +211,9 @@ class Homeworkstudentgrid extends StatelessWidget {
                                               .copyWith(
                                                   fontWeight: FontWeight.normal,
                                                   fontSize: 14)),
+                                                                       control.filteredhomework[index].state==true?
+                                                        Text("Upload is done".tr)
+:                            
                                       TextButton(
                                           style: ButtonStyle(
                                             backgroundColor:
@@ -217,16 +221,16 @@ class Homeworkstudentgrid extends StatelessWidget {
                                                     Get.theme.primaryColor),
                                           ),
                                           onPressed: () {
-                                            Get.find<Homeworkcontroller>()
+                                            Get.find<Studenthomeworkcontroller>()
                                                 .reset();
-                                            Get.find<Homeworkcontroller>()
+                                            Get.find<Studenthomeworkcontroller>()
                                                 .resetError();
                                             control.updateFieldError(
                                                 "file", false);
 
                                             Get.dialog(
                                                 barrierDismissible: false,
-                                                GetBuilder<Homeworkcontroller>(
+                                                GetBuilder<Studenthomeworkcontroller>(
                                                     builder: (controll) {
                                               return VMSAlertDialog(
                                                   action: [
@@ -234,7 +238,7 @@ class Homeworkstudentgrid extends StatelessWidget {
                                                       mainAxisAlignment:
                                                           MainAxisAlignment.end,
                                                       children: [
-                                                        ButtonDialog(
+                                                               ButtonDialog(
                                                             width: 150,
                                                             text:
                                                                 "Upload Homework"
@@ -258,7 +262,9 @@ class Homeworkstudentgrid extends StatelessWidget {
                                                                   file: controll
                                                                       .selectedFile
                                                                       .value,
-                                                                  divisionId:prefs!.getString("divisionId"),
+                                                                  homeworkId:controll
+                                                                      .filteredhomework[index]
+                                                                      .id,
                                                                 );
                                                               }
                                                             },
