@@ -28,6 +28,8 @@ class Homeworke {
   String? name;
   int? mark;
   String? lastDate;
+  bool? solution;
+  int? solutionFilleId;
   bool? state;
   HomeworkeCurriculum? homeworkeCurriculum;
 
@@ -38,6 +40,8 @@ class Homeworke {
       this.name,
       this.mark,
       this.lastDate,
+      this.solution,
+      this.solutionFilleId,
       this.state,
       this.homeworkeCurriculum});
 
@@ -48,6 +52,8 @@ class Homeworke {
     name = json['name'];
     mark = json['mark'];
     lastDate = json['lastDate'];
+    solution = json['solution'];
+    solutionFilleId = json['solutionFilleId'];
     state = json['state'];
     homeworkeCurriculum = json['HomeworkeCurriculum'] != null
         ? new HomeworkeCurriculum.fromJson(json['HomeworkeCurriculum'])
@@ -62,6 +68,8 @@ class Homeworke {
     data['name'] = this.name;
     data['mark'] = this.mark;
     data['lastDate'] = this.lastDate;
+    data['solution'] = this.solution;
+    data['solutionFilleId'] = this.solutionFilleId;
     data['state'] = this.state;
     if (this.homeworkeCurriculum != null) {
       data['HomeworkeCurriculum'] = this.homeworkeCurriculum!.toJson();

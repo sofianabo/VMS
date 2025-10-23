@@ -262,3 +262,5 @@ String updateLmsQuiz = "updateLmsQuiz";
 String getQuizForClass = "getQuizForClass";
 String studentInfoLms = "studentInfoLms";
 String studentUploadHomework = "addStudentHomework";
+String getstudentSolution = "getStudentSolution";
+String addCorrection = "addCorrection";

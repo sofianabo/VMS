@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/LMS_APIs/Admin/DeleteHomeworlLMSAPI.dart';
 import 'package:vms_school/Link/API/LMS_APIs/StudentLms/UploadStudentHomeworkAPI.dart';
+import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Curr_LMS_Controller.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/HomeworkController.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Selected_Screen.dart';
@@ -16,6 +17,7 @@ import 'package:vms_school/view/Both_Platform/widgets/ButtonsDialog.dart';
 import 'package:vms_school/view/Both_Platform/widgets/GridAnimation.dart';
 import 'package:vms_school/view/Both_Platform/widgets/PDF_View.dart';
 import 'package:vms_school/view/Both_Platform/widgets/Schema_Widget.dart';
+import 'package:vms_school/view/Both_Platform/widgets/Squer_Button_Enabled_Disabled.dart';
 import 'package:vms_school/view/Both_Platform/widgets/VMSAlertDialog.dart';
 
 class Homeworkstudentgrid extends StatelessWidget {
@@ -211,205 +213,232 @@ class Homeworkstudentgrid extends StatelessWidget {
                                               .copyWith(
                                                   fontWeight: FontWeight.normal,
                                                   fontSize: 14)),
-                                                                       control.filteredhomework[index].state==true?
-                                                        Text("Upload is done".tr)
-:                            
-                                      TextButton(
-                                          style: ButtonStyle(
-                                            backgroundColor:
-                                                WidgetStatePropertyAll(
-                                                    Get.theme.primaryColor),
-                                          ),
-                                          onPressed: () {
-                                            Get.find<Studenthomeworkcontroller>()
-                                                .reset();
-                                            Get.find<Studenthomeworkcontroller>()
-                                                .resetError();
-                                            control.updateFieldError(
-                                                "file", false);
+                                      control.filteredhomework[index].state ==
+                                                  true &&
+                                              control.filteredhomework[index]
+                                                      .solution ==
+                                                  true
+                                          ? Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text("Upload is done".tr),
+                                                Squer_Button_Enabled_Disabled(
+                                                    validate: !(Get.find<
+                                                                Add_Data_controller>()
+                                                            .roll !=
+                                                        "observer"),
+                                                    icon: Icons
+                                                        .receipt_long_outlined,
+                                                    onTap: () {
+                                                      openFileInNewTab(
+                                                          filePath:
+                                                              '$getpdf${control.filteredhomework[index].solutionFilleId}');
+                                                    })
+                                              ],
+                                            )
+                                          : control.filteredhomework[index]
+                                                          .state ==
+                                                      true &&
+                                                  control
+                                                          .filteredhomework[
+                                                              index]
+                                                          .solution ==
+                                                      false
+                                              ? Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                      Text("Upload is done".tr),
+                                                    ])
+                                              : TextButton(
+                                                  style: ButtonStyle(
+                                                    backgroundColor:
+                                                        WidgetStatePropertyAll(
+                                                            Get.theme
+                                                                .primaryColor),
+                                                  ),
+                                                  onPressed: () {
+                                                    Get.find<
+                                                            Studenthomeworkcontroller>()
+                                                        .reset();
+                                                    Get.find<
+                                                            Studenthomeworkcontroller>()
+                                                        .resetError();
+                                                    control.updateFieldError(
+                                                        "file", false);
 
-                                            Get.dialog(
-                                                barrierDismissible: false,
-                                                GetBuilder<Studenthomeworkcontroller>(
-                                                    builder: (controll) {
-                                              return VMSAlertDialog(
-                                                  action: [
-                                                    Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment.end,
-                                                      children: [
-                                                               ButtonDialog(
-                                                            width: 150,
-                                                            text:
-                                                                "Upload Homework"
-                                                                    .tr,
-                                                            onPressed:
-                                                                () async {
-                                                              bool isfileEmpty =
-                                                                  controll.selectedFile
-                                                                          .value ==
-                                                                      null;
-
-                                                              controll
-                                                                  .updateFieldError(
-                                                                      "file",
-                                                                      isfileEmpty);
-
-                                                              if (!(isfileEmpty)) {
-                                                                await Uploadstudenthomeworkapi(
-                                                                        context)
-                                                                    .Addfilehomework(
-                                                                  file: controll
-                                                                      .selectedFile
-                                                                      .value,
-                                                                  homeworkId:controll
-                                                                      .filteredhomework[index]
-                                                                      .id,
-                                                                );
-                                                              }
-                                                            },
-                                                            color: Theme.of(
-                                                                    context)
-                                                                .primaryColor)
-                                                      ],
-                                                    )
-                                                  ],
-                                                  contents: SizedBox(
-                                                    width: 400,
-                                                    child:
-                                                        SingleChildScrollView(
-                                                      child: Column(
-                                                        mainAxisSize:
-                                                            MainAxisSize.min,
-                                                        children: [
-                                                          Padding(
-                                                            padding:
-                                                                const EdgeInsets
-                                                                    .only(
-                                                                    top: 10.0),
-                                                            child: Wrap(
-                                                              spacing: 20.0,
-                                                              runSpacing: 20.0,
-                                                              crossAxisAlignment:
-                                                                  WrapCrossAlignment
-                                                                      .center,
+                                                    Get.dialog(
+                                                        barrierDismissible:
+                                                            false, GetBuilder<
+                                                                Studenthomeworkcontroller>(
+                                                            builder:
+                                                                (controll) {
+                                                      return VMSAlertDialog(
+                                                          action: [
+                                                            Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .end,
                                                               children: [
-                                                                GestureDetector(
-                                                                  onTap: () {
-                                                                    controll
-                                                                        .pickPDFFile();
-                                                                  },
-                                                                  child:
-                                                                      AnimatedContainer(
-                                                                    duration: const Duration(
-                                                                        milliseconds:
-                                                                            500),
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      borderRadius: const BorderRadius
-                                                                          .all(
-                                                                          Radius.circular(
-                                                                              5)),
-                                                                      border: control
-                                                                              .IsFileError
-                                                                          ? Border.all(
-                                                                              color: Colors.redAccent)
-                                                                          : Border.all(color: const Color(0xffD9D9D9)),
-                                                                      color: control.isHoveringFile
-                                                                          ? Theme.of(context)
-                                                                              .primaryColor
-                                                                          : Get
-                                                                              .theme
-                                                                              .cardColor,
-                                                                    ),
-                                                                    alignment:
-                                                                        Alignment
-                                                                            .center,
-                                                                    width: 350,
-                                                                    height: 100,
-                                                                    child:
-                                                                        Stack(
-                                                                      children: [
-                                                                        DropzoneView(
-                                                                          operation:
-                                                                              DragOperation.copy,
-                                                                          cursor:
-                                                                              CursorType.Default,
-                                                                          onCreated:
-                                                                              (DropzoneViewController controller) {
-                                                                            ctrl =
-                                                                                controller;
-                                                                          },
-                                                                          onHover:
-                                                                              () {
-                                                                            controll.updateHoverFile(true);
-                                                                          },
-                                                                          onLeave:
-                                                                              () {
-                                                                            controll.updateHoverFile(false);
-                                                                          },
-                                                                          onDropFiles:
-                                                                              (List<DropzoneFileInterface>? files) async {
-                                                                            if (files != null &&
-                                                                                files.length == 1) {
-                                                                              final file = files.first;
-                                                                              final mimeType = await ctrl?.getFileMIME(file);
-                                                                              final fileName = await ctrl?.getFilename(file);
-                                                                              final fileBytes = await ctrl?.getFileData(file);
+                                                                ButtonDialog(
+                                                                    width: 150,
+                                                                    text:
+                                                                        "Upload Homework"
+                                                                            .tr,
+                                                                    onPressed:
+                                                                        () async {
+                                                                      bool
+                                                                          isfileEmpty =
+                                                                          controll.selectedFile.value ==
+                                                                              null;
 
-                                                                              if (mimeType == 'application/pdf' || fileName!.toLowerCase().endsWith('.pdf') || fileName.toLowerCase().endsWith('.jpg') || fileName.toLowerCase().endsWith('.jpeg')) {
-                                                                                controll.selectedFile.value = fileBytes;
-                                                                                controll.fileName.value = fileName!;
-                                                                                controll.updateTextFile("File Successfully Dropped!".tr);
-                                                                                controll.updateFieldError("file", false);
-                                                                              } else {
-                                                                                controll.updateTextFile("Error: Unsupported File Type.".tr);
-                                                                                controll.updateFieldError("file", true);
-                                                                              }
-                                                                            } else {
-                                                                              controll.updateTextFile("Error: Only One File Is Allowed.".tr);
-                                                                              controll.updateFieldError("file", true);
-                                                                            }
+                                                                      controll.updateFieldError(
+                                                                          "file",
+                                                                          isfileEmpty);
+
+                                                                      if (!(isfileEmpty)) {
+                                                                        await Uploadstudenthomeworkapi(context)
+                                                                            .Addfilehomework(
+                                                                          file: controll
+                                                                              .selectedFile
+                                                                              .value,
+                                                                          homeworkId: controll
+                                                                              .filteredhomework[index]
+                                                                              .id,
+                                                                        );
+                                                                      }
+                                                                    },
+                                                                    color: Theme.of(
+                                                                            context)
+                                                                        .primaryColor)
+                                                              ],
+                                                            )
+                                                          ],
+                                                          contents: SizedBox(
+                                                            width: 400,
+                                                            child:
+                                                                SingleChildScrollView(
+                                                              child: Column(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .min,
+                                                                children: [
+                                                                  Padding(
+                                                                    padding: const EdgeInsets
+                                                                        .only(
+                                                                        top:
+                                                                            10.0),
+                                                                    child: Wrap(
+                                                                      spacing:
+                                                                          20.0,
+                                                                      runSpacing:
+                                                                          20.0,
+                                                                      crossAxisAlignment:
+                                                                          WrapCrossAlignment
+                                                                              .center,
+                                                                      children: [
+                                                                        GestureDetector(
+                                                                          onTap:
+                                                                              () {
+                                                                            controll.pickPDFFile();
                                                                           },
-                                                                        ),
-                                                                        Center(
-                                                                          child: controll.selectedFile.value != null
-                                                                              ? IconButton(
-                                                                                  onPressed: () {
-                                                                                    controll.Clearfile();
+                                                                          child:
+                                                                              AnimatedContainer(
+                                                                            duration:
+                                                                                const Duration(milliseconds: 500),
+                                                                            decoration:
+                                                                                BoxDecoration(
+                                                                              borderRadius: const BorderRadius.all(Radius.circular(5)),
+                                                                              border: control.IsFileError ? Border.all(color: Colors.redAccent) : Border.all(color: const Color(0xffD9D9D9)),
+                                                                              color: control.isHoveringFile ? Theme.of(context).primaryColor : Get.theme.cardColor,
+                                                                            ),
+                                                                            alignment:
+                                                                                Alignment.center,
+                                                                            width:
+                                                                                350,
+                                                                            height:
+                                                                                100,
+                                                                            child:
+                                                                                Stack(
+                                                                              children: [
+                                                                                DropzoneView(
+                                                                                  operation: DragOperation.copy,
+                                                                                  cursor: CursorType.Default,
+                                                                                  onCreated: (DropzoneViewController controller) {
+                                                                                    ctrl = controller;
                                                                                   },
-                                                                                  icon: Icon(
-                                                                                    Icons.delete_outline_outlined,
-                                                                                    color: Colors.redAccent,
-                                                                                  ))
-                                                                              : Text(
-                                                                                  textAlign: TextAlign.center,
-                                                                                  control.fileStatus,
-                                                                                  style: TextStyle(
-                                                                                    color: control.isHoveringFile ? Colors.white : const Color(0xffCBBFBF),
-                                                                                  ),
+                                                                                  onHover: () {
+                                                                                    controll.updateHoverFile(true);
+                                                                                  },
+                                                                                  onLeave: () {
+                                                                                    controll.updateHoverFile(false);
+                                                                                  },
+                                                                                  onDropFiles: (List<DropzoneFileInterface>? files) async {
+                                                                                    if (files != null && files.length == 1) {
+                                                                                      final file = files.first;
+                                                                                      final mimeType = await ctrl?.getFileMIME(file);
+                                                                                      final fileName = await ctrl?.getFilename(file);
+                                                                                      final fileBytes = await ctrl?.getFileData(file);
+
+                                                                                      if (mimeType == 'application/pdf' || fileName!.toLowerCase().endsWith('.pdf') || fileName.toLowerCase().endsWith('.jpg') || fileName.toLowerCase().endsWith('.jpeg')) {
+                                                                                        controll.selectedFile.value = fileBytes;
+                                                                                        controll.fileName.value = fileName!;
+                                                                                        controll.updateTextFile("File Successfully Dropped!".tr);
+                                                                                        controll.updateFieldError("file", false);
+                                                                                      } else {
+                                                                                        controll.updateTextFile("Error: Unsupported File Type.".tr);
+                                                                                        controll.updateFieldError("file", true);
+                                                                                      }
+                                                                                    } else {
+                                                                                      controll.updateTextFile("Error: Only One File Is Allowed.".tr);
+                                                                                      controll.updateFieldError("file", true);
+                                                                                    }
+                                                                                  },
                                                                                 ),
+                                                                                Center(
+                                                                                  child: controll.selectedFile.value != null
+                                                                                      ? IconButton(
+                                                                                          onPressed: () {
+                                                                                            controll.Clearfile();
+                                                                                          },
+                                                                                          icon: Icon(
+                                                                                            Icons.delete_outline_outlined,
+                                                                                            color: Colors.redAccent,
+                                                                                          ))
+                                                                                      : Text(
+                                                                                          textAlign: TextAlign.center,
+                                                                                          control.fileStatus,
+                                                                                          style: TextStyle(
+                                                                                            color: control.isHoveringFile ? Colors.white : const Color(0xffCBBFBF),
+                                                                                          ),
+                                                                                        ),
+                                                                                ),
+                                                                              ],
+                                                                            ),
+                                                                          ),
                                                                         ),
                                                                       ],
                                                                     ),
                                                                   ),
-                                                                ),
-                                                              ],
+                                                                ],
+                                                              ),
                                                             ),
                                                           ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  apptitle: "Upload Homework".tr + " (${control.filteredhomework[index].name})",
-                                                  subtitle: "");
-                                            }));
-                                          },
-                                          child: Text(
-                                            "Upload Homework".tr,
-                                            style:
-                                                Get.theme.textTheme.bodyMedium,
-                                          ))
+                                                          apptitle:
+                                                              "Upload Homework"
+                                                                      .tr +
+                                                                  " (${control.filteredhomework[index].name})",
+                                                          subtitle: "");
+                                                    }));
+                                                  },
+                                                  child: Text(
+                                                    "Upload Homework".tr,
+                                                    style: Get.theme.textTheme
+                                                        .bodyMedium,
+                                                  ))
                                     ],
                                   ),
                                 ],

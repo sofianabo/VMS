@@ -78,15 +78,7 @@ class _HomeworkstudentmangeState extends State<Homeworkstudentmange> {
                     width: 250,
                     type: "curriculum",
                   ),
-                  Squer_Button_Enabled_Disabled(
-                      validate:
-                          !(Get.find<Add_Data_controller>().roll != "observer"),
-                      icon: Icons.home_work_outlined,
-                      onTap: () {
-                        Get.dialog(
-                            barrierDismissible: false,
-                            ShowCorrectingHomework());
-                      })
+                
                 ],
               ),
             );
@@ -125,15 +117,7 @@ class _HomeworkstudentmangeState extends State<Homeworkstudentmange> {
                       width: 250,
                       type: "curriculum",
                     ),
-                    Squer_Button_Enabled_Disabled(
-                        validate: !(Get.find<Add_Data_controller>().roll !=
-                            "observer"),
-                        icon: Icons.home_work_outlined,
-                        onTap: () {
-                          Get.dialog(
-                              barrierDismissible: false,
-                              ShowCorrectingHomework());
-                        })
+                  
                   ],
                 ),
               ),

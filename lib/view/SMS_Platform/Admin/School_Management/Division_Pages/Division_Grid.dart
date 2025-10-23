@@ -146,7 +146,7 @@ class DivisionGrid extends StatelessWidget {
                                 "observer",
                             isRequired: false,
                             width: 215,
-                            controller: meetUrl!.text.isEmpty
+                            controller: meetUrl!.text.isNotEmpty
                                 ? meetUrl!
                                 : TextEditingController(text: ""),
                             Uptext: "Meet URL".tr,
