@@ -52,7 +52,7 @@ class Mainpagecontentcontroller extends GetxController {
       {
         "name": "Homework".tr,
         "subtitle":
-            "This section contains files from previous lessons, as well as reviews, summaries, and facilities for the student"
+            "This section contains the homework uploaded by teachers and their correction after the student submits the solution."
                 .tr,
         "icon": LMS_Icons.files_lms,
         "count": homeworkCount ?? 0,

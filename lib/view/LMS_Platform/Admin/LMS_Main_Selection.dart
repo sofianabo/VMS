@@ -59,31 +59,48 @@ class Selected_Class_Screen extends StatelessWidget {
                   } else if (current == "Pages".tr) {
                     return Pageslmsmangament();
                   } else if (current == "Quiz".tr) {
-                    return QuizLmspage();
+                    // return QuizLmspage();
+                    return Text("هذا القسم متوقف حالياً");
                   } else if (current == "Question Bank".tr) {
-                    return QuestionBankPage();
+                    // return QuestionBankPage();
+                    return Text("هذا القسم متوقف حالياً");
                   } else if (current == "True or False".tr) {
-                    return Trueorfalsequestionmanagment();
+                    // return Trueorfalsequestionmanagment();
+                    return Text("هذا القسم متوقف حالياً");
                   } else if (current == "MultiChoise".tr) {
-                    return Multi_Choise_Question();
+                    // return Multi_Choise_Question();
+                    return Text("هذا القسم متوقف حالياً");
                   } else if (current == "Matching".tr) {
-                    return Matching_Question();
+                    // return Matching_Question();
+                    return Text("هذا القسم متوقف حالياً");
                   } else if (current == "article".tr) {
-                    return Articlequestionmanagment();
+                    // return Articlequestionmanagment();
+                                        return Text("هذا القسم متوقف حالياً");
+
                   } else if (current == "Choose the correct answer".tr) {
-                    return Choose_the_correct_answer();
+                    // return Choose_the_correct_answer();
+                                        return Text("هذا القسم متوقف حالياً");
+
                   } else if (current == "Fill in the blanks".tr) {
-                    return Fill_The_Blank();
+                    // return Fill_The_Blank();
+                                        return Text("هذا القسم متوقف حالياً");
+
                   } else if (current == "Drag and Drop".tr) {
-                    return Dragdrop_Question();
+                    // return Dragdrop_Question();
+                                        return Text("هذا القسم متوقف حالياً");
+
                   } else if (current == "Trivia".tr) {
-                    return Text("Trivia");
+                    // return Text("Trivia");
+                                        return Text("هذا القسم متوقف حالياً");
+
                   } else if (current == "All Students".tr) {
                     return LMS_Students();
                   } else if (current == "Homework".tr) {
                     return Homeworkmanagement();
                   } else if (current == "Add Questions".tr) {
-                    return QuizQuestion();
+                    // return QuizQuestion();
+                                        return Text("هذا القسم متوقف حالياً");
+
                   } else {
                     return SelectedClassLMs();
                   }

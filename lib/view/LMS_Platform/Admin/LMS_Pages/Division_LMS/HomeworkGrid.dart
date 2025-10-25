@@ -527,7 +527,7 @@ class Homeworkgrid extends StatelessWidget {
                                           ],
                                         ),
                                         control.filteredhomework[index].state ==
-                                                true
+                                                false
                                             ? Text("Upload Solution is done".tr)
                                             : TextButton(
                                                 style: ButtonStyle(

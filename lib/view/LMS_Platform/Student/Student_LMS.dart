@@ -92,9 +92,13 @@ class _Student_Home_LMSState extends State<Student_Home_LMS> {
                     } else if (current == "Pages".tr) {
                       return Pagestudentmange();
                     } else if (current == "Quiz".tr) {
-                      return Quizstudentmange();
+                      // return Quizstudentmange();
+                                          return Text("هذا القسم متوقف حالياً");
+
                     }  else if (current == "Trivia".tr) {
-                      return Text("Trivia");
+                      // return Text("Trivia");
+                                          return Text("هذا القسم متوقف حالياً");
+
                     }
                     
                      else {

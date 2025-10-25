@@ -216,8 +216,8 @@ class Homeworkstudentgrid extends StatelessWidget {
                                       control.filteredhomework[index].state ==
                                                   true &&
                                               control.filteredhomework[index]
-                                                      .solution ==
-                                                  true
+                                                      .solutionFilleId !=
+                                                  null
                                           ? Row(
                                               mainAxisAlignment:
                                                   MainAxisAlignment
@@ -244,8 +244,8 @@ class Homeworkstudentgrid extends StatelessWidget {
                                                   control
                                                           .filteredhomework[
                                                               index]
-                                                          .solution ==
-                                                      false
+                                                          .solutionFilleId ==
+                                                      null
                                               ? Row(
                                                   mainAxisAlignment:
                                                       MainAxisAlignment
@@ -253,7 +253,11 @@ class Homeworkstudentgrid extends StatelessWidget {
                                                   children: [
                                                       Text("Upload is done".tr),
                                                     ])
-                                              : TextButton(
+                                              : control.filteredhomework[index]
+                                                          .state ==
+                                                      false && control.filteredhomework[index]
+                                                          .solution==true?
+                                               TextButton(
                                                   style: ButtonStyle(
                                                     backgroundColor:
                                                         WidgetStatePropertyAll(
@@ -438,7 +442,13 @@ class Homeworkstudentgrid extends StatelessWidget {
                                                     "Upload Homework".tr,
                                                     style: Get.theme.textTheme
                                                         .bodyMedium,
-                                                  ))
+                                                  )):Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                      Text("Homework Submission Time Has Expired".tr),
+                                                    ])
                                     ],
                                   ),
                                 ],
