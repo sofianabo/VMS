@@ -502,7 +502,7 @@ Widget buildSidePanel(BuildContext context) {
                     buildAddButton(
                         "Addition from the bank".tr, LMS_Icons.dragdrop,
                         size: 250, onPressed: () {
-                      Get.dialog(Dragdrop_From_Bank_Managment());
+                      // Get.dialog(Dragdrop_From_Bank_Managment());
                     }),
                     Divider(
                       color: Get.theme.textTheme.titleMedium!.color,
