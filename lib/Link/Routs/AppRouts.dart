@@ -6,12 +6,12 @@ import 'package:vms_school/view/LMS_Platform/Student/Student_LMS.dart';
 import 'package:vms_school/view/SMS_Platform/Admin/Admin_Main_Screens/AdminHome.dart';
 import 'package:vms_school/view/Both_Platform/Auth/Enroll_Screen.dart';
 import 'package:vms_school/view/Both_Platform/Auth/LoginScreen.dart';
+import 'package:vms_school/view/SMS_Platform/Admin/Students_Manager/Export_Jalaa_Pages/Export_Jalaa.dart';
+import 'package:vms_school/view/SMS_Platform/Admin/Students_Manager/Export_Jalaa_Pages/SHID1_Pages/SHID1_Table.dart';
 import 'package:vms_school/view/SMS_Platform/Guardian/MainScreen/GuardinMainScreen.dart';
 import 'package:vms_school/view/SMS_Platform/Registeration/Registeration_Home_Screens/Registeration_Home.dart';
 import 'package:vms_school/view/SMS_Platform/Teacher/Teacher_Home/TeacherMainScreen.dart';
 import 'package:vms_school/view/Both_Platform/website/Home.dart';
-
-import '../../view/Both_Platform/website/Home.dart' show Home;
 
 class AppRoutes {
   static List<GetPage> routes = [

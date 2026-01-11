@@ -13,7 +13,7 @@ class Jalaa_Controller extends GetxController {
     Map<String, dynamic> jsonData = {
       "rebort": {
         "studentsInfo": {
-          "tasalsol": 1,
+          "tasalsol": 12,
           "studentsFullName": "\u0644\u064a\u062b \u0639\u0632\u0627\u0645",
           "fatherName": "\u0647\u064a\u062b\u0645",
           "motherName": "\u0645\u0627\u062c\u062f\u0647",
@@ -26,25 +26,11 @@ class Jalaa_Controller extends GetxController {
         },
         "mainCurriculum": [
           {
-            "curriculumName":
-                "\u0627\u0644\u0644\u063a\u0629 \u0627\u0644\u0639\u0631\u0628\u064a\u0629",
+            "curriculumName": "بببب",
             "insideCurr": [
               {
                 "cName":
-                    "\u0627\u0644\u0644\u063a\u0629 \u0627\u0644\u0639\u0631\u0628\u064a\u0629",
-                "maxMark": 200,
-                "passingMark": 100,
-                "Marks": [120, 80, 120, 80]
-              }
-            ]
-          },
-          {
-            "curriculumName":
-                "\u0627\u0644\u062a\u0631\u0628\u064a\u0629 \u0627\u0644\u062f\u064a\u0646\u064a\u0629",
-            "insideCurr": [
-              {
-                "cName":
-                    "\u0627\u0644\u062a\u0631\u0628\u064a\u0629 \u0627\u0644\u062f\u064a\u0646\u064a\u0629",
+                    "\u0627\u0644\u0644\u063a\u0629 \u0627\u0644\u0627\u0646\u0643\u0644\u064a\u0632\u064a\u0629",
                 "maxMark": 200,
                 "passingMark": 100,
                 "Marks": [120, 80, 120, 80]
@@ -66,22 +52,23 @@ class Jalaa_Controller extends GetxController {
           },
           {
             "curriculumName":
-                "\u0627\u0644\u0644\u063a\u0629 \u0627\u0644\u0641\u0631\u0646\u0633\u064a\u0629",
+                "\u0627\u0644\u0644\u063a\u0629 \u0627\u0644\u0627\u0646\u0643\u0644\u064a\u0632\u064a\u0629",
             "insideCurr": [
               {
-                "cName":
-                    "\u0627\u0644\u0644\u063a\u0629 \u0627\u0644\u0641\u0631\u0646\u0633\u064a\u0629",
+                "cName": "سييس",
                 "maxMark": 200,
                 "passingMark": 100,
-                "Marks": [120, 80, 120, 80]
+                "Marks": [20, 20, 20, 5]
               }
             ]
           },
           {
-            "curriculumName": "\u0631\u064a\u0627\u0636\u064a\u0627\u062a",
+            "curriculumName":
+                "\u0627\u0644\u0644\u063a\u0629 \u0627\u0644\u0627\u0646\u0643\u0644\u064a\u0632\u064a\u0629",
             "insideCurr": [
               {
-                "cName": "\u0631\u064a\u0627\u0636\u064a\u0627\u062a",
+                "cName":
+                    "\u0627\u0644\u0644\u063a\u0629 \u0627\u0644\u0627\u0646\u0643\u0644\u064a\u0632\u064a\u0629",
                 "maxMark": 200,
                 "passingMark": 100,
                 "Marks": [120, 80, 120, 80]
@@ -90,22 +77,11 @@ class Jalaa_Controller extends GetxController {
           },
           {
             "curriculumName":
-                "\u0627\u062c\u062a\u0645\u0627\u0639\u064a\u0627\u062a",
+                "\u0627\u0644\u0644\u063a\u0629 \u0627\u0644\u0627\u0646\u0643\u0644\u064a\u0632\u064a\u0629",
             "insideCurr": [
               {
                 "cName":
-                    "\u0627\u062c\u062a\u0645\u0627\u0639\u064a\u0627\u062a",
-                "maxMark": 200,
-                "passingMark": 100,
-                "Marks": [120, 80, 120, 80]
-              }
-            ]
-          },
-          {
-            "curriculumName": "\u0639\u0644\u0648\u0645",
-            "insideCurr": [
-              {
-                "cName": "\u0639\u0644\u0648\u0645",
+                    "\u0627\u0644\u0644\u063a\u0629 \u0627\u0644\u0627\u0646\u0643\u0644\u064a\u0632\u064a\u0629",
                 "maxMark": 200,
                 "passingMark": 100,
                 "Marks": [120, 80, 120, 80]
@@ -114,11 +90,11 @@ class Jalaa_Controller extends GetxController {
           },
           {
             "curriculumName":
-                "\u062a\u0643\u0646\u0648\u0644\u0648\u062c\u064a\u0627",
+                "\u0627\u0644\u0644\u063a\u0629 \u0627\u0644\u0627\u0646\u0643\u0644\u064a\u0632\u064a\u0629",
             "insideCurr": [
               {
                 "cName":
-                    "\u062a\u0643\u0646\u0648\u0644\u0648\u062c\u064a\u0627",
+                    "\u0627\u0644\u0644\u063a\u0629 \u0627\u0644\u0627\u0646\u0643\u0644\u064a\u0632\u064a\u0629",
                 "maxMark": 200,
                 "passingMark": 100,
                 "Marks": [120, 80, 120, 80]
@@ -126,10 +102,12 @@ class Jalaa_Controller extends GetxController {
             ]
           },
           {
-            "curriculumName": "\u0645\u0648\u0633\u064a\u0642\u0649",
+            "curriculumName":
+                "\u0627\u0644\u0644\u063a\u0629 \u0627\u0644\u0627\u0646\u0643\u0644\u064a\u0632\u064a\u0629",
             "insideCurr": [
               {
-                "cName": "\u0645\u0648\u0633\u064a\u0642\u0649",
+                "cName":
+                    "\u0627\u0644\u0644\u063a\u0629 \u0627\u0644\u0627\u0646\u0643\u0644\u064a\u0632\u064a\u0629",
                 "maxMark": 200,
                 "passingMark": 100,
                 "Marks": [120, 80, 120, 80]
@@ -137,10 +115,12 @@ class Jalaa_Controller extends GetxController {
             ]
           },
           {
-            "curriculumName": "\u0631\u0633\u0645",
+            "curriculumName":
+                "\u0627\u0644\u0644\u063a\u0629 \u0627\u0644\u0627\u0646\u0643\u0644\u064a\u0632\u064a\u0629",
             "insideCurr": [
               {
-                "cName": "\u0631\u0633\u0645",
+                "cName":
+                    "\u0627\u0644\u0644\u063a\u0629 \u0627\u0644\u0627\u0646\u0643\u0644\u064a\u0632\u064a\u0629",
                 "maxMark": 200,
                 "passingMark": 100,
                 "Marks": [120, 80, 120, 80]
@@ -148,10 +128,12 @@ class Jalaa_Controller extends GetxController {
             ]
           },
           {
-            "curriculumName": "\u0631\u064a\u0627\u0636\u0629",
+            "curriculumName":
+                "\u0627\u0644\u0644\u063a\u0629 \u0627\u0644\u0627\u0646\u0643\u0644\u064a\u0632\u064a\u0629",
             "insideCurr": [
               {
-                "cName": "\u0631\u064a\u0627\u0636\u0629",
+                "cName":
+                    "\u0627\u0644\u0644\u063a\u0629 \u0627\u0644\u0627\u0646\u0643\u0644\u064a\u0632\u064a\u0629",
                 "maxMark": 200,
                 "passingMark": 100,
                 "Marks": [120, 80, 120, 80]
@@ -159,30 +141,20 @@ class Jalaa_Controller extends GetxController {
             ]
           },
           {
-            "curriculumName": "\u0645\u0634\u0631\u0648\u0639",
+            "curriculumName":
+                "\u0627\u0644\u0644\u063a\u0629 \u0627\u0644\u0627\u0646\u0643\u0644\u064a\u0632\u064a\u0629",
             "insideCurr": [
               {
-                "cName": "\u0645\u0634\u0631\u0648\u0639",
+                "cName":
+                    "\u0627\u0644\u0644\u063a\u0629 \u0627\u0644\u0627\u0646\u0643\u0644\u064a\u0632\u064a\u0629",
                 "maxMark": 200,
                 "passingMark": 100,
                 "Marks": [120, 80, 120, 80]
               }
             ]
-          }
+          },
         ],
-        "downCurriculum": [
-          {
-            "curriculumName": "\u0645\u0647\u0646\u064a\u0629",
-            "insideCurr": [
-              {
-                "cName": "\u0645\u0647\u0646\u064a\u0629",
-                "maxMark": 200,
-                "passingMark": 100,
-                "Marks": [200, 200]
-              }
-            ]
-          }
-        ],
+        "downCurriculum": [],
         "attendance": {
           "firstSemester": {
             "studentAttendance": 0,
@@ -198,10 +170,10 @@ class Jalaa_Controller extends GetxController {
           }
         },
         "Molahdat": {
-          "firstSemester": "jhkhkjhkj",
+          "firstSemester": null,
           "secondSemester": null,
           "manager": null,
-          "schoolmanager": "Alaa Hamza"
+          "schoolmanager": "علاء حمزة"
         },
         "solok": [200, 200],
         "shId": 1

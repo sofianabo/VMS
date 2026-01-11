@@ -3,13 +3,16 @@ import 'package:get/get.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Jalaa_For_Students/Jalaa_Controller.dart';
 import 'package:vms_school/view/SMS_Platform/Admin/Students_Manager/Export_Jalaa_Pages/Convert_Functions_For_All.dart';
 import 'package:vms_school/view/SMS_Platform/Admin/Students_Manager/Export_Jalaa_Pages/First_Table/First_Table_Widgets.dart';
+import 'package:vms_school/view/SMS_Platform/Admin/Students_Manager/Export_Jalaa_Pages/Second_Table/Second_Table_Design.dart';
 
 class Second_Table_Design_SHID1 extends StatelessWidget {
-  const Second_Table_Design_SHID1({super.key});
-
+  Second_Table_Design_SHID1({super.key, required this.hight});
+  double hight = 100.0;
   @override
   Widget build(BuildContext context) {
     return GetBuilder<Jalaa_Controller>(builder: (controller) {
+      final first = controller.rebortCard!.rebort!.attendance!.firstSemester!;
+      final second = controller.rebortCard!.rebort!.attendance!.secondSemester!;
       return Table(
         defaultVerticalAlignment: TableCellVerticalAlignment.middle,
         columnWidths: {
@@ -102,19 +105,22 @@ class Second_Table_Design_SHID1 extends StatelessWidget {
                                     height: 40,
                                     IsBottom: true,
                                     IsRight: true),
-                                buildCellforAll("75",
+                                buildCellforAll("${first.dawamFile ?? 0}",
                                     height: 40,
                                     width: 60,
                                     fontSize: 16,
                                     IsLeft: true,
                                     IsBottom: true),
-                                buildCellforAll("75",
+                                buildCellforAll(
+                                    "${first.studentAttendance ?? 0}",
                                     IsLeft: true,
                                     fontSize: 16,
                                     height: 40,
                                     width: 60,
                                     IsBottom: true),
-                                buildCellforAll("-",
+                                buildCellforAll(
+                                    GheabAttendance(
+                                        '${first.mobararAttendance ?? 0}'),
                                     IsBottom: true,
                                     IsLeft: true,
                                     width: 65,
@@ -122,7 +128,8 @@ class Second_Table_Design_SHID1 extends StatelessWidget {
                                     fontSize: 16),
                                 buildCellforAll(
                                   fontSize: 16,
-                                  "-",
+                                  GheabAttendance(
+                                      '${first.notMobararAttendance ?? 0}'),
                                   width: 65,
                                   height: 40,
                                   IsBottom: true,
@@ -138,19 +145,22 @@ class Second_Table_Design_SHID1 extends StatelessWidget {
                                     height: 40,
                                     IsBottom: true,
                                     IsRight: true),
-                                buildCellforAll("75",
+                                buildCellforAll('${second.dawamFile ?? 0}',
                                     height: 40,
                                     width: 60,
                                     fontSize: 16,
                                     IsLeft: true,
                                     IsBottom: true),
-                                buildCellforAll("75",
+                                buildCellforAll(
+                                    '${second.studentAttendance ?? 0}',
                                     IsLeft: true,
                                     fontSize: 16,
                                     height: 40,
                                     width: 60,
                                     IsBottom: true),
-                                buildCellforAll("-",
+                                buildCellforAll(
+                                    GheabAttendance(
+                                        '${second.mobararAttendance ?? 0}'),
                                     IsBottom: true,
                                     IsLeft: true,
                                     width: 65,
@@ -158,7 +168,8 @@ class Second_Table_Design_SHID1 extends StatelessWidget {
                                     fontSize: 16),
                                 buildCellforAll(
                                   fontSize: 16,
-                                  "-",
+                                  GheabAttendance(
+                                      '${second.notMobararAttendance ?? 0}'),
                                   width: 65,
                                   height: 40,
                                   IsBottom: true,
@@ -174,19 +185,24 @@ class Second_Table_Design_SHID1 extends StatelessWidget {
                                     height: 70,
                                     IsBottom: true,
                                     IsRight: true),
-                                buildCellforAll("75",
+                                buildCellforAll(
+                                    '${(int.tryParse(first.dawamFile.toString()) ?? 0) + (int.tryParse(second.dawamFile.toString()) ?? 0)}',
                                     height: 70,
                                     width: 60,
                                     fontSize: 16,
                                     IsLeft: true,
                                     IsBottom: true),
-                                buildCellforAll("75",
+                                buildCellforAll(
+                                    '${(int.tryParse(first.studentAttendance.toString()) ?? 0) + (int.tryParse(second.studentAttendance.toString()) ?? 0)}',
                                     IsLeft: true,
                                     fontSize: 16,
                                     height: 70,
                                     width: 60,
                                     IsBottom: true),
-                                buildCellforAll("-",
+                                buildCellforAll(
+                                    GheabAttendance(
+                                      '${(int.tryParse(first.mobararAttendance.toString()) ?? 0) + (int.tryParse(second.mobararAttendance.toString()) ?? 0)}',
+                                    ),
                                     IsBottom: true,
                                     IsLeft: true,
                                     width: 65,
@@ -194,7 +210,9 @@ class Second_Table_Design_SHID1 extends StatelessWidget {
                                     fontSize: 16),
                                 buildCellforAll(
                                   fontSize: 16,
-                                  "-",
+                                  GheabAttendance(
+                                    '${(int.tryParse(first.notMobararAttendance.toString()) ?? 0) + (int.tryParse(second.notMobararAttendance.toString()) ?? 0)}',
+                                  ),
                                   width: 65,
                                   height: 70,
                                   IsBottom: true,
@@ -207,14 +225,29 @@ class Second_Table_Design_SHID1 extends StatelessWidget {
                                     fontSize: 14,
                                     IsLeft: true,
                                     width: 210,
-                                    height: 100,
+                                    height: hight,
                                     IsBottom: true,
                                     IsRight: true),
                                 buildCellforAll(
                                   fontSize: 16,
-                                  " ",
+                                  calculateAverageAttendance(
+                                    student1: int.tryParse(first
+                                            .studentAttendance
+                                            .toString()) ??
+                                        0,
+                                    total1: int.tryParse(
+                                            first.dawamFile.toString()) ??
+                                        0,
+                                    student2: int.tryParse(second
+                                            .studentAttendance
+                                            .toString()) ??
+                                        0,
+                                    total2: int.tryParse(
+                                            second.dawamFile.toString()) ??
+                                        0,
+                                  ),
                                   width: 190,
-                                  height: 100,
+                                  height: hight,
                                   IsBottom: true,
                                 ),
                               ],
@@ -230,7 +263,8 @@ class Second_Table_Design_SHID1 extends StatelessWidget {
                                 IsRight: true,
                                 IsLeft: true,
                                 IsBottom: true),
-                            buildCellforAll("التوجيهات التربوية للمعلم هناااا",
+                            buildCellforAll(
+                                "${controller.rebortCard!.rebort!.molahdat!.firstSemester ?? " "}\n${controller.rebortCard!.rebort!.molahdat!.secondSemester ?? " "}",
                                 fontSize: 14,
                                 width: 340,
                                 height: 200,
@@ -242,7 +276,7 @@ class Second_Table_Design_SHID1 extends StatelessWidget {
                                 textPadding: EdgeInsets.all(8.0),
                                 fontSize: 14,
                                 width: 340,
-                                height: 100,
+                                height: hight,
                                 IsLeft: true,
                                 IsRight: true,
                                 IsBottom: true),
@@ -309,13 +343,14 @@ class Second_Table_Design_SHID1 extends StatelessWidget {
                           children: [
                             buildCellforAll(
                                 textPadding: EdgeInsets.all(5.0),
-                                alignment: Alignment.topRight,
+                                alignment: Alignment.topCenter,
                                 width: 206,
                                 height: 100,
                                 IsBottom: true,
                                 IsRight: true,
                                 IsLeft: true,
-                                "اسم المدير:",
+                                " اسم المدير: "
+                                "\n${controller.rebortCard!.rebort!.molahdat!.schoolmanager ?? ""}",
                                 fontSize: 16),
                             buildCellforAll(
                                 textPadding: EdgeInsets.all(5.0),
@@ -337,14 +372,20 @@ class Second_Table_Design_SHID1 extends StatelessWidget {
                                 fontSize: 16),
                           ],
                         ),
-                        buildCellforAll(
-                            width: 740,
-                            height: 30,
-                            IsBottom: true,
-                            IsRight: true,
-                            IsLeft: true,
-                            "التاريخ:      /       / 2023م",
-                            fontSize: 16),
+                        Row(
+                          children: [
+                            buildCellforAll("",
+                                IsBottom: true, width: 60, height: 29),
+                            buildCellforAll(
+                                width: 740,
+                                height: 29,
+                                IsBottom: true,
+                                IsRight: true,
+                                IsLeft: true,
+                                "التاريخ:      /       / 2023م",
+                                fontSize: 16),
+                          ],
+                        ),
                       ],
                     )
                   ],

@@ -5,8 +5,8 @@ import 'package:vms_school/view/SMS_Platform/Admin/Students_Manager/Export_Jalaa
 import 'package:vms_school/view/SMS_Platform/Admin/Students_Manager/Export_Jalaa_Pages/First_Table/First_Table_Widgets.dart';
 
 class First_Table_Design_SHID1 extends StatelessWidget {
-  const First_Table_Design_SHID1({super.key});
-
+  First_Table_Design_SHID1({super.key, required this.hight});
+  double hight = 40;
   @override
   Widget build(BuildContext context) {
     return GetBuilder<Jalaa_Controller>(builder: (controller) {
@@ -43,33 +43,110 @@ class First_Table_Design_SHID1 extends StatelessWidget {
                   IsLeft: true),
               buildCellforAll(
                   height: 150,
-                  'التقديرات النهائية',
+                  'التقدير\nالنهائي',
                   IsTop: true,
                   IsBottom: true,
                   IsLeft: true),
             ],
           ),
+
+          if (controller.rebortCard?.rebort?.mainCurriculum != null)
+            ...controller.rebortCard!.rebort!.mainCurriculum!.map((mainCurr) {
+              if ((mainCurr.insideCurr?.length ?? 0) <= 1) {
+                // مادة عادية
+                final marks = mainCurr.insideCurr!.first.marks ?? [];
+                final passing = mainCurr.insideCurr!.first.passingMark ?? 0;
+
+                return TableRow(
+                  children: [
+                    buildCellforAll(
+                        fontSize: 14,
+                        height: hight,
+                        'ughlhj',
+                        IsBottom: true,
+                        IsLeft: true,
+                        IsRight: true),
+                    buildCellforAll(
+                        fontSize: 14,
+                        height: hight,
+                        'ممتاز',
+                        IsBottom: true,
+                        IsLeft: true),
+                    buildCellforAll(
+                        fontSize: 14,
+                        height: hight,
+                        'ممتاز',
+                        IsBottom: true,
+                        IsLeft: true),
+                    buildCellforAll(
+                        fontSize: 14,
+                        height: hight,
+                        'ممتاز',
+                        IsBottom: true,
+                        IsLeft: true),
+                  ],
+                );
+              } else {
+                // مادة مقسمة مثل اللغة العربية
+                return TableRow(
+                  children: [
+                    buildCellforAll(
+                        fontSize: 14,
+                        height: hight,
+                        'التربية الدينية',
+                        IsBottom: true,
+                        IsLeft: true,
+                        IsRight: true),
+                    buildCellforAll(
+                        fontSize: 14,
+                        height: hight,
+                        'ممتاز',
+                        IsBottom: true,
+                        IsLeft: true),
+                    buildCellforAll(
+                        fontSize: 14,
+                        height: hight,
+                        'ممتاز',
+                        IsBottom: true,
+                        IsLeft: true),
+                    buildCellforAll(
+                        fontSize: 14,
+                        height: hight,
+                        'ممتاز',
+                        IsBottom: true,
+                        IsLeft: true),
+                  ],
+                );
+              }
+            }).toList(),
+
+          //The solok Table Row
+
           TableRow(
             children: [
               buildCellforAll(
-                  height: 30,
-                  'المواد الدراسية',
+                  fontSize: 14,
+                  height: hight,
+                  'السلوك',
                   IsBottom: true,
                   IsLeft: true,
                   IsRight: true),
               buildCellforAll(
-                  height: 30,
-                  'تقديرات\nالفصل الأول',
+                  fontSize: 14,
+                  height: hight,
+                  'ممتاز',
                   IsBottom: true,
                   IsLeft: true),
               buildCellforAll(
-                  height: 30,
-                  'تقديرات\nالفصل الثاني',
+                  fontSize: 14,
+                  height: hight,
+                  'ممتاز',
                   IsBottom: true,
                   IsLeft: true),
               buildCellforAll(
-                  height: 30,
-                  'التقديرات النهائية',
+                  fontSize: 14,
+                  height: hight,
+                  'ممتاز',
                   IsBottom: true,
                   IsLeft: true),
             ],

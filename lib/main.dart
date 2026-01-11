@@ -9,7 +9,7 @@ import 'package:vms_school/Theme/themeController.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'Link/Bindings/AppBinding.dart';
 import 'Translate/local.dart';
-import 'package:flutter_web_plugins/flutter_web_plugins.dart';
+// import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 
 SharedPreferences? prefs;
 
@@ -19,11 +19,26 @@ void main() async {
   final localizationController = LocalizationController();
   await localizationController.loadLanguageFromCache();
 
+  // تشغيل الشاشة الكاملة
+  SystemChrome.setEnabledSystemUIMode(
+    SystemUiMode.immersiveSticky,
+    overlays: [SystemUiOverlay.top], // 👈 الشريط العلوي فقط
+  );
+  SystemChrome.setSystemUIOverlayStyle(
+    SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      statusBarBrightness: Brightness.dark, // شفاف أو تختفي
+      statusBarIconBrightness: Brightness.dark,
+      systemNavigationBarColor: Color(0xff295735), // اللون السفلي أخضر
+      systemNavigationBarIconBrightness:
+          Brightness.light, // أيقونات الشريط السفلي باللون الأبيض
+    ),
+  );
   await SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown,
+    DeviceOrientation.landscapeLeft,
+    DeviceOrientation.landscapeLeft,
   ]);
-  setUrlStrategy(PathUrlStrategy());
+  // setUrlStrategy(PathUrlStrategy());
   runApp(VMS_Main(localizationController: localizationController));
 }
 
