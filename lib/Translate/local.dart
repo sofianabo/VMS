@@ -258,11 +258,11 @@ class Languages {
       'This section contains the electronic page that is uploaded to external sites to facilitate opening it for all users':
           'يحتوي هذا القسم على الصفحات الإلكترونية التي تُرفع على مواقع خارجية لتسهيل فتحها عند جميع المستخدمين.',
       'This section contains a short test aimed at assessing students and includes a variety of short questions.':
-          'يحتوي هذا القسم على اختبارات لتقييم الطلاب ضمن السنة الدراسية، ويتضمن مجموعة متنوعة من الأسئلة القصيرة.',
+          'يحتوي هذا القسم على اختبارات لتقييم الطلاب ضمن السنة الدراسية، ويتضمن مجموعة متنوعة من الأسئلة القصيرة.( هذا القسم متوقف حالياً)',
       'This section contains a set of questions that are organized and stored electronically in advance and are used in preparing tests and assessments.':
-          'يحتوي هذا القسم على مجموعة من الأسئلة المنظمة والمخزنة إلكترونيًا بشكل مسبق.',
+          'يحتوي هذا القسم على مجموعة من الأسئلة المنظمة والمخزنة إلكترونيًا بشكل مسبق. ( هذا القسم متوقف حالياً)',
       'This section contains activities that include various questions about general information about all curricula within the class.':
-          'يحتوي هذا القسم على أنشطة تتضمن أسئلة متنوعة و معلومات عامة حول جميع المناهج الدراسية ضمن الصف.',
+          'يحتوي هذا القسم على أنشطة تتضمن أسئلة متنوعة و معلومات عامة حول جميع المناهج الدراسية ضمن الصف.(هذا القسم متوقف حالياً)',
       'Facebook URL': 'رابط حساب الفيسبوك ',
       'Instagram URL': 'رابط حساب الانستغرام ',
       'X Platform URL': 'رابط حساب على منصة X',
@@ -1101,6 +1101,17 @@ class Languages {
       'Number of actual working days in second semester':
           'عدد أيام الدوام الفعلي في الفصل الثاني',
       'Add Sub-Curriculum': 'إضافة منهاج فرعي',
+      'Division Room': 'الغرفة الصفية',
+      'Tables': 'الجداول',
+      'Upload Homework': 'رفع الوظيفة',
+      'Correcting my homework': 'تصحيح وظائفي',
+      'Upload Solution': 'رفع الحل',
+      'No Solutions': 'لا يوجد حلول',
+      'Homework Solutions': 'حلول الوظائف',
+      'Upload is done': 'تم الرفع',
+      'Upload Solution is done': 'تم رفع تصحيح الوظيفة',
+      'Homework Submission Time Has Expired': 'وقت تسليم الوظيفة انتهى',
+      'This section contains the homework uploaded by teachers and their correction after the student submits the solution.':'يحتوي هذا القسم على الوظائف التي يرفعها المعلمون وتصحيحها بعد أن يرفع الطالب الحل.'
     },
     'en': {
       'Welcome Laith Haitham Azzam': 'Welcome Laith Haitham Azzam',
@@ -1382,7 +1393,7 @@ class Languages {
       'The section contains the study materials for the specified Class level.':
           'The section contains the study materials for the specified Class level.',
       'This section contains the Divisionس within the specified Class level.':
-          'This section contains the Divisionس within the specified Class level.',
+          'This section contains the Divisions within the specified Class level.',
       'This section contains files from previous lessons, as well as reviews, summaries, and facilities for the student':
           'This section contains files from previous lessons, as well as reviews, summaries, and facilities for the student',
       'This section contains hyperlinks to files, images, activities, etc.':
@@ -1390,11 +1401,11 @@ class Languages {
       'This section contains the electronic page that is uploaded to external sites to facilitate opening it for all users':
           'This section contains the electronic page that is uploaded to external sites to facilitate opening it for all users',
       'This section contains a short test aimed at assessing students and includes a variety of short questions.':
-          'This section contains tests to assess students throughout the academic year, and includes a variety of short questions.',
+          'This section contains tests to assess students throughout the academic year, and includes a variety of short questions.( This section is stopped now )',
       'This section contains a set of questions that are organized and stored electronically in advance and are used in preparing tests and assessments.':
-          'This section contains a set of questions that are organized and stored electronically in advance.',
+          'This section contains a set of questions that are organized and stored electronically in advance.( This section is stopped now )',
       'This section contains activities that include various questions about general information about all curricula within the class.':
-          'This section contains activities that include various questions about general information about all curricula within the class.',
+          'This section contains activities that include various questions about general information about all curricula within the class.( This section is stopped now )',
       'Full Name': 'Full Name',
       'Fee Discount': 'Fee Discount',
       '   Father Info   ': '   Father Info   ',
@@ -2199,7 +2210,18 @@ class Languages {
           'Number of actual working days in second semester',
       'Add Sub-Curriculum': 'Add Sub-Curriculum',
       'KMS Platform': 'KMS Platform',
-      '': '',
+      'Division Room': 'Division Room',
+      'Tables': 'Tables',
+      'Upload Homework': 'Upload Homework',
+      'Correcting my homework': 'Correcting my homework',
+      'Upload Solution': 'Upload Solution',
+      'No Solutions': 'No Solutions',
+      'Homework Solutions': 'Homework Solutions',
+      'Upload is done': 'Upload is done',
+      'Upload Solution is done': 'Upload Solution is done',
+      'Homework Submission Time Has Expired':
+          'Homework Submission Time Has Expired',
+      'This section contains the homework uploaded by teachers and their correction after the student submits the solution.': 'This section contains the homework uploaded by teachers and their correction after the student submits the solution.',
       '': '',
       '': '',
       '': '',

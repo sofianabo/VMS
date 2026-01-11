@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:get/get.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/NumberOfContentController.dart';
+import 'package:vms_school/Link/Controller/LMS_Controllers/StudentLMSController.dart/MainPageContentController.dart';
 import 'package:vms_school/main.dart';
 
 class Selected_Class_Controller extends GetxController {
@@ -149,6 +150,7 @@ class Selected_Class_Controller extends GetxController {
   }
 
   var controller = Get.find<Numberofcontentcontroller>();
+  var controllerstu = Get.find<Mainpagecontentcontroller>();
 
   var dataList = <Map<String, dynamic>>[].obs;
 
