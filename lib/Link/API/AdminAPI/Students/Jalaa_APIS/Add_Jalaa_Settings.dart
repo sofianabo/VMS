@@ -27,7 +27,7 @@ class Add_Jalaa_Settings_API {
               "quizTypes": controller.getSemester(),
               "classId": controller.Classid,
               "Molahdat": {
-                "firstSemester": "jhkhkjhkj",
+                "firstSemester": "",
                 "secondSemester": null,
                 "manager": null
               }

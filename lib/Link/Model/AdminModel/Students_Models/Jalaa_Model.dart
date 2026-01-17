@@ -5,7 +5,15 @@ class Rebort_Card {
 
   Rebort_Card.fromJson(Map<String, dynamic> json) {
     rebort =
-        json['rebort'] != null ? new Rebort.fromJson(json['rebort']) : null;
+    json['rebort'] != null ? new Rebort.fromJson(json['rebort']) : null;
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.rebort != null) {
+      data['rebort'] = this.rebort!.toJson();
+    }
+    return data;
   }
 }
 
@@ -15,17 +23,15 @@ class Rebort {
   List<MainCurriculum>? downCurriculum;
   Attendance? attendance;
   Molahdat? molahdat;
-  List<int>? solok;
   int? shId;
 
   Rebort(
       {this.studentsInfo,
-      this.mainCurriculum,
-      this.downCurriculum,
-      this.attendance,
-      this.molahdat,
-      this.solok,
-      this.shId});
+        this.mainCurriculum,
+        this.downCurriculum,
+        this.attendance,
+        this.molahdat,
+        this.shId});
 
   Rebort.fromJson(Map<String, dynamic> json) {
     studentsInfo = json['studentsInfo'] != null
@@ -49,43 +55,79 @@ class Rebort {
     molahdat = json['Molahdat'] != null
         ? new Molahdat.fromJson(json['Molahdat'])
         : null;
-    solok = json['solok'].cast<int>();
     shId = json['shId'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.studentsInfo != null) {
+      data['studentsInfo'] = this.studentsInfo!.toJson();
+    }
+    if (this.mainCurriculum != null) {
+      data['mainCurriculum'] =
+          this.mainCurriculum!.map((v) => v.toJson()).toList();
+    }
+    if (this.downCurriculum != null) {
+      data['downCurriculum'] =
+          this.downCurriculum!.map((v) => v.toJson()).toList();
+    }
+    if (this.attendance != null) {
+      data['attendance'] = this.attendance!.toJson();
+    }
+    if (this.molahdat != null) {
+      data['Molahdat'] = this.molahdat!.toJson();
+    }
+    data['shId'] = this.shId;
+    return data;
   }
 }
 
 class StudentsInfo {
   int? tasalsol;
+  int? code;
   String? studentsFullName;
   String? fatherName;
   String? motherName;
   String? division;
   String? birthdate;
-  String? language;
   int? raqSejel;
   String? seassion;
 
   StudentsInfo(
       {this.tasalsol,
-      this.studentsFullName,
-      this.fatherName,
-      this.motherName,
-      this.division,
-      this.birthdate,
-      this.language,
-      this.raqSejel,
-      this.seassion});
+        this.code,
+        this.studentsFullName,
+        this.fatherName,
+        this.motherName,
+        this.division,
+        this.birthdate,
+        this.raqSejel,
+        this.seassion});
 
   StudentsInfo.fromJson(Map<String, dynamic> json) {
     tasalsol = json['tasalsol'];
+    code = json['code'];
     studentsFullName = json['studentsFullName'];
     fatherName = json['fatherName'];
     motherName = json['motherName'];
     division = json['division'];
     birthdate = json['Birthdate'];
-    language = json['language'];
     raqSejel = json['raqSejel'];
     seassion = json['seassion'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['tasalsol'] = this.tasalsol;
+    data['code'] = this.code;
+    data['studentsFullName'] = this.studentsFullName;
+    data['fatherName'] = this.fatherName;
+    data['motherName'] = this.motherName;
+    data['division'] = this.division;
+    data['Birthdate'] = this.birthdate;
+    data['raqSejel'] = this.raqSejel;
+    data['seassion'] = this.seassion;
+    return data;
   }
 }
 
@@ -104,6 +146,15 @@ class MainCurriculum {
       });
     }
   }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['curriculumName'] = this.curriculumName;
+    if (this.insideCurr != null) {
+      data['insideCurr'] = this.insideCurr!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
 }
 
 class InsideCurr {
@@ -111,14 +162,31 @@ class InsideCurr {
   int? maxMark;
   int? passingMark;
   List<int>? marks;
+  List<int>? passingMarks;
 
-  InsideCurr({this.cName, this.maxMark, this.passingMark, this.marks});
+  InsideCurr(
+      {this.cName,
+        this.maxMark,
+        this.passingMark,
+        this.marks,
+        this.passingMarks});
 
   InsideCurr.fromJson(Map<String, dynamic> json) {
     cName = json['cName'];
     maxMark = json['maxMark'];
     passingMark = json['passingMark'];
     marks = json['Marks'].cast<int>();
+    passingMarks = json['passingMarks'].cast<int>();
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['cName'] = this.cName;
+    data['maxMark'] = this.maxMark;
+    data['passingMark'] = this.passingMark;
+    data['Marks'] = this.marks;
+    data['passingMarks'] = this.passingMarks;
+    return data;
   }
 }
 
@@ -136,6 +204,17 @@ class Attendance {
         ? new FirstSemester.fromJson(json['secondSemester'])
         : null;
   }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.firstSemester != null) {
+      data['firstSemester'] = this.firstSemester!.toJson();
+    }
+    if (this.secondSemester != null) {
+      data['secondSemester'] = this.secondSemester!.toJson();
+    }
+    return data;
+  }
 }
 
 class FirstSemester {
@@ -146,15 +225,24 @@ class FirstSemester {
 
   FirstSemester(
       {this.studentAttendance,
-      this.mobararAttendance,
-      this.notMobararAttendance,
-      this.dawamFile});
+        this.mobararAttendance,
+        this.notMobararAttendance,
+        this.dawamFile});
 
   FirstSemester.fromJson(Map<String, dynamic> json) {
     studentAttendance = json['studentAttendance'];
     mobararAttendance = json['mobarar_Attendance'];
     notMobararAttendance = json['not_Mobarar_Attendance'];
     dawamFile = json['dawam_File'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['studentAttendance'] = this.studentAttendance;
+    data['mobarar_Attendance'] = this.mobararAttendance;
+    data['not_Mobarar_Attendance'] = this.notMobararAttendance;
+    data['dawam_File'] = this.dawamFile;
+    return data;
   }
 }
 
@@ -166,14 +254,23 @@ class Molahdat {
 
   Molahdat(
       {this.firstSemester,
-      this.secondSemester,
-      this.manager,
-      this.schoolmanager});
+        this.secondSemester,
+        this.manager,
+        this.schoolmanager});
 
   Molahdat.fromJson(Map<String, dynamic> json) {
     firstSemester = json['firstSemester'];
     secondSemester = json['secondSemester'];
     manager = json['manager'];
     schoolmanager = json['schoolmanager'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['firstSemester'] = this.firstSemester;
+    data['secondSemester'] = this.secondSemester;
+    data['manager'] = this.manager;
+    data['schoolmanager'] = this.schoolmanager;
+    return data;
   }
 }

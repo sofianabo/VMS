@@ -170,6 +170,26 @@ int sumMarksAtIndex(List<MainCurriculum>? curriculumList, int index) {
   return total;
 }
 
+
+
+int sumPassingMarksAtIndex(List<MainCurriculum>? curriculumList, int index) {
+  int total = 0;
+
+  if (curriculumList != null) {
+    for (var curriculum in curriculumList) {
+      if (curriculum.insideCurr != null) {
+        for (var inside in curriculum.insideCurr!) {
+          if (inside.passingMarks != null && index < inside.passingMarks!.length) {
+            total += inside.passingMarks![index];
+          }
+        }
+      }
+    }
+  }
+
+  return total;
+}
+
 double marksall(
   List<MainCurriculum>? curriculumList,
 ) {
@@ -196,6 +216,20 @@ String safeMarkText(List marks, int index) {
   return "";
 }
 
+
+int GetPassingMarkAtIndex(List marks, int index) {
+  if (marks.length > index) {
+    try {
+      return int.parse(marks[index].toString());
+    } catch (_) {
+      return 0;
+    }
+  }
+  return 0;
+}
+
+
+
 String GheabAttendance(String att) {
   if (att == "0") {
     return "-";
@@ -217,6 +251,17 @@ int safeMarkNumber(List marks, int index) {
 
 int safeMarkNumberAtIndex(int index) {
   final val = sumMarksAtIndex(
+      Get.find<Jalaa_Controller>().rebortCard!.rebort!.mainCurriculum, index);
+  try {
+    return int.parse(val.toString());
+  } catch (_) {
+    return 0;
+  }
+}
+
+
+int safePassingMarkNumberAtIndex(int index) {
+  final val = sumPassingMarksAtIndex(
       Get.find<Jalaa_Controller>().rebortCard!.rebort!.mainCurriculum, index);
   try {
     return int.parse(val.toString());

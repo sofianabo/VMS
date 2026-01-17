@@ -13,23 +13,13 @@ class Jalaa_Page_Controller extends GetxController {
     {
       "id": 1,
       "image": "assets/images/Jalaa_Templete/1-4.png",
-      "text": "قالب ابتدائي (تقديرات)",
+      "text": "قالب ابتدائي(تقديرات)",
     },
     {
       "id": 2,
       "image": "assets/images/Jalaa_Templete/5-6.png",
-      "text": "قالب ابتدائي (خامس وسادس)",
-    },
-    {
-      "id": 3,
-      "image": "assets/images/Jalaa_Templete/7-8.png",
-      "text": "قالب إعدادي (سابع وثامن)",
-    },
-    {
-      "id": 4,
-      "image": "assets/images/Jalaa_Templete/9.png",
-      "text": "قالب إعدادي (تاسع)",
-    },
+      "text": "قالب اساسي(علامات)",
+    }
   ];
   List<JalaaSettings>? jalaaSettings;
 

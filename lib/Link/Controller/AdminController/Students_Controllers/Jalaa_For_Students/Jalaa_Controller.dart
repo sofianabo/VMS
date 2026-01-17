@@ -14,147 +14,62 @@ class Jalaa_Controller extends GetxController {
       "rebort": {
         "studentsInfo": {
           "tasalsol": 12,
-          "studentsFullName": "\u0644\u064a\u062b \u0639\u0632\u0627\u0645",
-          "fatherName": "\u0647\u064a\u062b\u0645",
-          "motherName": "\u0645\u0627\u062c\u062f\u0647",
-          "division": "\u0645\u0627\u062c\u062f\u0647",
-          "Birthdate": "13\/1\/2003",
-          "language":
-              "\u0627\u0644\u0627\u0646\u0643\u0644\u064a\u0632\u064a\u0629",
+          "code": 12,
+          "studentsFullName": "ليث",
+          "fatherName": "هيثم",
+          "motherName": "ماجده",
+          "division": "الصف الثاني",
+          "Birthdate": "13/1/2003",
           "raqSejel": 150,
-          "seassion": "2023\/2024"
+          "seassion": "2023/2024"
         },
         "mainCurriculum": [
           {
-            "curriculumName": "بببب",
+            "curriculumName": "اللغة العربية",
             "insideCurr": [
               {
-                "cName":
-                    "\u0627\u0644\u0644\u063a\u0629 \u0627\u0644\u0627\u0646\u0643\u0644\u064a\u0632\u064a\u0629",
-                "maxMark": 200,
-                "passingMark": 100,
-                "Marks": [120, 80, 120, 80]
-              }
+                "cName": "عربي",
+                "maxMark": 100,
+                "passingMark": 50,
+                "Marks": [12, 12,12, 12],
+                "passingMarks": [12, 12,12, 12]
+              },
             ]
           },
           {
-            "curriculumName":
-                "\u0627\u0644\u0644\u063a\u0629 \u0627\u0644\u0627\u0646\u0643\u0644\u064a\u0632\u064a\u0629",
+            "curriculumName": "اللغة العربية",
             "insideCurr": [
               {
-                "cName":
-                    "\u0627\u0644\u0644\u063a\u0629 \u0627\u0644\u0627\u0646\u0643\u0644\u064a\u0632\u064a\u0629",
-                "maxMark": 200,
-                "passingMark": 100,
-                "Marks": [120, 80, 120, 80]
-              }
-            ]
-          },
-          {
-            "curriculumName":
-                "\u0627\u0644\u0644\u063a\u0629 \u0627\u0644\u0627\u0646\u0643\u0644\u064a\u0632\u064a\u0629",
-            "insideCurr": [
+                "cName": "عربي",
+                "maxMark": 100,
+                "passingMark": 50,
+                "Marks": [11, 11,11, 11],
+                "passingMarks": [12, 12,12, 12]
+              },
               {
-                "cName": "سييس",
-                "maxMark": 200,
-                "passingMark": 100,
-                "Marks": [20, 20, 20, 5]
-              }
-            ]
-          },
-          {
-            "curriculumName":
-                "\u0627\u0644\u0644\u063a\u0629 \u0627\u0644\u0627\u0646\u0643\u0644\u064a\u0632\u064a\u0629",
-            "insideCurr": [
-              {
-                "cName":
-                    "\u0627\u0644\u0644\u063a\u0629 \u0627\u0644\u0627\u0646\u0643\u0644\u064a\u0632\u064a\u0629",
-                "maxMark": 200,
-                "passingMark": 100,
-                "Marks": [120, 80, 120, 80]
-              }
-            ]
-          },
-          {
-            "curriculumName":
-                "\u0627\u0644\u0644\u063a\u0629 \u0627\u0644\u0627\u0646\u0643\u0644\u064a\u0632\u064a\u0629",
-            "insideCurr": [
-              {
-                "cName":
-                    "\u0627\u0644\u0644\u063a\u0629 \u0627\u0644\u0627\u0646\u0643\u0644\u064a\u0632\u064a\u0629",
-                "maxMark": 200,
-                "passingMark": 100,
-                "Marks": [120, 80, 120, 80]
-              }
-            ]
-          },
-          {
-            "curriculumName":
-                "\u0627\u0644\u0644\u063a\u0629 \u0627\u0644\u0627\u0646\u0643\u0644\u064a\u0632\u064a\u0629",
-            "insideCurr": [
-              {
-                "cName":
-                    "\u0627\u0644\u0644\u063a\u0629 \u0627\u0644\u0627\u0646\u0643\u0644\u064a\u0632\u064a\u0629",
-                "maxMark": 200,
-                "passingMark": 100,
-                "Marks": [120, 80, 120, 80]
-              }
-            ]
-          },
-          {
-            "curriculumName":
-                "\u0627\u0644\u0644\u063a\u0629 \u0627\u0644\u0627\u0646\u0643\u0644\u064a\u0632\u064a\u0629",
-            "insideCurr": [
-              {
-                "cName":
-                    "\u0627\u0644\u0644\u063a\u0629 \u0627\u0644\u0627\u0646\u0643\u0644\u064a\u0632\u064a\u0629",
-                "maxMark": 200,
-                "passingMark": 100,
-                "Marks": [120, 80, 120, 80]
-              }
-            ]
-          },
-          {
-            "curriculumName":
-                "\u0627\u0644\u0644\u063a\u0629 \u0627\u0644\u0627\u0646\u0643\u0644\u064a\u0632\u064a\u0629",
-            "insideCurr": [
-              {
-                "cName":
-                    "\u0627\u0644\u0644\u063a\u0629 \u0627\u0644\u0627\u0646\u0643\u0644\u064a\u0632\u064a\u0629",
-                "maxMark": 200,
-                "passingMark": 100,
-                "Marks": [120, 80, 120, 80]
-              }
-            ]
-          },
-          {
-            "curriculumName":
-                "\u0627\u0644\u0644\u063a\u0629 \u0627\u0644\u0627\u0646\u0643\u0644\u064a\u0632\u064a\u0629",
-            "insideCurr": [
-              {
-                "cName":
-                    "\u0627\u0644\u0644\u063a\u0629 \u0627\u0644\u0627\u0646\u0643\u0644\u064a\u0632\u064a\u0629",
-                "maxMark": 200,
-                "passingMark": 100,
-                "Marks": [120, 80, 120, 80]
-              }
-            ]
-          },
-          {
-            "curriculumName":
-                "\u0627\u0644\u0644\u063a\u0629 \u0627\u0644\u0627\u0646\u0643\u0644\u064a\u0632\u064a\u0629",
-            "insideCurr": [
-              {
-                "cName":
-                    "\u0627\u0644\u0644\u063a\u0629 \u0627\u0644\u0627\u0646\u0643\u0644\u064a\u0632\u064a\u0629",
-                "maxMark": 200,
-                "passingMark": 100,
-                "Marks": [120, 80, 120, 80]
+                "cName": "عربي",
+                "maxMark": 100,
+                "passingMark": 50,
+                "Marks": [11, 11,11, 11],
+                "passingMarks": [12, 12,12, 12]
               }
             ]
           },
         ],
-        "downCurriculum": [],
+        "downCurriculum": [
+          {
+            "curriculumName": "اللغة العربية",
+            "insideCurr": [
+              {
+                "cName": "عربي",
+                "maxMark": 100,
+                "passingMark": 50,
+                "Marks": [11, 11,11, 11],
+                "passingMarks": [12, 12,12, 12]
+              },
+            ]
+          },
+        ],
         "attendance": {
           "firstSemester": {
             "studentAttendance": 0,
@@ -170,12 +85,11 @@ class Jalaa_Controller extends GetxController {
           }
         },
         "Molahdat": {
-          "firstSemester": null,
-          "secondSemester": null,
-          "manager": null,
+          "firstSemester": "hggffhg",
+          "secondSemester": "drgfgfdgfd",
+          "manager": "dsdfsdf",
           "schoolmanager": "علاء حمزة"
         },
-        "solok": [200, 200],
         "shId": 1
       }
     };
@@ -292,6 +206,7 @@ String numberToArabicWords(String numbers) {
   int number = double.parse(numbers).ceil();
 
   if (number < 1 || number > 10000) {
+    return "";
     throw ArgumentError('الدالة تدعم الأرقام من 1 إلى 10000 فقط');
   }
 

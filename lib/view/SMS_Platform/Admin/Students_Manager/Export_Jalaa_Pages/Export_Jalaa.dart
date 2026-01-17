@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Jalaa_For_Students/Jalaa_Controller.dart';
+import 'package:vms_school/view/SMS_Platform/Admin/Students_Manager/Export_Jalaa_Pages/All_Jalaas_Dir/All_Jalaas_Table.dart';
+import 'package:vms_school/view/SMS_Platform/Admin/Students_Manager/Export_Jalaa_Pages/All_Jalaas_Dir/DawamTable.dart';
+import 'package:vms_school/view/SMS_Platform/Admin/Students_Manager/Export_Jalaa_Pages/All_Jalaas_Dir/Final_Table.dart';
+import 'package:vms_school/view/SMS_Platform/Admin/Students_Manager/Export_Jalaa_Pages/All_Jalaas_Dir/Tawjihat_Table.dart';
 import 'package:vms_school/view/SMS_Platform/Admin/Students_Manager/Export_Jalaa_Pages/Convert_Functions_For_All.dart';
-import 'package:vms_school/view/SMS_Platform/Admin/Students_Manager/Export_Jalaa_Pages/First_Table/First_Table_Design.dart';
-import 'package:vms_school/view/SMS_Platform/Admin/Students_Manager/Export_Jalaa_Pages/Second_Table/Second_Table_Design.dart';
-import 'package:vms_school/view/SMS_Platform/Admin/Students_Manager/Export_Jalaa_Pages/The_Bottom_Table/The_Bottom_Table_Desighn.dart';
-import 'package:vms_school/view/SMS_Platform/Admin/Students_Manager/Export_Jalaa_Pages/Third_Table/Third_Table_Design.dart';
 
 class ExportJalaa extends StatefulWidget {
   ExportJalaa({super.key});
@@ -22,19 +22,17 @@ class _ExportJalaaState extends State<ExportJalaa> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: const Text("نموذج الإجلالة"),
-      //   actions: [
-      //     IconButton(
-      //       icon: const Icon(Icons.print),
-      //       onPressed: () => captureAndPrint(),
-      //     ),
-      //   ],
-      // ),
-      body: SingleChildScrollView(
-        child: Padding(
-            padding: const EdgeInsets.all(25.0), child: buildPrintContent()),
-      ),
+       appBar: AppBar(
+         title: const Text("نموذج"),
+         actions: [
+           IconButton(
+            icon: const Icon(Icons.print),
+             onPressed: () => captureAndPrint(),
+           ),
+        ],
+       ),
+      body: Padding(
+          padding: const EdgeInsets.all(25.0), child: buildPrintContent()),
     );
   }
 }
@@ -50,34 +48,136 @@ class CustomHeaderTable extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GetBuilder<Jalaa_Controller>(builder: (controller) {
-            int totalInsideCurrCount =
-                controller.rebortCard!.rebort!.mainCurriculum?.fold<int>(0,
-                        (sum, main) => sum + (main.insideCurr?.length ?? 0)) ??
-                    0;
 
-            return Row(
+            return Column(
+              spacing: 15.0,
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                First_Table_Design(),
-                Column(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Second_Table_Design(),
-                    Third_Table_Design(
-                      hight: totalInsideCurrCount < 7
-                          ? (15 * 2).toDouble()
-                          : (15 * (totalInsideCurrCount - 5)).toDouble(),
-                    ),
-                  ],
-                ),
-              ],
+             children: [
+               All_Jalaas_Table(),
+               Row(
+                 mainAxisAlignment: MainAxisAlignment.start,
+                 crossAxisAlignment: CrossAxisAlignment.start,
+                 spacing: 50,
+                 children: [
+                   Row(
+                     spacing: 60,
+                     children: [
+                       DawamTable(),
+                       Tawjihat_Table()
+                     ],
+                   ),
+                   Column( spacing: 15.0,
+                     mainAxisAlignment: MainAxisAlignment.start,
+                     crossAxisAlignment: CrossAxisAlignment.start,
+                     children: [
+
+                       Row( spacing: 20.0,
+                         children: [
+                           FinalTable(),
+
+                           Column(
+                             spacing: 15.0,
+                             children: [
+                               Row(
+                                 spacing: 30.0,
+                                 children: [
+                                   Container(
+                                     width: 140,
+                                     alignment: Alignment.center,
+                                     padding: EdgeInsets.all(10.0),
+                                     decoration: BoxDecoration(
+                                         borderRadius: BorderRadius.all(Radius.circular(10)),
+                                         border: Border.all(color: Colors.grey),
+                                         color: Colors.grey.withOpacity(0.3)
+
+                                     ),
+                                     child: Text("      اسم المدير/ة      ", style: TextStyle(fontFamily: "Cairo"),),
+                                   ),
+                                   Container(
+                                     alignment: Alignment.center,
+                                     width: 170,
+                                     padding: EdgeInsets.all(10.0),
+                                     decoration: BoxDecoration(
+                                       borderRadius: BorderRadius.all(Radius.circular(10)),
+                                       border: Border.all(color: Colors.grey),
+                                     ),
+                                     child: Text("${controller.rebortCard!.rebort!.molahdat!.schoolmanager}", style: TextStyle(fontFamily: "Cairo"),
+                                   ))
+                                 ],
+                               ),
+                               Row(
+                                 spacing: 30.0,
+                                 children: [
+                                   Container(
+                                     width: 140,
+                                     height: 140,
+                                     alignment: Alignment.center,
+                                     padding: EdgeInsets.all(10.0),
+                                     decoration: BoxDecoration(
+                                         borderRadius: BorderRadius.all(Radius.circular(10)),
+                                         border: Border.all(color: Colors.grey),
+                                         color: Colors.grey.withOpacity(0.3)
+
+                                     ),
+                                     child: Text("توقيع و ختم\n المدير/ة",textAlign: TextAlign.center, style: TextStyle(fontFamily: "Cairo")),
+                                   ),
+                                   Container(
+                                     alignment: Alignment.center,
+                                     width: 170,
+                                     height: 140,
+                                     padding: EdgeInsets.all(10.0),
+                                     decoration: BoxDecoration(
+                                       borderRadius: BorderRadius.all(Radius.circular(10)),
+                                       border: Border.all(color: Colors.grey),
+                                     ),
+                                     child: Text(""),
+                                   )
+                                 ],
+                               )
+                             ],
+                           )
+                         ],
+                       ),
+                       Container(
+                         width: 745,
+                         padding: EdgeInsets.all(5.0),
+                         decoration: BoxDecoration(
+                           borderRadius: BorderRadius.all(Radius.circular(50)),
+                           border: Border.all(color: Colors.grey),
+
+                         ),
+                         child: Row(
+                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                           children: [
+                             Text(
+                                 style: TextStyle(
+                                     fontFamily: "tnr"
+                                 ),
+                                 "حرر في يوم:  "),
+                             Text(
+                                 style: TextStyle(
+                                     fontFamily: "tnr"
+                                 ),
+                                 "الواقع في       /       144 هـ"),
+                             Text(
+                                 style: TextStyle(
+                                     fontFamily: "tnr"
+                                 ),
+                                 "الموافق لــ      /       /  2025 م"),
+                           ],
+                         ),
+                       ),
+                     ],
+                   )
+                 ],
+               )
+             ],
+
             );
           }),
-          The_Bottom_Table_Design()
+         // The_Bottom_Table_Design()
         ],
       ),
     );
@@ -132,158 +232,246 @@ Widget buildPrintContent() {
     return Padding(
       padding: const EdgeInsets.only(left: 30.0, right: 30),
       child: Container(
+
         alignment: Alignment.topCenter,
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          spacing: 12.0,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Column(
-                  spacing: 5.0,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text("الجمهورية العربية السورية",
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: fontFamily,
-                        )),
-                    Text("وزارة التربية و التعليم",
-                        style: TextStyle(
-                          fontFamily: fontFamily,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        )),
-                    Text("مديرية التربية و التعليم في محافظة: السويداء",
-                        style: TextStyle(
-                          fontFamily: fontFamily,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        )),
-                    Text("المدرسة الافتراضية الحديثة",
-                        style: TextStyle(
-                            fontFamily: fontFamily,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold)),
-                  ],
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      "مرحلة التعليم الأساسي",
+            Padding(
+              padding: const EdgeInsets.only(bottom: 12.0),
+              child: Text("الجلاءُ المدرسيّ",
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: "Cairo",
+                      color: Color(0xFF508D3E)
+
+                  )),
+            ),
+            Container(
+              padding: EdgeInsets.all(12.0),
+
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(50)),
+                border: Border.all(color: Colors.grey),
+
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text("الرقم التسلسلي ${convertToArabicNumbers(controller.rebortCard!.rebort!.studentsInfo!.tasalsol.toString())}ّ",
                       style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: fontFamily,
-                      ),
-                    ),
-                    Text(
-                      "- الحلقة الأولى - / الصف السادس /",
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: fontFamily,
+
+                      )),
+
+                  Text("المدرسة الافتراضية الحديثة",
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                         fontFamily: fontFamily,
-                      ),
-                    ),
-                  ],
-                ),
-                Text(
-                    convertToArabicNumbers(
-                        "العام الدراسي: ${controller.rebortCard!.rebort!.studentsInfo!.seassion}"),
-                    style: TextStyle(
+
+                      )),
+                  Text("الصف الخامس",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
                         fontFamily: fontFamily,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold)),
-              ],
+
+                      )),
+                  Text("${controller.rebortCard!.rebort!.studentsInfo!.division}",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: fontFamily,
+
+                      )),
+                  Text("كود التحقق:",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: fontFamily,
+
+                      )),
+                  Text("رقم السجل العام ${convertToArabicNumbers(controller.rebortCard!.rebort!.studentsInfo!.tasalsol.toString())}",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: fontFamily,
+
+                      )),
+                ],
+              ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(top: 5.0),
+            Container(
+
+              padding: EdgeInsets.all(12.0),
               child: Row(
+                spacing: 4.0,
+                mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text(
-                      convertToArabicNumbers(
-                          "الرقم المتسلسل (${controller.rebortCard!.rebort!.studentsInfo!.tasalsol})"),
+                  Container(
+                      alignment: Alignment.center,
+                      padding: EdgeInsets.only(left: 8.0 , right: 8.0),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(50)),
+                        border: Border.all(color: Colors.grey),
+                      ),child: Text("التلميذ/ة",
                       style: TextStyle(
-                          fontFamily: fontFamily,
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold)),
-                  Text(
-                      "اسم التلميذ/ة: ${controller.rebortCard!.rebort!.studentsInfo!.studentsFullName}",
-                      style: TextStyle(
-                          fontFamily: fontFamily,
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold)),
-                  Text(
-                      " الأب:${controller.rebortCard!.rebort!.studentsInfo!.fatherName}",
-                      style: TextStyle(
-                          fontFamily: fontFamily,
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold)),
-                  Text(
-                      "الأم: ${controller.rebortCard!.rebort!.studentsInfo!.motherName}",
-                      style: TextStyle(
-                          fontFamily: fontFamily,
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold)),
-                  Text(convertToArabicNumbers("الصف:الخامس"),
-                      style: TextStyle(
-                          fontFamily: fontFamily,
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold)),
-                  Text(
-                      convertToArabicNumbers(
-                          "الشعبة: ${controller.rebortCard!.rebort!.studentsInfo!.division}"),
-                      style: TextStyle(
-                          fontFamily: fontFamily,
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold)),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 25.0, right: 65.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                      convertToArabicNumbers(
-                          "تاريخ الميلاد: ${controller.rebortCard!.rebort!.studentsInfo!.birthdate}"),
-                      style: TextStyle(
-                          fontFamily: fontFamily,
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold)),
-                  Text(
-                      "اللغة: (${controller.rebortCard!.rebort!.studentsInfo!.language})",
-                      style: TextStyle(
-                        fontFamily: fontFamily,
-                        fontSize: 14,
+                        fontSize: 18,
                         fontWeight: FontWeight.bold,
-                      )),
-                  Text(
-                      convertToArabicNumbers(
-                          "رقمه في السجل العام: ${controller.rebortCard!.rebort!.studentsInfo!.raqSejel}"),
-                      style: TextStyle(
+                        fontFamily: fontFamily,
+
+                      ))),
+                  Expanded(
+                    child: Container(
+                        alignment: Alignment.center,
+                        padding: EdgeInsets.only(left: 8.0 , right: 8.0),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(50)),
+                          border: Border.all(color: Colors.grey),
+                        ),child: Text("${controller.rebortCard!.rebort!.studentsInfo!.studentsFullName}",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.normal,
                           fontFamily: fontFamily,
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold)),
+
+                        ))),
+                  ),
+                  Container(
+                      alignment: Alignment.center,
+                      padding: EdgeInsets.only(left: 8.0 , right: 8.0),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(50)),
+                        border: Border.all(color: Colors.grey),
+                      ),child: Text("ابن/ة السيد",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: fontFamily,
+
+                      ))),
+                  Expanded(
+                    child: Container(
+                        alignment: Alignment.center,
+                        padding: EdgeInsets.only(left: 8.0 , right: 8.0),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(50)),
+                          border: Border.all(color: Colors.grey),
+                        ),child: Text("${controller.rebortCard!.rebort!.studentsInfo!.fatherName}",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.normal,
+                          fontFamily: fontFamily,
+
+                        ))),
+                  ),
+                  Container(
+                      alignment: Alignment.center,
+                      padding: EdgeInsets.only(left: 8.0 , right: 8.0),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(50)),
+                        border: Border.all(color: Colors.grey),
+                      ),child: Text("والدته/ها",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: fontFamily,
+
+                      ))),
+                  Expanded(
+                    child: Container(
+                        alignment: Alignment.center,
+                        padding: EdgeInsets.only(left: 8.0 , right: 8.0),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(50)),
+                          border: Border.all(color: Colors.grey),
+                        ),child: Text("${controller.rebortCard!.rebort!.studentsInfo!.motherName}",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.normal,
+                          fontFamily: fontFamily,
+
+                        ))),
+                  ),
+                  Container(
+                      alignment: Alignment.center,
+                      padding: EdgeInsets.only(left: 8.0 , right: 8.0),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(50)),
+                        border: Border.all(color: Colors.grey),
+                      ),child: Text("مواليد",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: fontFamily,
+
+                      ))),
+                  Expanded(
+                    child: Container(
+                        alignment: Alignment.center,
+                        padding: EdgeInsets.only(left: 8.0 , right: 8.0),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(50)),
+                          border: Border.all(color: Colors.grey),
+                        ),child: Text("${convertToArabicNumbers(controller.rebortCard!.rebort!.studentsInfo!.birthdate.toString())}",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.normal,
+                          fontFamily: fontFamily,
+
+                        ))),
+                  ),
+                  Container(
+                      alignment: Alignment.center,
+                      padding: EdgeInsets.only(left: 8.0 , right: 8.0),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(50)),
+                        border: Border.all(color: Colors.grey),
+                      ),child: Text("العام الدراسي",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: fontFamily,
+
+                      ))),
+                  Expanded(
+                    child: Container(
+                        alignment: Alignment.center,
+                        padding: EdgeInsets.only(left: 8.0 , right: 8.0),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(50)),
+                          border: Border.all(color: Colors.grey),
+                        ),child: Text("${convertToArabicNumbers(controller.rebortCard!.rebort!.studentsInfo!.seassion.toString())}",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.normal,
+                          fontFamily: fontFamily,
+
+                        ))),
+                  ),
+
+
+
+
+
+
                 ],
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 40.0),
-              child: Transform.scale(
-                scale:
-                    1.06, // ← قيمة التكبير (1.0 = الحجم الطبيعي، 2.0 = ضعف الحجم)
-                child: CustomHeaderTable(),
+              padding: const EdgeInsets.only(top: 10.0),
+              child:  // ← قيمة التكبير (1.0 = الحجم الطبيعي، 2.0 = ضعف الحجم)
+                 CustomHeaderTable(),
               ),
-            ),
           ],
         ),
       ),
