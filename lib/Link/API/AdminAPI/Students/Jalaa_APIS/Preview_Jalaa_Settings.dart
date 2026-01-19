@@ -9,7 +9,7 @@ import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Jalaa_For_Students/Jalaa_Controller.dart';
 import 'package:vms_school/Link/Model/AdminModel/Students_Models/Jalaa_Model.dart';
 import 'package:vms_school/view/Both_Platform/widgets/Loading_Dialog.dart';
-import 'package:vms_school/view/SMS_Platform/Admin/Students_Manager/Export_Jalaa_Pages/Export_Jalaa.dart';
+import 'package:vms_school/view/SMS_Platform/Admin/Students_Manager/Export_Jalaa_Pages/Export_Sames_Jalaa.dart';
 
 class Preview_Jalaa_Settings_API {
   Preview_Jalaa_Settings_API();
@@ -37,7 +37,7 @@ class Preview_Jalaa_Settings_API {
             controller.setRebort(rebort);
 
             Get.back();
-            Get.to(ExportJalaa());
+            Get.to(ExportSamesJalaa());
           } else {
             print("مفتاح rebort غير موجود أو null في JSON.");
           }

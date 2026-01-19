@@ -43,6 +43,90 @@ class Jalaa_Controller extends GetxController {
                 "cName": "عربي",
                 "maxMark": 100,
                 "passingMark": 50,
+                "Marks": [12, 12,12, 12],
+                "passingMarks": [12, 12,12, 12]
+              },
+            ]
+          },
+          {
+            "curriculumName": "اللغة العربية",
+            "insideCurr": [
+              {
+                "cName": "عربي",
+                "maxMark": 100,
+                "passingMark": 50,
+                "Marks": [12, 12,12, 12],
+                "passingMarks": [12, 12,12, 12]
+              },
+            ]
+          },
+          {
+            "curriculumName": "اللغة العربية",
+            "insideCurr": [
+              {
+                "cName": "عربي",
+                "maxMark": 100,
+                "passingMark": 50,
+                "Marks": [12, 12,12, 12],
+                "passingMarks": [12, 12,12, 12]
+              },
+            ]
+          },
+          {
+            "curriculumName": "اللغة العربية",
+            "insideCurr": [
+              {
+                "cName": "عربي",
+                "maxMark": 100,
+                "passingMark": 50,
+                "Marks": [12, 12,12, 12],
+                "passingMarks": [12, 12,12, 12]
+              },
+            ]
+          },
+          {
+            "curriculumName": "اللغة العربية",
+            "insideCurr": [
+              {
+                "cName": "عربي",
+                "maxMark": 100,
+                "passingMark": 50,
+                "Marks": [12, 12,12, 12],
+                "passingMarks": [12, 12,12, 12]
+              },
+            ]
+          },
+          {
+            "curriculumName": "اللغة العربية",
+            "insideCurr": [
+              {
+                "cName": "عربي",
+                "maxMark": 100,
+                "passingMark": 50,
+                "Marks": [12, 12,12, 12],
+                "passingMarks": [12, 12,12, 12]
+              },
+            ]
+          },
+          {
+            "curriculumName": "اللغة العربية",
+            "insideCurr": [
+              {
+                "cName": "عربي",
+                "maxMark": 100,
+                "passingMark": 50,
+                "Marks": [12, 12,12, 12],
+                "passingMarks": [12, 12,12, 12]
+              },
+            ]
+          },
+          {
+            "curriculumName": "اللغة العربية",
+            "insideCurr": [
+              {
+                "cName": "عربي",
+                "maxMark": 100,
+                "passingMark": 50,
                 "Marks": [11, 11,11, 11],
                 "passingMarks": [12, 12,12, 12]
               },
@@ -214,12 +298,31 @@ String numberToArabicWords(String numbers) {
   return raw; // أو استخدم stripOptionalTashkeel(raw) لو أردت إزالة التشكيل
 }
 
+
+String numberToArabicTaqdeer(String numbers, int passingMark, {required int maxMark}) {
+  // تحويل النص إلى رقم وتقريبه لأقرب عدد صحيح
+  int score = double.parse(numbers).ceil();
+
+  // إذا كانت الدرجة أقل من درجة النجاح
+  if (score < passingMark) {
+    return "ضعيف";
+  }
+
+  // حساب النسبة المئوية للدرجة مقارنة بالدرجة القصوى
+  double percentage = (score / maxMark) * 100;
+
+  if (percentage >= 90) {
+    return "ممتاز";
+  } else if (percentage >= 80) {
+    return "جيد جداً";
+  } else if (percentage >= 65) {
+    return "جيد";
+  } else {
+    // هذا الجزء للدرجات التي تزيد عن درجة النجاح ولكنها أقل من 65%
+    return "مقبول";
+  }
+}
 String stripOptionalTashkeel(String input) {
-  // نحذف كل التشكيل ما عدا التنوين (ٌ ً ٍ)
-  final regex = RegExp(
-    r'[\u064B\u064C\u064D]|[^\u064B\u064C\u064D]\p{M}',
-    unicode: true,
-  );
 
   return input.replaceAllMapped(
     RegExp(r'[\u0617-\u061A\u064B-\u0652]', unicode: true),

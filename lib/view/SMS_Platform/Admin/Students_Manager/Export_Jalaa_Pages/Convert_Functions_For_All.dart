@@ -7,7 +7,7 @@ import 'package:printing/printing.dart';
 import 'package:vms_school/Link/API/Share_Image.dart' show sendImageToServer;
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Jalaa_For_Students/Jalaa_Controller.dart';
 import 'package:vms_school/Link/Model/AdminModel/Students_Models/Jalaa_Model.dart';
-import 'package:vms_school/view/SMS_Platform/Admin/Students_Manager/Export_Jalaa_Pages/Export_Jalaa.dart';
+import 'package:vms_school/view/SMS_Platform/Admin/Students_Manager/Export_Jalaa_Pages/Export_Sames_Jalaa.dart';
 
 // المتغير العام للإلغاء
 bool cancelOperation = false;
@@ -109,6 +109,13 @@ class PrintingDialog extends StatelessWidget {
     );
   }
 }
+
+
+
+
+
+
+
 
 String convertToArabicNumbers(String input) {
   const english = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];

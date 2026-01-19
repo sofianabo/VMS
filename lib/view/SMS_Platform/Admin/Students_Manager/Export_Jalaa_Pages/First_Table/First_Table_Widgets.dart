@@ -87,9 +87,9 @@ Widget The_First_Semester_Cell(String text, {int colSpan = 1}) {
   return Container(
     decoration: BoxDecoration(
         border: Border(
-      top: BorderSide(color: Colors.black, width: 2),
-      bottom: BorderSide(color: Colors.black, width: 1),
-    )),
+          top: BorderSide(color: Colors.black, width: 2),
+          bottom: BorderSide(color: Colors.black, width: 1),
+        )),
     alignment: Alignment.center,
     child: Column(
       children: [
@@ -104,28 +104,28 @@ Widget The_First_Semester_Cell(String text, {int colSpan = 1}) {
         ),
         Row(
           children: [
-        Container(
-        alignment: Alignment.center,
-        height: 100,
-        width: 60,
-        decoration: BoxDecoration(
-        border: Border(
-        bottom: BorderSide(color: Colors.black, width: 1),
-        top: BorderSide(color: Colors.black, width: 2),
-        left: BorderSide(color: Colors.black, width: 1),
+            Container(
+                alignment: Alignment.center,
+                height: 100,
+                width: 60,
+                decoration: BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(color: Colors.black, width: 1),
+                    top: BorderSide(color: Colors.black, width: 2),
+                    left: BorderSide(color: Colors.black, width: 1),
 
-        ),
-        ),
-        child: Center(
-        child: Text(
-  textAlign: TextAlign.center,
-  "درجة\nأعمال\nالتلميذ",
-  style: TextStyle(
-  fontSize: 14,
-  fontFamily: "tnr",
-  fontWeight: FontWeight.bold),
-  ),
-  )),
+                  ),
+                ),
+                child: Center(
+                  child: Text(
+                    textAlign: TextAlign.center,
+                    "درجة\nأعمال\nالتلميذ",
+                    style: TextStyle(
+                        fontSize: 14,
+                        fontFamily: "tnr",
+                        fontWeight: FontWeight.bold),
+                  ),
+                )),
             Container(
               alignment: Alignment.center,
               height: 100,
@@ -222,6 +222,125 @@ Widget The_First_Semester_Cell(String text, {int colSpan = 1}) {
                       child: Text(
                         textAlign: TextAlign.center,
                         "كتابا",
+                        style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: "tnr"),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ],
+        )
+      ],
+    ),
+  );
+}
+
+
+
+
+Widget Taqderat_Semester_Cell(String text , double size) {
+  return Container(
+    decoration: BoxDecoration(
+        border: Border(
+          top: BorderSide(color: Colors.black, width: 2),
+          bottom: BorderSide(color: Colors.black, width: 1),
+        )),
+    alignment: Alignment.center,
+    child: Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(5.0),
+          child: Text(
+            textAlign: TextAlign.center,
+            convertToArabicNumbers(text),
+            style: TextStyle(
+                fontSize: 14, fontFamily: "tnr", fontWeight: FontWeight.bold),
+          ),
+        ),
+        Row(
+          children: [
+            Column(
+              children: [
+                Container(
+                  width: size,
+                  alignment: Alignment.center,
+                  height: 50,
+                  decoration: BoxDecoration(
+                    border: Border(
+                      bottom: BorderSide(color: Colors.black, width: 1),
+                      top: BorderSide(color: Colors.black, width: 2),
+
+                    ),
+                  ),
+                  child: Text(
+                    textAlign: TextAlign.center,
+                    "الدرجة",
+                    style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: "tnr"),
+                  ),
+                ),
+                Row(
+                  children: [
+                    Container(
+                      width: (size/3)+1,
+                      alignment: Alignment.center,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        border: Border(
+                          top: BorderSide(color: Colors.black, width: 1),
+                          bottom: BorderSide(color: Colors.black, width: 1),
+                          left: BorderSide(color: Colors.black, width: 1),
+                        ),
+                      ),
+                      child: Text(
+                        textAlign: TextAlign.center,
+                        "رقما",
+                        style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: "tnr"),
+                      ),
+                    ),
+                    Container(
+                      width: (size/3)-1,
+                      alignment: Alignment.center,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        border: Border(
+                          bottom: BorderSide(color: Colors.black, width: 1),
+                          top: BorderSide(color: Colors.black, width: 1),
+                          right: BorderSide(color: Colors.black, width: 1),
+                        ),
+                      ),
+                      child: Text(
+                        textAlign: TextAlign.center,
+                        "كتابا",
+                        style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: "tnr"),
+                      ),
+                    ),
+                    Container(
+                      width: (size/3)+1,
+                      alignment: Alignment.center,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        border: Border(
+                          bottom: BorderSide(color: Colors.black, width: 1),
+                          top: BorderSide(color: Colors.black, width: 1),
+                          right: BorderSide(color: Colors.black, width: 2),
+                        ),
+                      ),
+                      child: Text(
+                        textAlign: TextAlign.center,
+                        "التقدير",
                         style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.bold,
@@ -457,6 +576,96 @@ Widget The_Final_SUM_Semester_Cell(String text, {int colSpan = 1}) {
             child: Text(
               textAlign: TextAlign.center,
               "كتابةً",
+              style: TextStyle(
+                  fontSize: 14, fontWeight: FontWeight.bold, fontFamily: "tnr"),
+            ),
+          ),
+        ],
+      ),
+    ],
+  );
+}
+
+
+Widget Taqderat_SUM_Semester_Cell(String text, double size) {
+  return Column(
+    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    children: [
+      Container(
+        decoration: BoxDecoration(
+          border: Border(
+            bottom: BorderSide(color: Colors.black, width: 1),
+            top: BorderSide(color: Colors.black, width: 2),
+            left: BorderSide(color: Colors.black, width: 2),
+
+          ),
+        ),
+        width: size+2,
+        alignment: Alignment.center,
+        height: 83,
+        child: Text(
+          textAlign: TextAlign.center,
+          convertToArabicNumbers(text),
+          style: TextStyle(
+              fontSize: 14, fontWeight: FontWeight.bold, fontFamily: "tnr"),
+        ),
+      ),
+      Row(
+        children: [
+          Container(
+            width: (size/3)+1,
+            alignment: Alignment.center,
+            height: 50,
+            decoration: BoxDecoration(
+              border: Border(
+                bottom: BorderSide(color: Colors.black, width: 2),
+                top: BorderSide(color: Colors.black, width: 1),
+                left: BorderSide(color: Colors.black, width: 1),
+
+              ),
+            ),
+            child: Text(
+              textAlign: TextAlign.center,
+              "رقما",
+              style: TextStyle(
+                  fontSize: 14, fontWeight: FontWeight.bold, fontFamily: "tnr"),
+            ),
+          ),
+          Container(
+            width: size/3,
+            alignment: Alignment.center,
+            height: 50,
+            decoration: BoxDecoration(
+              border: Border(
+                bottom: BorderSide(color: Colors.black, width: 2),
+                top: BorderSide(color: Colors.black, width: 1),
+                right: BorderSide(color: Colors.black, width: 1),
+                left: BorderSide(color: Colors.black, width: 1),
+              ),
+            ),
+            child: Text(
+              textAlign: TextAlign.center,
+              "كتابةً",
+              style: TextStyle(
+                  fontSize: 14, fontWeight: FontWeight.bold, fontFamily: "tnr"),
+            ),
+          ),
+          Container(
+            width: (size/3)+1,
+            alignment: Alignment.center,
+            height: 50,
+            decoration: BoxDecoration(
+              border: Border(
+                bottom: BorderSide(color: Colors.black, width: 2),
+                top: BorderSide(color: Colors.black, width: 1),
+                right: BorderSide(color: Colors.black, width: 1),
+
+                left: BorderSide(color: Colors.black, width: 2),
+              ),
+            ),
+            child: Text(
+              textAlign: TextAlign.center,
+              "التقدير",
               style: TextStyle(
                   fontSize: 14, fontWeight: FontWeight.bold, fontFamily: "tnr"),
             ),

@@ -11,6 +11,7 @@ import 'package:vms_school/view/SMS_Platform/Registeration/Registeration_Home_Sc
 import 'package:vms_school/view/SMS_Platform/Teacher/Teacher_Home/TeacherMainScreen.dart';
 import 'package:vms_school/view/Both_Platform/website/Home.dart';
 
+
 class AppRoutes {
   static List<GetPage> routes = [
     GetPage(

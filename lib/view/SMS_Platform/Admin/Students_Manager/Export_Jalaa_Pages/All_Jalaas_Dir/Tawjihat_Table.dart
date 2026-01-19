@@ -6,7 +6,8 @@ import 'package:vms_school/view/SMS_Platform/Admin/Students_Manager/Export_Jalaa
 
 
 class Tawjihat_Table extends StatelessWidget {
-  const Tawjihat_Table({super.key});
+  bool isTaqderat;
+   Tawjihat_Table({super.key , required this.isTaqderat});
 
   @override
   Widget build(BuildContext context) {
@@ -18,12 +19,15 @@ class Tawjihat_Table extends StatelessWidget {
             border: TableBorder.all(width: 2),
             defaultVerticalAlignment: TableCellVerticalAlignment.middle,
             columnWidths: {
-              0: FixedColumnWidth(265), // المواد الدراسية
+              0: FixedColumnWidth(isTaqderat ? 285 :265), // المواد الدراسية
             },
             children: [
               TableRow(
                 children: [
-                  dawams('التوجيهات التربوية للمدرس' , isdarage: true),
+                  isTaqderat == true?
+
+                  dawams('التوجيهات التربوية للمدرسة' , isdarage: true):
+                  dawams('التوجيهات التربوية للمدرس' , isdarage: true)
                 ],
               ),
               TableRow(
@@ -35,6 +39,10 @@ class Tawjihat_Table extends StatelessWidget {
                     height: 80,
                     child: Text(
                       textAlign: TextAlign.center,
+
+                      isTaqderat == true?
+      "${controller.rebortCard!.rebort!.molahdat!.manager}"
+                          :
                       "${controller.rebortCard!.rebort!.molahdat!.firstSemester}\n${controller.rebortCard!.rebort!.molahdat!.firstSemester}",
                       style: TextStyle(
                           fontSize: 12, fontFamily: "tnr", fontWeight: FontWeight.bold),

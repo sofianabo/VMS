@@ -19,7 +19,7 @@ class Jalaa_Page_Controller extends GetxController {
       "id": 2,
       "image": "assets/images/Jalaa_Templete/5-6.png",
       "text": "قالب اساسي(علامات)",
-    }
+    },
   ];
   List<JalaaSettings>? jalaaSettings;
 
@@ -71,7 +71,7 @@ class Jalaa_Page_Controller extends GetxController {
   final PageController pageController = PageController();
   RxInt currentIndex = 0.obs;
 
-  int get count => jalaas.length;
+  int count = 4;
 
   void nextPage() {
     if (currentIndex.value < count - 1) {

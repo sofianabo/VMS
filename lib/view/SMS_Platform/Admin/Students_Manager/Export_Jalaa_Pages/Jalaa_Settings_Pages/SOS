@@ -1,0 +1,568 @@
+  TableRow(
+            children: [
+
+
+              buildDgree(
+
+                'المجموع النهائي',
+                isLeft: true,
+                isRight: true,
+                isBold: true,
+                ismaj: true,
+                passingMark: 100,
+                passingRatio: 1,
+              ),
+
+              buildDgree(
+                ismaj: true,
+                passingMark: calculateTotalPassingMarks(controller.rebortCard!.rebort!.downCurriculum)  + calculateTotalPassingMarks(controller.rebortCard!.rebort!.mainCurriculum),
+                passingRatio: 1,
+                '${calculateTotalCMarks(controller.rebortCard!.rebort!.downCurriculum)  + calculateTotalCMarks(controller.rebortCard!.rebort!.mainCurriculum)}',
+                isLeft: true,
+                isBold: true,
+              ),
+
+
+              //a3mal , 2mt7an , sum , m1n , m1w
+
+              buildSplitDgree(
+                ismag: true,
+                data: [
+
+                  {
+                    "text": ((sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,0)  +sumMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,0)) + (sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,1)  +sumMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,1)) ).ceil()
+                        .toString(),
+                    "mark": ((sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,0)  +sumMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,0)) + (sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,1)  +sumMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,1)) ).ceil()
+                        .toString(),
+                    "width": size1/3,
+                    "passingMark": (sumPassingMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,0)+sumPassingMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,0)+sumPassingMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,1)+sumPassingMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,1)).ceil(),
+                    "passingRatio":1,
+                  },
+                  {
+                    "text": numberToArabicWords(((sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,0)  +sumMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,0)) + (sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,1)  +sumMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,1)) ).ceil()
+                        .toString()),
+                    "mark": ((sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,0)  +sumMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,0)) + (sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,1)  +sumMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,1)) ).ceil()
+                        .toString(),
+                    "width": size1/3,
+                    "passingMark": (sumPassingMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,0)+sumPassingMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,0)+sumPassingMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,1)+sumPassingMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,1)).ceil(),
+                    "passingRatio":1,
+                  },
+                  {
+                    "text": numberToArabicTaqdeer(  maxMark: allmaxMarx,((sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,0)  +sumMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,0)) + (sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,1)  +sumMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,1)) ).ceil()
+                        .toString(),   (sumPassingMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,0)+sumPassingMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,0)+sumPassingMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,1)+sumPassingMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,1)).ceil(),
+                  ),
+                    "mark": ((sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,0)  +sumMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,0)) + (sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,1)  +sumMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,1)) ).ceil()
+                        .toString(),
+                    "width": size1/3,
+                    "passingMark": (sumPassingMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,0)+sumPassingMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,0)+sumPassingMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,1)+sumPassingMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,1)).ceil(),
+                    "passingRatio":1,
+                  },
+
+                ],
+              ),
+              //space
+              buildDgree('',
+
+                  isLeft: true,
+                  isRight: true,
+                  passingMark: 0,
+                  passingRatio: 0),
+
+              //daraga odma
+              buildDgree(
+                ismaj: true,
+                passingMark: 0 ,
+                passingRatio: 0,
+                '${calculateTotalCMarks(controller.rebortCard!.rebort!.downCurriculum)+ calculateTotalCMarks(controller.rebortCard!.rebort!.mainCurriculum)}',
+                isLeft: true,
+                isBold: true,
+              ),
+
+
+              buildSplitDgree(
+                ismag: true,
+                isRight: false,
+                data: [
+
+                  {
+                    "text": safeMarkNumberAtIndex( 2)==0? "":(sumMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,2) +
+                        sumMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,3)
+                        + sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,2) +
+                        sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,3)
+
+                    ).ceil()
+                        .toString()
+                    ,
+                    "mark":  safeMarkNumberAtIndex( 2)==0? "": (sumMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,2) +
+                        sumMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,3) + sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,2) +
+                        sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,3)).ceil()
+                        .toString()
+                    ,
+                    "width": size2/3,
+                    "passingMark": (
+                        sumPassingMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,2)
+                            +sumPassingMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,2)
+                            +sumPassingMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,3)
+                            +sumPassingMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,3)
+                    ).ceil(),
+                    "passingRatio": 1,
+                  },
+                  {
+                    "text": numberToArabicWords(safeMarkNumberAtIndex( 2)==0? "":(sumMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,2) +
+                        sumMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,3)
+                        + sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,2) +
+                        sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,3)
+
+                    ).ceil()
+                        .toString())
+                    ,
+                    "mark":  safeMarkNumberAtIndex( 2)==0? "": (sumMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,2) +
+                        sumMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,3) + sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,2) +
+                        sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,3)).ceil()
+                        .toString()
+                    ,
+                    "width": size2/3,
+                    "passingMark": (
+                        sumPassingMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,2)
+                            +sumPassingMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,2)
+                            +sumPassingMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,3)
+                            +sumPassingMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,3)
+                    ).ceil(),
+                    "passingRatio": 1,
+                  },
+                  {
+                    "text": numberToArabicTaqdeer(  maxMark: allmaxMarx,safeMarkNumberAtIndex( 2)==0? "":(sumMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,2) +
+                        sumMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,3)
+                        + sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,2) +
+                        sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,3)
+
+                    ).ceil()
+                        .toString(),
+
+                  (
+                  sumPassingMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,2)
+                  +sumPassingMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,2)
+                  +sumPassingMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,3)
+                  +sumPassingMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,3)
+                  ).ceil(),
+                    )
+                    ,
+                    "mark":  safeMarkNumberAtIndex( 2)==0? "": (sumMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,2) +
+                        sumMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,3) + sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,2) +
+                        sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,3)).ceil()
+                        .toString()
+                    ,
+                    "width": size2/3,
+                    "passingMark": (
+                        sumPassingMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,2)
+                            +sumPassingMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,2)
+                            +sumPassingMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,3)
+                            +sumPassingMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,3)
+                    ).ceil(),
+                    "passingRatio": 1,
+                  },
+
+                ],
+              ),
+
+              buildDgree('',
+                  isLeft: true,
+                  isRight: true,
+                  passingMark: 0,
+                  passingRatio: 0),
+
+              buildSplitDgree(
+                ismag: true,
+                isLeft: true,
+                data: [
+                  {
+                    "text":   safeMarkNumberAtIndex( 2)==0? "":(((sumMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,0) +
+                        sumMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,1) +
+                        sumMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,2) +
+                        sumMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,3))+
+                        (sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,0) +
+                            sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,1) +
+                            sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,2) +
+                            sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,3))) /
+                        2)
+                        .ceil()
+                        .toString()
+                    ,
+                    "mark": safeMarkNumberAtIndex( 2)==0? "":(((sumMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,0) +
+                        sumMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,1) +
+                        sumMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,2) +
+                        sumMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,3))+
+                        (sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,0) +
+                            sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,1) +
+                            sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,2) +
+                            sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,3))) /
+                        2)
+                        .ceil()
+                        .toString()
+                    ,
+                    "width": size3/3,
+                    "passingMark": (((
+                        sumPassingMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,0)
+                            +sumPassingMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,1)
+                            +sumPassingMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,2)
+                            +sumPassingMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,3)
+                    )+
+                        (
+                            sumPassingMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,0)
+                                +sumPassingMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,1)
+                                +sumPassingMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,2)
+                                +sumPassingMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,3)
+                        ))/2
+                    ).ceil(),
+                    "passingRatio": 1,
+                  },
+                  {
+                    "text":  safeMarkNumberAtIndex( 2)==0? "": numberToArabicWords((((sumMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,0) +
+                        sumMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,1) +
+                        sumMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,2) +
+                        sumMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,3))+
+                        (sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,0) +
+                            sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,1) +
+                            sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,2) +
+                            sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,3))) /
+                        2).ceil()
+                        .toString())
+                    ,
+                    "mark": safeMarkNumberAtIndex( 2)==0? "":((((sumMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,0) +
+                        sumMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,1) +
+                        sumMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,2) +
+                        sumMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,3))+
+                        (sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,0) +
+                            sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,1) +
+                            sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,2) +
+                            sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,3))) /
+                        2)).ceil()
+                        .toString()
+                    ,
+                    "width": size3/3,
+                    "passingMark": (((
+                        sumPassingMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,0)
+                            +sumPassingMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,1)
+                            +sumPassingMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,2)
+                            +sumPassingMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,3)
+                    )+
+                        (
+                            sumPassingMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,0)
+                                +sumPassingMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,1)
+                                +sumPassingMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,2)
+                                +sumPassingMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,3)
+                        )
+                    )/2).ceil(),
+                    "passingRatio": 1,
+                  },
+
+
+
+                  {
+                    "text":  safeMarkNumberAtIndex( 2)==0? "": numberToArabicTaqdeer(  maxMark: allmaxMarx,(((sumMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,0) +
+                        sumMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,1) +
+                        sumMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,2) +
+                        sumMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,3))+
+                        (sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,0) +
+                            sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,1) +
+                            sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,2) +
+                            sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,3))) /
+                        2).ceil()
+                        .toString(),
+             (((
+                  sumPassingMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,0)
+                  +sumPassingMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,1)
+                  +sumPassingMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,2)
+                  +sumPassingMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,3)
+                  )+
+                  (
+                  sumPassingMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,0)
+                  +sumPassingMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,1)
+                  +sumPassingMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,2)
+                  +sumPassingMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,3)
+                  )
+                  )/2).ceil(),
+
+
+                    )
+                    ,
+                    "mark": safeMarkNumberAtIndex( 2)==0? "":((((sumMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,0) +
+                        sumMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,1) +
+                        sumMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,2) +
+                        sumMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,3))+
+                        (sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,0) +
+                            sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,1) +
+                            sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,2) +
+                            sumMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,3))) /
+                        2)).ceil()
+                        .toString()
+                    ,
+                    "width": size3/3,
+                    "passingMark": (((
+                        sumPassingMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,0)
+                            +sumPassingMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,1)
+                            +sumPassingMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,2)
+                            +sumPassingMarksAtIndex(controller.rebortCard!.rebort!.mainCurriculum,3)
+                    )+
+                        (
+                            sumPassingMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,0)
+                                +sumPassingMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,1)
+                                +sumPassingMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,2)
+                                +sumPassingMarksAtIndex(controller.rebortCard!.rebort!.downCurriculum,3)
+                        )
+                    )/2).ceil(),
+                    "passingRatio": 1,
+                  },
+                ],
+              ),
+
+            ],
+          ),
+          TableRow(
+            children: [
+
+
+              buildDgree(
+
+                'المجموع العام',
+                isLeft: true,
+                isRight: true,
+                isBold: true,
+                ismaj: true,
+                passingMark: 0,
+                passingRatio: 0,
+              ),
+
+              buildDgree(
+                ismaj: true,
+                passingMark: 0,
+                passingRatio: 0,
+                '${calculateTotalCMarks(controller.rebortCard!.rebort!.mainCurriculum)}',
+                isLeft: true,
+                isBold: true,
+              ),
+
+
+              //a3mal , 2mt7an , sum , m1n , m1w
+
+              buildSplitDgree(
+                ismag: true,
+                data: [
+
+                  {
+                    "text": (safeMarkNumberAtIndex(0) +
+                        safeMarkNumberAtIndex( 1)).ceil()
+                        .toString(),
+                    "mark": (safeMarkNumberAtIndex(0) +
+                        safeMarkNumberAtIndex( 1)).ceil()
+                        .toString(),
+                    "width": size1/3,
+                    "passingMark": safePassingMarkNumberAtIndex(0)+safePassingMarkNumberAtIndex(1),
+                    "passingRatio": 1,
+                  },
+                  {
+                    "text": numberToArabicWords((safeMarkNumberAtIndex(0) +
+                        safeMarkNumberAtIndex( 1)).ceil()
+                        .toString()),
+                    "mark": (safeMarkNumberAtIndex(0) +
+                        safeMarkNumberAtIndex( 1)).ceil()
+                        .toString(),
+                    "width": size1/3,
+                    "passingMark": safePassingMarkNumberAtIndex(0)+safePassingMarkNumberAtIndex(1),
+                    "passingRatio": 1,
+                  },
+                  {
+                    "text": numberToArabicTaqdeer(
+                      maxMark: calculateTotalCMarks(controller.rebortCard!.rebort!.mainCurriculum),
+
+
+                      (safeMarkNumberAtIndex(0) +
+                          safeMarkNumberAtIndex( 1)).ceil()
+                          .toString(),
+
+                      safePassingMarkNumberAtIndex(0)+safePassingMarkNumberAtIndex(1),
+
+                    ),
+                    "mark": (safeMarkNumberAtIndex(0) +
+                        safeMarkNumberAtIndex( 1)).ceil()
+                        .toString(),
+                    "width": size1/3,
+                    "passingMark": safePassingMarkNumberAtIndex(0)+safePassingMarkNumberAtIndex(1),
+                    "passingRatio": 1,
+                  },
+
+                ],
+              ),
+              //space
+              buildDgree('',
+                  isLeft: true,
+                  isRight: true,
+                  passingMark: 0,
+                  passingRatio: 0),
+
+              //daraga odma
+              buildDgree(
+                ismaj: true,
+                passingMark: 0,
+                passingRatio: 0,
+                '${calculateTotalCMarks(controller.rebortCard!.rebort!.mainCurriculum)}',
+                isLeft: true,
+                isBold: true,
+              ),
+
+
+              buildSplitDgree(
+                ismag: true,
+                isRight: false,
+                data: [
+
+                  {
+                    "text": safeMarkNumberAtIndex( 2)==0? "":   (safeMarkNumberAtIndex( 2) +
+                        safeMarkNumberAtIndex( 3)).ceil()
+                        .toString()
+                    ,
+                    "mark":  safeMarkNumberAtIndex( 2)==0? "": (safeMarkNumberAtIndex( 2) +
+                        safeMarkNumberAtIndex( 3)).ceil()
+                        .toString()
+                    ,
+                    "width": size2/3,
+                    "passingMark": (safePassingMarkNumberAtIndex(2)+safePassingMarkNumberAtIndex(3)).ceil(),
+                    "passingRatio": 1,
+                  },
+                  {
+                    "text": numberToArabicWords(safeMarkNumberAtIndex( 2)==0? "":   (safeMarkNumberAtIndex( 2) +
+                        safeMarkNumberAtIndex( 3)).ceil()
+                        .toString())
+                    ,
+                    "mark":  safeMarkNumberAtIndex( 2)==0? "": (safeMarkNumberAtIndex( 2) +
+                        safeMarkNumberAtIndex( 3)).ceil()
+                        .toString()
+                    ,
+                    "width": size2/3,
+                    "passingMark": (safePassingMarkNumberAtIndex(2)+safePassingMarkNumberAtIndex(3)).ceil(),
+                    "passingRatio": 1,
+                  },
+                  {
+                    "text": numberToArabicTaqdeer(
+
+                      maxMark: calculateTotalCMarks(controller.rebortCard!.rebort!.mainCurriculum),
+                      safeMarkNumberAtIndex( 2)==0? "":   (safeMarkNumberAtIndex( 2) +
+                          safeMarkNumberAtIndex( 3)).ceil()
+                          .toString(),
+
+
+                      (safePassingMarkNumberAtIndex(2)+safePassingMarkNumberAtIndex(3)).ceil(),
+
+                    )
+                    ,
+                    "mark":  safeMarkNumberAtIndex( 2)==0? "": (safeMarkNumberAtIndex( 2) +
+                        safeMarkNumberAtIndex( 3)).ceil()
+                        .toString()
+                    ,
+                    "width": size2/3,
+                    "passingMark": (safePassingMarkNumberAtIndex(2)+safePassingMarkNumberAtIndex(3)).ceil(),
+                    "passingRatio": 1,
+                  },
+
+                ],
+              ),
+
+              buildDgree('',
+                  isLeft: true,
+                  isRight: true,
+                  passingMark: 0,
+                  passingRatio: 0),
+
+              buildSplitDgree(
+                ismag: true,
+                isLeft: true,
+                data: [
+                  {
+                    "text":   safeMarkNumberAtIndex( 2)==0? "":((safeMarkNumberAtIndex( 0) +
+                        safeMarkNumberAtIndex( 1) +
+                        safeMarkNumberAtIndex( 2) +
+                        safeMarkNumberAtIndex( 3)) /
+                        2)
+                        .ceil()
+                        .toString()
+                    ,
+                    "mark": safeMarkNumberAtIndex( 2)==0? "":((safeMarkNumberAtIndex( 0) +
+                        safeMarkNumberAtIndex( 1) +
+                        safeMarkNumberAtIndex( 2) +
+                        safeMarkNumberAtIndex( 3)) /
+                        2)
+                        .ceil()
+                        .toString()
+                    ,
+                    "width": size3/3,
+                    "passingMark": ((
+                        safePassingMarkNumberAtIndex(0)+
+                            safePassingMarkNumberAtIndex(1)+
+                            safePassingMarkNumberAtIndex(2)+
+                            safePassingMarkNumberAtIndex(3)
+                    )/2).ceil(),
+                    "passingRatio": 1,
+                  },
+                  {
+                    "text":  safeMarkNumberAtIndex( 2)==0? "": numberToArabicWords(((safeMarkNumberAtIndex(0) +
+                        safeMarkNumberAtIndex( 1) +
+                        safeMarkNumberAtIndex( 2) +
+                        safeMarkNumberAtIndex( 3)) /
+                        2).ceil()
+                        .toString())
+                    ,
+                    "mark": safeMarkNumberAtIndex( 2)==0? "":((safeMarkNumberAtIndex( 0) +
+                        safeMarkNumberAtIndex( 1) +
+                        safeMarkNumberAtIndex( 2) +
+                        safeMarkNumberAtIndex( 3)) /
+                        2).ceil()
+                        .toString()
+                    ,
+                    "width": size3/3,
+                    "passingMark": ((
+                        safePassingMarkNumberAtIndex(0)+
+                            safePassingMarkNumberAtIndex(1)+
+                            safePassingMarkNumberAtIndex(2)+
+                            safePassingMarkNumberAtIndex(3)
+                    )/2).ceil(),
+                    "passingRatio": 1,
+                  },
+
+                  {
+                    "text":  safeMarkNumberAtIndex( 2)==0? "": numberToArabicTaqdeer(
+
+
+                      maxMark: calculateTotalCMarks(controller.rebortCard!.rebort!.mainCurriculum),
+                      ((safeMarkNumberAtIndex(0) +
+                          safeMarkNumberAtIndex( 1) +
+                          safeMarkNumberAtIndex( 2) +
+                          safeMarkNumberAtIndex( 3)) /
+                          2).ceil()
+                          .toString(),  ((
+                        safePassingMarkNumberAtIndex(0)+
+                            safePassingMarkNumberAtIndex(1)+
+                            safePassingMarkNumberAtIndex(2)+
+                            safePassingMarkNumberAtIndex(3)
+                    )/2).ceil(),)
+                    ,
+                    "mark": safeMarkNumberAtIndex( 2)==0? "":((safeMarkNumberAtIndex( 0) +
+                        safeMarkNumberAtIndex( 1) +
+                        safeMarkNumberAtIndex( 2) +
+                        safeMarkNumberAtIndex( 3)) /
+                        2).ceil()
+                        .toString()
+                    ,
+                    "width": size3/3,
+                    "passingMark": ((
+                        safePassingMarkNumberAtIndex(0)+
+                            safePassingMarkNumberAtIndex(1)+
+                            safePassingMarkNumberAtIndex(2)+
+                            safePassingMarkNumberAtIndex(3)
+                    )/2).ceil(),
+                    "passingRatio": 1,
+                  },
+                ],
+              ),
+
+            ],
+          ),

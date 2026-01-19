@@ -22,7 +22,8 @@ class _Dialog_Add_Jalaa_SettingsState extends State<Dialog_Add_Jalaa_Settings> {
   Widget build(BuildContext context) {
     final controller = Get.find<Jalaa_Page_Controller>();
     final screenWidth = MediaQuery.of(context).size.width * 0.7;
-
+    TextEditingController first = TextEditingController(text: "");
+    TextEditingController second = TextEditingController(text: "");
     int getCrossAxisCount() {
       if (screenWidth >= 950) return 3;
       if (screenWidth >= 400) return 2;
@@ -63,7 +64,10 @@ class _Dialog_Add_Jalaa_SettingsState extends State<Dialog_Add_Jalaa_Settings> {
                   : controller.currentIndex.value == 3
                       ? TextButton(
                           onPressed: () {
-                            Add_Jalaa_Settings_API().Add_Jalaa_Settings();
+                            Add_Jalaa_Settings_API().Add_Jalaa_Settings(
+                              first:first.text,
+                              second:second.text,
+                            );
                           },
                           child: const Text("إنهاء"),
                         )
@@ -158,7 +162,10 @@ class _Dialog_Add_Jalaa_SettingsState extends State<Dialog_Add_Jalaa_Settings> {
                     ),
                     Second_Page_Add_Jalaa(),
                     Add_Jalaa_Third_Page(),
-                    QuizTypeSorter()
+                    QuizTypeSorter(
+                      first: first,
+                      second: second,
+                    )
                   ],
                 ),
               ),

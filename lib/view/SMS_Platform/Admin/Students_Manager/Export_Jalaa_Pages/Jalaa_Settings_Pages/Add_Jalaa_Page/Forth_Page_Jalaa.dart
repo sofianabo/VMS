@@ -3,7 +3,9 @@ import 'package:get/get.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Jalaa_For_Students/Jalaa_Page_Controller.dart';
 
 class QuizTypeSorter extends StatelessWidget {
-  const QuizTypeSorter({super.key});
+   QuizTypeSorter({super.key , required this.first, required this.second,});
+   TextEditingController first;
+   TextEditingController second ;
 
   @override
   Widget build(BuildContext context) {
@@ -93,7 +95,7 @@ class QuizTypeSorter extends StatelessWidget {
                     ),
                     const SizedBox(width: 15),
                     Flexible(
-                      child: _noteBox(context, "ملاحظات الفصل الأول"),
+                      child: _noteBox(context, "ملاحظات الفصل الأول",first),
                     ),
                   ],
                 ),
@@ -173,7 +175,7 @@ class QuizTypeSorter extends StatelessWidget {
                     ),
                     const SizedBox(width: 15),
                     Flexible(
-                      child: _noteBox(context, "ملاحظات الفصل الثاني"),
+                      child: _noteBox(context, "ملاحظات الفصل الثاني",second),
                     ),
                   ],
                 ),
@@ -217,22 +219,45 @@ class QuizTypeSorter extends StatelessWidget {
         );
       };
 
-  Widget _noteBox(BuildContext context, String title) => Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 5.0),
-            child: Text(
-              title,
-              overflow: TextOverflow.fade,
-              maxLines: 1,
-            ),
+  Widget _noteBox(BuildContext context, String title, TextEditingController controller) => Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 5.0),
+        child: Text(
+          title,
+          overflow: TextOverflow.fade,
+          maxLines: 1,
+        ),
+      ),
+      Container(
+        height: 200,
+        margin: const EdgeInsets.only(top: 8),
+        decoration: _boxDecoration(context),
+        child: TextField(
+          controller: controller, // هنا نربط الكونترولر
+          maxLines: null,         // للسماح بالتوسع العمودي
+          minLines: null,
+          expands: true,          // ليأخذ كامل طول الـ Container
+          textAlignVertical: TextAlignVertical.top, // يبدأ النص من الأعلى
+          style: const TextStyle(color: Colors.white), // لون الخط أبيض
+          textInputAction: TextInputAction.none,    // يمنع زر الـ Enter من كسر السطر
+          keyboardType: TextInputType.text,         // نوع الكيبورد عادي
+          decoration: const InputDecoration(
+            contentPadding: EdgeInsets.all(12),
+            border: InputBorder.none,
           ),
-          Container(
-            height: 200,
-            margin: const EdgeInsets.only(top: 8),
-            decoration: _boxDecoration(context),
-          ),
-        ],
-      );
+          // لمنع الـ Enter تماماً حتى لو حاول المستخدم
+          onChanged: (text) {
+            if (text.contains('\n')) {
+              controller.text = text.replaceAll('\n', '');
+              controller.selection = TextSelection.fromPosition(
+                TextPosition(offset: controller.text.length),
+              );
+            }
+          },
+        ),
+      ),
+    ],
+  );
 }

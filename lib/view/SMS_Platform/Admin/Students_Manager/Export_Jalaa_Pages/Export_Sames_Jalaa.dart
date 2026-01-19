@@ -9,14 +9,14 @@ import 'package:vms_school/view/SMS_Platform/Admin/Students_Manager/Export_Jalaa
 import 'package:vms_school/view/SMS_Platform/Admin/Students_Manager/Export_Jalaa_Pages/All_Jalaas_Dir/Tawjihat_Table.dart';
 import 'package:vms_school/view/SMS_Platform/Admin/Students_Manager/Export_Jalaa_Pages/Convert_Functions_For_All.dart';
 
-class ExportJalaa extends StatefulWidget {
-  ExportJalaa({super.key});
+class ExportSamesJalaa extends StatefulWidget {
+  ExportSamesJalaa({super.key});
 
   @override
-  State<ExportJalaa> createState() => _ExportJalaaState();
+  State<ExportSamesJalaa> createState() => _ExportSamesJalaaState();
 }
 
-class _ExportJalaaState extends State<ExportJalaa> {
+class _ExportSamesJalaaState extends State<ExportSamesJalaa> {
   final String fontFamily = "tnr";
 
   @override
@@ -65,7 +65,7 @@ class CustomHeaderTable extends StatelessWidget {
                      spacing: 60,
                      children: [
                        DawamTable(),
-                       Tawjihat_Table()
+                       Tawjihat_Table(isTaqderat: false,)
                      ],
                    ),
                    Column( spacing: 15.0,

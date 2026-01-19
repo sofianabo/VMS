@@ -9,7 +9,7 @@ import 'package:vms_school/Theme/themeController.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'Link/Bindings/AppBinding.dart';
 import 'Translate/local.dart';
- import 'package:flutter_web_plugins/flutter_web_plugins.dart';
+// import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 
 SharedPreferences? prefs;
 
@@ -38,7 +38,7 @@ void main() async {
     DeviceOrientation.landscapeLeft,
     DeviceOrientation.landscapeLeft,
   ]);
-   setUrlStrategy(PathUrlStrategy());
+  // setUrlStrategy(PathUrlStrategy());
   runApp(VMS_Main(localizationController: localizationController));
 }
 

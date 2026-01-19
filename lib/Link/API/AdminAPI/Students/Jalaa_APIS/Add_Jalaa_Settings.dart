@@ -11,7 +11,7 @@ import 'package:vms_school/view/Both_Platform/widgets/Loading_Dialog.dart';
 class Add_Jalaa_Settings_API {
   Add_Jalaa_Settings_API();
   Dio dio = Dio();
-  Add_Jalaa_Settings() async {
+  Add_Jalaa_Settings({required String first,required String second}) async {
     final controller = Get.find<Jalaa_Page_Controller>();
     try {
       CancelToken cancelToken = CancelToken();
@@ -27,9 +27,9 @@ class Add_Jalaa_Settings_API {
               "quizTypes": controller.getSemester(),
               "classId": controller.Classid,
               "Molahdat": {
-                "firstSemester": "",
-                "secondSemester": null,
-                "manager": null
+                "firstSemester": first,
+                "secondSemester": second,
+                "manager": ""
               }
             }
           },
